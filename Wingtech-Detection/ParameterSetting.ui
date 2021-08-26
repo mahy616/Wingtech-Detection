@@ -1,0 +1,1875 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DialogSetting</class>
+ <widget class="QDialog" name="DialogSetting">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1555</width>
+    <height>1111</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>参数设置</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="CMainWindow.qrc">
+    <normaloff>:/CMainWindow/Resources/settings.png</normaloff>:/CMainWindow/Resources/settings.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">font: 14pt &quot;微软雅黑&quot;;
+color: rgb(0, 85, 0);</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="1" column="1">
+    <widget class="QGroupBox" name="groupBox_8">
+     <property name="title">
+      <string>一工位</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_9">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_ThirdTime">
+        <property name="minimumSize">
+         <size>
+          <width>241</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>241</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(85, 255, 255);
+color: rgb(85, 0, 255);</string>
+        </property>
+        <property name="text">
+         <string>耗时：</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_ThirdResult">
+        <property name="minimumSize">
+         <size>
+          <width>151</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>151</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">image: url(:/CMainWindow/Resources/OK.svg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="3">
+       <widget class="MyLabel" name="label_ThirdImage">
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/CMainWindow/Resources/background.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QCheckBox" name="checkBox_RenderThird">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>渲染图</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QGroupBox" name="groupBox_6">
+     <property name="title">
+      <string>二工位</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_6">
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_SecondResult">
+        <property name="minimumSize">
+         <size>
+          <width>151</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>151</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">image: url(:/CMainWindow/Resources/OK.svg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="3">
+       <widget class="MyLabel" name="label_SecondImage">
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/CMainWindow/Resources/background.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_SecondTime">
+        <property name="minimumSize">
+         <size>
+          <width>241</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>241</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(85, 255, 255);
+color: rgb(85, 0, 255);</string>
+        </property>
+        <property name="text">
+         <string>耗时：</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QCheckBox" name="checkBox_RenderSecond">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>渲染图</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QGroupBox" name="groupBox_9">
+     <property name="title">
+      <string>二工位</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_10">
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_FourthResult">
+        <property name="minimumSize">
+         <size>
+          <width>151</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>151</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">image: url(:/CMainWindow/Resources/OK.svg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="3">
+       <widget class="MyLabel" name="label_FourthImage">
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/CMainWindow/Resources/background.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_FourthTime">
+        <property name="minimumSize">
+         <size>
+          <width>241</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>241</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(85, 255, 255);
+color: rgb(85, 0, 255);</string>
+        </property>
+        <property name="text">
+         <string>耗时：</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QCheckBox" name="checkBox_RenderThird_2">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>渲染图</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QGroupBox" name="groupBox_5">
+     <property name="title">
+      <string>一工位</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_FirstResult">
+        <property name="minimumSize">
+         <size>
+          <width>151</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>151</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">image: url(:/CMainWindow/Resources/OK.svg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_FirstTime">
+        <property name="minimumSize">
+         <size>
+          <width>241</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>241</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(85, 255, 255);
+color: rgb(85, 0, 255);</string>
+        </property>
+        <property name="text">
+         <string>耗时：</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="3">
+       <widget class="MyLabel" name="label_FirstImage">
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/CMainWindow/Resources/background.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QCheckBox" name="checkBox_RenderFirst">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>渲染图</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0" rowspan="2">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>相机参数</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBox_Frist">
+         <property name="maximumSize">
+          <size>
+           <width>581</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>一工位-相机参数</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_First">
+            <property name="maximumSize">
+             <size>
+              <width>101</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>相机名称</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QRadioButton" name="radioButton_FreeFirst">
+            <property name="text">
+             <string>自由采集</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="7">
+           <widget class="QPushButton" name="pushButton_LoadNGPath_First">
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>打开路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="7">
+           <widget class="QPushButton" name="pushButton_LoadOKPath_First">
+            <property name="text">
+             <string>打开路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="5" colspan="2">
+           <widget class="QRadioButton" name="radioButton_SoftFirst">
+            <property name="text">
+             <string>软触发</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3" colspan="2">
+           <widget class="QRadioButton" name="radioButton_ExternalFirst">
+            <property name="text">
+             <string>硬触发</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="7">
+           <widget class="QPushButton" name="pushButton_OpenFirst">
+            <property name="maximumSize">
+             <size>
+              <width>111</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>打开相机</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="7">
+           <widget class="QPushButton" name="pushButton_TriggerFirst">
+            <property name="maximumSize">
+             <size>
+              <width>111</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>触发一次</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBox_SaveNG_First">
+            <property name="text">
+             <string>保存NG</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBox_SaveOK_First">
+            <property name="text">
+             <string>保存OK</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>曝光</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2" colspan="5">
+           <widget class="QLineEdit" name="lineEdit_NGPath_First">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>NG图像路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2" colspan="5">
+           <widget class="QLineEdit" name="lineEdit_OKPath_First">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>OK图像路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2" colspan="5">
+           <widget class="QComboBox" name="comboBox_First"/>
+          </item>
+          <item row="4" column="7">
+           <widget class="QPushButton" name="pushButton_SaveParams">
+            <property name="text">
+             <string>保存参数</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="5">
+           <widget class="QLineEdit" name="le_gain_1">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>59</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="4">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>增益</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QLineEdit" name="le_exposure_1">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>59</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBox_Frist_3">
+         <property name="maximumSize">
+          <size>
+           <width>581</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>一工位-相机参数</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_18">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_First_4">
+            <property name="maximumSize">
+             <size>
+              <width>101</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>相机名称</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="4" colspan="2">
+           <widget class="QLabel" name="label_15">
+            <property name="text">
+             <string>增益</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QRadioButton" name="radioButton_FreeSecond">
+            <property name="text">
+             <string>自由采集</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="7">
+           <widget class="QPushButton" name="pushButton_LoadNGPath_Second">
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>打开路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="7">
+           <widget class="QPushButton" name="pushButton_LoadOKPath_Second">
+            <property name="text">
+             <string>打开路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="5" colspan="2">
+           <widget class="QRadioButton" name="radioButton_SoftSecond">
+            <property name="text">
+             <string>软触发</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3" colspan="2">
+           <widget class="QRadioButton" name="radioButton_ExternalSecond">
+            <property name="text">
+             <string>硬触发</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="7">
+           <widget class="QPushButton" name="pushButton_OpenSecond">
+            <property name="maximumSize">
+             <size>
+              <width>111</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>打开相机</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="7">
+           <widget class="QPushButton" name="pushButton_TriggerSecond">
+            <property name="maximumSize">
+             <size>
+              <width>111</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>触发一次</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBox_SaveNG_Second">
+            <property name="text">
+             <string>保存NG</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBox_SaveOK_Second">
+            <property name="text">
+             <string>保存OK</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QLineEdit" name="le_exposure_2">
+            <property name="maximumSize">
+             <size>
+              <width>59</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_16">
+            <property name="text">
+             <string>曝光</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2" colspan="5">
+           <widget class="QLineEdit" name="lineEdit_NGPath_Second">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>NG图像路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2" colspan="5">
+           <widget class="QLineEdit" name="lineEdit_OKPath_Second">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>OK图像路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2" colspan="5">
+           <widget class="QComboBox" name="comboBox_Second"/>
+          </item>
+          <item row="4" column="6">
+           <widget class="QLineEdit" name="le_gain_2"/>
+          </item>
+          <item row="4" column="7">
+           <widget class="QPushButton" name="pushButton_SaveParams_Second">
+            <property name="text">
+             <string>保存参数</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QGroupBox" name="groupBox_Frist_4">
+         <property name="maximumSize">
+          <size>
+           <width>581</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>一工位-相机参数</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_19">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_First_5">
+            <property name="maximumSize">
+             <size>
+              <width>101</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>相机名称</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="4" colspan="2">
+           <widget class="QLabel" name="label_17">
+            <property name="text">
+             <string>增益</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QRadioButton" name="radioButton_FreeThird">
+            <property name="text">
+             <string>自由采集</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="7">
+           <widget class="QPushButton" name="pushButton_LoadNGPath_Third">
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>打开路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="7">
+           <widget class="QPushButton" name="pushButton_LoadOKPath_Third">
+            <property name="text">
+             <string>打开路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="5" colspan="2">
+           <widget class="QRadioButton" name="radioButton_SoftThird">
+            <property name="text">
+             <string>软触发</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3" colspan="2">
+           <widget class="QRadioButton" name="radioButton_ExternalThird">
+            <property name="text">
+             <string>硬触发</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="7">
+           <widget class="QPushButton" name="pushButton_OpenThird">
+            <property name="maximumSize">
+             <size>
+              <width>111</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>打开相机</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="7">
+           <widget class="QPushButton" name="pushButton_TriggerThird">
+            <property name="maximumSize">
+             <size>
+              <width>111</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>触发一次</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBox_SaveNG_Third">
+            <property name="text">
+             <string>保存NG</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBox_SaveOK_Third">
+            <property name="text">
+             <string>保存OK</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QLineEdit" name="le_exposure_3">
+            <property name="maximumSize">
+             <size>
+              <width>59</width>
+              <height>59</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_18">
+            <property name="text">
+             <string>曝光</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2" colspan="5">
+           <widget class="QLineEdit" name="lineEdit_NGPath_Third">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>NG图像路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2" colspan="5">
+           <widget class="QLineEdit" name="lineEdit_OKPath_Third">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>OK图像路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2" colspan="5">
+           <widget class="QComboBox" name="comboBox_Third"/>
+          </item>
+          <item row="4" column="6">
+           <widget class="QLineEdit" name="le_gain_3"/>
+          </item>
+          <item row="4" column="7">
+           <widget class="QPushButton" name="pushButton_SaveParams_Third">
+            <property name="text">
+             <string>保存参数</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QGroupBox" name="groupBox_Frist_5">
+         <property name="maximumSize">
+          <size>
+           <width>581</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>一工位-相机参数</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_25">
+          <item row="1" column="5" colspan="2">
+           <widget class="QRadioButton" name="radioButton_SoftFourth">
+            <property name="text">
+             <string>软触发</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2" colspan="5">
+           <widget class="QLineEdit" name="lineEdit_NGPath_Fourth">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>NG图像路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2" colspan="5">
+           <widget class="QLineEdit" name="lineEdit_OKPath_Fourth">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>OK图像路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3" colspan="2">
+           <widget class="QRadioButton" name="radioButton_ExternalFourth">
+            <property name="text">
+             <string>硬触发</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_First_6">
+            <property name="maximumSize">
+             <size>
+              <width>101</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>相机名称</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="4" colspan="2">
+           <widget class="QLabel" name="label_31">
+            <property name="text">
+             <string>增益</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="7">
+           <widget class="QPushButton" name="pushButton_LoadNGPath_Fourth">
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>打开路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QLineEdit" name="le_exposure_4">
+            <property name="maximumSize">
+             <size>
+              <width>59</width>
+              <height>59</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2" colspan="5">
+           <widget class="QComboBox" name="comboBox_Four"/>
+          </item>
+          <item row="1" column="2">
+           <widget class="QRadioButton" name="radioButton_FreeFourth">
+            <property name="text">
+             <string>自由采集</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_32">
+            <property name="text">
+             <string>曝光</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBox_SaveNG_Fourth">
+            <property name="text">
+             <string>保存NG</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="7">
+           <widget class="QPushButton" name="pushButton_TriggerFourth">
+            <property name="maximumSize">
+             <size>
+              <width>111</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>触发一次</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="7">
+           <widget class="QPushButton" name="pushButton_LoadOKPath_Fourth">
+            <property name="text">
+             <string>打开路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="7">
+           <widget class="QPushButton" name="pushButton_OpenFourth">
+            <property name="maximumSize">
+             <size>
+              <width>111</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>打开相机</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBox_SaveOK_Fourth">
+            <property name="text">
+             <string>保存OK</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="6">
+           <widget class="QLineEdit" name="le_gain_4"/>
+          </item>
+          <item row="4" column="7">
+           <widget class="QPushButton" name="pushButton_SaveParams_Fourth">
+            <property name="text">
+             <string>保存参数</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>运行参数</string>
+      </attribute>
+      <widget class="QGroupBox" name="groupBox_7">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>900</y>
+         <width>471</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>软件注册</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>80</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>机器码：</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lineEdit_MachineCode">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="pushButton_Copy">
+          <property name="text">
+           <string>复制机器码</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>80</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>注册码：</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lineEdit_RegisterCode"/>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="pushButton_Register">
+          <property name="text">
+           <string>注册</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="3">
+         <widget class="QLabel" name="label_RegisterInfo">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 0);</string>
+          </property>
+          <property name="text">
+           <string>未注册</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_4">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>461</width>
+         <height>171</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>581</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>系统参数</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButton_LoadFirstImage">
+          <property name="text">
+           <string>加载一工位图像</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="maximumSize">
+           <size>
+            <width>90</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>运行模式</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButton_LoadThirdImage">
+          <property name="text">
+           <string>加载一工位图像</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="3">
+         <widget class="QPushButton" name="pushButton_LoadFourthImage">
+          <property name="text">
+           <string>加载二工位图像</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="3">
+         <widget class="QPushButton" name="pushButton_LoadSecondImage">
+          <property name="text">
+           <string>加载二工位图像</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" colspan="3">
+         <widget class="QComboBox" name="comboBox_SystemType"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_10">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>200</y>
+         <width>471</width>
+         <height>117</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>581</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>通讯</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="minimumSize">
+           <size>
+            <width>31</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>31</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>IP</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" colspan="2">
+         <widget class="QLineEdit" name="lineEdit_IP"/>
+        </item>
+        <item row="0" column="3">
+         <widget class="QLabel" name="label_6">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>50</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>端口</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QLineEdit" name="lineEdit_Port">
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>80</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="5">
+         <widget class="QLabel" name="label_7">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>50</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>心跳</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="6">
+         <widget class="QSpinBox" name="spinBox_Heartbeat">
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>80</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="suffix">
+           <string>秒</string>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="4">
+         <widget class="QPushButton" name="pushButton_SendOK">
+          <property name="text">
+           <string>发送OK</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="6">
+         <widget class="QPushButton" name="pushButton_SendNG">
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>80</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>发送NG</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QLabel" name="label_Status">
+          <property name="minimumSize">
+           <size>
+            <width>35</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>35</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 0);</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" colspan="2">
+         <widget class="QPushButton" name="pushButton_ConnectPLC">
+          <property name="text">
+           <string>连接PLC</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>320</y>
+         <width>471</width>
+         <height>191</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>缺陷阈值设置</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_15">
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_19">
+          <property name="text">
+           <string>长度阈值</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QSpinBox" name="spinBox_Area_canjiao_2">
+          <property name="suffix">
+           <string/>
+          </property>
+          <property name="prefix">
+           <string/>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>10000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QSpinBox" name="spinBox_Wh_canjiao_2">
+          <property name="suffix">
+           <string/>
+          </property>
+          <property name="prefix">
+           <string/>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>10000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QSpinBox" name="spinBox_Area_huashang_2">
+          <property name="suffix">
+           <string/>
+          </property>
+          <property name="prefix">
+           <string/>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>10000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_20">
+          <property name="text">
+           <string>残胶</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QSpinBox" name="spinBox_Wh_huashang_2">
+          <property name="suffix">
+           <string/>
+          </property>
+          <property name="prefix">
+           <string/>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>10000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_21">
+          <property name="text">
+           <string>胶压伤</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QSpinBox" name="spinBox_Area_yajiaoshang_2">
+          <property name="suffix">
+           <string/>
+          </property>
+          <property name="prefix">
+           <string/>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>10000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_22">
+          <property name="text">
+           <string>面积阈值</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QSpinBox" name="spinBox_Area_zangwu_2">
+          <property name="suffix">
+           <string/>
+          </property>
+          <property name="prefix">
+           <string/>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>10000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_23">
+          <property name="text">
+           <string>划伤</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_24">
+          <property name="text">
+           <string>脏污</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QSpinBox" name="spinBox_Wh_yajiaoshang_2">
+          <property name="suffix">
+           <string/>
+          </property>
+          <property name="prefix">
+           <string/>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>10000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
+         <widget class="QSpinBox" name="spinBox_Wh_zangwu_2">
+          <property name="suffix">
+           <string/>
+          </property>
+          <property name="prefix">
+           <string/>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>10000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>配方设置</string>
+      </attribute>
+      <widget class="QComboBox" name="comboBox_Formula">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>301</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_Chooise">
+       <property name="geometry">
+        <rect>
+         <x>350</x>
+         <y>30</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>选择配方</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyLabel</class>
+   <extends>QLabel</extends>
+   <header location="global">mylabel.h</header>
+   <slots>
+    <slot>OpenSecondCamera()</slot>
+    <slot>OpenThirdCamera()</slot>
+    <slot>OpenFourthCamera()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="CMainWindow.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>checkBox_RenderFirst</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>ShowFristRender(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>868</x>
+     <y>94</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>810</x>
+     <y>6</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_RenderSecond</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>ShowSecondRender(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1378</x>
+     <y>94</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1287</x>
+     <y>8</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Copy</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>CopyRegisterCode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>481</x>
+     <y>1010</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>519</x>
+     <y>817</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Register</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SoftwareRegister()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>481</x>
+     <y>1049</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>403</x>
+     <y>817</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_LoadFirstImage</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>LoadFirstImage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>161</x>
+     <y>175</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>769</x>
+     <y>436</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_SystemType</sender>
+   <signal>activated(int)</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SetSystemType(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>329</x>
+     <y>102</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>777</x>
+     <y>514</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_SaveParams</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SaveCameraParams1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>502</x>
+     <y>275</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>429</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_OpenFirst</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>OpenFirstCamera()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>502</x>
+     <y>119</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>769</x>
+     <y>436</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_OpenSecond</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>OpenSecondCamera()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>502</x>
+     <y>359</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>829</x>
+     <y>586</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_OpenFourth</sender>
+   <signal>clicked()</signal>
+   <receiver>label_FourthImage</receiver>
+   <slot>OpenFourthCamera()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>502</x>
+     <y>904</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1535</x>
+     <y>1009</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_OpenThird</sender>
+   <signal>clicked()</signal>
+   <receiver>label_ThirdImage</receiver>
+   <slot>OpenThirdCamera()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>502</x>
+     <y>644</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>800</x>
+     <y>854</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_ConnectPLC</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>ConnectToPLC()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>89</x>
+     <y>325</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>777</x>
+     <y>555</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Chooise</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>GetFormula()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>89</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>777</x>
+     <y>555</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>OpenFirstCamera()</slot>
+  <slot>OpenSecondCamera()</slot>
+  <slot>FirstSoftTriggerOnce()</slot>
+  <slot>SecondSoftTirggerOnce()</slot>
+  <slot>ConnectToPLC()</slot>
+  <slot>SendOKToPLC()</slot>
+  <slot>SendNGToPLC()</slot>
+  <slot>SaveConfig()</slot>
+  <slot>SetSystemType(int)</slot>
+  <slot>SetSaveNGChecked(bool)</slot>
+  <slot>SetSaveOKChecked(bool)</slot>
+  <slot>LoadNGPath()</slot>
+  <slot>LoadOKPath()</slot>
+  <slot>ShowFristRender(bool)</slot>
+  <slot>ShowSecondRender(bool)</slot>
+  <slot>LoadFirstImage()</slot>
+  <slot>LoadSecondImage()</slot>
+  <slot>CopyRegisterCode()</slot>
+  <slot>SoftwareRegister()</slot>
+  <slot>SetFirstThreshold()</slot>
+  <slot>SetSecondThreshold()</slot>
+  <slot>SetDegreeThreshold()</slot>
+  <slot>SaveCameraParams1()</slot>
+  <slot>SaveCameraParams2()</slot>
+  <slot>SaveCameraParams3()</slot>
+  <slot>SaveCameraParams4()</slot>
+  <slot>GetFormula()</slot>
+ </slots>
+</ui>

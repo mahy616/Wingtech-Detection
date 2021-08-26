@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DialogDetials</class>
+ <widget class="QDialog" name="DialogDetials">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1203</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>检测详细信息</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="CMainWindow.qrc">
+    <normaloff>:/CMainWindow/Resources/Details.png</normaloff>:/CMainWindow/Resources/Details.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="MyLabel" name="label">
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/CMainWindow/Resources/background.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyLabel</class>
+   <extends>QLabel</extends>
+   <header location="global">mylabel.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="CMainWindow.qrc"/>
+ </resources>
+ <connections/>
+</ui>
