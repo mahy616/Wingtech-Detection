@@ -237,7 +237,7 @@ void CMainWindow::RefreshResultDetails()
         m_Camera2Results.at(i)->setStyleSheet(m_grey_SheetStyle);
     }
     m_Camera2Images.clear();
-    m_Camera2Result = true;
+    m_Camera2Result = true;///////1234567uu8y7y654
 
     for (int i = 0; i < m_Camera3Results.size(); ++i)
     {
