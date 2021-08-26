@@ -8,7 +8,7 @@
 #include "statisticswidget.h"
 #include <opencv2/opencv.hpp>
 #include "ParameterSetting.h"
-
+#include "CRecipeManager.h"
 using namespace std;
 using namespace cv;
 
@@ -75,16 +75,20 @@ private:
 private:
 	Ui::CMainWindowClass ui;
 	CParameterSetting *m_Parameter;
+	CRecipeManager *m_RecipeManager;
 protected:
 	bool eventFilter(QObject *obj, QEvent *event);
 private slots:
 	void StartDection();
 	void StopDection();
 	void OpenSetting();
+	void RecipeSetting();
 
 	//接收相机状态
 	void ReceiveCameraStatus(e_CameraType type, bool bOpen);
 	//接收PLC状态
 	void ReceivePLCStatus(bool bConnected);
 	void ReceiveImage(Mat image, e_CameraType type, int index, bool bOK);
+
+
 };

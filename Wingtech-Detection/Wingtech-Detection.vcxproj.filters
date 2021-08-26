@@ -44,13 +44,16 @@
     <ClCompile Include="utill.cpp">
       <Filter>Source Files\PLCManager.c</Filter>
     </ClCompile>
-    <ClCompile Include="Algo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SaveImage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Config.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgoManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CRecipeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,7 +107,10 @@
     <QtMoc Include="PLCManager.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="Algo.h">
+    <QtMoc Include="AlgoManager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="CRecipeManager.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -119,6 +125,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="ParameterSetting.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="CRecipeManager.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

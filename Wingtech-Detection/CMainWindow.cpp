@@ -137,6 +137,7 @@ void CMainWindow::InitVariables()
     m_Camera4Result = true;
 
     m_Parameter = new CParameterSetting;
+	m_RecipeManager = new CRecipeManager;
 }
 
 //收到PLC切换配方指令，根据配方中图像数量初始化结果细节
@@ -359,11 +360,16 @@ void CMainWindow::InitConnections()
     connect(ui.action_Start, SIGNAL(triggered()), this, SLOT(StartDection()));
     connect(ui.action_Stop, SIGNAL(triggered()), this, SLOT(StopDection()));
     connect(ui.action_Setting, SIGNAL(triggered()), this, SLOT(OpenSetting()));
+	connect(ui.action_Recipe, SIGNAL(triggered()), this, SLOT(RecipeSetting()));
     qRegisterMetaType<Mat>("Mat");
     qRegisterMetaType<e_CameraType>("e_CameraType");
-    connect(m_Parameter, SIGNAL(SendAlgoImageToMainWindow(Mat, e_CameraType, int, bool)), this,
-            SLOT(ReceiveImage(Mat, e_CameraType, int, bool)));
+	qRegisterMetaType<s_ImageInfo>("s_ImageInfo");
+    connect(m_Parameter, SIGNAL(SendAlgoImageToMainWindow(Mat, e_CameraType, int, bool)), this, SLOT(ReceiveImage(Mat, e_CameraType, int, bool)));
+
+	connect(m_Parameter, SIGNAL(SendOriginalImage(Mat,int)), m_RecipeManager, SLOT(ReceivaOriginalImage(Mat, int)));
 }
+
+
 
 void CMainWindow::AddLog(QString log)
 {
@@ -378,6 +384,9 @@ void CMainWindow::AddLog(QString log)
 
 void CMainWindow::StartDection()
 {
+	ui.action_Start->setEnabled(false);
+	ui.action_Stop->setEnabled(true);
+	ui.action_Setting->setEnabled(false);
     m_Parameter->StartDetecion(true);
     m_bStart = true;
     // TODO 检查程序状态，PLC，相机连接状态
@@ -388,6 +397,11 @@ void CMainWindow::StopDection() {}
 void CMainWindow::OpenSetting()
 {
     m_Parameter->exec();
+}
+
+void CMainWindow::RecipeSetting()
+{
+	m_RecipeManager->exec();
 }
 
 void CMainWindow::ReceiveCameraStatus(e_CameraType type, bool bOpen)
@@ -576,6 +590,7 @@ void CMainWindow::ReceiveImage(Mat image, e_CameraType type, int index, bool bOK
         default:;
     }
 }
+
 
 void CMainWindow::ProcessDetectionResult()
 {

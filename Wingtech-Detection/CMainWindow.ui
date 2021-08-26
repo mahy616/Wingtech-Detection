@@ -172,6 +172,7 @@
    <addaction name="action_Start"/>
    <addaction name="action_Stop"/>
    <addaction name="action_Setting"/>
+   <addaction name="action_Recipe"/>
   </widget>
   <action name="action_Start">
    <property name="icon">
@@ -198,6 +199,15 @@
    </property>
    <property name="text">
     <string>参数设置</string>
+   </property>
+  </action>
+  <action name="action_Recipe">
+   <property name="icon">
+    <iconset resource="CMainWindow.qrc">
+     <normaloff>:/CMainWindow/Resources/settings.png</normaloff>:/CMainWindow/Resources/settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>配方设置</string>
    </property>
   </action>
  </widget>

@@ -29,6 +29,7 @@ public:
     QAction *action_Start;
     QAction *action_Stop;
     QAction *action_Setting;
+    QAction *action_Recipe;
     QWidget *centralWidget;
     QGridLayout *gridLayout_6;
     QGroupBox *groupBox_Cam1;
@@ -76,6 +77,9 @@ public:
         QIcon icon3;
         icon3.addFile(QString::fromUtf8(":/CMainWindow/Resources/settings.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_Setting->setIcon(icon3);
+        action_Recipe = new QAction(CMainWindowClass);
+        action_Recipe->setObjectName(QString::fromUtf8("action_Recipe"));
+        action_Recipe->setIcon(icon3);
         centralWidget = new QWidget(CMainWindowClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout_6 = new QGridLayout(centralWidget);
@@ -188,6 +192,7 @@ public:
         toolBar->addAction(action_Start);
         toolBar->addAction(action_Stop);
         toolBar->addAction(action_Setting);
+        toolBar->addAction(action_Recipe);
 
         retranslateUi(CMainWindowClass);
 
@@ -200,6 +205,7 @@ public:
         action_Start->setText(QCoreApplication::translate("CMainWindowClass", "\345\274\200\345\247\213\346\243\200\346\265\213", nullptr));
         action_Stop->setText(QCoreApplication::translate("CMainWindowClass", "\345\201\234\346\255\242\346\243\200\346\265\213", nullptr));
         action_Setting->setText(QCoreApplication::translate("CMainWindowClass", "\345\217\202\346\225\260\350\256\276\347\275\256", nullptr));
+        action_Recipe->setText(QCoreApplication::translate("CMainWindowClass", "\351\205\215\346\226\271\350\256\276\347\275\256", nullptr));
         groupBox_Cam1->setTitle(QCoreApplication::translate("CMainWindowClass", "\345\267\245\344\275\215\344\270\200", nullptr));
         label_Image1->setText(QString());
         groupBox_Cam2->setTitle(QCoreApplication::translate("CMainWindowClass", "\345\267\245\344\275\215\344\272\214", nullptr));

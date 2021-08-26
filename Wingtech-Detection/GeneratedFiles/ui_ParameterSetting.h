@@ -1071,7 +1071,7 @@ public:
         QObject::connect(pushButton_ConnectPLC, SIGNAL(clicked()), DialogSetting, SLOT(ConnectToPLC()));
         QObject::connect(pushButton_Chooise, SIGNAL(clicked()), DialogSetting, SLOT(GetFormula()));
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(DialogSetting);

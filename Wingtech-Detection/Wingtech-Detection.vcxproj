@@ -117,9 +117,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="3rdParty\HikCamrea\MvCamera.cpp" />
-    <ClCompile Include="Algo.cpp" />
+    <ClCompile Include="AlgoManager.cpp" />
     <ClCompile Include="CMainWindow.cpp" />
     <ClCompile Include="Config.cpp" />
+    <ClCompile Include="CRecipeManager.cpp" />
     <ClCompile Include="ImageCapture.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="melsec_helper.cpp" />
@@ -140,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="CMainWindow.ui" />
+    <QtUic Include="CRecipeManager.ui" />
     <QtUic Include="ParameterSetting.ui" />
     <QtUic Include="ResultDetails.ui" />
     <QtUic Include="statisticswidget.ui" />
@@ -152,11 +154,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3rdParty\HikCamrea\MvCamera.h" />
-    <QtMoc Include="Algo.h">
+    <QtMoc Include="AlgoManager.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWebSockets</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)Wingtech-Detection\3rdParty\HikCamrea\Includes;$(SolutionDir)Wingtech-Detection\3rdParty\HikCamrea;.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtWidgets;.\3rdParty\opencv-4.2.0\include\opencv2;.\3rdParty\opencv-4.2.0\include;$(QTDIR)\include\QtWebSockets</IncludePath>
     </QtMoc>
     <ClInclude Include="Config.h" />
+    <QtMoc Include="CRecipeManager.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWebSockets</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)Wingtech-Detection\3rdParty\HikCamrea\Includes;$(SolutionDir)Wingtech-Detection\3rdParty\HikCamrea;.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtWidgets;.\3rdParty\opencv-4.2.0\include\opencv2;.\3rdParty\opencv-4.2.0\include;$(QTDIR)\include\QtWebSockets</IncludePath>
+    </QtMoc>
     <ClInclude Include="melsec_helper.h" />
     <ClInclude Include="melsec_mc_bin_private.h" />
     <ClInclude Include="melsec_mc_comm.h" />

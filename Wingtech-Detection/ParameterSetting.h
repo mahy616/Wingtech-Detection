@@ -4,7 +4,7 @@
 #include "QButtonGroup"
 #include "QFileDialog"
 #include "PLCManager.h"
-#include "Algo.h"
+#include "AlgoManager.h"
 #include "SaveImage.h"
 #include "QFileDialog"
 #include "QDateTime"
@@ -17,6 +17,7 @@ typedef struct
 	CMvCamera CameraHandle;
 	bool bOpenCamera;
 	CImageCapture *ImageCapture;
+	e_CameraType CameraType;
 	void Init()
 	{
 		CameraName.clear();
@@ -26,18 +27,18 @@ typedef struct
 	}
 }s_CameraInfo;
 
-typedef struct
-{
-	QString CameraName;
-	CMvCamera CameraHandle;
-	bool bOpenCamera;
-	CAlgo *Algo;
-	void Init()
-	{
-		Algo = new CAlgo();
-
-	}
-}s_AlgoInfo;
+//typedef struct
+//{
+//	QString CameraName;
+//	CMvCamera CameraHandle;
+//	bool bOpenCamera;
+//	CAlgoManager *Algo;
+//	void Init()
+//	{
+//		Algo = new CAlgoManager();
+//
+//	}
+//}s_AlgoInfo;
 
 typedef struct
 {
@@ -103,18 +104,20 @@ private slots:
 	void OpenThirdCamera();
 	void SwitchThirdCameraStatus(int index, bool checked);
 	void OpenFourthCamera();
-	void ReceivaAlgoImage(Mat OriginalImage, e_CameraType type, int Time, bool bok);
 	void SwitchFourthCameraStatus(int index, bool checked);
 	void ConnectToPLC();
 	void SendOKToPLC();
 	void SendNGToPLC();
 	void SetSystemType(int index);
 	void GetFormula();
-	void ReceiveCameraImage(Mat image, int index);
+
 	void OnBtnClicked();
+
+	void ReceiveCameraImage(Mat image, int index);
+	void ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Time, bool bok);
 signals:
 	void SendAlgoImageToMainWindow( Mat OriginalImage, e_CameraType type,int index, bool bok);
-	//void SendImageToAlgo(Mat OriginalImage, e_CameraType type, int index, bool bok);
+	void SendOriginalImage(Mat image, int index);
 private:
 	Ui::DialogSetting ui;
 	s_CameraInfo m_FirstCameraInfo;
@@ -132,7 +135,7 @@ private:
 
 	Mat m_SecondOriginalImage;
 	Mat m_SecondRenderImage;
-	s_AlgoInfo m_FirstAlgo;
+	//s_AlgoInfo m_FirstAlgo;
 	CSaveImage m_SaveImage;
     // ch:∆ÿπ‚ ±º‰ | en:Exposure Time
     double m_dExposureEdit{0.0};

@@ -62,8 +62,8 @@ void CParameterSetting::InitVariables()
 	m_ThirdCameraInfo.ImageCapture->start();
 	m_FourCameraInfo.ImageCapture->start();
 
-	m_FirstAlgo.Init();
-	m_FirstAlgo.Algo->start();
+	//m_FirstAlgo.Init();
+	//m_FirstAlgo.Algo->start();
 
 	InitFirstGroup();
 	InitSecondGroup();
@@ -83,6 +83,11 @@ void CParameterSetting::InitVariables()
 	m_SecondCameraInfo.ImageCapture->SetSystemType(RUN_ONLINE);
 	m_ThirdCameraInfo.ImageCapture->SetSystemType(RUN_ONLINE);
 	m_FourCameraInfo.ImageCapture->SetSystemType(RUN_ONLINE);
+
+	m_FirstCameraInfo.ImageCapture->SetCameraType(CAMERA_FIRST);
+	m_SecondCameraInfo.ImageCapture->SetCameraType(CAMERA_SECOND);
+	m_ThirdCameraInfo.ImageCapture->SetCameraType(CAMERA_THIRD);
+	m_FourCameraInfo.ImageCapture->SetCameraType(CAMERA_FOURTH);
 	ui.lineEdit_IP->setValidator(new QRegExpValidator(reg));
 
 
@@ -321,8 +326,8 @@ void CParameterSetting::InitConnections()
 	connect(m_FirstGroup, SIGNAL(buttonToggled(int, bool)), this, SLOT(SwitchFirstCameraStatus(int, bool)));
 	//connect(m_SecondCameraInfo.ImageCapture, SIGNAL(SendAlgoImage(Mat, e_CameraType, int, bool)), this, SLOT(ReceivaAlgoImage(Mat, e_CameraType, int, bool)));
 	connect(m_SecondGroup, SIGNAL(buttonToggled(int, bool)), this, SLOT(SwitchSecondCameraStatus(int, bool)));
-    connect(m_FirstCameraInfo.ImageCapture, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int, bool)), m_FirstAlgo.Algo, SLOT(ReceivaReImage(Mat, e_CameraType, int, bool)));
-	connect(m_FirstAlgo.Algo, SIGNAL(SendAlgoImageToParam(Mat, e_CameraType, int, bool)), this, SLOT(ReceivaAlgoImage(Mat, e_CameraType, int, bool)));
+    //connect(m_FirstCameraInfo.ImageCapture, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int, bool)), m_FirstAlgo.Algo, SLOT(ReceivaReImage(Mat, e_CameraType, int, bool)));
+	//connect(m_FirstAlgo.Algo, SIGNAL(SendAlgoImageToParam(Mat, e_CameraType, int, bool)), this, SLOT(ReceivaAlgoImage(Mat, e_CameraType, int, bool)));
 	//connect(m_FirstAlgo.Algo, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int, bool)), m_FirstAlgo.Algo, SLOT(ReceivaAlgoImage(Mat, e_CameraType, int, bool)));
 
 
@@ -331,7 +336,7 @@ void CParameterSetting::InitConnections()
 	connect(m_ThirdCameraInfo.ImageCapture, SIGNAL(SendCameraImage(Mat, int)), this, SLOT(ReceiveCameraImage(Mat, int)));
 	connect(m_FourCameraInfo.ImageCapture, SIGNAL(SendCameraImage(Mat, int)), this, SLOT(ReceiveCameraImage(Mat, int)));
 
-	//connect(pBtn, SIGNAL(clicked()), this, SLOT(OnBtnClicked()));
+	connect(m_FirstCameraInfo.ImageCapture, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int, bool)), this, SLOT(ReceivaOriginalImage(Mat, e_CameraType, int, bool)));
 }
 
 void CParameterSetting::InitCamera()
@@ -674,6 +679,12 @@ void CParameterSetting::OnBtnClicked()
 	qDebug() << text;
 	qDebug() << name;
 
+
+}
+void CParameterSetting::ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Time, bool bok)
+{
+	//emit SendAlgoImageToMainWindow(AlgolImage, type, Time, bok);
+	emit SendOriginalImage(OriginalImage, Time);
 
 }
 void CParameterSetting::SaveCameraParams4()
@@ -1406,10 +1417,6 @@ void CParameterSetting::OpenFourthCamera()
 	}
 }
 
-void CParameterSetting::ReceivaAlgoImage( Mat AlgolImage, e_CameraType type, int Time, bool bok)
-{
-	emit SendAlgoImageToMainWindow(AlgolImage, type, Time, bok);
-}
 
 void CParameterSetting::SaveCameraParams1()
 {
