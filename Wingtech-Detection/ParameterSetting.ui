@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1555</width>
-    <height>1111</height>
+    <width>1660</width>
+    <height>1174</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -345,7 +345,7 @@ color: rgb(85, 0, 255);</string>
    <item row="0" column="0" rowspan="2">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -505,7 +505,7 @@ color: rgb(85, 0, 255);</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>59</width>
+              <width>16777215</width>
               <height>16777215</height>
              </size>
             </property>
@@ -531,7 +531,7 @@ color: rgb(85, 0, 255);</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>59</width>
+              <width>16777215</width>
               <height>16777215</height>
              </size>
             </property>
@@ -657,7 +657,7 @@ color: rgb(85, 0, 255);</string>
            <widget class="QLineEdit" name="le_exposure_2">
             <property name="maximumSize">
              <size>
-              <width>59</width>
+              <width>16777215</width>
               <height>16777215</height>
              </size>
             </property>
@@ -823,8 +823,8 @@ color: rgb(85, 0, 255);</string>
            <widget class="QLineEdit" name="le_exposure_3">
             <property name="maximumSize">
              <size>
-              <width>59</width>
-              <height>59</height>
+              <width>16777215</width>
+              <height>16777215</height>
              </size>
             </property>
            </widget>
@@ -955,7 +955,7 @@ color: rgb(85, 0, 255);</string>
            <widget class="QLineEdit" name="le_exposure_4">
             <property name="maximumSize">
              <size>
-              <width>59</width>
+              <width>16777215</width>
               <height>59</height>
              </size>
             </property>
