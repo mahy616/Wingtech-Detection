@@ -1,9 +1,0 @@
-<RCC>
-  <qresource prefix="CMainWindow">
-    <file>Resources/app.ico</file>
-    <file>Resources/background.png</file>
-    <file>Resources/settings.png</file>
-    <file>Resources/start.png</file>
-    <file>Resources/stop.png</file>
-  </qresource>
-</RCC>
