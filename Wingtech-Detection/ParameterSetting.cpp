@@ -90,7 +90,6 @@ void CParameterSetting::InitVariables()
 	m_FourCameraInfo.ImageCapture->SetCameraType(CAMERA_FOURTH);
 	ui.lineEdit_IP->setValidator(new QRegExpValidator(reg));
 
-
 	//开启存图线程
 	m_SaveImage.start();
 }
@@ -172,7 +171,7 @@ void CParameterSetting::InitFourthGroup()
 
 }
 
-
+//保存图片
 void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo)
 {
 	QString CurTime = QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss-zzz");
@@ -734,7 +733,7 @@ void CParameterSetting::OnBtnClicked()
 }
 void CParameterSetting::ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Time, bool bok)
 {
-	//emit SendAlgoImageToMainWindow(AlgolImage, type, Time, bok);
+	//emit SendAlgoImageToMainWindow(AlgolImage, type, Time, bok);//??
 	emit SendOriginalImage(OriginalImage, Time);
 
 }
@@ -1427,7 +1426,7 @@ void CParameterSetting::LoadSecondImage()
 	}
 	else
 	{
-		QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("工位1算法模型未初始化成功"));
+		QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("工位2算法模型未初始化成功"));
 	}
 }
 void CParameterSetting::OpenSecondCamera()
@@ -1526,6 +1525,51 @@ void CParameterSetting::OpenThirdCamera()
 		}
 	}
 }
+
+void CParameterSetting::LoadThirdImage()
+{
+	//if (m_bFirstAlgoSuccess)
+	if (1)
+	{
+		QString imagePath = QFileDialog::getOpenFileName(this, QString::fromLocal8Bit("图像文件"), "", "*.bmp;*.jpg;*.png;;All Files(*)");
+		if (imagePath.isEmpty())
+		{
+			return;
+		}
+		qDebug() << "load first image:" << imagePath;
+		QByteArray ba = imagePath.toLocal8Bit();
+		char *file = ba.data();
+		m_ThirdOriginalImage = imread(file);
+		vector<int>Threshold;
+		m_ThirdRenderImage.create(m_ThirdOriginalImage.rows, m_ThirdOriginalImage.cols, m_ThirdOriginalImage.type());
+		QImage qImage;
+		if (ui.checkBox_RenderThird->isChecked())
+		{
+			qImage = MattoQImage(m_ThirdRenderImage);
+		}
+		else
+		{
+			qImage = MattoQImage(m_ThirdOriginalImage);
+		}
+		QString style;
+		//if (AlgoRunData.bOK)
+		//{
+		//	style = "image: url(:/CMainWindow/Resources/OK.svg);";
+		//}
+		//else
+		//{
+		//	style = "image: url(:/CMainWindow/Resources/NG.svg);";
+		//}
+		ui.label_ThirdTime->setText(QString::fromLocal8Bit("耗时:") + QString::number(1) + "ms");
+		ui.label_ThirdResult->setStyleSheet(style);
+		ui.label_ThirdImage->SetImage(qImage);
+	}
+	else
+	{
+		QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("工位3算法模型未初始化成功"));
+	}
+}
+
 void CParameterSetting::OpenFourthCamera()
 {
 	qDebug() << "open fourth camera";
@@ -1575,6 +1619,49 @@ void CParameterSetting::OpenFourthCamera()
 	}
 }
 
+void CParameterSetting::LoadFourthImage()
+{
+	//if (m_bFirstAlgoSuccess)
+	if (1)
+	{
+		QString imagePath = QFileDialog::getOpenFileName(this, QString::fromLocal8Bit("图像文件"), "", "*.bmp;*.jpg;*.png;;All Files(*)");
+		if (imagePath.isEmpty())
+		{
+			return;
+		}
+		qDebug() << "load first image:" << imagePath;
+		QByteArray ba = imagePath.toLocal8Bit();
+		char *file = ba.data();
+		m_FourthOriginalImage = imread(file);
+		vector<int>Threshold;
+		m_FourthRenderImage.create(m_FourthOriginalImage.rows, m_FourthOriginalImage.cols, m_FourthOriginalImage.type());
+		QImage qImage;
+		if (ui.checkBox_RenderFourth->isChecked())
+		{
+			qImage = MattoQImage(m_FourthRenderImage);
+		}
+		else
+		{
+			qImage = MattoQImage(m_FourthOriginalImage);
+		}
+		QString style;
+		//if (AlgoRunData.bOK)
+		//{
+		//	style = "image: url(:/CMainWindow/Resources/OK.svg);";
+		//}
+		//else
+		//{
+		//	style = "image: url(:/CMainWindow/Resources/NG.svg);";
+		//}
+		ui.label_FourthTime->setText(QString::fromLocal8Bit("耗时:") + QString::number(1) + "ms");
+		ui.label_FourthResult->setStyleSheet(style);
+		ui.label_FourthImage->SetImage(qImage);
+	}
+	else
+	{
+		QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("工位4算法模型未初始化成功"));
+	}
+}
 
 void CParameterSetting::SaveCameraParams1()
 {

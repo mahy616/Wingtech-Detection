@@ -117,8 +117,10 @@ private slots:
 	void LoadSecondImage();
 	void SwitchSecondCameraStatus(int index, bool checked);
 	void OpenThirdCamera();
+	void LoadThirdImage();
 	void SwitchThirdCameraStatus(int index, bool checked);
 	void OpenFourthCamera();
+	void LoadFourthImage();
 	void SwitchFourthCameraStatus(int index, bool checked);
 	void ConnectToPLC();
 	void SendOKToPLC();
@@ -150,6 +152,12 @@ private:
 
 	Mat m_SecondOriginalImage;
 	Mat m_SecondRenderImage;
+
+	Mat m_ThirdOriginalImage;
+	Mat m_ThirdRenderImage;
+
+	Mat m_FourthOriginalImage;
+	Mat m_FourthRenderImage;
 	//s_AlgoInfo m_FirstAlgo;
 	CSaveImage m_SaveImage;
     // ch:∆ÿπ‚ ±º‰ | en:Exposure Time

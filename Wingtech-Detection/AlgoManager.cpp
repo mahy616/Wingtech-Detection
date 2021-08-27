@@ -46,7 +46,7 @@ void CAlgoManager::run()
 		m_mutex.lock();
 		s_ImageInfo ImageInfo = m_ImageInfos.dequeue();
 		m_mutex.unlock();
-		Mat Render;
+		Mat Render;/////////////////////////////////////////////////////////////////////////////////////////////???????
 		emit SendPorcessResult(ImageInfo.Image, Render, ImageInfo.ImageID);
 	}
 }
