@@ -83,6 +83,7 @@ private slots:
 	void StopDection();
 	void OpenSetting();
 	void RecipeSetting();
+	void AdminDection();
 
 	//接收相机状态
 	void ReceiveCameraStatus(e_CameraType type, bool bOpen);

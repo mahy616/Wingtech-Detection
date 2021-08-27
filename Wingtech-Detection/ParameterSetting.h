@@ -87,6 +87,11 @@ private:
 	void InitThirdtGroup();
 	void InitFourthGroup();
 
+	void setFirstEnable(bool checked);
+	void setSecondEnable(bool checked);
+	void setThirdEnable(bool checked);
+	void setFourthEnable(bool checked);
+
 	void SafeParamsSetting();
 	void SaveImage(s_SaveImageInfo ImageInfo);
 private slots:
@@ -97,6 +102,16 @@ private slots:
 	void SaveCameraParams2();
     void SaveCameraParams3();
     void SaveCameraParams4();
+
+	void ChooseFirstOkPath();
+	void ChooseFirstNgPath();	
+	void ChooseSecondOkPath();
+	void ChooseSecondNgPath();
+	void ChooseThirdOkPath();
+	void ChooseThirdNgPath();
+	void ChooseFourthOkPath();
+	void ChooseFourthNgPath();
+
 	void SaveConfig();
 	void OpenSecondCamera();
 	void LoadSecondImage();

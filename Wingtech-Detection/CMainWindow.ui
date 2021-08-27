@@ -173,6 +173,7 @@
    <addaction name="action_Stop"/>
    <addaction name="action_Setting"/>
    <addaction name="action_Recipe"/>
+   <addaction name="action_admin"/>
   </widget>
   <action name="action_Start">
    <property name="icon">
@@ -208,6 +209,18 @@
    </property>
    <property name="text">
     <string>配方设置</string>
+   </property>
+  </action>
+  <action name="action_admin">
+   <property name="icon">
+    <iconset resource="CMainWindow.qrc">
+     <normaloff>:/CMainWindow/Resources/admin.ico</normaloff>:/CMainWindow/Resources/admin.ico</iconset>
+   </property>
+   <property name="text">
+    <string>用户登录</string>
+   </property>
+   <property name="toolTip">
+    <string>用户登录</string>
    </property>
   </action>
  </widget>

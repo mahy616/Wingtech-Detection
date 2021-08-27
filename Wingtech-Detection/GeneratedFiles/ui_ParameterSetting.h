@@ -1111,8 +1111,16 @@ public:
         QObject::connect(pushButton_OpenSecond, SIGNAL(clicked()), DialogSetting, SLOT(OpenSecondCamera()));
         QObject::connect(pushButton_OpenThird, SIGNAL(clicked()), DialogSetting, SLOT(OpenThirdCamera()));
         QObject::connect(pushButton_OpenFourth, SIGNAL(clicked()), DialogSetting, SLOT(OpenFourthCamera()));
+        QObject::connect(pushButton_SaveParams_Second, SIGNAL(clicked()), DialogSetting, SLOT(SaveCameraParams2()));
+        QObject::connect(pushButton_SaveParams_Third, SIGNAL(clicked()), DialogSetting, SLOT(SaveCameraParams3()));
+        QObject::connect(pushButton_SaveParams_Fourth, SIGNAL(clicked()), DialogSetting, SLOT(SaveCameraParams4()));
+        QObject::connect(pushButton_LoadNGPath_First, SIGNAL(clicked()), DialogSetting, SLOT(ChooseFirstNgPath()));
+        QObject::connect(pushButton_LoadOKPath_First, SIGNAL(clicked()), DialogSetting, SLOT(ChooseFirstOkPath()));
+        QObject::connect(pushButton_LoadSecondImage, SIGNAL(clicked()), DialogSetting, SLOT(LoadSecondImage()));
+        QObject::connect(pushButton_LoadThirdImage, SIGNAL(clicked()), DialogSetting, SLOT(LoadThirdImage()));
+        QObject::connect(pushButton_LoadFourthImage, SIGNAL(clicked()), DialogSetting, SLOT(LoadFourthImage()));
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(DialogSetting);
@@ -1121,7 +1129,7 @@ public:
     void retranslateUi(QDialog *DialogSetting)
     {
         DialogSetting->setWindowTitle(QCoreApplication::translate("DialogSetting", "\345\217\202\346\225\260\350\256\276\347\275\256", nullptr));
-        groupBox_8->setTitle(QCoreApplication::translate("DialogSetting", "\344\270\200\345\267\245\344\275\215", nullptr));
+        groupBox_8->setTitle(QCoreApplication::translate("DialogSetting", "\344\270\211\345\267\245\344\275\215", nullptr));
         label_ThirdTime->setText(QCoreApplication::translate("DialogSetting", "\350\200\227\346\227\266\357\274\232", nullptr));
         label_ThirdResult->setText(QString());
         label_ThirdImage->setText(QString());
@@ -1131,7 +1139,7 @@ public:
         label_SecondImage->setText(QString());
         label_SecondTime->setText(QCoreApplication::translate("DialogSetting", "\350\200\227\346\227\266\357\274\232", nullptr));
         checkBox_RenderSecond->setText(QCoreApplication::translate("DialogSetting", "\346\270\262\346\237\223\345\233\276", nullptr));
-        groupBox_9->setTitle(QCoreApplication::translate("DialogSetting", "\344\272\214\345\267\245\344\275\215", nullptr));
+        groupBox_9->setTitle(QCoreApplication::translate("DialogSetting", "\345\233\233\345\267\245\344\275\215", nullptr));
         label_FourthResult->setText(QString());
         label_FourthImage->setText(QString());
         label_FourthTime->setText(QCoreApplication::translate("DialogSetting", "\350\200\227\346\227\266\357\274\232", nullptr));

@@ -353,6 +353,8 @@ void CMainWindow::InitStatusBar()
     ui.statusBar->addWidget(&m_Camera4);
     label = new QLabel(QString::fromLocal8Bit("相机4:"));
     ui.statusBar->addWidget(label);
+
+	ui.action_Stop->setEnabled(false);
 }
 
 void CMainWindow::InitConnections()
@@ -392,7 +394,14 @@ void CMainWindow::StartDection()
     // TODO 检查程序状态，PLC，相机连接状态
 }
 
-void CMainWindow::StopDection() {}
+void CMainWindow::StopDection() 
+{
+	ui.action_Start->setEnabled(true);
+	ui.action_Stop->setEnabled(false);
+	ui.action_Setting->setEnabled(true);
+	m_Parameter->StartDetecion(false);
+	m_bStart = false;
+}
 
 void CMainWindow::OpenSetting()
 {
@@ -402,6 +411,11 @@ void CMainWindow::OpenSetting()
 void CMainWindow::RecipeSetting()
 {
 	m_RecipeManager->exec();
+}
+
+void CMainWindow::AdminDection()
+{
+
 }
 
 void CMainWindow::ReceiveCameraStatus(e_CameraType type, bool bOpen)
