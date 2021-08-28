@@ -42,6 +42,7 @@ void CAlgoManager::run()
 		if (m_ImageInfos.size() == 0)
 		{
 			Sleep(10);
+			continue;
 		}
 		m_mutex.lock();
 		s_ImageInfo ImageInfo = m_ImageInfos.dequeue();

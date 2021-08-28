@@ -175,6 +175,24 @@ void CPLCManager::WritePLCChangeVar()
 	printf("WritePLCRead\n");
 }
 
+void CPLCManager::GetChangeRecipeName(char * str)
+{
+	QString msg;
+	int number;
+	//分割字符串 解析设备编号和名称
+	emit SendChangePLCRecipe(msg, number);
+}
+
+void CPLCManager::GetSaveRecipeName(char * str)
+{
+	QString msg;
+	int number;
+	//分割字符串 解析设备编号和名称
+	emit SendSavePLCRecipe(msg, number);
+}
+
+
+
 void CPLCManager::TcpConnected()
 {
 	qDebug() << "TcpConnected";
@@ -207,14 +225,22 @@ void CPLCManager::ReadPLCData()
 {
 	bool ret = false;
 	short s_val = 0;
-	if (1 == (ret = mc_read_short(fd, "D300", &s_val)))
+	char* str_val = NULL;
+	int length =30;
+	if(ret = mc_read_string(fd, "D320", length, &str_val))//切换配方
+	{
+		GetSaveRecipeName(str_val);
 		return;
+	}
+	if (ret = mc_read_string(fd, "D330", length, &str_val))//保存配方
+	{
+		GetChangeRecipeName(str_val);
+	}
 	if (1 == (ret = mc_read_short(fd, "D310", &s_val)))
 		return;
-	if (1 == (ret = mc_read_short(fd, "D320", &s_val)))
+	if (1 == (ret = mc_read_short(fd, "D300", &s_val)))
 		return;
-	if (1 == (ret = mc_read_short(fd, "D330", &s_val)))
-		return;
+
 	printf("Read\t \tshort:\t %d\n", s_val);
 
 

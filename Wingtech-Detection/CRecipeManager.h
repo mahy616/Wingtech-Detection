@@ -3,6 +3,7 @@
 #include "ui_CRecipeManager.h"
 #include "QMap"
 #include "AlgoManager.h"
+#include "PLCManager.h"
 //#include "ImageCapture.h"
 class CRecipeManager : public QDialog
 {
@@ -18,7 +19,10 @@ public:
 	//初始化配方，初始化成功返回true，通知PLC Ready信号，否则返回false，界面log提示具体错误信息
 	bool InitRecipe(QString RecipeName,QString &errMsg);
 	void InitConnections();
+	void SendPLCReadySign();
 	s_ImageInfo ImageInfo;
+public:
+	
 private:
 	void InitVariables();
 	QStringList getFileNames(const QString &path);
@@ -27,6 +31,7 @@ private:
 	//图像ID对应模型表
 	QMap<int, QString> m_ImageAndModel;
 	QMap<QString, CAlgoManager*> m_ModelAndAlgo;
+	bool m_Ready;
 
 signals:
 	void SendOriginalImage(s_ImageInfo ImageInfo);
@@ -38,6 +43,8 @@ private slots:
 	//浏览模型
 	void BrowseModelPath();
 
+	void ReceiveSavePlcRecipe(QString msg, int number);
+	void ReceiveChangePlcRecipe(QString msg, int number);
 
 	void ReceivaOriginalImage(Mat Image, int ImageID);
 };

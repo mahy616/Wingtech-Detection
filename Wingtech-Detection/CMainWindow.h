@@ -23,6 +23,7 @@ class CMainWindow : public QMainWindow
 public:
 	CMainWindow(QWidget *parent = Q_NULLPTR);
 	~CMainWindow();
+
 private:
 	//√ø’≈ÕºœÒ
 	QVector<QImage> m_Camera1Images;
@@ -60,6 +61,7 @@ private:
 
 	int m_Number;
 	bool m_bStart;
+	bool m_Ready;
 private:
 	void InitVariables();
 	void InitStatusBar();

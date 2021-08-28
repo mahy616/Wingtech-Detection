@@ -6,6 +6,7 @@
 CRecipeManager::CRecipeManager(QWidget *parent)
 	: QDialog(parent)
 {
+	m_Ready = false;
 	ui.setupUi(this);
 	InitVariables();
 	InitRecipeNames();
@@ -53,8 +54,8 @@ void CRecipeManager::SaveRecipeFromPLC(QString RecipeName,int ImageCount)
 
 bool CRecipeManager::InitRecipe(QString RecipeName, QString &errMsg)
 {
-	bool bFind = ui.comboBox->findText(RecipeName);
-	if (!bFind)
+	int Find = ui.comboBox->findText(RecipeName);
+	if (Find==-1)
 	{
 		errMsg = QString::fromLocal8Bit("未找到配方:") + RecipeName;
 		return false;
@@ -106,9 +107,17 @@ bool CRecipeManager::InitRecipe(QString RecipeName, QString &errMsg)
 
 void CRecipeManager::InitConnections()
 {
-	qRegisterMetaType<s_ImageInfo>("s_ImageInfo");
+	connect(CPLCManager::GetInstance(), SIGNAL(SendChangePLCRecipe(QString,int)), this, SLOT(ReceiveChangePlcRecipe(QString.int)));
+	connect(CPLCManager::GetInstance(), SIGNAL(SendSavePLCRecipe(QString, int)), this, SLOT(ReceiveSavePlcRecipe(QString.int)));
 	//connect(this, SIGNAL(SendCameraImage(s_ImageInfo)), m_ModelAndAlgo["1"], SLOT(RunAlgo(s_ImageInfo)));
 }
+
+void CRecipeManager::SendPLCReadySign()
+{
+	CPLCManager::GetInstance()->WritePLCRead();
+}
+
+
 
 void CRecipeManager::InitVariables()
 {
@@ -147,6 +156,16 @@ void CRecipeManager::InitRecipeNames()
 		QString Name = info.baseName();
 		ui.comboBox->addItem(Name);
 	}
+	QString err;
+	
+	if (!InitRecipe(ui.comboBox->itemText(0), err))
+	{
+		cout << "初始化配方失败" << endl;
+	}
+	else
+	{
+		m_Ready = true;
+	}
 }
 
 void CRecipeManager::SwitchRecipe(QString Name)
@@ -182,6 +201,17 @@ void CRecipeManager::BrowseModelPath()
 	{
 		ui.tableWidget->setItem(row, 1, new QTableWidgetItem(ModelPath));
 	}
+}
+
+void CRecipeManager::ReceiveSavePlcRecipe(QString msg, int number)
+{
+	SaveRecipeFromPLC(msg,number);
+}
+
+void CRecipeManager::ReceiveChangePlcRecipe(QString msg,int number)
+{
+	QString err;
+	InitRecipe(msg, err);
 }
 
 void CRecipeManager::ReceivaOriginalImage(Mat Image,int ImageID)

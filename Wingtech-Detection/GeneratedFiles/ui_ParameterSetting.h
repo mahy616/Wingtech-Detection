@@ -17,14 +17,12 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QTabWidget>
-#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
 #include <mylabel.h>
 
@@ -36,10 +34,10 @@ public:
     QGridLayout *gridLayout_2;
     QGroupBox *groupBox_8;
     QGridLayout *gridLayout_9;
+    QCheckBox *checkBox_RenderThird;
+    MyLabel *label_ThirdImage;
     QLabel *label_ThirdTime;
     QLabel *label_ThirdResult;
-    MyLabel *label_ThirdImage;
-    QCheckBox *checkBox_RenderThird;
     QGroupBox *groupBox_6;
     QGridLayout *gridLayout_6;
     QLabel *label_SecondResult;
@@ -59,62 +57,6 @@ public:
     MyLabel *label_FirstImage;
     QCheckBox *checkBox_RenderFirst;
     QTabWidget *tabWidget;
-    QWidget *tab_2;
-    QGroupBox *groupBox_7;
-    QGridLayout *gridLayout_8;
-    QLabel *label_2;
-    QLineEdit *lineEdit_MachineCode;
-    QPushButton *pushButton_Copy;
-    QLabel *label_3;
-    QLineEdit *lineEdit_RegisterCode;
-    QPushButton *pushButton_Register;
-    QLabel *label_RegisterInfo;
-    QGroupBox *groupBox_4;
-    QGridLayout *gridLayout_3;
-    QPushButton *pushButton_LoadFirstImage;
-    QLabel *label_8;
-    QPushButton *pushButton_LoadThirdImage;
-    QPushButton *pushButton_LoadFourthImage;
-    QPushButton *pushButton_LoadSecondImage;
-    QComboBox *comboBox_SystemType;
-    QGroupBox *groupBox_10;
-    QGridLayout *gridLayout_4;
-    QLabel *label_5;
-    QLineEdit *lineEdit_IP;
-    QLabel *label_6;
-    QLineEdit *lineEdit_Port;
-    QLabel *label_7;
-    QSpinBox *spinBox_Heartbeat;
-    QPushButton *pushButton_SendOK;
-    QPushButton *pushButton_SendNG;
-    QLabel *label_Status;
-    QPushButton *pushButton_ConnectPLC;
-    QGroupBox *groupBox_3;
-    QGridLayout *gridLayout_15;
-    QLabel *label_19;
-    QSpinBox *spinBox_Area_canjiao_2;
-    QSpinBox *spinBox_Wh_canjiao_2;
-    QSpinBox *spinBox_Area_huashang_2;
-    QLabel *label_20;
-    QSpinBox *spinBox_Wh_huashang_2;
-    QLabel *label_21;
-    QSpinBox *spinBox_Area_yajiaoshang_2;
-    QLabel *label_22;
-    QSpinBox *spinBox_Area_zangwu_2;
-    QLabel *label_23;
-    QLabel *label_24;
-    QSpinBox *spinBox_Wh_yajiaoshang_2;
-    QSpinBox *spinBox_Wh_zangwu_2;
-    QGroupBox *groupBox;
-    QLabel *label_9;
-    QLabel *label_10;
-    QLabel *label_11;
-    QLineEdit *lineEdit;
-    QLineEdit *lineEdit_2;
-    QLineEdit *lineEdit_3;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
-    QTableWidget *m_ModelChoice;
     QWidget *tab;
     QGridLayout *gridLayout_7;
     QGroupBox *groupBox_Frist;
@@ -197,6 +139,52 @@ public:
     QCheckBox *checkBox_SaveOK_Fourth;
     QLineEdit *le_gain_4;
     QPushButton *pushButton_SaveParams_Fourth;
+    QWidget *tab_2;
+    QGroupBox *groupBox_7;
+    QGridLayout *gridLayout_8;
+    QLabel *label_2;
+    QLineEdit *lineEdit_MachineCode;
+    QPushButton *pushButton_Copy;
+    QLabel *label_3;
+    QLineEdit *lineEdit_RegisterCode;
+    QPushButton *pushButton_Register;
+    QLabel *label_RegisterInfo;
+    QGroupBox *groupBox_4;
+    QGridLayout *gridLayout_3;
+    QPushButton *pushButton_LoadFirstImage;
+    QLabel *label_8;
+    QPushButton *pushButton_LoadThirdImage;
+    QPushButton *pushButton_LoadFourthImage;
+    QPushButton *pushButton_LoadSecondImage;
+    QComboBox *comboBox_SystemType;
+    QGroupBox *groupBox_10;
+    QGridLayout *gridLayout_4;
+    QLabel *label_5;
+    QLineEdit *lineEdit_IP;
+    QLabel *label_6;
+    QLineEdit *lineEdit_Port;
+    QLabel *label_7;
+    QSpinBox *spinBox_Heartbeat;
+    QPushButton *pushButton_SendOK;
+    QPushButton *pushButton_SendNG;
+    QLabel *label_Status;
+    QPushButton *pushButton_ConnectPLC;
+    QGroupBox *groupBox_3;
+    QGridLayout *gridLayout_15;
+    QLabel *label_19;
+    QSpinBox *spinBox_Area_canjiao_2;
+    QSpinBox *spinBox_Wh_canjiao_2;
+    QSpinBox *spinBox_Area_huashang_2;
+    QLabel *label_20;
+    QSpinBox *spinBox_Wh_huashang_2;
+    QLabel *label_21;
+    QSpinBox *spinBox_Area_yajiaoshang_2;
+    QLabel *label_22;
+    QSpinBox *spinBox_Area_zangwu_2;
+    QLabel *label_23;
+    QLabel *label_24;
+    QSpinBox *spinBox_Wh_yajiaoshang_2;
+    QSpinBox *spinBox_Wh_zangwu_2;
     QWidget *tab_3;
     QComboBox *comboBox_Formula;
     QPushButton *pushButton_3;
@@ -205,7 +193,7 @@ public:
     {
         if (DialogSetting->objectName().isEmpty())
             DialogSetting->setObjectName(QString::fromUtf8("DialogSetting"));
-        DialogSetting->resize(1679, 1183);
+        DialogSetting->resize(1816, 1183);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/CMainWindow/Resources/settings.png"), QSize(), QIcon::Normal, QIcon::Off);
         DialogSetting->setWindowIcon(icon);
@@ -217,6 +205,19 @@ public:
         groupBox_8->setObjectName(QString::fromUtf8("groupBox_8"));
         gridLayout_9 = new QGridLayout(groupBox_8);
         gridLayout_9->setObjectName(QString::fromUtf8("gridLayout_9"));
+        checkBox_RenderThird = new QCheckBox(groupBox_8);
+        checkBox_RenderThird->setObjectName(QString::fromUtf8("checkBox_RenderThird"));
+        checkBox_RenderThird->setMaximumSize(QSize(16777215, 51));
+        checkBox_RenderThird->setChecked(true);
+
+        gridLayout_9->addWidget(checkBox_RenderThird, 0, 1, 1, 1);
+
+        label_ThirdImage = new MyLabel(groupBox_8);
+        label_ThirdImage->setObjectName(QString::fromUtf8("label_ThirdImage"));
+        label_ThirdImage->setStyleSheet(QString::fromUtf8("background-image: url(:/CMainWindow/Resources/background.png);"));
+
+        gridLayout_9->addWidget(label_ThirdImage, 1, 0, 1, 3);
+
         label_ThirdTime = new QLabel(groupBox_8);
         label_ThirdTime->setObjectName(QString::fromUtf8("label_ThirdTime"));
         label_ThirdTime->setMinimumSize(QSize(241, 0));
@@ -233,19 +234,6 @@ public:
         label_ThirdResult->setStyleSheet(QString::fromUtf8("image: url(:/CMainWindow/Resources/OK.svg);"));
 
         gridLayout_9->addWidget(label_ThirdResult, 0, 2, 1, 1);
-
-        label_ThirdImage = new MyLabel(groupBox_8);
-        label_ThirdImage->setObjectName(QString::fromUtf8("label_ThirdImage"));
-        label_ThirdImage->setStyleSheet(QString::fromUtf8("background-image: url(:/CMainWindow/Resources/background.png);"));
-
-        gridLayout_9->addWidget(label_ThirdImage, 1, 0, 1, 3);
-
-        checkBox_RenderThird = new QCheckBox(groupBox_8);
-        checkBox_RenderThird->setObjectName(QString::fromUtf8("checkBox_RenderThird"));
-        checkBox_RenderThird->setMaximumSize(QSize(16777215, 51));
-        checkBox_RenderThird->setChecked(true);
-
-        gridLayout_9->addWidget(checkBox_RenderThird, 0, 1, 1, 1);
 
 
         gridLayout_2->addWidget(groupBox_8, 1, 1, 1, 1);
@@ -363,295 +351,7 @@ public:
 
         tabWidget = new QTabWidget(DialogSetting);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tab_2 = new QWidget();
-        tab_2->setObjectName(QString::fromUtf8("tab_2"));
-        groupBox_7 = new QGroupBox(tab_2);
-        groupBox_7->setObjectName(QString::fromUtf8("groupBox_7"));
-        groupBox_7->setGeometry(QRect(10, 900, 471, 151));
-        gridLayout_8 = new QGridLayout(groupBox_7);
-        gridLayout_8->setObjectName(QString::fromUtf8("gridLayout_8"));
-        label_2 = new QLabel(groupBox_7);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setMinimumSize(QSize(0, 0));
-        label_2->setMaximumSize(QSize(80, 16777215));
-
-        gridLayout_8->addWidget(label_2, 0, 0, 1, 1);
-
-        lineEdit_MachineCode = new QLineEdit(groupBox_7);
-        lineEdit_MachineCode->setObjectName(QString::fromUtf8("lineEdit_MachineCode"));
-        lineEdit_MachineCode->setReadOnly(true);
-
-        gridLayout_8->addWidget(lineEdit_MachineCode, 0, 1, 1, 1);
-
-        pushButton_Copy = new QPushButton(groupBox_7);
-        pushButton_Copy->setObjectName(QString::fromUtf8("pushButton_Copy"));
-
-        gridLayout_8->addWidget(pushButton_Copy, 0, 2, 1, 1);
-
-        label_3 = new QLabel(groupBox_7);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setMinimumSize(QSize(0, 0));
-        label_3->setMaximumSize(QSize(80, 16777215));
-
-        gridLayout_8->addWidget(label_3, 1, 0, 1, 1);
-
-        lineEdit_RegisterCode = new QLineEdit(groupBox_7);
-        lineEdit_RegisterCode->setObjectName(QString::fromUtf8("lineEdit_RegisterCode"));
-
-        gridLayout_8->addWidget(lineEdit_RegisterCode, 1, 1, 1, 1);
-
-        pushButton_Register = new QPushButton(groupBox_7);
-        pushButton_Register->setObjectName(QString::fromUtf8("pushButton_Register"));
-
-        gridLayout_8->addWidget(pushButton_Register, 1, 2, 1, 1);
-
-        label_RegisterInfo = new QLabel(groupBox_7);
-        label_RegisterInfo->setObjectName(QString::fromUtf8("label_RegisterInfo"));
-        label_RegisterInfo->setLayoutDirection(Qt::LeftToRight);
-        label_RegisterInfo->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 0);"));
-        label_RegisterInfo->setAlignment(Qt::AlignCenter);
-
-        gridLayout_8->addWidget(label_RegisterInfo, 2, 0, 1, 3);
-
-        groupBox_4 = new QGroupBox(tab_2);
-        groupBox_4->setObjectName(QString::fromUtf8("groupBox_4"));
-        groupBox_4->setGeometry(QRect(20, 20, 461, 171));
-        groupBox_4->setMaximumSize(QSize(581, 16777215));
-        gridLayout_3 = new QGridLayout(groupBox_4);
-        gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
-        pushButton_LoadFirstImage = new QPushButton(groupBox_4);
-        pushButton_LoadFirstImage->setObjectName(QString::fromUtf8("pushButton_LoadFirstImage"));
-
-        gridLayout_3->addWidget(pushButton_LoadFirstImage, 2, 0, 1, 1);
-
-        label_8 = new QLabel(groupBox_4);
-        label_8->setObjectName(QString::fromUtf8("label_8"));
-        label_8->setMaximumSize(QSize(90, 16777215));
-
-        gridLayout_3->addWidget(label_8, 0, 0, 1, 1);
-
-        pushButton_LoadThirdImage = new QPushButton(groupBox_4);
-        pushButton_LoadThirdImage->setObjectName(QString::fromUtf8("pushButton_LoadThirdImage"));
-
-        gridLayout_3->addWidget(pushButton_LoadThirdImage, 3, 0, 1, 1);
-
-        pushButton_LoadFourthImage = new QPushButton(groupBox_4);
-        pushButton_LoadFourthImage->setObjectName(QString::fromUtf8("pushButton_LoadFourthImage"));
-
-        gridLayout_3->addWidget(pushButton_LoadFourthImage, 3, 3, 1, 1);
-
-        pushButton_LoadSecondImage = new QPushButton(groupBox_4);
-        pushButton_LoadSecondImage->setObjectName(QString::fromUtf8("pushButton_LoadSecondImage"));
-
-        gridLayout_3->addWidget(pushButton_LoadSecondImage, 2, 3, 1, 1);
-
-        comboBox_SystemType = new QComboBox(groupBox_4);
-        comboBox_SystemType->setObjectName(QString::fromUtf8("comboBox_SystemType"));
-
-        gridLayout_3->addWidget(comboBox_SystemType, 0, 1, 1, 3);
-
-        groupBox_10 = new QGroupBox(tab_2);
-        groupBox_10->setObjectName(QString::fromUtf8("groupBox_10"));
-        groupBox_10->setGeometry(QRect(10, 200, 471, 117));
-        groupBox_10->setMaximumSize(QSize(581, 16777215));
-        gridLayout_4 = new QGridLayout(groupBox_10);
-        gridLayout_4->setObjectName(QString::fromUtf8("gridLayout_4"));
-        label_5 = new QLabel(groupBox_10);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setMinimumSize(QSize(31, 0));
-        label_5->setMaximumSize(QSize(31, 16777215));
-
-        gridLayout_4->addWidget(label_5, 0, 0, 1, 1);
-
-        lineEdit_IP = new QLineEdit(groupBox_10);
-        lineEdit_IP->setObjectName(QString::fromUtf8("lineEdit_IP"));
-
-        gridLayout_4->addWidget(lineEdit_IP, 0, 1, 1, 2);
-
-        label_6 = new QLabel(groupBox_10);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setMinimumSize(QSize(50, 0));
-        label_6->setMaximumSize(QSize(50, 16777215));
-
-        gridLayout_4->addWidget(label_6, 0, 3, 1, 1);
-
-        lineEdit_Port = new QLineEdit(groupBox_10);
-        lineEdit_Port->setObjectName(QString::fromUtf8("lineEdit_Port"));
-        lineEdit_Port->setMinimumSize(QSize(80, 0));
-        lineEdit_Port->setMaximumSize(QSize(80, 16777215));
-
-        gridLayout_4->addWidget(lineEdit_Port, 0, 4, 1, 1);
-
-        label_7 = new QLabel(groupBox_10);
-        label_7->setObjectName(QString::fromUtf8("label_7"));
-        label_7->setMinimumSize(QSize(50, 0));
-        label_7->setMaximumSize(QSize(50, 16777215));
-
-        gridLayout_4->addWidget(label_7, 0, 5, 1, 1);
-
-        spinBox_Heartbeat = new QSpinBox(groupBox_10);
-        spinBox_Heartbeat->setObjectName(QString::fromUtf8("spinBox_Heartbeat"));
-        spinBox_Heartbeat->setMinimumSize(QSize(80, 0));
-        spinBox_Heartbeat->setMaximumSize(QSize(80, 16777215));
-        spinBox_Heartbeat->setMinimum(1);
-
-        gridLayout_4->addWidget(spinBox_Heartbeat, 0, 6, 1, 1);
-
-        pushButton_SendOK = new QPushButton(groupBox_10);
-        pushButton_SendOK->setObjectName(QString::fromUtf8("pushButton_SendOK"));
-
-        gridLayout_4->addWidget(pushButton_SendOK, 1, 4, 1, 1);
-
-        pushButton_SendNG = new QPushButton(groupBox_10);
-        pushButton_SendNG->setObjectName(QString::fromUtf8("pushButton_SendNG"));
-        pushButton_SendNG->setMinimumSize(QSize(80, 0));
-        pushButton_SendNG->setMaximumSize(QSize(80, 16777215));
-
-        gridLayout_4->addWidget(pushButton_SendNG, 1, 6, 1, 1);
-
-        label_Status = new QLabel(groupBox_10);
-        label_Status->setObjectName(QString::fromUtf8("label_Status"));
-        label_Status->setMinimumSize(QSize(35, 35));
-        label_Status->setMaximumSize(QSize(35, 35));
-        label_Status->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 0);"));
-
-        gridLayout_4->addWidget(label_Status, 1, 3, 1, 1);
-
-        pushButton_ConnectPLC = new QPushButton(groupBox_10);
-        pushButton_ConnectPLC->setObjectName(QString::fromUtf8("pushButton_ConnectPLC"));
-
-        gridLayout_4->addWidget(pushButton_ConnectPLC, 1, 1, 1, 2);
-
-        groupBox_3 = new QGroupBox(tab_2);
-        groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
-        groupBox_3->setGeometry(QRect(10, 320, 471, 191));
-        gridLayout_15 = new QGridLayout(groupBox_3);
-        gridLayout_15->setObjectName(QString::fromUtf8("gridLayout_15"));
-        label_19 = new QLabel(groupBox_3);
-        label_19->setObjectName(QString::fromUtf8("label_19"));
-
-        gridLayout_15->addWidget(label_19, 0, 2, 1, 1);
-
-        spinBox_Area_canjiao_2 = new QSpinBox(groupBox_3);
-        spinBox_Area_canjiao_2->setObjectName(QString::fromUtf8("spinBox_Area_canjiao_2"));
-        spinBox_Area_canjiao_2->setMinimum(0);
-        spinBox_Area_canjiao_2->setMaximum(10000);
-        spinBox_Area_canjiao_2->setValue(0);
-
-        gridLayout_15->addWidget(spinBox_Area_canjiao_2, 1, 1, 1, 1);
-
-        spinBox_Wh_canjiao_2 = new QSpinBox(groupBox_3);
-        spinBox_Wh_canjiao_2->setObjectName(QString::fromUtf8("spinBox_Wh_canjiao_2"));
-        spinBox_Wh_canjiao_2->setMinimum(0);
-        spinBox_Wh_canjiao_2->setMaximum(10000);
-        spinBox_Wh_canjiao_2->setValue(0);
-
-        gridLayout_15->addWidget(spinBox_Wh_canjiao_2, 1, 2, 1, 1);
-
-        spinBox_Area_huashang_2 = new QSpinBox(groupBox_3);
-        spinBox_Area_huashang_2->setObjectName(QString::fromUtf8("spinBox_Area_huashang_2"));
-        spinBox_Area_huashang_2->setMinimum(0);
-        spinBox_Area_huashang_2->setMaximum(10000);
-        spinBox_Area_huashang_2->setValue(0);
-
-        gridLayout_15->addWidget(spinBox_Area_huashang_2, 2, 1, 1, 1);
-
-        label_20 = new QLabel(groupBox_3);
-        label_20->setObjectName(QString::fromUtf8("label_20"));
-
-        gridLayout_15->addWidget(label_20, 1, 0, 1, 1);
-
-        spinBox_Wh_huashang_2 = new QSpinBox(groupBox_3);
-        spinBox_Wh_huashang_2->setObjectName(QString::fromUtf8("spinBox_Wh_huashang_2"));
-        spinBox_Wh_huashang_2->setMinimum(0);
-        spinBox_Wh_huashang_2->setMaximum(10000);
-        spinBox_Wh_huashang_2->setValue(0);
-
-        gridLayout_15->addWidget(spinBox_Wh_huashang_2, 2, 2, 1, 1);
-
-        label_21 = new QLabel(groupBox_3);
-        label_21->setObjectName(QString::fromUtf8("label_21"));
-
-        gridLayout_15->addWidget(label_21, 3, 0, 1, 1);
-
-        spinBox_Area_yajiaoshang_2 = new QSpinBox(groupBox_3);
-        spinBox_Area_yajiaoshang_2->setObjectName(QString::fromUtf8("spinBox_Area_yajiaoshang_2"));
-        spinBox_Area_yajiaoshang_2->setMinimum(0);
-        spinBox_Area_yajiaoshang_2->setMaximum(10000);
-        spinBox_Area_yajiaoshang_2->setValue(0);
-
-        gridLayout_15->addWidget(spinBox_Area_yajiaoshang_2, 3, 1, 1, 1);
-
-        label_22 = new QLabel(groupBox_3);
-        label_22->setObjectName(QString::fromUtf8("label_22"));
-
-        gridLayout_15->addWidget(label_22, 0, 1, 1, 1);
-
-        spinBox_Area_zangwu_2 = new QSpinBox(groupBox_3);
-        spinBox_Area_zangwu_2->setObjectName(QString::fromUtf8("spinBox_Area_zangwu_2"));
-        spinBox_Area_zangwu_2->setMinimum(0);
-        spinBox_Area_zangwu_2->setMaximum(10000);
-        spinBox_Area_zangwu_2->setValue(0);
-
-        gridLayout_15->addWidget(spinBox_Area_zangwu_2, 4, 1, 1, 1);
-
-        label_23 = new QLabel(groupBox_3);
-        label_23->setObjectName(QString::fromUtf8("label_23"));
-
-        gridLayout_15->addWidget(label_23, 2, 0, 1, 1);
-
-        label_24 = new QLabel(groupBox_3);
-        label_24->setObjectName(QString::fromUtf8("label_24"));
-
-        gridLayout_15->addWidget(label_24, 4, 0, 1, 1);
-
-        spinBox_Wh_yajiaoshang_2 = new QSpinBox(groupBox_3);
-        spinBox_Wh_yajiaoshang_2->setObjectName(QString::fromUtf8("spinBox_Wh_yajiaoshang_2"));
-        spinBox_Wh_yajiaoshang_2->setMinimum(0);
-        spinBox_Wh_yajiaoshang_2->setMaximum(10000);
-        spinBox_Wh_yajiaoshang_2->setValue(0);
-
-        gridLayout_15->addWidget(spinBox_Wh_yajiaoshang_2, 3, 2, 1, 1);
-
-        spinBox_Wh_zangwu_2 = new QSpinBox(groupBox_3);
-        spinBox_Wh_zangwu_2->setObjectName(QString::fromUtf8("spinBox_Wh_zangwu_2"));
-        spinBox_Wh_zangwu_2->setMinimum(0);
-        spinBox_Wh_zangwu_2->setMaximum(10000);
-        spinBox_Wh_zangwu_2->setValue(0);
-
-        gridLayout_15->addWidget(spinBox_Wh_zangwu_2, 4, 2, 1, 1);
-
-        groupBox = new QGroupBox(tab_2);
-        groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(10, 510, 471, 391));
-        label_9 = new QLabel(groupBox);
-        label_9->setObjectName(QString::fromUtf8("label_9"));
-        label_9->setGeometry(QRect(20, 40, 161, 31));
-        label_10 = new QLabel(groupBox);
-        label_10->setObjectName(QString::fromUtf8("label_10"));
-        label_10->setGeometry(QRect(20, 80, 161, 31));
-        label_11 = new QLabel(groupBox);
-        label_11->setObjectName(QString::fromUtf8("label_11"));
-        label_11->setGeometry(QRect(20, 120, 161, 31));
-        lineEdit = new QLineEdit(groupBox);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setGeometry(QRect(200, 40, 113, 20));
-        lineEdit_2 = new QLineEdit(groupBox);
-        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(200, 80, 113, 20));
-        lineEdit_3 = new QLineEdit(groupBox);
-        lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
-        lineEdit_3->setGeometry(QRect(200, 120, 113, 20));
-        pushButton = new QPushButton(groupBox);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(50, 250, 91, 31));
-        pushButton_2 = new QPushButton(groupBox);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(50, 290, 91, 31));
-        m_ModelChoice = new QTableWidget(groupBox);
-        m_ModelChoice->setObjectName(QString::fromUtf8("m_ModelChoice"));
-        m_ModelChoice->setGeometry(QRect(200, 150, 256, 192));
-        tabWidget->addTab(tab_2, QString());
+        tabWidget->setMaximumSize(QSize(500, 16777215));
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
         gridLayout_7 = new QGridLayout(tab);
@@ -1086,6 +786,265 @@ public:
         gridLayout_7->addWidget(groupBox_Frist_5, 3, 0, 1, 1);
 
         tabWidget->addTab(tab, QString());
+        tab_2 = new QWidget();
+        tab_2->setObjectName(QString::fromUtf8("tab_2"));
+        groupBox_7 = new QGroupBox(tab_2);
+        groupBox_7->setObjectName(QString::fromUtf8("groupBox_7"));
+        groupBox_7->setGeometry(QRect(10, 900, 471, 151));
+        gridLayout_8 = new QGridLayout(groupBox_7);
+        gridLayout_8->setObjectName(QString::fromUtf8("gridLayout_8"));
+        label_2 = new QLabel(groupBox_7);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setMinimumSize(QSize(0, 0));
+        label_2->setMaximumSize(QSize(80, 16777215));
+
+        gridLayout_8->addWidget(label_2, 0, 0, 1, 1);
+
+        lineEdit_MachineCode = new QLineEdit(groupBox_7);
+        lineEdit_MachineCode->setObjectName(QString::fromUtf8("lineEdit_MachineCode"));
+        lineEdit_MachineCode->setReadOnly(true);
+
+        gridLayout_8->addWidget(lineEdit_MachineCode, 0, 1, 1, 1);
+
+        pushButton_Copy = new QPushButton(groupBox_7);
+        pushButton_Copy->setObjectName(QString::fromUtf8("pushButton_Copy"));
+
+        gridLayout_8->addWidget(pushButton_Copy, 0, 2, 1, 1);
+
+        label_3 = new QLabel(groupBox_7);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setMinimumSize(QSize(0, 0));
+        label_3->setMaximumSize(QSize(80, 16777215));
+
+        gridLayout_8->addWidget(label_3, 1, 0, 1, 1);
+
+        lineEdit_RegisterCode = new QLineEdit(groupBox_7);
+        lineEdit_RegisterCode->setObjectName(QString::fromUtf8("lineEdit_RegisterCode"));
+
+        gridLayout_8->addWidget(lineEdit_RegisterCode, 1, 1, 1, 1);
+
+        pushButton_Register = new QPushButton(groupBox_7);
+        pushButton_Register->setObjectName(QString::fromUtf8("pushButton_Register"));
+
+        gridLayout_8->addWidget(pushButton_Register, 1, 2, 1, 1);
+
+        label_RegisterInfo = new QLabel(groupBox_7);
+        label_RegisterInfo->setObjectName(QString::fromUtf8("label_RegisterInfo"));
+        label_RegisterInfo->setLayoutDirection(Qt::LeftToRight);
+        label_RegisterInfo->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 0);"));
+        label_RegisterInfo->setAlignment(Qt::AlignCenter);
+
+        gridLayout_8->addWidget(label_RegisterInfo, 2, 0, 1, 3);
+
+        groupBox_4 = new QGroupBox(tab_2);
+        groupBox_4->setObjectName(QString::fromUtf8("groupBox_4"));
+        groupBox_4->setGeometry(QRect(20, 20, 461, 171));
+        groupBox_4->setMaximumSize(QSize(581, 16777215));
+        gridLayout_3 = new QGridLayout(groupBox_4);
+        gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
+        pushButton_LoadFirstImage = new QPushButton(groupBox_4);
+        pushButton_LoadFirstImage->setObjectName(QString::fromUtf8("pushButton_LoadFirstImage"));
+
+        gridLayout_3->addWidget(pushButton_LoadFirstImage, 2, 0, 1, 1);
+
+        label_8 = new QLabel(groupBox_4);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+        label_8->setMaximumSize(QSize(90, 16777215));
+
+        gridLayout_3->addWidget(label_8, 0, 0, 1, 1);
+
+        pushButton_LoadThirdImage = new QPushButton(groupBox_4);
+        pushButton_LoadThirdImage->setObjectName(QString::fromUtf8("pushButton_LoadThirdImage"));
+
+        gridLayout_3->addWidget(pushButton_LoadThirdImage, 3, 0, 1, 1);
+
+        pushButton_LoadFourthImage = new QPushButton(groupBox_4);
+        pushButton_LoadFourthImage->setObjectName(QString::fromUtf8("pushButton_LoadFourthImage"));
+
+        gridLayout_3->addWidget(pushButton_LoadFourthImage, 3, 3, 1, 1);
+
+        pushButton_LoadSecondImage = new QPushButton(groupBox_4);
+        pushButton_LoadSecondImage->setObjectName(QString::fromUtf8("pushButton_LoadSecondImage"));
+
+        gridLayout_3->addWidget(pushButton_LoadSecondImage, 2, 3, 1, 1);
+
+        comboBox_SystemType = new QComboBox(groupBox_4);
+        comboBox_SystemType->setObjectName(QString::fromUtf8("comboBox_SystemType"));
+
+        gridLayout_3->addWidget(comboBox_SystemType, 0, 1, 1, 3);
+
+        groupBox_10 = new QGroupBox(tab_2);
+        groupBox_10->setObjectName(QString::fromUtf8("groupBox_10"));
+        groupBox_10->setGeometry(QRect(10, 200, 471, 117));
+        groupBox_10->setMaximumSize(QSize(581, 16777215));
+        gridLayout_4 = new QGridLayout(groupBox_10);
+        gridLayout_4->setObjectName(QString::fromUtf8("gridLayout_4"));
+        label_5 = new QLabel(groupBox_10);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setMinimumSize(QSize(31, 0));
+        label_5->setMaximumSize(QSize(31, 16777215));
+
+        gridLayout_4->addWidget(label_5, 0, 0, 1, 1);
+
+        lineEdit_IP = new QLineEdit(groupBox_10);
+        lineEdit_IP->setObjectName(QString::fromUtf8("lineEdit_IP"));
+
+        gridLayout_4->addWidget(lineEdit_IP, 0, 1, 1, 2);
+
+        label_6 = new QLabel(groupBox_10);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setMinimumSize(QSize(50, 0));
+        label_6->setMaximumSize(QSize(50, 16777215));
+
+        gridLayout_4->addWidget(label_6, 0, 3, 1, 1);
+
+        lineEdit_Port = new QLineEdit(groupBox_10);
+        lineEdit_Port->setObjectName(QString::fromUtf8("lineEdit_Port"));
+        lineEdit_Port->setMinimumSize(QSize(80, 0));
+        lineEdit_Port->setMaximumSize(QSize(80, 16777215));
+
+        gridLayout_4->addWidget(lineEdit_Port, 0, 4, 1, 1);
+
+        label_7 = new QLabel(groupBox_10);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setMinimumSize(QSize(50, 0));
+        label_7->setMaximumSize(QSize(50, 16777215));
+
+        gridLayout_4->addWidget(label_7, 0, 5, 1, 1);
+
+        spinBox_Heartbeat = new QSpinBox(groupBox_10);
+        spinBox_Heartbeat->setObjectName(QString::fromUtf8("spinBox_Heartbeat"));
+        spinBox_Heartbeat->setMinimumSize(QSize(80, 0));
+        spinBox_Heartbeat->setMaximumSize(QSize(80, 16777215));
+        spinBox_Heartbeat->setMinimum(1);
+
+        gridLayout_4->addWidget(spinBox_Heartbeat, 0, 6, 1, 1);
+
+        pushButton_SendOK = new QPushButton(groupBox_10);
+        pushButton_SendOK->setObjectName(QString::fromUtf8("pushButton_SendOK"));
+
+        gridLayout_4->addWidget(pushButton_SendOK, 1, 4, 1, 1);
+
+        pushButton_SendNG = new QPushButton(groupBox_10);
+        pushButton_SendNG->setObjectName(QString::fromUtf8("pushButton_SendNG"));
+        pushButton_SendNG->setMinimumSize(QSize(80, 0));
+        pushButton_SendNG->setMaximumSize(QSize(80, 16777215));
+
+        gridLayout_4->addWidget(pushButton_SendNG, 1, 6, 1, 1);
+
+        label_Status = new QLabel(groupBox_10);
+        label_Status->setObjectName(QString::fromUtf8("label_Status"));
+        label_Status->setMinimumSize(QSize(35, 35));
+        label_Status->setMaximumSize(QSize(35, 35));
+        label_Status->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 0);"));
+
+        gridLayout_4->addWidget(label_Status, 1, 3, 1, 1);
+
+        pushButton_ConnectPLC = new QPushButton(groupBox_10);
+        pushButton_ConnectPLC->setObjectName(QString::fromUtf8("pushButton_ConnectPLC"));
+
+        gridLayout_4->addWidget(pushButton_ConnectPLC, 1, 1, 1, 2);
+
+        groupBox_3 = new QGroupBox(tab_2);
+        groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
+        groupBox_3->setGeometry(QRect(10, 320, 471, 191));
+        gridLayout_15 = new QGridLayout(groupBox_3);
+        gridLayout_15->setObjectName(QString::fromUtf8("gridLayout_15"));
+        label_19 = new QLabel(groupBox_3);
+        label_19->setObjectName(QString::fromUtf8("label_19"));
+
+        gridLayout_15->addWidget(label_19, 0, 2, 1, 1);
+
+        spinBox_Area_canjiao_2 = new QSpinBox(groupBox_3);
+        spinBox_Area_canjiao_2->setObjectName(QString::fromUtf8("spinBox_Area_canjiao_2"));
+        spinBox_Area_canjiao_2->setMinimum(0);
+        spinBox_Area_canjiao_2->setMaximum(10000);
+        spinBox_Area_canjiao_2->setValue(0);
+
+        gridLayout_15->addWidget(spinBox_Area_canjiao_2, 1, 1, 1, 1);
+
+        spinBox_Wh_canjiao_2 = new QSpinBox(groupBox_3);
+        spinBox_Wh_canjiao_2->setObjectName(QString::fromUtf8("spinBox_Wh_canjiao_2"));
+        spinBox_Wh_canjiao_2->setMinimum(0);
+        spinBox_Wh_canjiao_2->setMaximum(10000);
+        spinBox_Wh_canjiao_2->setValue(0);
+
+        gridLayout_15->addWidget(spinBox_Wh_canjiao_2, 1, 2, 1, 1);
+
+        spinBox_Area_huashang_2 = new QSpinBox(groupBox_3);
+        spinBox_Area_huashang_2->setObjectName(QString::fromUtf8("spinBox_Area_huashang_2"));
+        spinBox_Area_huashang_2->setMinimum(0);
+        spinBox_Area_huashang_2->setMaximum(10000);
+        spinBox_Area_huashang_2->setValue(0);
+
+        gridLayout_15->addWidget(spinBox_Area_huashang_2, 2, 1, 1, 1);
+
+        label_20 = new QLabel(groupBox_3);
+        label_20->setObjectName(QString::fromUtf8("label_20"));
+
+        gridLayout_15->addWidget(label_20, 1, 0, 1, 1);
+
+        spinBox_Wh_huashang_2 = new QSpinBox(groupBox_3);
+        spinBox_Wh_huashang_2->setObjectName(QString::fromUtf8("spinBox_Wh_huashang_2"));
+        spinBox_Wh_huashang_2->setMinimum(0);
+        spinBox_Wh_huashang_2->setMaximum(10000);
+        spinBox_Wh_huashang_2->setValue(0);
+
+        gridLayout_15->addWidget(spinBox_Wh_huashang_2, 2, 2, 1, 1);
+
+        label_21 = new QLabel(groupBox_3);
+        label_21->setObjectName(QString::fromUtf8("label_21"));
+
+        gridLayout_15->addWidget(label_21, 3, 0, 1, 1);
+
+        spinBox_Area_yajiaoshang_2 = new QSpinBox(groupBox_3);
+        spinBox_Area_yajiaoshang_2->setObjectName(QString::fromUtf8("spinBox_Area_yajiaoshang_2"));
+        spinBox_Area_yajiaoshang_2->setMinimum(0);
+        spinBox_Area_yajiaoshang_2->setMaximum(10000);
+        spinBox_Area_yajiaoshang_2->setValue(0);
+
+        gridLayout_15->addWidget(spinBox_Area_yajiaoshang_2, 3, 1, 1, 1);
+
+        label_22 = new QLabel(groupBox_3);
+        label_22->setObjectName(QString::fromUtf8("label_22"));
+
+        gridLayout_15->addWidget(label_22, 0, 1, 1, 1);
+
+        spinBox_Area_zangwu_2 = new QSpinBox(groupBox_3);
+        spinBox_Area_zangwu_2->setObjectName(QString::fromUtf8("spinBox_Area_zangwu_2"));
+        spinBox_Area_zangwu_2->setMinimum(0);
+        spinBox_Area_zangwu_2->setMaximum(10000);
+        spinBox_Area_zangwu_2->setValue(0);
+
+        gridLayout_15->addWidget(spinBox_Area_zangwu_2, 4, 1, 1, 1);
+
+        label_23 = new QLabel(groupBox_3);
+        label_23->setObjectName(QString::fromUtf8("label_23"));
+
+        gridLayout_15->addWidget(label_23, 2, 0, 1, 1);
+
+        label_24 = new QLabel(groupBox_3);
+        label_24->setObjectName(QString::fromUtf8("label_24"));
+
+        gridLayout_15->addWidget(label_24, 4, 0, 1, 1);
+
+        spinBox_Wh_yajiaoshang_2 = new QSpinBox(groupBox_3);
+        spinBox_Wh_yajiaoshang_2->setObjectName(QString::fromUtf8("spinBox_Wh_yajiaoshang_2"));
+        spinBox_Wh_yajiaoshang_2->setMinimum(0);
+        spinBox_Wh_yajiaoshang_2->setMaximum(10000);
+        spinBox_Wh_yajiaoshang_2->setValue(0);
+
+        gridLayout_15->addWidget(spinBox_Wh_yajiaoshang_2, 3, 2, 1, 1);
+
+        spinBox_Wh_zangwu_2 = new QSpinBox(groupBox_3);
+        spinBox_Wh_zangwu_2->setObjectName(QString::fromUtf8("spinBox_Wh_zangwu_2"));
+        spinBox_Wh_zangwu_2->setMinimum(0);
+        spinBox_Wh_zangwu_2->setMaximum(10000);
+        spinBox_Wh_zangwu_2->setValue(0);
+
+        gridLayout_15->addWidget(spinBox_Wh_zangwu_2, 4, 2, 1, 1);
+
+        tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
         comboBox_Formula = new QComboBox(tab_3);
@@ -1120,7 +1079,7 @@ public:
         QObject::connect(pushButton_LoadThirdImage, SIGNAL(clicked()), DialogSetting, SLOT(LoadThirdImage()));
         QObject::connect(pushButton_LoadFourthImage, SIGNAL(clicked()), DialogSetting, SLOT(LoadFourthImage()));
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(DialogSetting);
@@ -1130,10 +1089,10 @@ public:
     {
         DialogSetting->setWindowTitle(QCoreApplication::translate("DialogSetting", "\345\217\202\346\225\260\350\256\276\347\275\256", nullptr));
         groupBox_8->setTitle(QCoreApplication::translate("DialogSetting", "\344\270\211\345\267\245\344\275\215", nullptr));
+        checkBox_RenderThird->setText(QCoreApplication::translate("DialogSetting", "\346\270\262\346\237\223\345\233\276", nullptr));
+        label_ThirdImage->setText(QString());
         label_ThirdTime->setText(QCoreApplication::translate("DialogSetting", "\350\200\227\346\227\266\357\274\232", nullptr));
         label_ThirdResult->setText(QString());
-        label_ThirdImage->setText(QString());
-        checkBox_RenderThird->setText(QCoreApplication::translate("DialogSetting", "\346\270\262\346\237\223\345\233\276", nullptr));
         groupBox_6->setTitle(QCoreApplication::translate("DialogSetting", "\344\272\214\345\267\245\344\275\215", nullptr));
         label_SecondResult->setText(QString());
         label_SecondImage->setText(QString());
@@ -1149,57 +1108,6 @@ public:
         label_FirstTime->setText(QCoreApplication::translate("DialogSetting", "\350\200\227\346\227\266\357\274\232", nullptr));
         label_FirstImage->setText(QString());
         checkBox_RenderFirst->setText(QCoreApplication::translate("DialogSetting", "\346\270\262\346\237\223\345\233\276", nullptr));
-        groupBox_7->setTitle(QCoreApplication::translate("DialogSetting", "\350\275\257\344\273\266\346\263\250\345\206\214", nullptr));
-        label_2->setText(QCoreApplication::translate("DialogSetting", "\346\234\272\345\231\250\347\240\201\357\274\232", nullptr));
-        pushButton_Copy->setText(QCoreApplication::translate("DialogSetting", "\345\244\215\345\210\266\346\234\272\345\231\250\347\240\201", nullptr));
-        label_3->setText(QCoreApplication::translate("DialogSetting", "\346\263\250\345\206\214\347\240\201\357\274\232", nullptr));
-        pushButton_Register->setText(QCoreApplication::translate("DialogSetting", "\346\263\250\345\206\214", nullptr));
-        label_RegisterInfo->setText(QCoreApplication::translate("DialogSetting", "\346\234\252\346\263\250\345\206\214", nullptr));
-        groupBox_4->setTitle(QCoreApplication::translate("DialogSetting", "\347\263\273\347\273\237\345\217\202\346\225\260", nullptr));
-        pushButton_LoadFirstImage->setText(QCoreApplication::translate("DialogSetting", "\345\212\240\350\275\275\344\270\200\345\267\245\344\275\215\345\233\276\345\203\217", nullptr));
-        label_8->setText(QCoreApplication::translate("DialogSetting", "\350\277\220\350\241\214\346\250\241\345\274\217", nullptr));
-        pushButton_LoadThirdImage->setText(QCoreApplication::translate("DialogSetting", "\345\212\240\350\275\275\344\270\211\345\267\245\344\275\215\345\233\276\345\203\217", nullptr));
-        pushButton_LoadFourthImage->setText(QCoreApplication::translate("DialogSetting", "\345\212\240\350\275\275\345\233\233\345\267\245\344\275\215\345\233\276\345\203\217", nullptr));
-        pushButton_LoadSecondImage->setText(QCoreApplication::translate("DialogSetting", "\345\212\240\350\275\275\344\272\214\345\267\245\344\275\215\345\233\276\345\203\217", nullptr));
-        groupBox_10->setTitle(QCoreApplication::translate("DialogSetting", "\351\200\232\350\256\257", nullptr));
-        label_5->setText(QCoreApplication::translate("DialogSetting", "IP", nullptr));
-        label_6->setText(QCoreApplication::translate("DialogSetting", "\347\253\257\345\217\243", nullptr));
-        label_7->setText(QCoreApplication::translate("DialogSetting", "\345\277\203\350\267\263", nullptr));
-        spinBox_Heartbeat->setSuffix(QCoreApplication::translate("DialogSetting", "\347\247\222", nullptr));
-        pushButton_SendOK->setText(QCoreApplication::translate("DialogSetting", "\345\217\221\351\200\201OK", nullptr));
-        pushButton_SendNG->setText(QCoreApplication::translate("DialogSetting", "\345\217\221\351\200\201NG", nullptr));
-        label_Status->setText(QString());
-        pushButton_ConnectPLC->setText(QCoreApplication::translate("DialogSetting", "\350\277\236\346\216\245PLC", nullptr));
-        groupBox_3->setTitle(QCoreApplication::translate("DialogSetting", "\347\274\272\351\231\267\351\230\210\345\200\274\350\256\276\347\275\256", nullptr));
-        label_19->setText(QCoreApplication::translate("DialogSetting", "\351\225\277\345\272\246\351\230\210\345\200\274", nullptr));
-        spinBox_Area_canjiao_2->setSuffix(QString());
-        spinBox_Area_canjiao_2->setPrefix(QString());
-        spinBox_Wh_canjiao_2->setSuffix(QString());
-        spinBox_Wh_canjiao_2->setPrefix(QString());
-        spinBox_Area_huashang_2->setSuffix(QString());
-        spinBox_Area_huashang_2->setPrefix(QString());
-        label_20->setText(QCoreApplication::translate("DialogSetting", "\346\256\213\350\203\266", nullptr));
-        spinBox_Wh_huashang_2->setSuffix(QString());
-        spinBox_Wh_huashang_2->setPrefix(QString());
-        label_21->setText(QCoreApplication::translate("DialogSetting", "\350\203\266\345\216\213\344\274\244", nullptr));
-        spinBox_Area_yajiaoshang_2->setSuffix(QString());
-        spinBox_Area_yajiaoshang_2->setPrefix(QString());
-        label_22->setText(QCoreApplication::translate("DialogSetting", "\351\235\242\347\247\257\351\230\210\345\200\274", nullptr));
-        spinBox_Area_zangwu_2->setSuffix(QString());
-        spinBox_Area_zangwu_2->setPrefix(QString());
-        label_23->setText(QCoreApplication::translate("DialogSetting", "\345\210\222\344\274\244", nullptr));
-        label_24->setText(QCoreApplication::translate("DialogSetting", "\350\204\217\346\261\241", nullptr));
-        spinBox_Wh_yajiaoshang_2->setSuffix(QString());
-        spinBox_Wh_yajiaoshang_2->setPrefix(QString());
-        spinBox_Wh_zangwu_2->setSuffix(QString());
-        spinBox_Wh_zangwu_2->setPrefix(QString());
-        groupBox->setTitle(QCoreApplication::translate("DialogSetting", "\351\205\215\346\226\271\350\256\276\347\275\256", nullptr));
-        label_9->setText(QCoreApplication::translate("DialogSetting", "\345\275\223\345\211\215\346\234\272\347\247\215\347\274\226\345\217\267", nullptr));
-        label_10->setText(QCoreApplication::translate("DialogSetting", "\345\275\223\345\211\215\351\205\215\346\226\271\347\274\226\345\217\267", nullptr));
-        label_11->setText(QCoreApplication::translate("DialogSetting", "\345\275\223\345\211\215\351\205\215\346\226\271\345\220\215\347\247\260", nullptr));
-        pushButton->setText(QCoreApplication::translate("DialogSetting", "\351\205\215\346\226\271\344\277\235\345\255\230", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("DialogSetting", "\351\205\215\346\226\271\345\210\207\346\215\242", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("DialogSetting", "\350\277\220\350\241\214\345\217\202\346\225\260", nullptr));
         groupBox_Frist->setTitle(QCoreApplication::translate("DialogSetting", "\344\270\200\345\267\245\344\275\215-\347\233\270\346\234\272\345\217\202\346\225\260", nullptr));
         pushButton_LoadOKPath_First->setText(QCoreApplication::translate("DialogSetting", "\346\211\223\345\274\200\350\267\257\345\276\204", nullptr));
         pushButton_LoadNGPath_First->setText(QCoreApplication::translate("DialogSetting", "\346\211\223\345\274\200\350\267\257\345\276\204", nullptr));
@@ -1265,6 +1173,51 @@ public:
         checkBox_SaveOK_Fourth->setText(QCoreApplication::translate("DialogSetting", "\344\277\235\345\255\230OK", nullptr));
         pushButton_SaveParams_Fourth->setText(QCoreApplication::translate("DialogSetting", "\344\277\235\345\255\230\345\217\202\346\225\260", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("DialogSetting", "\347\233\270\346\234\272\345\217\202\346\225\260", nullptr));
+        groupBox_7->setTitle(QCoreApplication::translate("DialogSetting", "\350\275\257\344\273\266\346\263\250\345\206\214", nullptr));
+        label_2->setText(QCoreApplication::translate("DialogSetting", "\346\234\272\345\231\250\347\240\201\357\274\232", nullptr));
+        pushButton_Copy->setText(QCoreApplication::translate("DialogSetting", "\345\244\215\345\210\266\346\234\272\345\231\250\347\240\201", nullptr));
+        label_3->setText(QCoreApplication::translate("DialogSetting", "\346\263\250\345\206\214\347\240\201\357\274\232", nullptr));
+        pushButton_Register->setText(QCoreApplication::translate("DialogSetting", "\346\263\250\345\206\214", nullptr));
+        label_RegisterInfo->setText(QCoreApplication::translate("DialogSetting", "\346\234\252\346\263\250\345\206\214", nullptr));
+        groupBox_4->setTitle(QCoreApplication::translate("DialogSetting", "\347\263\273\347\273\237\345\217\202\346\225\260", nullptr));
+        pushButton_LoadFirstImage->setText(QCoreApplication::translate("DialogSetting", "\345\212\240\350\275\275\344\270\200\345\267\245\344\275\215\345\233\276\345\203\217", nullptr));
+        label_8->setText(QCoreApplication::translate("DialogSetting", "\350\277\220\350\241\214\346\250\241\345\274\217", nullptr));
+        pushButton_LoadThirdImage->setText(QCoreApplication::translate("DialogSetting", "\345\212\240\350\275\275\344\270\211\345\267\245\344\275\215\345\233\276\345\203\217", nullptr));
+        pushButton_LoadFourthImage->setText(QCoreApplication::translate("DialogSetting", "\345\212\240\350\275\275\345\233\233\345\267\245\344\275\215\345\233\276\345\203\217", nullptr));
+        pushButton_LoadSecondImage->setText(QCoreApplication::translate("DialogSetting", "\345\212\240\350\275\275\344\272\214\345\267\245\344\275\215\345\233\276\345\203\217", nullptr));
+        groupBox_10->setTitle(QCoreApplication::translate("DialogSetting", "\351\200\232\350\256\257", nullptr));
+        label_5->setText(QCoreApplication::translate("DialogSetting", "IP", nullptr));
+        label_6->setText(QCoreApplication::translate("DialogSetting", "\347\253\257\345\217\243", nullptr));
+        label_7->setText(QCoreApplication::translate("DialogSetting", "\345\277\203\350\267\263", nullptr));
+        spinBox_Heartbeat->setSuffix(QCoreApplication::translate("DialogSetting", "\347\247\222", nullptr));
+        pushButton_SendOK->setText(QCoreApplication::translate("DialogSetting", "\345\217\221\351\200\201OK", nullptr));
+        pushButton_SendNG->setText(QCoreApplication::translate("DialogSetting", "\345\217\221\351\200\201NG", nullptr));
+        label_Status->setText(QString());
+        pushButton_ConnectPLC->setText(QCoreApplication::translate("DialogSetting", "\350\277\236\346\216\245PLC", nullptr));
+        groupBox_3->setTitle(QCoreApplication::translate("DialogSetting", "\347\274\272\351\231\267\351\230\210\345\200\274\350\256\276\347\275\256", nullptr));
+        label_19->setText(QCoreApplication::translate("DialogSetting", "\351\225\277\345\272\246\351\230\210\345\200\274", nullptr));
+        spinBox_Area_canjiao_2->setSuffix(QString());
+        spinBox_Area_canjiao_2->setPrefix(QString());
+        spinBox_Wh_canjiao_2->setSuffix(QString());
+        spinBox_Wh_canjiao_2->setPrefix(QString());
+        spinBox_Area_huashang_2->setSuffix(QString());
+        spinBox_Area_huashang_2->setPrefix(QString());
+        label_20->setText(QCoreApplication::translate("DialogSetting", "\346\256\213\350\203\266", nullptr));
+        spinBox_Wh_huashang_2->setSuffix(QString());
+        spinBox_Wh_huashang_2->setPrefix(QString());
+        label_21->setText(QCoreApplication::translate("DialogSetting", "\350\203\266\345\216\213\344\274\244", nullptr));
+        spinBox_Area_yajiaoshang_2->setSuffix(QString());
+        spinBox_Area_yajiaoshang_2->setPrefix(QString());
+        label_22->setText(QCoreApplication::translate("DialogSetting", "\351\235\242\347\247\257\351\230\210\345\200\274", nullptr));
+        spinBox_Area_zangwu_2->setSuffix(QString());
+        spinBox_Area_zangwu_2->setPrefix(QString());
+        label_23->setText(QCoreApplication::translate("DialogSetting", "\345\210\222\344\274\244", nullptr));
+        label_24->setText(QCoreApplication::translate("DialogSetting", "\350\204\217\346\261\241", nullptr));
+        spinBox_Wh_yajiaoshang_2->setSuffix(QString());
+        spinBox_Wh_yajiaoshang_2->setPrefix(QString());
+        spinBox_Wh_zangwu_2->setSuffix(QString());
+        spinBox_Wh_zangwu_2->setPrefix(QString());
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("DialogSetting", "\350\277\220\350\241\214\345\217\202\346\225\260", nullptr));
         pushButton_3->setText(QCoreApplication::translate("DialogSetting", "\351\200\211\346\213\251\351\205\215\346\226\271", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("DialogSetting", "\351\205\215\346\226\271\350\256\276\347\275\256", nullptr));
     } // retranslateUi

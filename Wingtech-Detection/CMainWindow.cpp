@@ -7,7 +7,7 @@
 #include <QMutex>
 #include <QTextStream>
 #include <qdir.h>
-
+#include "QMessageBox"
 int GetImageCount(e_CameraType)
 {
     return 0;
@@ -386,6 +386,7 @@ void CMainWindow::AddLog(QString log)
 
 void CMainWindow::StartDection()
 {
+	m_RecipeManager->SendPLCReadySign();
 	ui.action_Start->setEnabled(false);
 	ui.action_Stop->setEnabled(true);
 	ui.action_Setting->setEnabled(false);

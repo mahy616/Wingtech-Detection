@@ -18,14 +18,19 @@ public:
 	bool GetConnectStatus() { return m_bConnected; }
 	bool GetPLCInitStatus() { return m_bInitPLCSuccess; }
 	void WritePLCData(bool bok);
+	void WritePLCRead();
 private:
 	//PLCÐ´²Ù×÷
 	void WriteInitCommand();
 	void WritePLCOK();
 	void WritePLCNG();
 	void WritePLCHeartbeat();
-	void WritePLCRead();
 	void WritePLCChangeVar();
+private:
+	void GetChangeRecipeName(char* str);
+	void GetSaveRecipeName(char* str);
+
+
 private:
 	CPLCManager(QObject *parent = NULL);
 	~CPLCManager();
@@ -51,4 +56,6 @@ private slots:
 signals:
 	void SendConnectStatus(bool status);
 	void SendPLCMessage(QString msg);
+	void SendChangePLCRecipe(QString msg, int number);
+	void SendSavePLCRecipe(QString msg, int number);
 };
