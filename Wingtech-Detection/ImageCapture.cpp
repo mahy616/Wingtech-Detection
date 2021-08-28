@@ -113,6 +113,7 @@ void CImageCapture::run()
 				{
 					emit SendCameraImage(curImage, m_Index);
 				}
+				
 				if (bStart)
 				{
 					if (m_Type == CAMERA_FIRST)

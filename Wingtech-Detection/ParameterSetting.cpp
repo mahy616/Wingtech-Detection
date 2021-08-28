@@ -90,8 +90,7 @@ void CParameterSetting::InitVariables()
 	m_FourCameraInfo.ImageCapture->SetCameraType(CAMERA_FOURTH);
 	ui.lineEdit_IP->setValidator(new QRegExpValidator(reg));
 
-
-
+	//开启存图线程
 	m_SaveImage.start();
 }
 void CParameterSetting::InitTableWidget()
@@ -139,6 +138,7 @@ void CParameterSetting::InitFirstGroup()
 	m_FirstGroup->addButton(ui.radioButton_ExternalFirst, 2);
 	m_FirstGroup->addButton(ui.radioButton_SoftFirst, 3);
 	SetButtonGroupEnabled(false, 1);
+
 }
 
 void CParameterSetting::InitSecondGroup()
@@ -148,6 +148,7 @@ void CParameterSetting::InitSecondGroup()
 	m_SecondGroup->addButton(ui.radioButton_ExternalSecond, 2);
 	m_SecondGroup->addButton(ui.radioButton_SoftSecond, 3);
 	SetButtonGroupEnabled(false, 2);
+
 }
 
 void CParameterSetting::InitThirdtGroup()
@@ -157,6 +158,7 @@ void CParameterSetting::InitThirdtGroup()
 	m_ThirdGroup->addButton(ui.radioButton_ExternalThird, 2);
 	m_ThirdGroup->addButton(ui.radioButton_SoftThird, 3);
 	SetButtonGroupEnabled(false, 3);
+
 }
 
 void CParameterSetting::InitFourthGroup()
@@ -166,66 +168,103 @@ void CParameterSetting::InitFourthGroup()
 	m_FourthGroup->addButton(ui.radioButton_ExternalFourth, 2);
 	m_FourthGroup->addButton(ui.radioButton_SoftFourth, 3);
 	SetButtonGroupEnabled(false, 4);
+
 }
 
+//保存图片
 void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo)
 {
 	QString CurTime = QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss-zzz");
-	if (ui.checkBox_SaveNG_First->isChecked())
+	auto image_info = [&](s_StationInfo ImageInfo, const QString &curTime, const QString &path, bool bok,int index)
 	{
-		QString NGPath = ui.lineEdit_NGPath_First->text();
-		if (NGPath.isEmpty())
+		if (path.isEmpty())
 		{
-			qDebug() << "NG path is empty";
+			qDebug() << "path is empty" << path;
 			return;
 		}
-		QString CurPath = NGPath + "/" + CurTime;
+		QString CurPath = path + "/" + curTime;
 		QDir dir;
 		if (!dir.exists(CurPath))
 		{
 			dir.mkpath(CurPath);
 		}
-		if (!ImageInfo.FirstStation.bok)
+		if (!bok)
 		{
-			QString OriginalImageName = CurPath + "/1_O.jpg";
-			QString RenderImageName = CurPath + "/1_R.jpg";
-			m_SaveImage.SaveImage(OriginalImageName, ImageInfo.FirstStation.OriginalImage);
-			m_SaveImage.SaveImage(RenderImageName, ImageInfo.FirstStation.RenderImage);
+			QString OriginalImageName = CurPath + "/" + QString::number(index) + "_O.jpg";
+			QString RenderImageName = CurPath + "/" + QString::number(index) + "/_R.jpg";
+			m_SaveImage.SaveImage(OriginalImageName, ImageInfo.OriginalImage);
+			m_SaveImage.SaveImage(RenderImageName, ImageInfo.RenderImage);
 		}
-		if (!ImageInfo.SecondStation.bok)
-		{
-			QString OriginalImageName = CurPath + "/2_O.jpg";
-			QString RenderImageName = CurPath + "/2_R.jpg";
-			m_SaveImage.SaveImage(OriginalImageName, ImageInfo.SecondStation.OriginalImage);
-			m_SaveImage.SaveImage(RenderImageName, ImageInfo.SecondStation.RenderImage);
-		}
-	}
+	};
 
-	if (ui.checkBox_SaveOK_First->isChecked())
-	{
-		QString OKPath = ui.lineEdit_OKPath_First->text();
-		if (OKPath.isEmpty())
-		{
-			qDebug() << "OK path is empty";
-			return;
-		}
-		QString CurPath = OKPath + "/" + CurTime;
-		QDir dir;
-		if (!dir.exists(CurPath))
-		{
-			dir.mkpath(CurPath);
-		}
-		if (ImageInfo.FirstStation.bok)
-		{
-			QString ImageName = CurPath + "/1_O.jpg";
-			m_SaveImage.SaveImage(ImageName, ImageInfo.FirstStation.OriginalImage);
-		}
-		if (ImageInfo.SecondStation.bok)
-		{
-			QString ImageName = CurPath + "/2_O.jpg";
-			m_SaveImage.SaveImage(ImageName, ImageInfo.SecondStation.OriginalImage);
-		}
-	}
+	image_info(ImageInfo.FirstStation, CurTime, ui.lineEdit_NGPath_First->text(), ImageInfo.FirstStation.bok,1);
+	image_info(ImageInfo.FirstStation, CurTime, ui.lineEdit_OKPath_First->text(), ImageInfo.FirstStation.bok,1);
+
+	image_info(ImageInfo.SecondStation, CurTime, ui.lineEdit_NGPath_Second->text(), ImageInfo.SecondStation.bok,2);
+	image_info(ImageInfo.SecondStation, CurTime, ui.lineEdit_NGPath_Second->text(), ImageInfo.SecondStation.bok,2);
+
+	image_info(ImageInfo.ThirdStation, CurTime, ui.lineEdit_NGPath_Third->text(), ImageInfo.ThirdStation.bok,3);
+	image_info(ImageInfo.ThirdStation, CurTime, ui.lineEdit_OKPath_Third->text(), ImageInfo.ThirdStation.bok,3);
+
+	image_info(ImageInfo.FourStation, CurTime, ui.lineEdit_NGPath_Fourth->text(), ImageInfo.FourStation.bok,4);
+	image_info(ImageInfo.FourStation, CurTime, ui.lineEdit_NGPath_Fourth->text(), ImageInfo.FourStation.bok,4);
+
+	//if (ui.checkBox_SaveNG_First->isChecked())
+	//{
+	//	QString NGPath = ui.lineEdit_NGPath_First->text();
+	//	if (NGPath.isEmpty())
+	//	{
+	//		qDebug() << "NG path is empty";
+	//		return;
+	//	}
+	//	QString CurPath = NGPath + "/" + CurTime;
+	//	QDir dir;
+	//	if (!dir.exists(CurPath))
+	//	{
+	//		dir.mkpath(CurPath);
+	//	}
+	//	if (!ImageInfo.FirstStation.bok)
+	//	{
+	//		QString OriginalImageName = CurPath + "/1_O.jpg";
+	//		QString RenderImageName = CurPath + "/1_R.jpg";
+	//		m_SaveImage.SaveImage(OriginalImageName, ImageInfo.FirstStation.OriginalImage);
+	//		m_SaveImage.SaveImage(RenderImageName, ImageInfo.FirstStation.RenderImage);
+	//	}
+
+	//	//if (!ImageInfo.SecondStation.bok)
+	//	//{
+	//	//	QString OriginalImageName = CurPath + "/2_O.jpg";
+	//	//	QString RenderImageName = CurPath + "/2_R.jpg";
+	//	//	m_SaveImage.SaveImage(OriginalImageName, ImageInfo.SecondStation.OriginalImage);
+	//	//	m_SaveImage.SaveImage(RenderImageName, ImageInfo.SecondStation.RenderImage);
+	//	//}
+	//}
+
+	//if (ui.checkBox_SaveOK_First->isChecked())
+	//{
+	//	QString OKPath = ui.lineEdit_OKPath_First->text();
+	//	if (OKPath.isEmpty())
+	//	{
+	//		qDebug() << "OK path is empty";
+	//		return;
+	//	}
+	//	QString CurPath = OKPath + "/" + CurTime;
+	//	QDir dir;
+	//	if (!dir.exists(CurPath))
+	//	{
+	//		dir.mkpath(CurPath);
+	//	}
+	//	if (ImageInfo.FirstStation.bok)
+	//	{
+	//		QString ImageName = CurPath + "/1_O.jpg";
+	//		m_SaveImage.SaveImage(ImageName, ImageInfo.FirstStation.OriginalImage);
+	//	}
+	//	//if (ImageInfo.SecondStation.bok)
+	//	//{
+	//	//	QString ImageName = CurPath + "/2_O.jpg";
+	//	//	m_SaveImage.SaveImage(ImageName, ImageInfo.SecondStation.OriginalImage);
+	//	//}
+	//}
 }
 
 //关闭设备
@@ -329,7 +368,9 @@ void CParameterSetting::InitConnections()
     //connect(m_FirstCameraInfo.ImageCapture, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int, bool)), m_FirstAlgo.Algo, SLOT(ReceivaReImage(Mat, e_CameraType, int, bool)));
 	//connect(m_FirstAlgo.Algo, SIGNAL(SendAlgoImageToParam(Mat, e_CameraType, int, bool)), this, SLOT(ReceivaAlgoImage(Mat, e_CameraType, int, bool)));
 	//connect(m_FirstAlgo.Algo, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int, bool)), m_FirstAlgo.Algo, SLOT(ReceivaAlgoImage(Mat, e_CameraType, int, bool)));
-
+	
+	connect(m_ThirdGroup, SIGNAL(buttonToggled(int, bool)), this, SLOT(SwitchThirdCameraStatus(int, bool)));
+	connect(m_FourthGroup, SIGNAL(buttonToggled(int, bool)), this, SLOT(SwitchFourthCameraStatus(int, bool)));
 
 	connect(m_FirstCameraInfo.ImageCapture, SIGNAL(SendCameraImage(Mat, int)), this, SLOT(ReceiveCameraImage(Mat, int)));
 	connect(m_SecondCameraInfo.ImageCapture, SIGNAL(SendCameraImage(Mat, int)), this, SLOT(ReceiveCameraImage(Mat, int)));
@@ -656,6 +697,7 @@ void CParameterSetting::GetFormula()
 
 	}
 }
+
 void CParameterSetting::ReceiveCameraImage(Mat image, int index)
 {
 	QImage qimage = MattoQImage(image);
@@ -666,6 +708,14 @@ void CParameterSetting::ReceiveCameraImage(Mat image, int index)
 	else if (index == 2)
 	{
 		ui.label_SecondImage->SetImage(qimage);
+	}
+	else if (index == 3)
+	{
+		ui.label_ThirdImage->SetImage(qimage);
+	}
+	else if (index == 4)
+	{
+		ui.label_FourthImage->SetImage(qimage);
 	}
 }
 void CParameterSetting::OnBtnClicked()
@@ -683,7 +733,7 @@ void CParameterSetting::OnBtnClicked()
 }
 void CParameterSetting::ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Time, bool bok)
 {
-	//emit SendAlgoImageToMainWindow(AlgolImage, type, Time, bok);
+	//emit SendAlgoImageToMainWindow(AlgolImage, type, Time, bok);//??
 	emit SendOriginalImage(OriginalImage, Time);
 
 }
@@ -715,6 +765,107 @@ void CParameterSetting::SaveCameraParams4()
 
 	return;
 }
+
+void CParameterSetting::ChooseFirstOkPath()
+{
+	QString filePath =   QFileDialog::getExistingDirectory(this, "Open OK Path", QCoreApplication::applicationDirPath());
+	if (false == filePath.isEmpty())
+	{
+		ui.lineEdit_OKPath_First->setText(filePath);
+	}
+	else
+	{
+		QMessageBox::information(this, QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("未设置路径信息"));
+	}
+}
+
+void CParameterSetting::ChooseFirstNgPath()
+{
+	QString filePath = QFileDialog::getExistingDirectory(this, "Open NG Path", QCoreApplication::applicationDirPath());
+	if (false == filePath.isEmpty())
+	{
+		ui.lineEdit_NGPath_First->setText(filePath);
+	}
+	else
+	{
+		QMessageBox::information(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("未设置路径信息"));
+	}
+}void CParameterSetting::ChooseSecondOkPath()
+{
+	QString filePath =   QFileDialog::getExistingDirectory(this, "Open OK Path", QCoreApplication::applicationDirPath());
+	if (false == filePath.isEmpty())
+	{
+		ui.lineEdit_OKPath_Second->setText(filePath);
+	}
+	else
+	{
+		QMessageBox::information(this, QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("未设置路径信息"));
+	}
+}
+
+void CParameterSetting::ChooseSecondNgPath()
+{
+	QString filePath = QFileDialog::getExistingDirectory(this, "Open NG Path", QCoreApplication::applicationDirPath());
+	if (false == filePath.isEmpty())
+	{
+		ui.lineEdit_NGPath_Second->setText(filePath);
+	}
+	else
+	{
+		QMessageBox::information(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("未设置路径信息"));
+	}
+}void CParameterSetting::ChooseThirdOkPath()
+{
+	QString filePath =   QFileDialog::getExistingDirectory(this, "Open OK Path", QCoreApplication::applicationDirPath());
+	if (false == filePath.isEmpty())
+	{
+		ui.lineEdit_OKPath_Third->setText(filePath);
+	}
+	else
+	{
+		QMessageBox::information(this, QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("未设置路径信息"));
+	}
+}
+
+void CParameterSetting::ChooseThirdNgPath()
+{
+	QString filePath = QFileDialog::getExistingDirectory(this, "Open NG Path", QCoreApplication::applicationDirPath());
+	if (false == filePath.isEmpty())
+	{
+		ui.lineEdit_NGPath_Third->setText(filePath);
+	}
+	else
+	{
+		QMessageBox::information(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("未设置路径信息"));
+	}
+}
+
+void CParameterSetting::ChooseFourthOkPath()
+{
+	QString filePath =   QFileDialog::getExistingDirectory(this, "Open OK Path", QCoreApplication::applicationDirPath());
+	if (false == filePath.isEmpty())
+	{
+		ui.lineEdit_OKPath_Fourth->setText(filePath);
+	}
+	else
+	{
+		QMessageBox::information(this, QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("未设置路径信息"));
+	}
+}
+
+void CParameterSetting::ChooseFourthNgPath()
+{
+	QString filePath = QFileDialog::getExistingDirectory(this, "Open NG Path", QCoreApplication::applicationDirPath());
+	if (false == filePath.isEmpty())
+	{
+		ui.lineEdit_NGPath_Fourth->setText(filePath);
+	}
+	else
+	{
+		QMessageBox::information(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("未设置路径信息"));
+	}
+}
+
 void CParameterSetting::SaveConfig()
 {
 	QString IniPath = QCoreApplication::applicationDirPath() + "/parameter_cfg.ini";
@@ -816,6 +967,7 @@ void CParameterSetting::SetButtonGroupEnabled(bool enabled, int index)
 		ui.radioButton_FreeFirst->setEnabled(enabled);
 		ui.radioButton_ExternalFirst->setEnabled(enabled);
 		ui.radioButton_SoftFirst->setEnabled(enabled);
+		setFirstEnable(enabled);
 	}
 	else if (index == 2)
 	{
@@ -823,18 +975,21 @@ void CParameterSetting::SetButtonGroupEnabled(bool enabled, int index)
         ui.radioButton_FreeSecond->setEnabled(enabled);
         ui.radioButton_ExternalSecond->setEnabled(enabled);
         ui.radioButton_SoftSecond->setEnabled(enabled);
+		setSecondEnable(enabled);
 	}
     else if (index == 3)
     {
         ui.radioButton_FreeThird->setEnabled(enabled);
         ui.radioButton_ExternalThird->setEnabled(enabled);
         ui.radioButton_SoftThird->setEnabled(enabled);
+		setThirdEnable(enabled);
     }
     else if (index == 4)
     {
         ui.radioButton_FreeFourth->setEnabled(enabled);
         ui.radioButton_ExternalFourth->setEnabled(enabled);
         ui.radioButton_SoftFourth->setEnabled(enabled);
+		setFourthEnable(enabled);
     }
 
 }
@@ -1198,6 +1353,7 @@ void CParameterSetting::OpenFirstCamera()
 		ui.pushButton_TriggerFirst->setEnabled(false);
 		m_FirstCameraInfo.bOpenCamera = false;
 		m_FirstCameraInfo.CameraName.clear();
+
 	}
 	else
 	{
@@ -1224,6 +1380,7 @@ void CParameterSetting::OpenFirstCamera()
 			ui.radioButton_SoftFirst->setChecked(false);
 			ui.pushButton_TriggerFirst->setEnabled(false);
 			ui.pushButton_OpenFirst->setText(QString::fromLocal8Bit("关闭相机"));
+
 		}
 	}
 }
@@ -1269,7 +1426,7 @@ void CParameterSetting::LoadSecondImage()
 	}
 	else
 	{
-		QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("工位1算法模型未初始化成功"));
+		QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("工位2算法模型未初始化成功"));
 	}
 }
 void CParameterSetting::OpenSecondCamera()
@@ -1368,6 +1525,51 @@ void CParameterSetting::OpenThirdCamera()
 		}
 	}
 }
+
+void CParameterSetting::LoadThirdImage()
+{
+	//if (m_bFirstAlgoSuccess)
+	if (1)
+	{
+		QString imagePath = QFileDialog::getOpenFileName(this, QString::fromLocal8Bit("图像文件"), "", "*.bmp;*.jpg;*.png;;All Files(*)");
+		if (imagePath.isEmpty())
+		{
+			return;
+		}
+		qDebug() << "load first image:" << imagePath;
+		QByteArray ba = imagePath.toLocal8Bit();
+		char *file = ba.data();
+		m_ThirdOriginalImage = imread(file);
+		vector<int>Threshold;
+		m_ThirdRenderImage.create(m_ThirdOriginalImage.rows, m_ThirdOriginalImage.cols, m_ThirdOriginalImage.type());
+		QImage qImage;
+		if (ui.checkBox_RenderThird->isChecked())
+		{
+			qImage = MattoQImage(m_ThirdRenderImage);
+		}
+		else
+		{
+			qImage = MattoQImage(m_ThirdOriginalImage);
+		}
+		QString style;
+		//if (AlgoRunData.bOK)
+		//{
+		//	style = "image: url(:/CMainWindow/Resources/OK.svg);";
+		//}
+		//else
+		//{
+		//	style = "image: url(:/CMainWindow/Resources/NG.svg);";
+		//}
+		ui.label_ThirdTime->setText(QString::fromLocal8Bit("耗时:") + QString::number(1) + "ms");
+		ui.label_ThirdResult->setStyleSheet(style);
+		ui.label_ThirdImage->SetImage(qImage);
+	}
+	else
+	{
+		QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("工位3算法模型未初始化成功"));
+	}
+}
+
 void CParameterSetting::OpenFourthCamera()
 {
 	qDebug() << "open fourth camera";
@@ -1417,6 +1619,49 @@ void CParameterSetting::OpenFourthCamera()
 	}
 }
 
+void CParameterSetting::LoadFourthImage()
+{
+	//if (m_bFirstAlgoSuccess)
+	if (1)
+	{
+		QString imagePath = QFileDialog::getOpenFileName(this, QString::fromLocal8Bit("图像文件"), "", "*.bmp;*.jpg;*.png;;All Files(*)");
+		if (imagePath.isEmpty())
+		{
+			return;
+		}
+		qDebug() << "load first image:" << imagePath;
+		QByteArray ba = imagePath.toLocal8Bit();
+		char *file = ba.data();
+		m_FourthOriginalImage = imread(file);
+		vector<int>Threshold;
+		m_FourthRenderImage.create(m_FourthOriginalImage.rows, m_FourthOriginalImage.cols, m_FourthOriginalImage.type());
+		QImage qImage;
+		if (ui.checkBox_RenderFourth->isChecked())
+		{
+			qImage = MattoQImage(m_FourthRenderImage);
+		}
+		else
+		{
+			qImage = MattoQImage(m_FourthOriginalImage);
+		}
+		QString style;
+		//if (AlgoRunData.bOK)
+		//{
+		//	style = "image: url(:/CMainWindow/Resources/OK.svg);";
+		//}
+		//else
+		//{
+		//	style = "image: url(:/CMainWindow/Resources/NG.svg);";
+		//}
+		ui.label_FourthTime->setText(QString::fromLocal8Bit("耗时:") + QString::number(1) + "ms");
+		ui.label_FourthResult->setStyleSheet(style);
+		ui.label_FourthImage->SetImage(qImage);
+	}
+	else
+	{
+		QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("工位4算法模型未初始化成功"));
+	}
+}
 
 void CParameterSetting::SaveCameraParams1()
 {
@@ -1849,5 +2094,57 @@ void CParameterSetting::SafeParamsSetting()
 		ShowErrorMsg("ERROR:PLEASE SETTING RIGHT EXPOSURE PARAM ARANGE: 59-9999571, GAIN ARANGE: 1.00520003-15.0061998",0);
 	}
 	
+}
+
+void CParameterSetting::setFirstEnable(bool checked)
+{
+	ui.pushButton_LoadNGPath_First->setEnabled(checked);
+	ui.pushButton_LoadOKPath_First->setEnabled(checked);
+	ui.pushButton_SaveParams->setEnabled(checked);
+	ui.checkBox_SaveOK_First->setEnabled(checked);
+	ui.checkBox_SaveNG_First->setEnabled(checked);
+	ui.lineEdit_NGPath_First->setEnabled(checked);
+	ui.lineEdit_OKPath_First->setEnabled(checked);
+	ui.le_exposure_1->setEnabled(checked);
+	ui.le_gain_1->setEnabled(checked);
+}
+
+void CParameterSetting::setSecondEnable(bool checked)
+{
+	ui.pushButton_LoadNGPath_Second->setEnabled(checked);
+	ui.pushButton_LoadOKPath_Second->setEnabled(checked);
+	ui.pushButton_SaveParams_Second->setEnabled(checked);
+	ui.checkBox_SaveOK_Second->setEnabled(checked);
+	ui.checkBox_SaveNG_Second->setEnabled(checked);
+	ui.lineEdit_NGPath_Second->setEnabled(checked);
+	ui.lineEdit_OKPath_Second->setEnabled(checked);
+	ui.le_exposure_2->setEnabled(checked);
+	ui.le_gain_2->setEnabled(checked);
+}
+
+void CParameterSetting::setThirdEnable(bool checked)
+{
+	ui.pushButton_LoadNGPath_Third->setEnabled(checked);
+	ui.pushButton_LoadOKPath_Third->setEnabled(checked);
+	ui.pushButton_SaveParams_Third->setEnabled(checked);
+	ui.checkBox_SaveOK_Third->setEnabled(checked);
+	ui.checkBox_SaveNG_Third->setEnabled(checked);
+	ui.lineEdit_NGPath_Third->setEnabled(checked);
+	ui.lineEdit_OKPath_Third->setEnabled(checked);
+	ui.le_exposure_3->setEnabled(checked);
+	ui.le_gain_3->setEnabled(checked);
+}
+
+void CParameterSetting::setFourthEnable(bool checked)
+{
+	ui.pushButton_LoadNGPath_Fourth->setEnabled(checked);
+	ui.pushButton_LoadOKPath_Fourth->setEnabled(checked);
+	ui.pushButton_SaveParams_Fourth->setEnabled(checked);
+	ui.checkBox_SaveOK_Fourth->setEnabled(checked);
+	ui.checkBox_SaveNG_Fourth->setEnabled(checked);
+	ui.lineEdit_NGPath_Fourth->setEnabled(checked);
+	ui.lineEdit_OKPath_Fourth->setEnabled(checked);
+	ui.le_exposure_4->setEnabled(checked);
+	ui.le_gain_4->setEnabled(checked);
 }
 

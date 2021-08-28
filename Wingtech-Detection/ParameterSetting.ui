@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1675</width>
-    <height>1174</height>
+    <width>1679</width>
+    <height>1183</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,7 +25,7 @@ color: rgb(0, 85, 0);</string>
    <item row="1" column="1">
     <widget class="QGroupBox" name="groupBox_8">
      <property name="title">
-      <string>一工位</string>
+      <string>三工位</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_9">
       <item row="0" column="0">
@@ -185,7 +185,7 @@ color: rgb(85, 0, 255);</string>
    <item row="1" column="2">
     <widget class="QGroupBox" name="groupBox_9">
      <property name="title">
-      <string>二工位</string>
+      <string>四工位</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_10">
       <item row="0" column="2">
@@ -244,7 +244,7 @@ color: rgb(85, 0, 255);</string>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QCheckBox" name="checkBox_RenderThird_2">
+       <widget class="QCheckBox" name="checkBox_RenderFourth">
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -345,7 +345,7 @@ color: rgb(85, 0, 255);</string>
    <item row="0" column="0" rowspan="2">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
@@ -1795,8 +1795,8 @@ color: rgb(85, 0, 255);</string>
    <slot>CopyRegisterCode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>120</x>
-     <y>972</y>
+     <x>481</x>
+     <y>1010</y>
     </hint>
     <hint type="destinationlabel">
      <x>519</x>
@@ -1811,8 +1811,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SoftwareRegister()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>120</x>
-     <y>972</y>
+     <x>481</x>
+     <y>1049</y>
     </hint>
     <hint type="destinationlabel">
      <x>403</x>
@@ -1827,8 +1827,8 @@ color: rgb(85, 0, 255);</string>
    <slot>LoadFirstImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>130</x>
-     <y>92</y>
+     <x>151</x>
+     <y>174</y>
     </hint>
     <hint type="destinationlabel">
      <x>769</x>
@@ -1843,8 +1843,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SetSystemType(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>130</x>
-     <y>92</y>
+     <x>298</x>
+     <y>131</y>
     </hint>
     <hint type="destinationlabel">
      <x>777</x>
@@ -1932,6 +1932,134 @@ color: rgb(85, 0, 255);</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_SaveParams_Second</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SaveCameraParams2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>579</x>
+     <y>564</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>649</x>
+     <y>576</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_SaveParams_Third</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SaveCameraParams3()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>574</x>
+     <y>846</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>648</x>
+     <y>849</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_SaveParams_Fourth</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SaveCameraParams4()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>1122</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>647</x>
+     <y>1127</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_LoadNGPath_First</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>ChooseFirstNgPath()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>578</x>
+     <y>203</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>649</x>
+     <y>206</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_LoadOKPath_First</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>ChooseFirstOkPath()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>583</x>
+     <y>240</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>648</x>
+     <y>248</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_LoadSecondImage</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>LoadSecondImage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>461</x>
+     <y>156</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>649</x>
+     <y>162</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_LoadThirdImage</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>LoadThirdImage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>75</x>
+     <y>202</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>6</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_LoadFourthImage</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>LoadFourthImage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>434</x>
+     <y>203</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>647</x>
+     <y>197</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>OpenFirstCamera()</slot>
@@ -1962,5 +2090,9 @@ color: rgb(85, 0, 255);</string>
   <slot>SaveCameraParams4()</slot>
   <slot>OpenThirdCamera()</slot>
   <slot>OpenFourthCamera()</slot>
+  <slot>ChooseFirstOkPath()</slot>
+  <slot>ChooseFirstNgPath()</slot>
+  <slot>LoadThirdImage()</slot>
+  <slot>LoadFourthImage()</slot>
  </slots>
 </ui>

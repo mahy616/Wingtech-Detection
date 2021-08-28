@@ -178,7 +178,8 @@
     <ResourceCompile Include="Wingtech-Detection.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Resources\p.ico" />
     <Image Include="Resources\app.ico" />
-    <Image Include="icon1.ico" />
+    <Image Include="Resources\admin.ico" />
   </ItemGroup>
 </Project>

@@ -87,6 +87,11 @@ private:
 	void InitThirdtGroup();
 	void InitFourthGroup();
 
+	void setFirstEnable(bool checked);
+	void setSecondEnable(bool checked);
+	void setThirdEnable(bool checked);
+	void setFourthEnable(bool checked);
+
 	void SafeParamsSetting();
 	void SaveImage(s_SaveImageInfo ImageInfo);
 private slots:
@@ -97,13 +102,25 @@ private slots:
 	void SaveCameraParams2();
     void SaveCameraParams3();
     void SaveCameraParams4();
+
+	void ChooseFirstOkPath();
+	void ChooseFirstNgPath();	
+	void ChooseSecondOkPath();
+	void ChooseSecondNgPath();
+	void ChooseThirdOkPath();
+	void ChooseThirdNgPath();
+	void ChooseFourthOkPath();
+	void ChooseFourthNgPath();
+
 	void SaveConfig();
 	void OpenSecondCamera();
 	void LoadSecondImage();
 	void SwitchSecondCameraStatus(int index, bool checked);
 	void OpenThirdCamera();
+	void LoadThirdImage();
 	void SwitchThirdCameraStatus(int index, bool checked);
 	void OpenFourthCamera();
+	void LoadFourthImage();
 	void SwitchFourthCameraStatus(int index, bool checked);
 	void ConnectToPLC();
 	void SendOKToPLC();
@@ -135,6 +152,12 @@ private:
 
 	Mat m_SecondOriginalImage;
 	Mat m_SecondRenderImage;
+
+	Mat m_ThirdOriginalImage;
+	Mat m_ThirdRenderImage;
+
+	Mat m_FourthOriginalImage;
+	Mat m_FourthRenderImage;
 	//s_AlgoInfo m_FirstAlgo;
 	CSaveImage m_SaveImage;
     // ch:∆ÿπ‚ ±º‰ | en:Exposure Time

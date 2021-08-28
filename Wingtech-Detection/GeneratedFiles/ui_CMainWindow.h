@@ -30,6 +30,7 @@ public:
     QAction *action_Stop;
     QAction *action_Setting;
     QAction *action_Recipe;
+    QAction *action_admin;
     QWidget *centralWidget;
     QGridLayout *gridLayout_6;
     QGroupBox *groupBox_Cam1;
@@ -80,6 +81,11 @@ public:
         action_Recipe = new QAction(CMainWindowClass);
         action_Recipe->setObjectName(QString::fromUtf8("action_Recipe"));
         action_Recipe->setIcon(icon3);
+        action_admin = new QAction(CMainWindowClass);
+        action_admin->setObjectName(QString::fromUtf8("action_admin"));
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/CMainWindow/Resources/admin.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        action_admin->setIcon(icon4);
         centralWidget = new QWidget(CMainWindowClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout_6 = new QGridLayout(centralWidget);
@@ -193,6 +199,7 @@ public:
         toolBar->addAction(action_Stop);
         toolBar->addAction(action_Setting);
         toolBar->addAction(action_Recipe);
+        toolBar->addAction(action_admin);
 
         retranslateUi(CMainWindowClass);
 
@@ -206,6 +213,10 @@ public:
         action_Stop->setText(QCoreApplication::translate("CMainWindowClass", "\345\201\234\346\255\242\346\243\200\346\265\213", nullptr));
         action_Setting->setText(QCoreApplication::translate("CMainWindowClass", "\345\217\202\346\225\260\350\256\276\347\275\256", nullptr));
         action_Recipe->setText(QCoreApplication::translate("CMainWindowClass", "\351\205\215\346\226\271\350\256\276\347\275\256", nullptr));
+        action_admin->setText(QCoreApplication::translate("CMainWindowClass", "\347\224\250\346\210\267\347\231\273\345\275\225", nullptr));
+#if QT_CONFIG(tooltip)
+        action_admin->setToolTip(QCoreApplication::translate("CMainWindowClass", "\347\224\250\346\210\267\347\231\273\345\275\225", nullptr));
+#endif // QT_CONFIG(tooltip)
         groupBox_Cam1->setTitle(QCoreApplication::translate("CMainWindowClass", "\345\267\245\344\275\215\344\270\200", nullptr));
         label_Image1->setText(QString());
         groupBox_Cam2->setTitle(QCoreApplication::translate("CMainWindowClass", "\345\267\245\344\275\215\344\272\214", nullptr));

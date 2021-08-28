@@ -192,8 +192,9 @@
     <ResourceCompile Include="Wingtech-Detection.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="icon1.ico" />
+    <Image Include="Resources\admin.ico" />
     <Image Include="Resources\app.ico" />
+    <Image Include="Resources\p.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
