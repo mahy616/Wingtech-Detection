@@ -1078,6 +1078,12 @@ public:
         QObject::connect(pushButton_LoadSecondImage, SIGNAL(clicked()), DialogSetting, SLOT(LoadSecondImage()));
         QObject::connect(pushButton_LoadThirdImage, SIGNAL(clicked()), DialogSetting, SLOT(LoadThirdImage()));
         QObject::connect(pushButton_LoadFourthImage, SIGNAL(clicked()), DialogSetting, SLOT(LoadFourthImage()));
+        QObject::connect(pushButton_LoadNGPath_Second, SIGNAL(clicked()), DialogSetting, SLOT(ChooseSecondNgPath()));
+        QObject::connect(pushButton_LoadOKPath_Second, SIGNAL(clicked()), DialogSetting, SLOT(ChooseSecondOkPath()));
+        QObject::connect(pushButton_LoadNGPath_Third, SIGNAL(clicked()), DialogSetting, SLOT(ChooseThirdNgPath()));
+        QObject::connect(pushButton_LoadOKPath_Third, SIGNAL(clicked()), DialogSetting, SLOT(ChooseThirdOkPath()));
+        QObject::connect(pushButton_LoadNGPath_Fourth, SIGNAL(clicked()), DialogSetting, SLOT(ChooseFourthNgPath()));
+        QObject::connect(pushButton_LoadOKPath_Fourth, SIGNAL(clicked()), DialogSetting, SLOT(ChooseFourthOkPath()));
 
         tabWidget->setCurrentIndex(0);
 

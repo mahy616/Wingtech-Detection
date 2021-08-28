@@ -8,6 +8,7 @@
 #include <QTextStream>
 #include <qdir.h>
 #include "QMessageBox"
+
 int GetImageCount(e_CameraType)
 {
     return 0;

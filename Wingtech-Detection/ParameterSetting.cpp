@@ -790,7 +790,10 @@ void CParameterSetting::ChooseFirstNgPath()
 	{
 		QMessageBox::information(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("未设置路径信息"));
 	}
-}void CParameterSetting::ChooseSecondOkPath()
+
+}
+
+void CParameterSetting::ChooseSecondOkPath()
 {
 	QString filePath =   QFileDialog::getExistingDirectory(this, "Open OK Path", QCoreApplication::applicationDirPath());
 	if (false == filePath.isEmpty())
@@ -814,7 +817,9 @@ void CParameterSetting::ChooseSecondNgPath()
 	{
 		QMessageBox::information(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("未设置路径信息"));
 	}
-}void CParameterSetting::ChooseThirdOkPath()
+}
+
+void CParameterSetting::ChooseThirdOkPath()
 {
 	QString filePath =   QFileDialog::getExistingDirectory(this, "Open OK Path", QCoreApplication::applicationDirPath());
 	if (false == filePath.isEmpty())
@@ -886,65 +891,73 @@ void CParameterSetting::SaveConfig()
 	{
 		cfg->Write(CAMERA_SECTION, FOURTH_CAMERA_NAME, m_FourCameraInfo.CameraName);
 	}
-
+	//相机1的OK/NG保存路径
 	bool bchecked = ui.checkBox_SaveNG_First->isChecked();
 	cfg->Write(DATA_SECTION, SAVE_NG, bchecked);
 	QString NGPath = ui.lineEdit_NGPath_First->text();
 	if (bchecked && !NGPath.isEmpty())
 	{
-		cfg->Write(DATA_SECTION, NG_PATH, NGPath);
+		//cfg->Write(DATA_SECTION, NG_PATH, NGPath);
+		cfg->Write(PATHLINE_SECTOIN, CAMERA_FIRST_LINE_NG, NGPath);
 	}
 	bchecked = ui.checkBox_SaveOK_First->isChecked();
 	cfg->Write(DATA_SECTION, SAVE_OK, bchecked);
 	QString OKPath = ui.lineEdit_OKPath_First->text();
 	if (bchecked && !OKPath.isEmpty())
 	{
-		cfg->Write(DATA_SECTION, OK_PATH, OKPath);
+		//cfg->Write(DATA_SECTION, OK_PATH, OKPath);
+		cfg->Write(PATHLINE_SECTOIN, CAMERA_FIRST_LINE_OK, OKPath);
 	}	
-
+	//相机2的OK/NG保存路径
 	bool bchecked2 = ui.checkBox_SaveNG_Second->isChecked();
 	cfg->Write(DATA_SECTION, SAVE_NG, bchecked2);
 	QString NGPath2 = ui.lineEdit_NGPath_Second->text();
 	if (bchecked2 && !NGPath2.isEmpty())
 	{
-		cfg->Write(DATA_SECTION, NG_PATH, NGPath2);
+		cfg->Write(PATHLINE_SECTOIN, CAMERA_SECOND_LINE_NG, NGPath2);
+		//cfg->Write(DATA_SECTION, NG_PATH, NGPath2);
 	}
 	bchecked2 = ui.checkBox_SaveOK_Second->isChecked();
 	cfg->Write(DATA_SECTION, SAVE_OK, bchecked2);
 	QString OKPath2 = ui.lineEdit_OKPath_Second->text();
 	if (bchecked2 && !OKPath.isEmpty())
 	{
-		cfg->Write(DATA_SECTION, OK_PATH, OKPath2);
+		cfg->Write(PATHLINE_SECTOIN, CAMERA_SECOND_LINE_OK, OKPath2);
+		//cfg->Write(DATA_SECTION, OK_PATH, OKPath2);
 	}
-
+	//相机3的OK/NG保存路径
 	bool bchecked3 = ui.checkBox_SaveNG_Third->isChecked();
 	cfg->Write(DATA_SECTION, SAVE_NG, bchecked3);
 	QString NGPath3 = ui.lineEdit_NGPath_Third->text();
 	if (bchecked3 && !NGPath.isEmpty())
 	{
-		cfg->Write(DATA_SECTION, NG_PATH, NGPath3);
+		cfg->Write(PATHLINE_SECTOIN, CAMERA_THIRD_LINE_NG, NGPath3);
+		//cfg->Write(DATA_SECTION, NG_PATH, NGPath3);
 	}
 	bchecked3 = ui.checkBox_SaveOK_Third->isChecked();
 	cfg->Write(DATA_SECTION, SAVE_OK, bchecked3);
 	QString OKPath3 = ui.lineEdit_OKPath_Third->text();
 	if (bchecked3 && !OKPath.isEmpty())
 	{
-		cfg->Write(DATA_SECTION, OK_PATH, OKPath3);
+		cfg->Write(PATHLINE_SECTOIN, CAMERA_THIRD_LINE_OK, OKPath3);
+		//cfg->Write(DATA_SECTION, OK_PATH, OKPath3);
 	}
-
+	//相机4的OK/NG保存路径
 	bool bchecked4 = ui.checkBox_SaveNG_Fourth->isChecked();
 	cfg->Write(DATA_SECTION, SAVE_NG, bchecked4);
 	QString NGPath4 = ui.lineEdit_NGPath_Fourth->text();
 	if (bchecked4 && !NGPath.isEmpty())
 	{
-		cfg->Write(DATA_SECTION, NG_PATH, NGPath4);
+		cfg->Write(PATHLINE_SECTOIN, CAMERA_FOURTH_LINE_NG, NGPath4);
+		//cfg->Write(DATA_SECTION, NG_PATH, NGPath4);
 	}
 	bchecked4 = ui.checkBox_SaveOK_Fourth->isChecked();
 	cfg->Write(DATA_SECTION, SAVE_OK, bchecked4);
 	QString OKPath4 = ui.lineEdit_OKPath_Fourth->text();
 	if (bchecked4 && !OKPath.isEmpty())
 	{
-		cfg->Write(DATA_SECTION, OK_PATH, OKPath4);
+		cfg->Write(PATHLINE_SECTOIN, CAMERA_FOURTH_LINE_OK, OKPath4);
+		//cfg->Write(DATA_SECTION, OK_PATH, OKPath4);
 	}
 
 	bool bconnected = CPLCManager::GetInstance()->GetConnectStatus();
@@ -2147,4 +2160,3 @@ void CParameterSetting::setFourthEnable(bool checked)
 	ui.le_exposure_4->setEnabled(checked);
 	ui.le_gain_4->setEnabled(checked);
 }
-

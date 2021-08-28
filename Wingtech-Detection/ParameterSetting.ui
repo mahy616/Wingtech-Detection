@@ -1683,8 +1683,8 @@ color: rgb(85, 0, 255);</string>
    <slot>CopyRegisterCode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>481</x>
-     <y>1010</y>
+     <x>478</x>
+     <y>1007</y>
     </hint>
     <hint type="destinationlabel">
      <x>519</x>
@@ -1699,8 +1699,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SoftwareRegister()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>481</x>
-     <y>1049</y>
+     <x>478</x>
+     <y>1046</y>
     </hint>
     <hint type="destinationlabel">
      <x>403</x>
@@ -1715,8 +1715,8 @@ color: rgb(85, 0, 255);</string>
    <slot>LoadFirstImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>151</x>
-     <y>174</y>
+     <x>140</x>
+     <y>171</y>
     </hint>
     <hint type="destinationlabel">
      <x>769</x>
@@ -1731,7 +1731,7 @@ color: rgb(85, 0, 255);</string>
    <slot>SetSystemType(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>298</x>
+     <x>287</x>
      <y>131</y>
     </hint>
     <hint type="destinationlabel">
@@ -1747,7 +1747,7 @@ color: rgb(85, 0, 255);</string>
    <slot>SaveCameraParams1()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>598</x>
+     <x>485</x>
      <y>305</y>
     </hint>
     <hint type="destinationlabel">
@@ -1763,7 +1763,7 @@ color: rgb(85, 0, 255);</string>
    <slot>OpenFirstCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>598</x>
+     <x>485</x>
      <y>125</y>
     </hint>
     <hint type="destinationlabel">
@@ -1779,8 +1779,8 @@ color: rgb(85, 0, 255);</string>
    <slot>OpenSecondCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>598</x>
-     <y>402</y>
+     <x>485</x>
+     <y>404</y>
     </hint>
     <hint type="destinationlabel">
      <x>829</x>
@@ -1795,8 +1795,8 @@ color: rgb(85, 0, 255);</string>
    <slot>OpenThirdCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>569</x>
-     <y>667</y>
+     <x>485</x>
+     <y>683</y>
     </hint>
     <hint type="destinationlabel">
      <x>633</x>
@@ -1811,8 +1811,8 @@ color: rgb(85, 0, 255);</string>
    <slot>OpenFourthCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>561</x>
-     <y>943</y>
+     <x>485</x>
+     <y>961</y>
     </hint>
     <hint type="destinationlabel">
      <x>634</x>
@@ -1827,8 +1827,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SaveCameraParams2()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>579</x>
-     <y>564</y>
+     <x>485</x>
+     <y>584</y>
     </hint>
     <hint type="destinationlabel">
      <x>649</x>
@@ -1843,8 +1843,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SaveCameraParams3()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>574</x>
-     <y>846</y>
+     <x>485</x>
+     <y>863</y>
     </hint>
     <hint type="destinationlabel">
      <x>648</x>
@@ -1859,8 +1859,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SaveCameraParams4()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>590</x>
-     <y>1122</y>
+     <x>485</x>
+     <y>1141</y>
     </hint>
     <hint type="destinationlabel">
      <x>647</x>
@@ -1875,8 +1875,8 @@ color: rgb(85, 0, 255);</string>
    <slot>ChooseFirstNgPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>578</x>
-     <y>203</y>
+     <x>485</x>
+     <y>215</y>
     </hint>
     <hint type="destinationlabel">
      <x>649</x>
@@ -1891,8 +1891,8 @@ color: rgb(85, 0, 255);</string>
    <slot>ChooseFirstOkPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>583</x>
-     <y>240</y>
+     <x>485</x>
+     <y>260</y>
     </hint>
     <hint type="destinationlabel">
      <x>648</x>
@@ -1907,8 +1907,8 @@ color: rgb(85, 0, 255);</string>
    <slot>LoadSecondImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>461</x>
-     <y>156</y>
+     <x>440</x>
+     <y>171</y>
     </hint>
     <hint type="destinationlabel">
      <x>649</x>
@@ -1923,8 +1923,8 @@ color: rgb(85, 0, 255);</string>
    <slot>LoadThirdImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>75</x>
-     <y>202</y>
+     <x>96</x>
+     <y>214</y>
     </hint>
     <hint type="destinationlabel">
      <x>6</x>
@@ -1939,12 +1939,108 @@ color: rgb(85, 0, 255);</string>
    <slot>LoadFourthImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>434</x>
-     <y>203</y>
+     <x>440</x>
+     <y>214</y>
     </hint>
     <hint type="destinationlabel">
      <x>647</x>
      <y>197</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_LoadNGPath_Second</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>ChooseSecondNgPath()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>437</x>
+     <y>474</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>514</x>
+     <y>475</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_LoadOKPath_Second</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>ChooseSecondOkPath()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>460</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>510</x>
+     <y>524</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_LoadNGPath_Third</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>ChooseThirdNgPath()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>469</x>
+     <y>756</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>513</x>
+     <y>757</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_LoadOKPath_Third</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>ChooseThirdOkPath()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>474</x>
+     <y>804</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>512</x>
+     <y>804</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_LoadNGPath_Fourth</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>ChooseFourthNgPath()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>456</x>
+     <y>1040</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>513</x>
+     <y>1040</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_LoadOKPath_Fourth</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>ChooseFourthOkPath()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>468</x>
+     <y>1080</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>510</x>
+     <y>1082</y>
     </hint>
    </hints>
   </connection>
@@ -1982,5 +2078,11 @@ color: rgb(85, 0, 255);</string>
   <slot>ChooseFirstNgPath()</slot>
   <slot>LoadThirdImage()</slot>
   <slot>LoadFourthImage()</slot>
+  <slot>ChooseSecondOkPath()</slot>
+  <slot>ChooseSecondNgPath()</slot>
+  <slot>ChooseThirdOkPath()</slot>
+  <slot>ChooseThirdNgPath()</slot>
+  <slot>ChooseFourthOkPath()</slot>
+  <slot>ChooseFourthNgPath()</slot>
  </slots>
 </ui>
