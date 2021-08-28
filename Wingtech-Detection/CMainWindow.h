@@ -9,6 +9,7 @@
 #include <opencv2/opencv.hpp>
 #include "ParameterSetting.h"
 #include "CRecipeManager.h"
+#include "adminLoginDialog.h"
 using namespace std;
 using namespace cv;
 
@@ -69,7 +70,7 @@ private:
 	QImage MattoQImage(Mat image);
 	void ProcessDetectionResult();
 	void AddLog(QString log);
-
+	void setActionEnable(bool bok);
 	//初始化结果明细
 	void InitResultDetails(int ImageCounts);
 	void RefreshResultDetails();
@@ -78,6 +79,7 @@ private:
 	Ui::CMainWindowClass ui;
 	CParameterSetting *m_Parameter;
 	CRecipeManager *m_RecipeManager;
+	adminLoginDialog *m_admin;
 protected:
 	bool eventFilter(QObject *obj, QEvent *event);
 private slots:

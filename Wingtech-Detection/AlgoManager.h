@@ -4,10 +4,11 @@
 #include "qmutex.h"
 #include "QQueue"
 #include "opencv2/opencv.hpp"
+#include "VimoDetectionModule.h"
 
 using namespace std;
 using namespace cv;
-
+using namespace smartmore;
 typedef struct
 {
 	int ImageID;
@@ -28,6 +29,7 @@ private:
 	QQueue<s_ImageInfo> m_ImageInfos;
 	bool m_bStop;
 	QMutex m_mutex;
+	smartmore::VimoDetectionModule module;
 private:
 	void run();
 signals:
