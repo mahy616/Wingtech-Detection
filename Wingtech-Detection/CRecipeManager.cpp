@@ -206,5 +206,6 @@ void CRecipeManager::SaveRecipe()
 		}
 		cfg->Write("Recipe_Parameters", QString::number(i + 1), ModelPath);
 	}
+
 }
  
