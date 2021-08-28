@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>adminLoginDialog</class>
+ <widget class="QDialog" name="adminLoginDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>282</width>
+    <height>163</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>adminLoginDialog</string>
+  </property>
+  <widget class="QComboBox" name="info_comboBox">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>10</y>
+     <width>211</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>110</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: #e9eef2;
+border-radius: 4px;
+padding-left: 3px;
+font-size: 14px;
+color: rgba(0,0,0,0.8);
+border: 0px;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Buttonchange">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>100</y>
+     <width>81</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: white;
+border: 1px solid rgba(0,0,0,0.3);
+border-radius: 4px;
+color: rgba(0,0,0,0.5);
+font-size: 14px;</string>
+   </property>
+   <property name="text">
+    <string>修改密码</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>25</width>
+     <height>16</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLabel" name="usrLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>41</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>20</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>用户名</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="adminButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>100</y>
+     <width>81</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: #006db2;
+border-radius: 4px;
+color: white;
+font-size: 14px;</string>
+   </property>
+   <property name="text">
+    <string>登录</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>25</width>
+     <height>16</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLabel" name="passwordLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>60</y>
+     <width>24</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>密码</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelButton">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>100</y>
+     <width>81</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: white;
+border: 1px solid rgba(0,0,0,0.3);
+border-radius: 4px;
+color: rgba(0,0,0,0.5);
+font-size: 14px;</string>
+   </property>
+   <property name="text">
+    <string>取消</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>25</width>
+     <height>16</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="passwordLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>50</y>
+     <width>211</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>200</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>-1</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: #f7f9fa;
+border-radius: 4px;
+padding-left: 2px;
+font-size: 14px;
+color: rgba(0,0,0,0.3);</string>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>adminButton</sender>
+   <signal>clicked()</signal>
+   <receiver>adminLoginDialog</receiver>
+   <slot>pushButtonAdminLogin()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>26</x>
+     <y>127</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>25</x>
+     <y>162</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>adminLoginDialog</receiver>
+   <slot>pushButtonCancelLogin()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>154</x>
+     <y>135</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>159</x>
+     <y>167</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Buttonchange</sender>
+   <signal>clicked()</signal>
+   <receiver>adminLoginDialog</receiver>
+   <slot>pushButtonChangePassword()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>256</x>
+     <y>133</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>282</x>
+     <y>133</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>pushButtonAdminLogin()</slot>
+  <slot>pushButtonCancelLogin()</slot>
+  <slot>pushButtonChangePassword()</slot>
+ </slots>
+</ui>

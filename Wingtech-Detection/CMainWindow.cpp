@@ -138,6 +138,10 @@ void CMainWindow::InitVariables()
 
     m_Parameter = new CParameterSetting;
 	m_RecipeManager = new CRecipeManager;
+	m_admin = new adminLoginDialog;
+
+	
+	setActionEnable(false);
 }
 
 //收到PLC切换配方指令，根据配方中图像数量初始化结果细节
@@ -363,6 +367,7 @@ void CMainWindow::InitConnections()
     connect(ui.action_Stop, SIGNAL(triggered()), this, SLOT(StopDection()));
     connect(ui.action_Setting, SIGNAL(triggered()), this, SLOT(OpenSetting()));
 	connect(ui.action_Recipe, SIGNAL(triggered()), this, SLOT(RecipeSetting()));
+	connect(ui.action_admin, SIGNAL(triggered()), this, SLOT(AdminDection()));
     qRegisterMetaType<Mat>("Mat");
     qRegisterMetaType<e_CameraType>("e_CameraType");
 	qRegisterMetaType<s_ImageInfo>("s_ImageInfo");
@@ -416,7 +421,25 @@ void CMainWindow::RecipeSetting()
 
 void CMainWindow::AdminDection()
 {
+	m_admin->exec();
+	int adminctrl = m_admin->adminctrl;
+	if (adminctrl == 1)
+	{
+		setActionEnable(true);
+	}
+	else if(adminctrl == 2)
+	{
+		ui.action_Start->setEnabled(true);
+		ui.action_Setting->setEnabled(false);
+		ui.action_Recipe->setEnabled(false);
+	}
+}
 
+void CMainWindow::setActionEnable(bool bok)
+{
+	ui.action_Start->setEnabled(bok);
+	ui.action_Setting->setEnabled(bok);
+	ui.action_Recipe->setEnabled(bok);
 }
 
 void CMainWindow::ReceiveCameraStatus(e_CameraType type, bool bOpen)
