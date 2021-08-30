@@ -1683,8 +1683,8 @@ color: rgb(85, 0, 255);</string>
    <slot>CopyRegisterCode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>478</x>
-     <y>1007</y>
+     <x>120</x>
+     <y>972</y>
     </hint>
     <hint type="destinationlabel">
      <x>519</x>
@@ -1699,8 +1699,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SoftwareRegister()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>478</x>
-     <y>1046</y>
+     <x>120</x>
+     <y>972</y>
     </hint>
     <hint type="destinationlabel">
      <x>403</x>
@@ -1715,8 +1715,8 @@ color: rgb(85, 0, 255);</string>
    <slot>LoadFirstImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>140</x>
-     <y>171</y>
+     <x>130</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
      <x>769</x>
@@ -1731,8 +1731,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SetSystemType(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>287</x>
-     <y>131</y>
+     <x>130</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
      <x>777</x>
@@ -1907,8 +1907,8 @@ color: rgb(85, 0, 255);</string>
    <slot>LoadSecondImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>440</x>
-     <y>171</y>
+     <x>130</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
      <x>649</x>
@@ -1923,8 +1923,8 @@ color: rgb(85, 0, 255);</string>
    <slot>LoadThirdImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>96</x>
-     <y>214</y>
+     <x>107</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
      <x>6</x>
@@ -1939,8 +1939,8 @@ color: rgb(85, 0, 255);</string>
    <slot>LoadFourthImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>440</x>
-     <y>214</y>
+     <x>130</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
      <x>647</x>
@@ -2041,6 +2041,70 @@ color: rgb(85, 0, 255);</string>
     <hint type="destinationlabel">
      <x>510</x>
      <y>1082</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_SaveParams</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SaveConfig()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>449</x>
+     <y>290</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>510</x>
+     <y>311</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_SaveParams_Second</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SaveConfig()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>470</x>
+     <y>569</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>513</x>
+     <y>594</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_SaveParams_Third</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SaveConfig()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>469</x>
+     <y>861</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>514</x>
+     <y>864</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_SaveParams_Fourth</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SaveConfig()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>484</x>
+     <y>1114</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>513</x>
+     <y>1140</y>
     </hint>
    </hints>
   </connection>
