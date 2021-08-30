@@ -175,6 +175,34 @@ void CPLCManager::WritePLCChangeVar()
 	printf("WritePLCRead\n");
 }
 
+void CPLCManager::ReadCurrentRecipe()
+{
+	CurrentRecipe.Init();
+	QString msg;
+	int number;
+	bool ret;
+	char* str_val = NULL;
+	short s_val = 0;
+	int length = 30;
+	if (ret = mc_read_string(fd, "D342", length, &str_val))//«–ªª≈‰∑Ω
+	{
+		return;
+	}
+	if (ret = mc_read_short(fd, "D341", &s_val))
+	{
+		return;
+	}
+	if (ret = mc_read_short(fd, "D340", &s_val))
+	{
+		return;
+	}
+	if (CurrentRecipe.CurrentMachineNumber == 0 || CurrentRecipe.CurrentRecipeNumber == 0 || CurrentRecipe.CurrentRecipeName == "")
+	{
+		cout << "≥ı ºªØ≈‰∑Ω ß∞‹" << endl;
+	}
+	emit SendChangePLCRecipe(msg, number);
+}
+
 void CPLCManager::GetChangeRecipeName(char * str)
 {
 	QString msg;

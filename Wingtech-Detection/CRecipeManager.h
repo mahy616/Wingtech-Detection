@@ -22,19 +22,22 @@ public:
 	void SendPLCReadySign();
 	s_ImageInfo ImageInfo;
 public:
-	
+
 private:
 	void InitVariables();
 	QStringList getFileNames(const QString &path);
+
 private:
 	Ui::CRecipeManagerClass ui;
 	//图像ID对应模型表
 	QMap<int, QString> m_ImageAndModel;
 	QMap<QString, CAlgoManager*> m_ModelAndAlgo;
+	CAlgoManager* m_Algo;
 	bool m_Ready;
-
+	int m_ImageID;  //图像ID
+	int m_Number=5;   //配方个图像个数
 signals:
-	void SendOriginalImage(s_ImageInfo ImageInfo);
+	void SendAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type);
 private slots:
 	//切换配方，读取本地文件，Tabwidget显示具体内容
 	void SwitchRecipe(QString Name);
@@ -47,4 +50,5 @@ private slots:
 	void ReceiveChangePlcRecipe(QString msg, int number);
 
 	void ReceivaOriginalImage(Mat Image, int ImageID);
+	void ReceivaAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type);
 };

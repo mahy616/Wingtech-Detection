@@ -371,9 +371,9 @@ void CMainWindow::InitConnections()
     qRegisterMetaType<Mat>("Mat");
     qRegisterMetaType<e_CameraType>("e_CameraType");
 	qRegisterMetaType<s_ImageInfo>("s_ImageInfo");
-    connect(m_Parameter, SIGNAL(SendAlgoImageToMainWindow(Mat, e_CameraType, int, bool)), this, SLOT(ReceiveImage(Mat, e_CameraType, int, bool)));
+    connect(m_Parameter, SIGNAL(SendOriginalImage(Mat, int)), m_RecipeManager, SLOT(ReceivaOriginalImage(Mat, int)));
 
-	connect(m_Parameter, SIGNAL(SendOriginalImage(Mat,int)), m_RecipeManager, SLOT(ReceivaOriginalImage(Mat, int)));
+	connect(m_RecipeManager, SIGNAL(SendAlgoImage(Mat, Mat, int , bool , e_CameraType )), this, SLOT(ReceiveAlgoImage(Mat, Mat, int, bool, e_CameraType)));
 }
 
 
@@ -493,7 +493,7 @@ QImage CMainWindow::MattoQImage(Mat image)
     }
 }
 
-void CMainWindow::ReceiveImage(Mat image, e_CameraType type, int index, bool bOK)
+void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type)
 {
     bOK = 1;
     qDebug() << "ReceiveImage type:" << type;

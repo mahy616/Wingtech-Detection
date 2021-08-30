@@ -377,7 +377,9 @@ void CParameterSetting::InitConnections()
 	connect(m_ThirdCameraInfo.ImageCapture, SIGNAL(SendCameraImage(Mat, int)), this, SLOT(ReceiveCameraImage(Mat, int)));
 	connect(m_FourCameraInfo.ImageCapture, SIGNAL(SendCameraImage(Mat, int)), this, SLOT(ReceiveCameraImage(Mat, int)));
 
-	connect(m_FirstCameraInfo.ImageCapture, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int, bool)), this, SLOT(ReceivaOriginalImage(Mat, e_CameraType, int, bool)));
+	connect(m_FirstCameraInfo.ImageCapture, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int)), this, SLOT(ReceivaOriginalImage(Mat, e_CameraType, int)));
+
+	connect(CPLCManager::GetInstance(), SIGNAL(SendConnectStatus(bool)), this, SLOT(ReceiveConnectStatus(bool)));
 }
 
 void CParameterSetting::InitCamera()
@@ -612,6 +614,21 @@ void CParameterSetting::SwitchFourthCameraStatus(int index, bool checked)
 		}
 	}
 }
+void CParameterSetting::ReceiveConnectStatus(bool bConnected)
+{
+	QString style;
+	if (bConnected)
+	{
+		style = "background-color: rgb(0, 170, 0);";
+	}
+	else
+	{
+		style = "background-color: rgb(170, 0, 0);";
+	}
+	ui.pushButton_SendOK->setEnabled(bConnected);
+	ui.pushButton_SendNG->setEnabled(bConnected);
+	ui.label_Status->setStyleSheet(style);
+}
 void CParameterSetting::ConnectToPLC()
 {
 	QString ip = ui.lineEdit_IP->text();
@@ -731,7 +748,7 @@ void CParameterSetting::OnBtnClicked()
 
 
 }
-void CParameterSetting::ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Time, bool bok)
+void CParameterSetting::ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Time)
 {
 	//emit SendAlgoImageToMainWindow(AlgolImage, type, Time, bok);//??
 	emit SendOriginalImage(OriginalImage, Time);
