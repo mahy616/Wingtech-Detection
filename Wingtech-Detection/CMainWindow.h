@@ -10,6 +10,7 @@
 #include "ParameterSetting.h"
 #include "CRecipeManager.h"
 #include "adminLoginDialog.h"
+
 using namespace std;
 using namespace cv;
 

@@ -12,6 +12,17 @@ const QString SECOND_CAMERA_NAME = "Second_CameraName";
 const QString THIRD_CAMERA_NAME = "Third_CameraName";
 const QString FOURTH_CAMERA_NAME = "Fourth_CameraName";
 
+//路径相关
+const QString PATHLINE_SECTOIN = "Path_LineEdite";
+const QString CAMERA_FIRST_LINE_OK = "CAMERA_FIRST_LINE_OK";
+const QString CAMERA_FIRST_LINE_NG = "CAMERA_FIRST_LINE_NG";
+const QString CAMERA_SECOND_LINE_OK = "CAMERA_SECOND_LINE_OK";
+const QString CAMERA_SECOND_LINE_NG = "CAMERA_SECOND_LINE_NG";
+const QString CAMERA_THIRD_LINE_OK = "CAMERA_THIRD_LINE_OK";
+const QString CAMERA_THIRD_LINE_NG = "CAMERA_THIRD_LINE_NG";
+const QString CAMERA_FOURTH_LINE_OK = "CAMERA_FOURTH_LINE_OK";
+const QString CAMERA_FOURTH_LINE_NG = "CAMERA_FOURTH_LINE_NG";
+
 
 //通讯相关
 const QString COMMUNICATION_SECTOIN = "Communication";
