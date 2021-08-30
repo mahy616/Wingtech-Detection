@@ -87,7 +87,7 @@
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_WIDGETS_LIB;QT_WEBSOCKETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\Wingtech-Detection\Wingtech-Detection\wenai-dll\include;$(SolutionDir)Wingtech-Detection\3rdParty\HikCamrea\Includes;$(SolutionDir)Wingtech-Detection\3rdParty\HikCamrea;.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtWidgets;.\3rdParty\opencv-4.2.0\include\opencv2;.\3rdParty\opencv-4.2.0\include;$(QTDIR)\include\QtWebSockets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\Wingtech-Detection\Wingtech-Detection\wenai-dll\include;$(SolutionDir)Wingtech-Detection\3rdParty\HikCamrea\Includes;$(SolutionDir)Wingtech-Detection\3rdParty\HikCamrea;.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtWidgets;.\3rdParty\opencv-4.2.0\include\opencv2;.\3rdParty\opencv-4.2.0\include;$(QTDIR)\include\QtWebSockets;.\wenai-dll\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -96,14 +96,14 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>E:\Wingtech-Detection\Wingtech-Detection\wenai-dll\lib;$(SolutionDir)Wingtech-Detection\\3rdParty\HikCamrea\lib;$(QTDIR)\lib;.\3rdParty\opencv-4.2.0\lib;.\3rdParty\opencv-4.2.0\include\opencv2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>E:\Wingtech-Detection\Wingtech-Detection\wenai-dll\lib;$(SolutionDir)Wingtech-Detection\\3rdParty\HikCamrea\lib;$(QTDIR)\lib;.\3rdParty\opencv-4.2.0\lib;.\3rdParty\opencv-4.2.0\include\opencv2;.\wenai-dll\bin;.\wenai-dll\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>qtmain.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Network.lib;Qt5Widgets.lib;opencv_world420.lib;MvCameraControl.lib;Qt5WebSockets.lib;dnn-base.lib;smdnnmodel.lib;spdlog.lib;VimoDetection.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <QtMoc>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-      <IncludePath>E:\Wingtech-Detection\Wingtech-Detection\wenai-dll\include;$(SolutionDir)Wingtech-Detection\3rdParty\HikCamrea\Includes;$(SolutionDir)Wingtech-Detection\3rdParty\HikCamrea;.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtWidgets;.\3rdParty\opencv-4.2.0\include\opencv2;.\3rdParty\opencv-4.2.0\include;$(QTDIR)\include\QtWebSockets;%(AdditionalIncludeDirectories)</IncludePath>
+      <IncludePath>E:\Wingtech-Detection\Wingtech-Detection\wenai-dll\include;$(SolutionDir)Wingtech-Detection\3rdParty\HikCamrea\Includes;$(SolutionDir)Wingtech-Detection\3rdParty\HikCamrea;.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtWidgets;.\3rdParty\opencv-4.2.0\include\opencv2;.\3rdParty\opencv-4.2.0\include;$(QTDIR)\include\QtWebSockets;.\wenai-dll\include;%(AdditionalIncludeDirectories)</IncludePath>
       <Define>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_WIDGETS_LIB;QT_WEBSOCKETS_LIB;%(PreprocessorDefinitions)</Define>
     </QtMoc>
     <QtUic>

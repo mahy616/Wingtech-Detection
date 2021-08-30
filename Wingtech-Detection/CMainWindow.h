@@ -75,7 +75,7 @@ private:
 	//初始化结果明细
 	void InitResultDetails(int ImageCounts);
 	void RefreshResultDetails();
-	void setActionEnable(bool bok);
+
 private:
 	Ui::CMainWindowClass ui;
 	CParameterSetting *m_Parameter;
