@@ -914,72 +914,67 @@ void CParameterSetting::SaveConfig()
 		cfg->Write(CAMERA_SECTION, FOURTH_CAMERA_NAME, m_FourCameraInfo.CameraName);
 	}
 	//相机1的OK/NG保存路径
-	bool bchecked = ui.checkBox_SaveNG_First->isChecked();
-	cfg->Write(DATA_SECTION, SAVE_NG, bchecked);
+	bool bchecked = ui.checkBox_SaveNG_First->isChecked();//ng
+	cfg->Write(DATA_SECTION, SAVE_NG_FIRST, bchecked);
 	QString NGPath = ui.lineEdit_NGPath_First->text();
 	if (bchecked && !NGPath.isEmpty())
 	{
-		//cfg->Write(DATA_SECTION, NG_PATH, NGPath);
-		cfg->Write(PATHLINE_SECTOIN, CAMERA_FIRST_LINE_NG, NGPath);
+		cfg->Write(DATA_SECTION, NG_PATH_FIRST, NGPath);
 	}
-	bchecked = ui.checkBox_SaveOK_First->isChecked();
-	cfg->Write(DATA_SECTION, SAVE_OK, bchecked);
+	bchecked = ui.checkBox_SaveOK_First->isChecked();//ok
+	cfg->Write(DATA_SECTION, SAVE_OK_FIRST, bchecked);
 	QString OKPath = ui.lineEdit_OKPath_First->text();
 	if (bchecked && !OKPath.isEmpty())
 	{
-		//cfg->Write(DATA_SECTION, OK_PATH, OKPath);
-		cfg->Write(PATHLINE_SECTOIN, CAMERA_FIRST_LINE_OK, OKPath);
+		cfg->Write(DATA_SECTION, OK_PATH_FIRST, OKPath);
 	}	
+
 	//相机2的OK/NG保存路径
 	bool bchecked2 = ui.checkBox_SaveNG_Second->isChecked();
-	cfg->Write(DATA_SECTION, SAVE_NG, bchecked2);
+	cfg->Write(DATA_SECTION, SAVE_NG_SECOND, bchecked2);
 	QString NGPath2 = ui.lineEdit_NGPath_Second->text();
 	if (bchecked2 && !NGPath2.isEmpty())
 	{
-		cfg->Write(PATHLINE_SECTOIN, CAMERA_SECOND_LINE_NG, NGPath2);
-		//cfg->Write(DATA_SECTION, NG_PATH, NGPath2);
+		cfg->Write(DATA_SECTION, NG_PATH_SECOND, NGPath2);
 	}
 	bchecked2 = ui.checkBox_SaveOK_Second->isChecked();
-	cfg->Write(DATA_SECTION, SAVE_OK, bchecked2);
+	cfg->Write(DATA_SECTION, SAVE_OK_SECOND, bchecked2);
 	QString OKPath2 = ui.lineEdit_OKPath_Second->text();
-	if (bchecked2 && !OKPath.isEmpty())
+	if (bchecked2 && !OKPath2.isEmpty())
 	{
-		cfg->Write(PATHLINE_SECTOIN, CAMERA_SECOND_LINE_OK, OKPath2);
-		//cfg->Write(DATA_SECTION, OK_PATH, OKPath2);
+		cfg->Write(DATA_SECTION, OK_PATH_SECOND, OKPath2);
 	}
+
 	//相机3的OK/NG保存路径
 	bool bchecked3 = ui.checkBox_SaveNG_Third->isChecked();
-	cfg->Write(DATA_SECTION, SAVE_NG, bchecked3);
+	cfg->Write(DATA_SECTION, SAVE_NG_THIRD, bchecked3);
 	QString NGPath3 = ui.lineEdit_NGPath_Third->text();
-	if (bchecked3 && !NGPath.isEmpty())
+	if (bchecked3 && !NGPath3.isEmpty())
 	{
-		cfg->Write(PATHLINE_SECTOIN, CAMERA_THIRD_LINE_NG, NGPath3);
-		//cfg->Write(DATA_SECTION, NG_PATH, NGPath3);
+		cfg->Write(DATA_SECTION, NG_PATH_THIRD, NGPath3);
 	}
 	bchecked3 = ui.checkBox_SaveOK_Third->isChecked();
-	cfg->Write(DATA_SECTION, SAVE_OK, bchecked3);
+	cfg->Write(DATA_SECTION, SAVE_OK_THIRD, bchecked3);
 	QString OKPath3 = ui.lineEdit_OKPath_Third->text();
-	if (bchecked3 && !OKPath.isEmpty())
+	if (bchecked3 && !OKPath3.isEmpty())
 	{
-		cfg->Write(PATHLINE_SECTOIN, CAMERA_THIRD_LINE_OK, OKPath3);
-		//cfg->Write(DATA_SECTION, OK_PATH, OKPath3);
+		cfg->Write(DATA_SECTION, OK_PATH_THIRD, OKPath3);
 	}
+
 	//相机4的OK/NG保存路径
-	bool bchecked4 = ui.checkBox_SaveNG_Fourth->isChecked();
-	cfg->Write(DATA_SECTION, SAVE_NG, bchecked4);
+	bool bchecked4 = ui.checkBox_SaveNG_Fourth->isChecked();//ng
+	cfg->Write(DATA_SECTION, SAVE_NG_FOURTH, bchecked4);
 	QString NGPath4 = ui.lineEdit_NGPath_Fourth->text();
-	if (bchecked4 && !NGPath.isEmpty())
+	if (bchecked4 && !NGPath4.isEmpty())
 	{
-		cfg->Write(PATHLINE_SECTOIN, CAMERA_FOURTH_LINE_NG, NGPath4);
-		//cfg->Write(DATA_SECTION, NG_PATH, NGPath4);
+		cfg->Write(DATA_SECTION, NG_PATH_FOURTH, NGPath4);
 	}
-	bchecked4 = ui.checkBox_SaveOK_Fourth->isChecked();
-	cfg->Write(DATA_SECTION, SAVE_OK, bchecked4);
+	bchecked4 = ui.checkBox_SaveOK_Fourth->isChecked();//ok
+	cfg->Write(DATA_SECTION, SAVE_OK_FOURTH, bchecked4);
 	QString OKPath4 = ui.lineEdit_OKPath_Fourth->text();
-	if (bchecked4 && !OKPath.isEmpty())
+	if (bchecked4 && !OKPath4.isEmpty())
 	{
-		cfg->Write(PATHLINE_SECTOIN, CAMERA_FOURTH_LINE_OK, OKPath4);
-		//cfg->Write(DATA_SECTION, OK_PATH, OKPath4);
+		cfg->Write(DATA_SECTION, OK_PATH_FOURTH, OKPath4);
 	}
 
 	bool bconnected = CPLCManager::GetInstance()->GetConnectStatus();
@@ -1267,7 +1262,7 @@ void CParameterSetting::LoadConfig()
 				OpenFourthCamera();
 			}
 		}
-
+		//plc
 		bool rv = cfg->GetBool(COMMUNICATION_SECTOIN, COM_STATUS);
 		qDebug() << "load config plc connected:" << rv;
 		if (rv)
@@ -1276,10 +1271,12 @@ void CParameterSetting::LoadConfig()
 			qDebug() << "load config plc ip:" << ip;
 			printf("load config plc ip:%s\n", ip.toStdString().c_str());
 			ui.lineEdit_IP->setText(ip);
+
 			QString port = cfg->GetString(COMMUNICATION_SECTOIN, PORT);
 			qDebug() << "load config plc port:" << port;
 			printf("load config plc port:%s\n", port.toStdString().c_str());
 			ui.lineEdit_Port->setText(port);
+
 			int heartbeat = cfg->GetInt(COMMUNICATION_SECTOIN, HEARTBEAT);
 			qDebug() << "load config heartbeat:" << heartbeat;
 			printf("load config heartbeat:%d\n", heartbeat);
@@ -1287,39 +1284,134 @@ void CParameterSetting::LoadConfig()
 			ConnectToPLC();
 			  
 		}
-
-		bool bSaveNG = cfg->GetBool(DATA_SECTION, SAVE_NG);
-		qDebug() << "load config save ng:" << bSaveNG;
-		printf("load config save ng:%d\n", bSaveNG);
-		ui.checkBox_SaveNG_First->setChecked(bSaveNG);
-		ui.pushButton_LoadNGPath_First->setEnabled(bSaveNG);
-		if (bSaveNG)
+		//保存路径
+		bool bSaveNGFirst = cfg->GetBool(DATA_SECTION, SAVE_NG_FIRST);
+		qDebug() << "1 load config save ng: " << bSaveNGFirst;
+		printf("1 load config save ng:%d\n", bSaveNGFirst);
+		ui.checkBox_SaveNG_First->setChecked(bSaveNGFirst);
+		ui.pushButton_LoadNGPath_First->setEnabled(bSaveNGFirst);
+		if (bSaveNGFirst)
 		{
-			QString NGPath = cfg->GetString(DATA_SECTION, NG_PATH);
-			qDebug() << "load config save ng path:" << NGPath;
-			printf("load config save ng path:%s\n", NGPath.toStdString().c_str());
+			QString NGPath = cfg->GetString(DATA_SECTION, NG_PATH_FIRST);
+			qDebug() << "1 load config save ng path:" << NGPath;
+			printf("1 load config save ng path:%s\n", NGPath.toStdString().c_str());
 			if (!NGPath.isEmpty())
 			{
 				ui.lineEdit_NGPath_First->setText(NGPath);
 			}
 		}
 
-		bool bSaveOK = cfg->GetBool(DATA_SECTION, SAVE_OK);
-		qDebug() << "load config save ok:" << bSaveOK;
-		printf("load config save ok:%d\n", bSaveOK);
-		ui.checkBox_SaveOK_First->setChecked(bSaveOK);
-		ui.pushButton_LoadOKPath_First->setEnabled(bSaveOK);
-		if (bSaveOK)
+		bool bSaveOKFirst = cfg->GetBool(DATA_SECTION, SAVE_OK_FIRST);
+		qDebug() << "1 load config save ok:" << bSaveOKFirst;
+		printf("1 load config save ok:%d\n", bSaveOKFirst);
+		ui.checkBox_SaveOK_First->setChecked(bSaveOKFirst);
+		ui.pushButton_LoadOKPath_First->setEnabled(bSaveOKFirst);
+		if (bSaveOKFirst)
 		{
-			QString OKPath = cfg->GetString(DATA_SECTION, OK_PATH);
-			qDebug() << "load config save ok path:" << OKPath;
-			printf("load config save ok path:%s\n", OKPath.toStdString().c_str());
+			QString OKPath = cfg->GetString(DATA_SECTION, OK_PATH_FIRST);
+			qDebug() << "1 load config save ok path:" << OKPath;
+			printf("1 load config save ok path:%s\n", OKPath.toStdString().c_str());
 			if (!OKPath.isEmpty())
 			{
 				ui.lineEdit_OKPath_First->setText(OKPath);
 			}
 		}
 
+		bool bSaveNGSecond = cfg->GetBool(DATA_SECTION, SAVE_NG_SECOND);
+		qDebug() << "2 load config save ng:" << bSaveNGSecond;
+		printf("2 load config save ng:%d\n", bSaveNGSecond);
+		ui.checkBox_SaveNG_Second->setChecked(bSaveNGSecond);
+		ui.pushButton_LoadNGPath_Second->setEnabled(bSaveNGSecond);
+		if (bSaveNGSecond)
+		{
+			QString NGPath = cfg->GetString(DATA_SECTION, NG_PATH_SECOND);
+			qDebug() << "2 load config save ng path:" << NGPath;
+			printf("2 load config save ng path:%s\n", NGPath.toStdString().c_str());
+			if (!NGPath.isEmpty())
+			{
+				ui.lineEdit_NGPath_Second->setText(NGPath);
+			}
+		}
+
+		bool bSaveOKSecond = cfg->GetBool(DATA_SECTION, SAVE_OK_SECOND);
+		qDebug() << "2 load config save ok:" << bSaveOKSecond;
+		printf("2 load config save ok:%d\n", bSaveOKSecond);
+		ui.checkBox_SaveOK_Second->setChecked(bSaveOKSecond);
+		ui.pushButton_LoadOKPath_Second->setEnabled(bSaveOKSecond);
+		if (bSaveOKSecond)
+		{
+			QString OKPath = cfg->GetString(DATA_SECTION, OK_PATH_SECOND);
+			qDebug() << "2 load config save ok path:" << OKPath;
+			printf("2 load config save ok path:%s\n", OKPath.toStdString().c_str());
+			if (!OKPath.isEmpty())
+			{
+				ui.lineEdit_OKPath_Second->setText(OKPath);
+			}
+		}
+
+		bool bSaveNGThird = cfg->GetBool(DATA_SECTION, SAVE_NG_THIRD);
+		qDebug() << "3 load config save ng:" << bSaveNGThird;
+		printf("3 load config save ng:%d\n", bSaveNGThird);
+		ui.checkBox_SaveNG_Third->setChecked(bSaveNGThird);
+		ui.pushButton_LoadNGPath_Third->setEnabled(bSaveNGThird);
+		if (bSaveNGThird)
+		{
+			QString NGPath = cfg->GetString(DATA_SECTION, NG_PATH_THIRD);
+			qDebug() << "3 load config save ng path:" << NGPath;
+			printf("3 load config save ng path:%s\n", NGPath.toStdString().c_str());
+			if (!NGPath.isEmpty())
+			{
+				ui.lineEdit_NGPath_Third->setText(NGPath);
+			}
+		}
+
+		bool bSaveOKThird = cfg->GetBool(DATA_SECTION, SAVE_OK_THIRD);
+		qDebug() << "3 load config save ok:" << bSaveOKThird;
+		printf("3 load config save ok:%d\n", bSaveOKThird);
+		ui.checkBox_SaveOK_Third->setChecked(bSaveOKThird);
+		ui.pushButton_LoadOKPath_Third->setEnabled(bSaveOKThird);
+		if (bSaveOKThird)
+		{
+			QString OKPath = cfg->GetString(DATA_SECTION, OK_PATH_THIRD);
+			qDebug() << "3 load config save ok path:" << OKPath;
+			printf("3 load config save ok path:%s\n", OKPath.toStdString().c_str());
+			if (!OKPath.isEmpty())
+			{
+				ui.lineEdit_OKPath_Third->setText(OKPath);
+			}
+		}
+
+		bool bSaveNGFourth = cfg->GetBool(DATA_SECTION, SAVE_NG_FOURTH);
+		qDebug() << "4 load config save ng:" << bSaveNGFourth;
+		printf("4 load config save ng:%d\n", bSaveNGFourth);
+		ui.checkBox_SaveNG_Fourth->setChecked(bSaveNGFourth);
+		ui.pushButton_LoadNGPath_Fourth->setEnabled(bSaveNGFourth);
+		if (bSaveNGFourth)
+		{
+			QString NGPath = cfg->GetString(DATA_SECTION, NG_PATH_FOURTH);
+			qDebug() << "4 load config save ng path:" << NGPath;
+			printf("4 load config save ng path:%s\n", NGPath.toStdString().c_str());
+			if (!NGPath.isEmpty())
+			{
+				ui.lineEdit_NGPath_Fourth->setText(NGPath);
+			}
+		}
+
+		bool bSaveOKFourth = cfg->GetBool(DATA_SECTION, SAVE_OK_FOURTH);
+		qDebug() << "4 load config save ok:" << bSaveOKFourth;
+		printf("4 load config save ok:%d\n", bSaveOKFourth);
+		ui.checkBox_SaveOK_Fourth->setChecked(bSaveOKFourth);
+		ui.pushButton_LoadOKPath_Fourth->setEnabled(bSaveOKFourth);
+		if (bSaveOKFourth)
+		{
+			QString OKPath = cfg->GetString(DATA_SECTION, OK_PATH_FOURTH);
+			qDebug() << "4 load config save ok path:" << OKPath;
+			printf("4 load config save ok path:%s\n", OKPath.toStdString().c_str());
+			if (!OKPath.isEmpty())
+			{
+				ui.lineEdit_OKPath_Fourth->setText(OKPath);
+			}
+		}
 
 	}
 	else

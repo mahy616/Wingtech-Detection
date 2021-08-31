@@ -12,17 +12,6 @@ const QString SECOND_CAMERA_NAME = "Second_CameraName";
 const QString THIRD_CAMERA_NAME = "Third_CameraName";
 const QString FOURTH_CAMERA_NAME = "Fourth_CameraName";
 
-//路径相关
-const QString PATHLINE_SECTOIN = "Path_LineEdite";
-const QString CAMERA_FIRST_LINE_OK = "CAMERA_FIRST_LINE_OK";
-const QString CAMERA_FIRST_LINE_NG = "CAMERA_FIRST_LINE_NG";
-const QString CAMERA_SECOND_LINE_OK = "CAMERA_SECOND_LINE_OK";
-const QString CAMERA_SECOND_LINE_NG = "CAMERA_SECOND_LINE_NG";
-const QString CAMERA_THIRD_LINE_OK = "CAMERA_THIRD_LINE_OK";
-const QString CAMERA_THIRD_LINE_NG = "CAMERA_THIRD_LINE_NG";
-const QString CAMERA_FOURTH_LINE_OK = "CAMERA_FOURTH_LINE_OK";
-const QString CAMERA_FOURTH_LINE_NG = "CAMERA_FOURTH_LINE_NG";
-
 
 //通讯相关
 const QString COMMUNICATION_SECTOIN = "Communication";
@@ -33,10 +22,26 @@ const QString PORT = "Port";
 
 //数据相关
 const QString DATA_SECTION = "Data_Section";
-const QString SAVE_NG = "Save_NG";
-const QString SAVE_OK = "Save_OK";
-const QString NG_PATH = "NG_Path";
-const QString OK_PATH = "OK_Path";
+
+const QString SAVE_NG_FIRST = "Save_NG_FIRST";
+const QString SAVE_OK_FIRST = "Save_OK_FIRST";
+const QString NG_PATH_FIRST = "NG_Path_FIRST";
+const QString OK_PATH_FIRST = "OK_Path_FIRST";
+
+const QString SAVE_NG_SECOND = "Save_NG_SECOND";
+const QString SAVE_OK_SECOND = "Save_OK_SECOND";
+const QString NG_PATH_SECOND = "NG_Path_SECOND";
+const QString OK_PATH_SECOND = "OK_Path_SECOND";
+
+const QString SAVE_NG_THIRD = "Save_NG_THIRD";
+const QString SAVE_OK_THIRD = "Save_OK_THIRD";
+const QString NG_PATH_THIRD = "NG_Path_THIRD";
+const QString OK_PATH_THIRD = "OK_Path_THIRD";
+
+const QString SAVE_NG_FOURTH = "Save_NG_FOURTH";
+const QString SAVE_OK_FOURTH = "Save_OK_FOURTH";
+const QString NG_PATH_FOURTH = "NG_Path_FOURTH";
+const QString OK_PATH_FOURTH = "OK_Path_FOURTH";
 
 //工位一阈值
 const QString FIRST_THRESHOLD = "First_Threshold";
