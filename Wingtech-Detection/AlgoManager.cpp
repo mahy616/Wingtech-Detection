@@ -7,6 +7,7 @@ CAlgoManager::CAlgoManager(QThread *parent)
 {
 	m_bStop = false;
 	m_Algo = this;
+	m_Index = 0;
 }
 
 CAlgoManager::~CAlgoManager()
@@ -59,9 +60,7 @@ void CAlgoManager::run()
 		m_mutex.lock();
 		s_ImageInfo ImageInfo = m_ImageInfos.dequeue();
 		m_mutex.unlock();
-		std::string input_image = "C:/Users/Mhy/Desktop/Image_20210726193600846.bmp";
-
-		std::cout << module.Version() << std::endl;
+	
 		smartmore::DetectionRequest req;
 		smartmore::DetectionResponse rsp;
 		Mat RenderImage;
@@ -82,9 +81,8 @@ void CAlgoManager::run()
 		};
 		Mat Render;/////////////////////////////////////////////////////////////////////////////////////////////???????
 		bool bok = true;
-		int index;
 		e_CameraType type;
-		emit SendPorcessResult(ImageInfo.Image, Render,index,bok,type);
+		emit SendPorcessResult(ImageInfo.Image, Render, ImageInfo.ImageID-1,bok,type);
 	}
 }
 

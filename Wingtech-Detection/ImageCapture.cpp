@@ -121,7 +121,7 @@ void CImageCapture::run()
 						//emit SendAlgoImage(curImage, m_Type, GrabIndex, bok);
 						emit SendImageToAlgo(curImage, m_Type, GrabIndex);
 						GrabIndex++;
-						Sleep(2000);
+						Sleep(100);
 
 					}
 

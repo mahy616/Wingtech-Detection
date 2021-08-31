@@ -62,6 +62,7 @@ public:
 	CParameterSetting(QDialog *parent = NULL);
 	~CParameterSetting();
 	void StartDetecion(bool bStart);
+	void SaveImage(s_SaveImageInfo ImageInfo);
 private:
 	void InitVariables();
 	void InitTableWidget();
@@ -93,7 +94,7 @@ private:
 	void setFourthEnable(bool checked);
 
 	void SafeParamsSetting();
-	void SaveImage(s_SaveImageInfo ImageInfo);
+	
 private slots:
 	void OpenFirstCamera();
 	void LoadFirstImage();

@@ -90,7 +90,7 @@ bool CRecipeManager::InitRecipe(QString RecipeName, QString &errMsg)
 		if (it == m_ModelAndAlgo.end())
 		{
 			CAlgoManager *Algo = new CAlgoManager();
-			//CAlgoManager::GetAlgoManager();
+			connect(CAlgoManager::GetAlgoManager(), SIGNAL(SendPorcessResult(Mat, Mat, int, bool, e_CameraType)), this, SLOT(ReceivaAlgoImage(Mat, Mat, int, bool, e_CameraType)));
 			bool rv = Algo->InitAlgo(ModelPath);
 			if (!rv)
 			{
@@ -113,7 +113,7 @@ void CRecipeManager::InitConnections()
 	qRegisterMetaType<Mat>("Mat");
 	connect(CPLCManager::GetInstance(), SIGNAL(SendChangePLCRecipe(QString,int)), this, SLOT(ReceiveChangePlcRecipe(QString.int)));
 	connect(CPLCManager::GetInstance(), SIGNAL(SendSavePLCRecipe(QString, int)), this, SLOT(ReceiveSavePlcRecipe(QString.int)));
-	connect(CAlgoManager::GetAlgoManager(), SIGNAL(SendPorcessResult(Mat, Mat, int, bool, e_CameraType)), this, SLOT(ReceivaAlgoImage(Mat, Mat, int, bool, e_CameraType)));
+
 
 }
 
@@ -215,6 +215,7 @@ void CRecipeManager::ReceiveSavePlcRecipe(QString msg, int number)
 
 void CRecipeManager::ReceiveChangePlcRecipe(QString msg,int number)
 {
+	emit SendInitImageNumber(number);
 	m_Number = number;
 	QString err;
 	InitRecipe(msg, err);

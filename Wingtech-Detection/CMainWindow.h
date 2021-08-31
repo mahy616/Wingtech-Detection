@@ -64,6 +64,7 @@ private:
 	int m_Number;
 	bool m_bStart;
 	bool m_Ready;
+	int m_ImageCounts;  //界面图像数量
 private:
 	void InitVariables();
 	void InitStatusBar();
@@ -95,6 +96,8 @@ private slots:
 	//接收PLC状态
 	void ReceivePLCStatus(bool bConnected);
 	void ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type);
+	//接受PLC发送的初始化图片数量
+	void ReceiveInitImageNumber(int number);  
 
 
 };

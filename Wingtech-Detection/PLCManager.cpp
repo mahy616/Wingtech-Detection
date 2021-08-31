@@ -17,6 +17,7 @@ CPLCManager::CPLCManager(QObject *parent)
 	connect(m_TcpClient, SIGNAL(disconnected()), this, SLOT(TcpDisConnected()));
 	connect(m_TcpClient, SIGNAL(readyRead()), this, SLOT(ReadPLCData()));
 	connect(&m_Timer, SIGNAL(timeout()), this, SLOT(SlotTimeOuter()));
+	ReadCurrentRecipe();
 }
 
 CPLCManager::~CPLCManager()
