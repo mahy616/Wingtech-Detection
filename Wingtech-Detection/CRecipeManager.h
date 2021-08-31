@@ -38,6 +38,7 @@ private:
 	int m_Number=5;   //配方个图像个数
 signals:
 	void SendAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type);
+	void SendInitImageNumber(int number);
 private slots:
 	//切换配方，读取本地文件，Tabwidget显示具体内容
 	void SwitchRecipe(QString Name);
@@ -45,10 +46,12 @@ private slots:
 	void SaveRecipe();
 	//浏览模型
 	void BrowseModelPath();
-
-	void ReceiveSavePlcRecipe(QString msg, int number);
+	//PLC触发保存配方
+	void ReceiveSavePlcRecipe(QString msg, int number);     
+	//PLC触发切换配方
 	void ReceiveChangePlcRecipe(QString msg, int number);
-
+	//接收源图
 	void ReceivaOriginalImage(Mat Image, int ImageID);
+	//接收算法渲染图
 	void ReceivaAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type);
 };

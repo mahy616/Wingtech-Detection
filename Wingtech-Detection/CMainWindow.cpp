@@ -81,7 +81,8 @@ CMainWindow::CMainWindow(QWidget *parent) : QMainWindow(parent)
     ui.setupUi(this);
     qInstallMessageHandler(outputMessage);
     InitVariables();
-    InitResultDetails(40);
+	m_Number = 5;//测试用，实际会由PLC发送数据得到
+    InitResultDetails(m_Number);
     InitStatusBar();
     InitConnections();
 }
@@ -260,6 +261,8 @@ void CMainWindow::RefreshResultDetails()
     m_Camera4Result = true;
 }
 
+
+
 bool CMainWindow::eventFilter(QObject *obj, QEvent *event)
 {
     if (event->type() == QEvent::MouseButtonPress)
@@ -373,7 +376,7 @@ void CMainWindow::InitConnections()
     qRegisterMetaType<e_CameraType>("e_CameraType");
 	qRegisterMetaType<s_ImageInfo>("s_ImageInfo");
     connect(m_Parameter, SIGNAL(SendOriginalImage(Mat, int)), m_RecipeManager, SLOT(ReceivaOriginalImage(Mat, int)));
-
+	connect(m_RecipeManager, SIGNAL(SendInitImageNumber(int)), this, SLOT(ReceiveInitImageNumber(int)));
 	connect(m_RecipeManager, SIGNAL(SendAlgoImage(Mat, Mat, int , bool , e_CameraType )), this, SLOT(ReceiveAlgoImage(Mat, Mat, int, bool, e_CameraType)));
 }
 
@@ -499,12 +502,16 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
     bOK = 1;
     qDebug() << "ReceiveImage type:" << type;
     QImage QImg = MattoQImage(image);
+	s_StationInfo StationInfo;
     switch (type)
     {
         case CAMERA_FIRST:
-        {
+        {	
+			StationInfo.OriginalImage = image;
+			StationInfo.RenderImage = RenderImage;
+			StationInfo.bok= bOK;
             m_Camera1Images.push_back(QImg);
-            if (m_Camera1Images.size() > 40)
+            if (m_Camera1Images.size() > 5)
                 return;
             ui.label_Image1->setPixmap(QPixmap::fromImage(
                 QImg.scaled(ui.label_Image1->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation)));
@@ -524,7 +531,7 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
                 m_Camera1Result = false;
             }
 
-            if (index == GetImageCount(CAMERA_FIRST) - 1)
+            if (index == m_ImageCounts)
             {
                 m_DetecionResult.insert(CAMERA_FIRST, m_Camera1Result);
                 if (m_DetecionResult.size() == 4)
@@ -532,7 +539,8 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
                     ProcessDetectionResult();
                 }
             }
-            // index++;
+
+			//m_Parameter->SaveImage(StationInfo);
             break;
         }
         case CAMERA_SECOND:
@@ -555,7 +563,7 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
                 Label->setStyleSheet("background-color: rgba(170, 0, 0, 255);");
                 m_Camera2Result = false;
             }
-            if (index == GetImageCount(CAMERA_SECOND) - 1)
+            if (index == m_ImageCounts)
             {
                 m_DetecionResult.insert(CAMERA_SECOND, m_Camera2Result);
                 if (m_DetecionResult.size() == 4)
@@ -585,7 +593,7 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
                 Label->setStyleSheet("background-color: rgba(170, 0, 0, 255);");
             }
 
-            if (index == GetImageCount(CAMERA_THIRD) - 1)
+            if (index == m_ImageCounts)
             {
                 m_DetecionResult.insert(CAMERA_THIRD, m_Camera3Result);
                 if (m_DetecionResult.size() == 4)
@@ -615,7 +623,7 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
                 Label->setStyleSheet("background-color: rgba(170, 0, 0, 255);");
             }
 
-            if (index == GetImageCount(CAMERA_FOURTH) - 1)
+            if (index == m_ImageCounts)
             {
                 m_DetecionResult.insert(CAMERA_FOURTH, m_Camera4Result);
                 if (m_DetecionResult.size() == 4)
@@ -628,6 +636,11 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
         break;
         default:;
     }
+}
+
+void CMainWindow::ReceiveInitImageNumber(int number)
+{
+	m_Number = number;
 }
 
 

@@ -42,8 +42,9 @@ private:
 	void WritePLCNG();
 	void WritePLCHeartbeat();
 	void WritePLCChangeVar();
-	void ReadCurrentRecipe();
+	
 private:
+	void ReadCurrentRecipe();
 	void GetChangeRecipeName(char* str);
 	void GetSaveRecipeName(char* str);
 

@@ -32,6 +32,7 @@ private:
 	QMutex m_mutex;
 	static CAlgoManager* m_Algo;
 	smartmore::VimoDetectionModule module;
+	int m_Index;
 private:
 	void run();
 signals:
