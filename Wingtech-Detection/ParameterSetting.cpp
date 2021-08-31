@@ -175,39 +175,44 @@ void CParameterSetting::InitFourthGroup()
 void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo)
 {
 	QString CurTime = QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss-zzz");
-	auto image_info = [&](s_StationInfo ImageInfo, const QString &curTime, const QString &path, bool bok,int index)
+	auto image_info = [&](bool checkbox, s_StationInfo ImageInfo, const QString &curTime, const QString &path, bool bok,int index)
 	{
-		if (path.isEmpty())
+		bool result = checkbox;
+		if (result)
 		{
-			qDebug() << "path is empty" << path;
-			return;
+			if (path.isEmpty())
+			{
+				qDebug() << "path is empty" << path;
+				return;
+			}
+			QString CurPath = path + "/" + curTime;
+			QDir dir;
+			if (!dir.exists(CurPath))
+			{
+				dir.mkpath(CurPath);
+			}
+			if (!bok)
+			{
+				QString OriginalImageName = CurPath + "/" + QString::number(index) + "_O.jpg";
+				QString RenderImageName = CurPath + "/" + QString::number(index) + "/_R.jpg";
+				m_SaveImage.SaveImage(OriginalImageName, ImageInfo.OriginalImage);
+				m_SaveImage.SaveImage(RenderImageName, ImageInfo.RenderImage);
+			}
 		}
-		QString CurPath = path + "/" + curTime;
-		QDir dir;
-		if (!dir.exists(CurPath))
-		{
-			dir.mkpath(CurPath);
-		}
-		if (!bok)
-		{
-			QString OriginalImageName = CurPath + "/" + QString::number(index) + "_O.jpg";
-			QString RenderImageName = CurPath + "/" + QString::number(index) + "/_R.jpg";
-			m_SaveImage.SaveImage(OriginalImageName, ImageInfo.OriginalImage);
-			m_SaveImage.SaveImage(RenderImageName, ImageInfo.RenderImage);
-		}
+
 	};
 
-	image_info(ImageInfo.FirstStation, CurTime, ui.lineEdit_NGPath_First->text(), ImageInfo.FirstStation.bok,1);
-	image_info(ImageInfo.FirstStation, CurTime, ui.lineEdit_OKPath_First->text(), ImageInfo.FirstStation.bok,1);
+	image_info(ui.checkBox_SaveNG_First->isChecked(),ImageInfo.FirstStation, CurTime, ui.lineEdit_NGPath_First->text(), ImageInfo.FirstStation.bok,1);
+	image_info(ui.checkBox_SaveOK_First->isChecked(), ImageInfo.FirstStation, CurTime, ui.lineEdit_OKPath_First->text(), ImageInfo.FirstStation.bok,1);
 
-	image_info(ImageInfo.SecondStation, CurTime, ui.lineEdit_NGPath_Second->text(), ImageInfo.SecondStation.bok,2);
-	image_info(ImageInfo.SecondStation, CurTime, ui.lineEdit_NGPath_Second->text(), ImageInfo.SecondStation.bok,2);
+	image_info(ui.checkBox_SaveNG_Second->isChecked(), ImageInfo.SecondStation, CurTime, ui.lineEdit_NGPath_Second->text(), ImageInfo.SecondStation.bok,2);
+	image_info(ui.checkBox_SaveOK_Second->isChecked(), ImageInfo.SecondStation, CurTime, ui.lineEdit_NGPath_Second->text(), ImageInfo.SecondStation.bok,2);
 
-	image_info(ImageInfo.ThirdStation, CurTime, ui.lineEdit_NGPath_Third->text(), ImageInfo.ThirdStation.bok,3);
-	image_info(ImageInfo.ThirdStation, CurTime, ui.lineEdit_OKPath_Third->text(), ImageInfo.ThirdStation.bok,3);
+	image_info(ui.checkBox_SaveNG_Third->isChecked(), ImageInfo.ThirdStation, CurTime, ui.lineEdit_NGPath_Third->text(), ImageInfo.ThirdStation.bok,3);
+	image_info(ui.checkBox_SaveOK_Third->isChecked(), ImageInfo.ThirdStation, CurTime, ui.lineEdit_OKPath_Third->text(), ImageInfo.ThirdStation.bok,3);
 
-	image_info(ImageInfo.FourStation, CurTime, ui.lineEdit_NGPath_Fourth->text(), ImageInfo.FourStation.bok,4);
-	image_info(ImageInfo.FourStation, CurTime, ui.lineEdit_NGPath_Fourth->text(), ImageInfo.FourStation.bok,4);
+	image_info(ui.checkBox_SaveNG_Fourth->isChecked(), ImageInfo.FourStation, CurTime, ui.lineEdit_NGPath_Fourth->text(), ImageInfo.FourStation.bok,4);
+	image_info(ui.checkBox_SaveOK_Fourth->isChecked(), ImageInfo.FourStation, CurTime, ui.lineEdit_NGPath_Fourth->text(), ImageInfo.FourStation.bok,4);
 
 	//if (ui.checkBox_SaveNG_First->isChecked())
 	//{
