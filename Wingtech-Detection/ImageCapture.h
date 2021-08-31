@@ -51,7 +51,7 @@ private:
 	unsigned int nDataSize;
 	e_CameraType m_Type;
 	s_SystemType m_SystemType;
-
+	int GrabIndex ;
 
 private:
 	void run();
@@ -60,5 +60,5 @@ signals:
 	//void SendCameraImage(Mat image, int index);
 	void SendCameraImage(Mat image, int index);
     void SendAlgoImage(Mat OriginalImage, e_CameraType RenderImage, int index, bool bok);
-	void SendImageToAlgo(Mat OriginalImage, e_CameraType type, int index, bool bok);
+	void SendImageToAlgo(Mat OriginalImage, e_CameraType type, int index);
 };

@@ -1,11 +1,12 @@
 #include <windows.h>
 #include "AlgoManager.h"
 
-
+CAlgoManager *CAlgoManager::m_Algo = NULL;
 CAlgoManager::CAlgoManager(QThread *parent)
 	:QThread(parent)
 {
 	m_bStop = false;
+	m_Algo = this;
 }
 
 CAlgoManager::~CAlgoManager()
@@ -13,9 +14,10 @@ CAlgoManager::~CAlgoManager()
 
 }
 
+
 bool CAlgoManager::InitAlgo(QString ModelPath)
 {
-	if (module.Init("H:/WXWork/1688850861907945/Cache/File/2021-08/model/andaotuo202106.smartmore", false, 0) != smartmore::ResultCode::Success)
+	if (module.Init("H:/WXWork/1688850861907945/Cache/File/2021-08/model/wentai_1st_emtpy.smartmore", false, 0) != smartmore::ResultCode::Success)
 	{
 		std::cout << "Init module failed!" << std::endl;
 		return 1;
@@ -40,6 +42,11 @@ void CAlgoManager::InitConnections()
 
 }
 
+CAlgoManager * CAlgoManager::GetAlgoManager()
+{
+	return m_Algo;
+}
+
 void CAlgoManager::run()
 {
 	while (!m_bStop)
@@ -53,18 +60,31 @@ void CAlgoManager::run()
 		s_ImageInfo ImageInfo = m_ImageInfos.dequeue();
 		m_mutex.unlock();
 		std::string input_image = "C:/Users/Mhy/Desktop/Image_20210726193600846.bmp";
-		
+
 		std::cout << module.Version() << std::endl;
 		smartmore::DetectionRequest req;
 		smartmore::DetectionResponse rsp;
+		Mat RenderImage;
+		vector<double>Threshold;
 		req.thresholds = { 0.8f };
-		req.image = cv::imread(input_image);
+		//req.image = cv::imread(input_image);
+		req.image = ImageInfo.Image;
 		std::cout << "Init success" << std::endl;
-
-		module.Run(req, rsp);
+		smartmore::ResultCode res1=module.Run(req, rsp);
 		std::cout << "Run success" << std::endl;
+		if (res1 != smartmore::ResultCode::Success)
+		{
+			std::cout << "Position1 Normal run Failure." << std::endl;
+		}
+		else
+		{
+			module.Visualize(req, rsp, RenderImage, Threshold);
+		};
 		Mat Render;/////////////////////////////////////////////////////////////////////////////////////////////???????
-		emit SendPorcessResult(ImageInfo.Image, Render, ImageInfo.ImageID);
+		bool bok = true;
+		int index;
+		e_CameraType type;
+		emit SendPorcessResult(ImageInfo.Image, Render,index,bok,type);
 	}
 }
 

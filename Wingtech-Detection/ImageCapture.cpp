@@ -86,7 +86,7 @@ void CImageCapture::run()
 	int nRet = MV_OK;
 	MV_FRAME_OUT_INFO_EX stImageInfo = { 0 };
 	MV_DISPLAY_FRAME_INFO stDisplayInfo = { 0 };
-	int GrabIndex = 0;
+	GrabIndex = 1;
 	while (1)
 	{
 		m_Mutex.lock();
@@ -118,9 +118,8 @@ void CImageCapture::run()
 				{
 					if (m_Type == CAMERA_FIRST)
 					{
-						bool bok = 0;
 						//emit SendAlgoImage(curImage, m_Type, GrabIndex, bok);
-						emit SendImageToAlgo(curImage, m_Type, GrabIndex, bok);
+						emit SendImageToAlgo(curImage, m_Type, GrabIndex);
 						GrabIndex++;
 						Sleep(2000);
 

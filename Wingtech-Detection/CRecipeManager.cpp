@@ -10,6 +10,7 @@ CRecipeManager::CRecipeManager(QWidget *parent)
 	ui.setupUi(this);
 	InitVariables();
 	InitRecipeNames();
+	InitConnections();
 }
 
 void CRecipeManager::RunAlgo(Mat Image, int ImageID)
@@ -89,6 +90,7 @@ bool CRecipeManager::InitRecipe(QString RecipeName, QString &errMsg)
 		if (it == m_ModelAndAlgo.end())
 		{
 			CAlgoManager *Algo = new CAlgoManager();
+			//CAlgoManager::GetAlgoManager();
 			bool rv = Algo->InitAlgo(ModelPath);
 			if (!rv)
 			{
@@ -107,9 +109,12 @@ bool CRecipeManager::InitRecipe(QString RecipeName, QString &errMsg)
 
 void CRecipeManager::InitConnections()
 {
+	qRegisterMetaType<e_CameraType>("e_CameraType");
+	qRegisterMetaType<Mat>("Mat");
 	connect(CPLCManager::GetInstance(), SIGNAL(SendChangePLCRecipe(QString,int)), this, SLOT(ReceiveChangePlcRecipe(QString.int)));
 	connect(CPLCManager::GetInstance(), SIGNAL(SendSavePLCRecipe(QString, int)), this, SLOT(ReceiveSavePlcRecipe(QString.int)));
-	//connect(this, SIGNAL(SendCameraImage(s_ImageInfo)), m_ModelAndAlgo["1"], SLOT(RunAlgo(s_ImageInfo)));
+	connect(CAlgoManager::GetAlgoManager(), SIGNAL(SendPorcessResult(Mat, Mat, int, bool, e_CameraType)), this, SLOT(ReceivaAlgoImage(Mat, Mat, int, bool, e_CameraType)));
+
 }
 
 void CRecipeManager::SendPLCReadySign()
@@ -158,7 +163,7 @@ void CRecipeManager::InitRecipeNames()
 	}
 	QString err;
 	
-	if (!InitRecipe(ui.comboBox->itemText(0), err))
+	if (!InitRecipe(ui.comboBox->itemText(0), err))  //在没有接收PLC信号的基础上 测试用
 	{
 		cout << "初始化配方失败" << endl;
 	}
@@ -210,6 +215,7 @@ void CRecipeManager::ReceiveSavePlcRecipe(QString msg, int number)
 
 void CRecipeManager::ReceiveChangePlcRecipe(QString msg,int number)
 {
+	m_Number = number;
 	QString err;
 	InitRecipe(msg, err);
 }
@@ -218,6 +224,12 @@ void CRecipeManager::ReceivaOriginalImage(Mat Image,int ImageID)
 {
 
 	RunAlgo(Image, ImageID);
+}
+
+void CRecipeManager::ReceivaAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type)
+{
+
+	emit SendAlgoImage(image, RenderImage , index,bOK, type);
 }
 
 void CRecipeManager::SaveRecipe()

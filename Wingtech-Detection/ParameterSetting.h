@@ -122,6 +122,7 @@ private slots:
 	void OpenFourthCamera();
 	void LoadFourthImage();
 	void SwitchFourthCameraStatus(int index, bool checked);
+	void ReceiveConnectStatus(bool bConnected);
 	void ConnectToPLC();
 	void SendOKToPLC();
 	void SendNGToPLC();
@@ -131,7 +132,7 @@ private slots:
 	void OnBtnClicked();
 
 	void ReceiveCameraImage(Mat image, int index);
-	void ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Time, bool bok);
+	void ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Time);
 signals:
 	void SendAlgoImageToMainWindow( Mat OriginalImage, e_CameraType type,int index, bool bok);
 	void SendOriginalImage(Mat image, int index);

@@ -6,6 +6,22 @@
 #include <QDebug>
 #include <QMutex>
 #include "melsec_mc_bin.h"
+#include <iostream >
+
+using namespace std;
+typedef struct
+{
+	int CurrentMachineNumber;
+	int CurrentRecipeNumber;
+	QString CurrentRecipeName;
+	void Init()
+	{
+		CurrentMachineNumber=0;
+		CurrentRecipeNumber=0;
+		CurrentRecipeName ="";
+	}
+}s_CurrentRecipe;
+
 
 class CPLCManager :public QObject
 {
@@ -26,6 +42,7 @@ private:
 	void WritePLCNG();
 	void WritePLCHeartbeat();
 	void WritePLCChangeVar();
+	void ReadCurrentRecipe();
 private:
 	void GetChangeRecipeName(char* str);
 	void GetSaveRecipeName(char* str);
@@ -47,6 +64,7 @@ private:
 	QMutex m_Mutex;
 	QString m_HexLastHost; //PC端IP最后部分的16进制
 	QString m_HexLastServer; //PLC端IP最后部分的16进制
+	s_CurrentRecipe CurrentRecipe;
 	int fd;
 private slots:
 	void TcpConnected();

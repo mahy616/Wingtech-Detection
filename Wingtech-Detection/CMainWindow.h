@@ -94,7 +94,7 @@ private slots:
 	void ReceiveCameraStatus(e_CameraType type, bool bOpen);
 	//½ÓÊÕPLC×´Ì¬
 	void ReceivePLCStatus(bool bConnected);
-	void ReceiveImage(Mat image, e_CameraType type, int index, bool bOK);
+	void ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type);
 
 
 };
