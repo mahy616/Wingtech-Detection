@@ -25,7 +25,6 @@ class CMainWindow : public QMainWindow
 public:
 	CMainWindow(QWidget *parent = Q_NULLPTR);
 	~CMainWindow();
-
 private:
 	//每张图像
 	QVector<QImage> m_Camera1Images;
@@ -61,7 +60,8 @@ private:
 	QLabel m_Camera4;
 
 
-	int m_Number;
+	//int m_Number;
+	int m_Index;        //界面图像数量统计
 	bool m_bStart;
 	bool m_Ready;
 	int m_ImageCounts;  //界面图像数量
@@ -97,7 +97,10 @@ private slots:
 	void ReceivePLCStatus(bool bConnected);
 	void ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type);
 	//接受PLC发送的初始化图片数量
-	void ReceiveInitImageNumber(int number);  
+	void ReceiveInitImageNumber(int number); 
+	//接收PLC发送的起始拍照信号
+	void ReceiveStartSign();
+
 
 
 };

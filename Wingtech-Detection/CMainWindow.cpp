@@ -8,7 +8,6 @@
 #include <QTextStream>
 #include <qdir.h>
 #include "QMessageBox"
-
 int GetImageCount(e_CameraType)
 {
     return 0;
@@ -28,6 +27,7 @@ CMainWindow::~CMainWindow()
     delete m_Parameter;
     m_Parameter = NULL;
 }
+
 
 void outputMessage(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -81,10 +81,14 @@ CMainWindow::CMainWindow(QWidget *parent) : QMainWindow(parent)
     ui.setupUi(this);
     qInstallMessageHandler(outputMessage);
     InitVariables();
-	m_Number = 5;//测试用，实际会由PLC发送数据得到
-    InitResultDetails(m_Number);
+
+	m_ImageCounts = 5;//测试用，实际会由PLC发送数据得到
+	m_Index = 0;      //发往窗口的图片数据统计
+
+    InitResultDetails(m_ImageCounts);
     InitStatusBar();
     InitConnections();
+	
 }
 
 void CMainWindow::InitVariables()
@@ -142,7 +146,6 @@ void CMainWindow::InitVariables()
 	m_RecipeManager = new CRecipeManager;
 	m_admin = new adminLoginDialog;
 
-	
 	setActionEnable(false);
 }
 
@@ -375,9 +378,13 @@ void CMainWindow::InitConnections()
     qRegisterMetaType<Mat>("Mat");
     qRegisterMetaType<e_CameraType>("e_CameraType");
 	qRegisterMetaType<s_ImageInfo>("s_ImageInfo");
-    connect(m_Parameter, SIGNAL(SendOriginalImage(Mat, int)), m_RecipeManager, SLOT(ReceivaOriginalImage(Mat, int)));
+    connect(m_Parameter, SIGNAL(SendOriginalImage(Mat, int, e_CameraType)), m_RecipeManager, SLOT(ReceivaOriginalImage(Mat, int, e_CameraType)));
 	connect(m_RecipeManager, SIGNAL(SendInitImageNumber(int)), this, SLOT(ReceiveInitImageNumber(int)));
 	connect(m_RecipeManager, SIGNAL(SendAlgoImage(Mat, Mat, int , bool , e_CameraType )), this, SLOT(ReceiveAlgoImage(Mat, Mat, int, bool, e_CameraType)));
+	connect(m_RecipeManager, SIGNAL(SendStartSign()), this, SLOT(ReceiveStartSign()));
+
+
+
 }
 
 
@@ -501,15 +508,18 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
 {
     bOK = 1;
     qDebug() << "ReceiveImage type:" << type;
+	QString Msg = "Receive algo image: type = " + QString::number(type) + ",result = "+QString::number(bOK) + "Index ="+QString::number(index);
+	AddLog(Msg);
     QImage QImg = MattoQImage(image);
+	s_SaveImageInfo SaveInfo;
 	s_StationInfo StationInfo;
+	StationInfo.OriginalImage = image;
+	StationInfo.RenderImage = RenderImage;
+	StationInfo.bok = bOK;
     switch (type)
     {
         case CAMERA_FIRST:
         {	
-			StationInfo.OriginalImage = image;
-			StationInfo.RenderImage = RenderImage;
-			StationInfo.bok= bOK;
             m_Camera1Images.push_back(QImg);
             if (m_Camera1Images.size() > 5)
                 return;
@@ -531,16 +541,17 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
                 m_Camera1Result = false;
             }
 
-            if (index == m_ImageCounts)
-            {
-                m_DetecionResult.insert(CAMERA_FIRST, m_Camera1Result);
-                if (m_DetecionResult.size() == 4)
-                {
-                    ProcessDetectionResult();
-                }
-            }
-
-			//m_Parameter->SaveImage(StationInfo);
+			if (m_Index == m_ImageCounts-1)
+			{
+				m_Index = 0;
+				m_DetecionResult.insert(CAMERA_FIRST, m_Camera1Result);
+				if (m_DetecionResult.size() == 4)
+				{
+					ProcessDetectionResult();
+				}
+			}
+			SaveInfo.FirstStation = StationInfo;	
+			m_Index++;
             break;
         }
         case CAMERA_SECOND:
@@ -556,21 +567,24 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
             }
             if (bOK)
             {
-                Label->setStyleSheet("background-color: rgba(0, 170, 0, 255);");
+                Label->setStyleSheet(m_green_SheetStyle);
             }
             else
             {
                 Label->setStyleSheet("background-color: rgba(170, 0, 0, 255);");
                 m_Camera2Result = false;
             }
-            if (index == m_ImageCounts)
+            if (m_Index == m_ImageCounts-1)
             {
+				m_Index = 0;
                 m_DetecionResult.insert(CAMERA_SECOND, m_Camera2Result);
                 if (m_DetecionResult.size() == 4)
                 {
                     ProcessDetectionResult();
                 }
             }
+			SaveInfo.SecondStation = StationInfo;
+			m_Index++;
             break;
         }
         case CAMERA_THIRD:
@@ -586,21 +600,24 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
             }
             if (bOK)
             {
-                Label->setStyleSheet("background-color: rgba(0, 170, 0, 255);");
+                Label->setStyleSheet(m_green_SheetStyle);
             }
             else
             {
                 Label->setStyleSheet("background-color: rgba(170, 0, 0, 255);");
             }
 
-            if (index == m_ImageCounts)
+            if (m_Index == m_ImageCounts-1)
             {
+				m_Index = 0;
                 m_DetecionResult.insert(CAMERA_THIRD, m_Camera3Result);
                 if (m_DetecionResult.size() == 4)
                 {
                     ProcessDetectionResult();
                 }
             }
+			SaveInfo.ThirdStation = StationInfo;
+			m_Index++;
             break;
         }
         case CAMERA_FOURTH:
@@ -616,32 +633,42 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
             }
             if (bOK)
             {
-                Label->setStyleSheet("background-color: rgba(0, 170, 0, 255);");
+                Label->setStyleSheet(m_green_SheetStyle);
             }
             else
             {
                 Label->setStyleSheet("background-color: rgba(170, 0, 0, 255);");
             }
 
-            if (index == m_ImageCounts)
+            if (m_Index == m_ImageCounts-1)
             {
+				m_Index = 0;
                 m_DetecionResult.insert(CAMERA_FOURTH, m_Camera4Result);
                 if (m_DetecionResult.size() == 4)
                 {
                     ProcessDetectionResult();
                 }
             }
+			SaveInfo.FourStation = StationInfo;
+			m_Index++;
      	break;
         }
         break;
         default:;
     }
+	m_Parameter->SaveImage(SaveInfo);
 }
 
 void CMainWindow::ReceiveInitImageNumber(int number)
 {
-	m_Number = number;
+	m_ImageCounts = number;
 }
+
+void CMainWindow::ReceiveStartSign()
+{
+	RefreshResultDetails();
+}
+
 
 
 void CMainWindow::ProcessDetectionResult()

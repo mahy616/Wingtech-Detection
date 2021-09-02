@@ -13,6 +13,7 @@ typedef struct
 {
 	int ImageID;
 	Mat Image;
+	e_CameraType Type;
 }s_ImageInfo;
 
 class CAlgoManager :public QThread

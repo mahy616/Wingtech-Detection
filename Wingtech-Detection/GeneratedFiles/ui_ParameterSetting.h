@@ -1089,7 +1089,7 @@ public:
         QObject::connect(pushButton_SaveParams_Third, SIGNAL(clicked()), DialogSetting, SLOT(SaveConfig()));
         QObject::connect(pushButton_SaveParams_Fourth, SIGNAL(clicked()), DialogSetting, SLOT(SaveConfig()));
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(DialogSetting);
