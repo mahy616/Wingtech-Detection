@@ -92,7 +92,6 @@ void CImageCapture::run()
 	MV_FRAME_OUT_INFO_EX stImageInfo = { 0 };
 	MV_DISPLAY_FRAME_INFO stDisplayInfo = { 0 };
 	
-	int ImageCounts = 0;  //≤‚ ‘”√
 	while (1)
 	{
 		m_Mutex.lock();
@@ -119,56 +118,19 @@ void CImageCapture::run()
 				{
 					emit SendCameraImage(curImage, m_Type);
 				}
-				
 				if (bStart)
 				{
-					ImageCounts++;
 					if (m_Type == CAMERA_FIRST)
-					{
 						emit SendImageToAlgo(curImage, m_Type, GrabIndex);
-						GrabIndex++;
-						if (ImageCounts == 5)
-						{
-							GrabIndex = 1;
-							ImageCounts = 0;
-						}
-						Sleep(100);
-					}
 					if (m_Type == CAMERA_SECOND)
-					{
 						emit SendImageToAlgo(curImage, m_Type, GrabIndex);
-						GrabIndex++;
-						if (ImageCounts == 5)
-						{
-							GrabIndex = 1;
-							ImageCounts = 0;
-						}
-						Sleep(100);
-					}
-
 					if (m_Type == CAMERA_THIRD)
-					{
 						emit SendImageToAlgo(curImage, m_Type, GrabIndex);
-						GrabIndex++;
-						if (ImageCounts == 5)
-						{
-							GrabIndex = 1;
-							ImageCounts = 0;
-						}
-						Sleep(100);
-					}
-
 					if (m_Type == CAMERA_FOURTH)
-					{
 						emit SendImageToAlgo(curImage, m_Type, GrabIndex);
-						GrabIndex++;
-						if (ImageCounts == 5)
-						{
-							GrabIndex = 1;
-							ImageCounts = 0;
-						}
-						Sleep(100);
-					}
+
+					Sleep(100);
+					GrabIndex++;
 				}
 			}
 		}
