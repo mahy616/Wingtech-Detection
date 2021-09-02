@@ -374,6 +374,9 @@ void CParameterSetting::InitConnections()
 	connect(m_FourCameraInfo.ImageCapture, SIGNAL(SendCameraImage(Mat, e_CameraType)), this, SLOT(ReceiveCameraImage(Mat, e_CameraType)));
 
 	connect(m_FirstCameraInfo.ImageCapture, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int)), this, SLOT(ReceivaOriginalImage(Mat, e_CameraType, int)));
+	connect(m_SecondCameraInfo.ImageCapture, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int)), this, SLOT(ReceivaOriginalImage(Mat, e_CameraType, int)));
+	connect(m_ThirdCameraInfo.ImageCapture, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int)), this, SLOT(ReceivaOriginalImage(Mat, e_CameraType, int)));
+	connect(m_FourCameraInfo.ImageCapture, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int)), this, SLOT(ReceivaOriginalImage(Mat, e_CameraType, int)));
 
 	connect(CPLCManager::GetInstance(), SIGNAL(SendConnectStatus(bool)), this, SLOT(ReceiveConnectStatus(bool)));
 }
@@ -1640,7 +1643,7 @@ void CParameterSetting::OpenThirdCamera()
 			{
 				return;
 			}
-			m_ThirdCameraInfo.ImageCapture->SetCameraHandle(m_ThirdCameraInfo.CameraHandle, CAMERA_FIRST);
+			m_ThirdCameraInfo.ImageCapture->SetCameraHandle(m_ThirdCameraInfo.CameraHandle, CAMERA_THIRD);
 			m_ThirdCameraInfo.ImageCapture->SetCameraStatus(true);
 			m_ThirdCameraInfo.CameraName = name;
 			SetButtonGroupEnabled(true, 3);

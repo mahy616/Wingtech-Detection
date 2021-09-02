@@ -565,7 +565,7 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
             }
             if (bOK)
             {
-                Label->setStyleSheet("background-color: rgba(0, 170, 0, 255);");
+                Label->setStyleSheet(m_green_SheetStyle);
             }
             else
             {
@@ -598,7 +598,7 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
             }
             if (bOK)
             {
-                Label->setStyleSheet("background-color: rgba(0, 170, 0, 255);");
+                Label->setStyleSheet(m_green_SheetStyle);
             }
             else
             {
@@ -631,7 +631,7 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
             }
             if (bOK)
             {
-                Label->setStyleSheet("background-color: rgba(0, 170, 0, 255);");
+                Label->setStyleSheet(m_green_SheetStyle);
             }
             else
             {
