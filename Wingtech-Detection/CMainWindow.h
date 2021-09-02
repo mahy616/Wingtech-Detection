@@ -25,7 +25,6 @@ class CMainWindow : public QMainWindow
 public:
 	CMainWindow(QWidget *parent = Q_NULLPTR);
 	~CMainWindow();
-
 private:
 	//√ø’≈ÕºœÒ
 	QVector<QImage> m_Camera1Images;

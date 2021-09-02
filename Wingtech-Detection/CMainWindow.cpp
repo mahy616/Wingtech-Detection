@@ -8,7 +8,6 @@
 #include <QTextStream>
 #include <qdir.h>
 #include "QMessageBox"
-
 int GetImageCount(e_CameraType)
 {
     return 0;
@@ -28,6 +27,7 @@ CMainWindow::~CMainWindow()
     delete m_Parameter;
     m_Parameter = NULL;
 }
+
 
 void outputMessage(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -508,6 +508,8 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
 {
     bOK = 1;
     qDebug() << "ReceiveImage type:" << type;
+	QString Msg = "Receive algo image: type = " + QString::number(type) + ",result = "+QString::number(bOK) + "Index ="+QString::number(index);
+	AddLog(Msg);
     QImage QImg = MattoQImage(image);
 	s_SaveImageInfo SaveInfo;
 	s_StationInfo StationInfo;
