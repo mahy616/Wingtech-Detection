@@ -13,7 +13,7 @@ public:
 	//读取本地配方，并加载到下拉列表中
 	void InitRecipeNames();
 	//运行算法,TODO相机类型参数
-	void RunAlgo(Mat Image, int ImageID);
+	void RunAlgo(Mat Image, int ImageID, e_CameraType type);
 	//PLC获取的配方名称，本地会生成一个该名称的ini文件
 	void SaveRecipeFromPLC(QString RecipeName, int ImageCount);
 	//初始化配方，初始化成功返回true，通知PLC Ready信号，否则返回false，界面log提示具体错误信息
@@ -39,6 +39,7 @@ private:
 signals:
 	void SendAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type);
 	void SendInitImageNumber(int number);
+	void SendStartSign();
 private slots:
 	//切换配方，读取本地文件，Tabwidget显示具体内容
 	void SwitchRecipe(QString Name);
@@ -51,7 +52,9 @@ private slots:
 	//PLC触发切换配方
 	void ReceiveChangePlcRecipe(QString msg, int number);
 	//接收源图
-	void ReceivaOriginalImage(Mat Image, int ImageID);
+	void ReceivaOriginalImage(Mat Image, int ImageID, e_CameraType Type);
 	//接收算法渲染图
 	void ReceivaAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type);
+	//接受开始拍照信号
+	void ReceiveStartSign();
 };

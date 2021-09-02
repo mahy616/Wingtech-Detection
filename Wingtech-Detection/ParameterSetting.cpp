@@ -79,6 +79,12 @@ void CParameterSetting::InitVariables()
 	ui.comboBox_SystemType->addItem(QString::fromLocal8Bit("在线Debug算法"));
 	ui.comboBox_SystemType->addItem(QString::fromLocal8Bit("离线Debug算法"));
 	
+
+	ui.pushButton_LoadFirstImage->setEnabled(false);
+	ui.pushButton_LoadSecondImage->setEnabled(false);
+	ui.pushButton_LoadThirdImage->setEnabled(false);
+	ui.pushButton_LoadFourthImage->setEnabled(false);
+
 	m_FirstCameraInfo.ImageCapture->SetSystemType(RUN_ONLINE);
 	m_SecondCameraInfo.ImageCapture->SetSystemType(RUN_ONLINE);
 	m_ThirdCameraInfo.ImageCapture->SetSystemType(RUN_ONLINE);
@@ -193,6 +199,13 @@ void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo)
 			}
 			if (!bok)
 			{
+				QString OriginalImageName = CurPath + "/" + QString::number(index) + "_O.bmp";
+				QString RenderImageName = CurPath + "/" + QString::number(index) + "/_R.jpg";
+				m_SaveImage.SaveImage(OriginalImageName, ImageInfo.OriginalImage);
+				m_SaveImage.SaveImage(RenderImageName, ImageInfo.RenderImage);
+			}
+			else
+			{
 				QString OriginalImageName = CurPath + "/" + QString::number(index) + "_O.jpg";
 				QString RenderImageName = CurPath + "/" + QString::number(index) + "/_R.jpg";
 				m_SaveImage.SaveImage(OriginalImageName, ImageInfo.OriginalImage);
@@ -214,62 +227,40 @@ void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo)
 	image_info(ui.checkBox_SaveNG_Fourth->isChecked(), ImageInfo.FourStation, CurTime, ui.lineEdit_NGPath_Fourth->text(), ImageInfo.FourStation.bok,4);
 	image_info(ui.checkBox_SaveOK_Fourth->isChecked(), ImageInfo.FourStation, CurTime, ui.lineEdit_NGPath_Fourth->text(), ImageInfo.FourStation.bok,4);
 
-	//if (ui.checkBox_SaveNG_First->isChecked())
-	//{
-	//	QString NGPath = ui.lineEdit_NGPath_First->text();
-	//	if (NGPath.isEmpty())
-	//	{
-	//		qDebug() << "NG path is empty";
-	//		return;
-	//	}
-	//	QString CurPath = NGPath + "/" + CurTime;
-	//	QDir dir;
-	//	if (!dir.exists(CurPath))
-	//	{
-	//		dir.mkpath(CurPath);
-	//	}
-	//	if (!ImageInfo.FirstStation.bok)
-	//	{
-	//		QString OriginalImageName = CurPath + "/1_O.jpg";
-	//		QString RenderImageName = CurPath + "/1_R.jpg";
-	//		m_SaveImage.SaveImage(OriginalImageName, ImageInfo.FirstStation.OriginalImage);
-	//		m_SaveImage.SaveImage(RenderImageName, ImageInfo.FirstStation.RenderImage);
-	//	}
+}
 
-	//	//if (!ImageInfo.SecondStation.bok)
-	//	//{
-	//	//	QString OriginalImageName = CurPath + "/2_O.jpg";
-	//	//	QString RenderImageName = CurPath + "/2_R.jpg";
-	//	//	m_SaveImage.SaveImage(OriginalImageName, ImageInfo.SecondStation.OriginalImage);
-	//	//	m_SaveImage.SaveImage(RenderImageName, ImageInfo.SecondStation.RenderImage);
-	//	//}
-	//}
+void CParameterSetting::SaveCameraTestImage(s_SaveImageInfo ImageInfo)
+{
+	QString CurTime = QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss-zzz");
+	auto image_TestInfo = [&](s_StationInfo ImageInfo, const QString &curTime, const QString &path, int index)
+	{
 
-	//if (ui.checkBox_SaveOK_First->isChecked())
-	//{
-	//	QString OKPath = ui.lineEdit_OKPath_First->text();
-	//	if (OKPath.isEmpty())
-	//	{
-	//		qDebug() << "OK path is empty";
-	//		return;
-	//	}
-	//	QString CurPath = OKPath + "/" + CurTime;
-	//	QDir dir;
-	//	if (!dir.exists(CurPath))
-	//	{
-	//		dir.mkpath(CurPath);
-	//	}
-	//	if (ImageInfo.FirstStation.bok)
-	//	{
-	//		QString ImageName = CurPath + "/1_O.jpg";
-	//		m_SaveImage.SaveImage(ImageName, ImageInfo.FirstStation.OriginalImage);
-	//	}
-	//	//if (ImageInfo.SecondStation.bok)
-	//	//{
-	//	//	QString ImageName = CurPath + "/2_O.jpg";
-	//	//	m_SaveImage.SaveImage(ImageName, ImageInfo.SecondStation.OriginalImage);
-	//	//}
-	//}
+		if (path.isEmpty())
+		{
+			qDebug() << "path is empty" << path;
+			return;
+		}
+		QString CurPath = path + "/" + curTime;
+		QDir dir;
+		if (!dir.exists(CurPath))
+		{
+			dir.mkpath(CurPath);
+		}
+		QString OriginalImageName = CurPath + "/" + QString::number(index) + "_O.bmp";
+		m_SaveImage.SaveImage(OriginalImageName, ImageInfo.OriginalImage);
+
+	};
+	image_TestInfo(ImageInfo.FirstStation, CurTime, ui.lineEdit_NGPath_First->text(), 1);
+	image_TestInfo(ImageInfo.FirstStation, CurTime, ui.lineEdit_OKPath_First->text(), 1);
+
+	image_TestInfo(ImageInfo.SecondStation, CurTime, ui.lineEdit_NGPath_Second->text(), 2);
+	image_TestInfo(ImageInfo.SecondStation, CurTime, ui.lineEdit_OKPath_Second->text(), 2);
+
+	image_TestInfo(ImageInfo.ThirdStation, CurTime, ui.lineEdit_NGPath_Third->text(), 3);
+	image_TestInfo(ImageInfo.ThirdStation, CurTime, ui.lineEdit_OKPath_Third->text(), 3);
+
+	image_TestInfo(ImageInfo.FourStation, CurTime, ui.lineEdit_NGPath_Fourth->text(), 4);
+	image_TestInfo(ImageInfo.FourStation, CurTime, ui.lineEdit_OKPath_Fourth->text(), 4);
 }
 
 //关闭设备
@@ -377,10 +368,10 @@ void CParameterSetting::InitConnections()
 	connect(m_ThirdGroup, SIGNAL(buttonToggled(int, bool)), this, SLOT(SwitchThirdCameraStatus(int, bool)));
 	connect(m_FourthGroup, SIGNAL(buttonToggled(int, bool)), this, SLOT(SwitchFourthCameraStatus(int, bool)));
 
-	connect(m_FirstCameraInfo.ImageCapture, SIGNAL(SendCameraImage(Mat, int)), this, SLOT(ReceiveCameraImage(Mat, int)));
-	connect(m_SecondCameraInfo.ImageCapture, SIGNAL(SendCameraImage(Mat, int)), this, SLOT(ReceiveCameraImage(Mat, int)));
-	connect(m_ThirdCameraInfo.ImageCapture, SIGNAL(SendCameraImage(Mat, int)), this, SLOT(ReceiveCameraImage(Mat, int)));
-	connect(m_FourCameraInfo.ImageCapture, SIGNAL(SendCameraImage(Mat, int)), this, SLOT(ReceiveCameraImage(Mat, int)));
+	connect(m_FirstCameraInfo.ImageCapture, SIGNAL(SendCameraImage(Mat, e_CameraType)), this, SLOT(ReceiveCameraImage(Mat, e_CameraType)));
+	connect(m_SecondCameraInfo.ImageCapture, SIGNAL(SendCameraImage(Mat, e_CameraType)), this, SLOT(ReceiveCameraImage(Mat, e_CameraType)));
+	connect(m_ThirdCameraInfo.ImageCapture, SIGNAL(SendCameraImage(Mat, e_CameraType)), this, SLOT(ReceiveCameraImage(Mat, e_CameraType)));
+	connect(m_FourCameraInfo.ImageCapture, SIGNAL(SendCameraImage(Mat, e_CameraType)), this, SLOT(ReceiveCameraImage(Mat, e_CameraType)));
 
 	connect(m_FirstCameraInfo.ImageCapture, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int)), this, SLOT(ReceivaOriginalImage(Mat, e_CameraType, int)));
 
@@ -663,6 +654,8 @@ void CParameterSetting::SetSystemType(int index)
 {
 	ui.pushButton_LoadFirstImage->setEnabled(false);
 	ui.pushButton_LoadSecondImage->setEnabled(false);
+	ui.pushButton_LoadThirdImage->setEnabled(false);
+	ui.pushButton_LoadFourthImage->setEnabled(false);
 	s_SystemType type;
 	if (index == 0)
 	{
@@ -720,25 +713,33 @@ void CParameterSetting::GetFormula()
 	}
 }
 
-void CParameterSetting::ReceiveCameraImage(Mat image, int index)
+void CParameterSetting::ReceiveCameraImage(Mat image, e_CameraType index)
 {
 	QImage qimage = MattoQImage(image);
-	if (index == 1)
+	s_SaveImageInfo SaveInfo;
+	s_StationInfo StationInfo;
+	StationInfo.OriginalImage = image;
+	if (index == CAMERA_FIRST)
 	{
 		ui.label_FirstImage->SetImage(qimage);
+		SaveInfo.FirstStation = StationInfo;
 	}
-	else if (index == 2)
+	else if (index == CAMERA_SECOND)
 	{
 		ui.label_SecondImage->SetImage(qimage);
+		SaveInfo.SecondStation = StationInfo;
 	}
-	else if (index == 3)
+	else if (index == CAMERA_THIRD)
 	{
 		ui.label_ThirdImage->SetImage(qimage);
+		SaveInfo.ThirdStation = StationInfo;
 	}
-	else if (index == 4)
+	else if (index == CAMERA_FOURTH)
 	{
 		ui.label_FourthImage->SetImage(qimage);
+		SaveInfo.FourStation = StationInfo;
 	}
+	this->SaveCameraTestImage(SaveInfo);
 }
 void CParameterSetting::OnBtnClicked()
 {
@@ -753,10 +754,10 @@ void CParameterSetting::OnBtnClicked()
 
 
 }
-void CParameterSetting::ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Time)
+void CParameterSetting::ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Index)
 {
 	//emit SendAlgoImageToMainWindow(AlgolImage, type, Time, bok);//??
-	emit SendOriginalImage(OriginalImage, Time);
+	emit SendOriginalImage(OriginalImage, Index,type);
 
 }
 void CParameterSetting::SaveCameraParams4()
@@ -1497,7 +1498,7 @@ void CParameterSetting::OpenFirstCamera()
 			{
 				return;
 			}
-			m_FirstCameraInfo.ImageCapture->SetCameraHandle(m_FirstCameraInfo.CameraHandle, 1);
+			m_FirstCameraInfo.ImageCapture->SetCameraHandle(m_FirstCameraInfo.CameraHandle, CAMERA_FIRST);
 			m_FirstCameraInfo.ImageCapture->SetCameraStatus(true);
 			m_FirstCameraInfo.CameraName = name;
 			SetButtonGroupEnabled(true, 1);
@@ -1591,7 +1592,7 @@ void CParameterSetting::OpenSecondCamera()
 			{
 				return;
 			}
-			m_SecondCameraInfo.ImageCapture->SetCameraHandle(m_SecondCameraInfo.CameraHandle, 2);
+			m_SecondCameraInfo.ImageCapture->SetCameraHandle(m_SecondCameraInfo.CameraHandle, CAMERA_SECOND);
 			m_SecondCameraInfo.ImageCapture->SetCameraStatus(true);
 			m_SecondCameraInfo.CameraName = name;
 			SetButtonGroupEnabled(true, 2);
@@ -1639,7 +1640,7 @@ void CParameterSetting::OpenThirdCamera()
 			{
 				return;
 			}
-			m_ThirdCameraInfo.ImageCapture->SetCameraHandle(m_ThirdCameraInfo.CameraHandle, 3);
+			m_ThirdCameraInfo.ImageCapture->SetCameraHandle(m_ThirdCameraInfo.CameraHandle, CAMERA_FIRST);
 			m_ThirdCameraInfo.ImageCapture->SetCameraStatus(true);
 			m_ThirdCameraInfo.CameraName = name;
 			SetButtonGroupEnabled(true, 3);
@@ -1732,7 +1733,7 @@ void CParameterSetting::OpenFourthCamera()
 			{
 				return;
 			}
-			m_FourCameraInfo.ImageCapture->SetCameraHandle(m_FourCameraInfo.CameraHandle, 4);
+			m_FourCameraInfo.ImageCapture->SetCameraHandle(m_FourCameraInfo.CameraHandle, CAMERA_FOURTH);
 			m_FourCameraInfo.ImageCapture->SetCameraStatus(true);
 			m_FourCameraInfo.CameraName = name;
 			SetButtonGroupEnabled(true, 4);

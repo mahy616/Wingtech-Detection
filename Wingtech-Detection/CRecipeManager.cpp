@@ -13,7 +13,7 @@ CRecipeManager::CRecipeManager(QWidget *parent)
 	InitConnections();
 }
 
-void CRecipeManager::RunAlgo(Mat Image, int ImageID)
+void CRecipeManager::RunAlgo(Mat Image, int ImageID, e_CameraType type)
 {
 	QMap<int, QString>::iterator it = m_ImageAndModel.find(ImageID);
 	if (it != m_ImageAndModel.end())
@@ -29,6 +29,7 @@ void CRecipeManager::RunAlgo(Mat Image, int ImageID)
 				s_ImageInfo ImageInfo;
 				ImageInfo.Image = Image;
 				ImageInfo.ImageID = ImageID;
+				ImageInfo.Type = type;
 				Algo->RunAlgo(ImageInfo);
 			}
 		}
@@ -113,6 +114,7 @@ void CRecipeManager::InitConnections()
 	qRegisterMetaType<Mat>("Mat");
 	connect(CPLCManager::GetInstance(), SIGNAL(SendChangePLCRecipe(QString,int)), this, SLOT(ReceiveChangePlcRecipe(QString.int)));
 	connect(CPLCManager::GetInstance(), SIGNAL(SendSavePLCRecipe(QString, int)), this, SLOT(ReceiveSavePlcRecipe(QString.int)));
+	connect(CPLCManager::GetInstance(), SIGNAL(SendStartSign()), this, SLOT(ReceiveStartSign()));
 
 
 }
@@ -221,16 +223,21 @@ void CRecipeManager::ReceiveChangePlcRecipe(QString msg,int number)
 	InitRecipe(msg, err);
 }
 
-void CRecipeManager::ReceivaOriginalImage(Mat Image,int ImageID)
+void CRecipeManager::ReceivaOriginalImage(Mat Image,int ImageID, e_CameraType Type)
 {
 
-	RunAlgo(Image, ImageID);
+	RunAlgo(Image, ImageID,Type);
 }
 
 void CRecipeManager::ReceivaAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type)
 {
 
 	emit SendAlgoImage(image, RenderImage , index,bOK, type);
+}
+
+void CRecipeManager::ReceiveStartSign()
+{
+	emit SendStartSign();
 }
 
 void CRecipeManager::SaveRecipe()

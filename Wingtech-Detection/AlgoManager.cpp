@@ -81,8 +81,7 @@ void CAlgoManager::run()
 		};
 		Mat Render;/////////////////////////////////////////////////////////////////////////////////////////////???????
 		bool bok = true;
-		e_CameraType type;
-		emit SendPorcessResult(ImageInfo.Image, Render, ImageInfo.ImageID-1,bok,type);
+		emit SendPorcessResult(ImageInfo.Image, Render, ImageInfo.ImageID-1,bok, ImageInfo.Type);
 	}
 }
 

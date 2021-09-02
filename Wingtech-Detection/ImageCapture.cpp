@@ -8,8 +8,8 @@ CImageCapture::CImageCapture(QThread *parent /*= NULL*/)
 	m_bStop = false;
 	m_bOpen = false;
 	m_pGrabBuf = NULL;
-	m_Index = 0;
 	m_bStartRun = false;
+	GrabIndex = 1;
 }
 
 CImageCapture::~CImageCapture()
@@ -44,11 +44,11 @@ void CImageCapture::StopThread()
 	m_Mutex.unlock();
 }
 
-bool CImageCapture::SetCameraHandle(CMvCamera & camera, int index)
+bool CImageCapture::SetCameraHandle(CMvCamera & camera, e_CameraType type)
 {
 	m_Mutex.lock();
 	m_MvCamera = camera;
-	m_Index = index;
+	m_Type=type;
 	m_Mutex.unlock();
 	MVCC_INTVALUE_EX stIntValue = { 0 };
 	int nRet = m_MvCamera.GetIntValue("PayloadSize", &stIntValue);
@@ -81,12 +81,18 @@ void CImageCapture::SetRunStatus(bool bStart)
 	m_Mutex.unlock();
 }
 
+void CImageCapture::InitConnections()
+{
+	connect(CPLCManager::GetInstance(), SIGNAL(SendStartSign()), this, SLOT(ReceiveStartSign()));
+}
+
 void CImageCapture::run()
 {
 	int nRet = MV_OK;
 	MV_FRAME_OUT_INFO_EX stImageInfo = { 0 };
 	MV_DISPLAY_FRAME_INFO stDisplayInfo = { 0 };
-	GrabIndex = 1;
+	
+	int ImageCounts = 0;  //≤‚ ‘”√
 	while (1)
 	{
 		m_Mutex.lock();
@@ -111,42 +117,57 @@ void CImageCapture::run()
 				Mat curImage = img;// .clone();
 				if (m_SystemType == CAMEREA_TEST)
 				{
-					emit SendCameraImage(curImage, m_Index);
+					emit SendCameraImage(curImage, m_Type);
 				}
 				
 				if (bStart)
 				{
+					ImageCounts++;
 					if (m_Type == CAMERA_FIRST)
 					{
-						//emit SendAlgoImage(curImage, m_Type, GrabIndex, bok);
 						emit SendImageToAlgo(curImage, m_Type, GrabIndex);
 						GrabIndex++;
+						if (ImageCounts == 5)
+						{
+							GrabIndex = 1;
+							ImageCounts = 0;
+						}
 						Sleep(100);
-
 					}
-
 					if (m_Type == CAMERA_SECOND)
 					{
-						bool bok = 0;
-						emit SendAlgoImage(curImage, m_Type, GrabIndex, bok);
+						emit SendImageToAlgo(curImage, m_Type, GrabIndex);
 						GrabIndex++;
-						Sleep(200);
+						if (ImageCounts == 5)
+						{
+							GrabIndex = 1;
+							ImageCounts = 0;
+						}
+						Sleep(100);
 					}
 
 					if (m_Type == CAMERA_THIRD)
 					{
-						bool bok = 0;
-						emit SendAlgoImage(curImage, m_Type, GrabIndex, bok);
+						emit SendImageToAlgo(curImage, m_Type, GrabIndex);
 						GrabIndex++;
-						Sleep(200);
+						if (ImageCounts == 5)
+						{
+							GrabIndex = 1;
+							ImageCounts = 0;
+						}
+						Sleep(100);
 					}
 
 					if (m_Type == CAMERA_FOURTH)
 					{
-						bool bok = 0;
-						emit SendAlgoImage(curImage, m_Type, GrabIndex, bok);
+						emit SendImageToAlgo(curImage, m_Type, GrabIndex);
 						GrabIndex++;
-						Sleep(200);
+						if (ImageCounts == 5)
+						{
+							GrabIndex = 1;
+							ImageCounts = 0;
+						}
+						Sleep(100);
 					}
 				}
 			}
@@ -221,5 +242,13 @@ Mat CImageCapture::Convert2Mat(MV_FRAME_OUT_INFO_EX * pstImageInfo, unsigned cha
 		pDataForRGB = NULL;
 		return srcImage;
 	}
+}
+
+void CImageCapture::ReceiveStartSign()
+{
+	m_Mutex.lock();
+	GrabIndex = 1;
+	m_Mutex.unlock();
+	
 }
 

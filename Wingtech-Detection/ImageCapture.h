@@ -5,6 +5,7 @@
 #include "MvCamera.h"
 #include "opencv2/opencv.hpp"
 #include "qdebug.h"
+#include "PLCManager.h"
 using namespace std;
 using namespace cv;
 
@@ -35,9 +36,9 @@ public:
 	void SetSystemType(s_SystemType SystemType);
 	void SetCameraStatus(bool bOpen);
 	void StopThread();
-    bool SetCameraHandle(CMvCamera &camera, int index);
+    bool SetCameraHandle(CMvCamera &camera, e_CameraType type);
     void SetRunStatus(bool bStart);
-
+	void InitConnections();
 
 
 private:
@@ -46,7 +47,6 @@ private:
 	bool m_bStop;
 	bool m_bOpen;
 	bool m_bStartRun;
-	int m_Index;
 	unsigned char*  m_pGrabBuf;
 	unsigned int nDataSize;
 	e_CameraType m_Type;
@@ -58,7 +58,9 @@ private:
 	Mat Convert2Mat(MV_FRAME_OUT_INFO_EX* pstImageInfo, unsigned char * pData);
 signals:
 	//void SendCameraImage(Mat image, int index);
-	void SendCameraImage(Mat image, int index);
+	void SendCameraImage(Mat image, e_CameraType m_Type);
     void SendAlgoImage(Mat OriginalImage, e_CameraType RenderImage, int index, bool bok);
 	void SendImageToAlgo(Mat OriginalImage, e_CameraType type, int index);
+private slots:
+    void ReceiveStartSign();
 };

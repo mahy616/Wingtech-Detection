@@ -3,7 +3,6 @@
 #include "ImageCapture.h"
 #include "QButtonGroup"
 #include "QFileDialog"
-#include "PLCManager.h"
 #include "AlgoManager.h"
 #include "SaveImage.h"
 #include "QFileDialog"
@@ -63,6 +62,7 @@ public:
 	~CParameterSetting();
 	void StartDetecion(bool bStart);
 	void SaveImage(s_SaveImageInfo ImageInfo);
+	void SaveCameraTestImage(s_SaveImageInfo ImageInfo);
 private:
 	void InitVariables();
 	void InitTableWidget();
@@ -132,11 +132,11 @@ private slots:
 
 	void OnBtnClicked();
 
-	void ReceiveCameraImage(Mat image, int index);
-	void ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Time);
+	void ReceiveCameraImage(Mat image, e_CameraType index);
+	void ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Index);
 signals:
 	void SendAlgoImageToMainWindow( Mat OriginalImage, e_CameraType type,int index, bool bok);
-	void SendOriginalImage(Mat image, int index);
+	void SendOriginalImage(Mat image, int index, e_CameraType type);
 private:
 	Ui::DialogSetting ui;
 	s_CameraInfo m_FirstCameraInfo;

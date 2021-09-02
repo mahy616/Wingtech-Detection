@@ -48,7 +48,6 @@ private:
 	void GetChangeRecipeName(char* str);
 	void GetSaveRecipeName(char* str);
 
-
 private:
 	CPLCManager(QObject *parent = NULL);
 	~CPLCManager();
@@ -67,6 +66,7 @@ private:
 	QString m_HexLastServer; //PLC端IP最后部分的16进制
 	s_CurrentRecipe CurrentRecipe;
 	int fd;
+	int m_ImageCounts;
 private slots:
 	void TcpConnected();
 	void TcpDisConnected();
@@ -77,4 +77,5 @@ signals:
 	void SendPLCMessage(QString msg);
 	void SendChangePLCRecipe(QString msg, int number);
 	void SendSavePLCRecipe(QString msg, int number);
+	void SendStartSign();
 };

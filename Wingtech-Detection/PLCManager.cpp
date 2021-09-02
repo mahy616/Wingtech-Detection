@@ -18,6 +18,7 @@ CPLCManager::CPLCManager(QObject *parent)
 	connect(m_TcpClient, SIGNAL(readyRead()), this, SLOT(ReadPLCData()));
 	connect(&m_Timer, SIGNAL(timeout()), this, SLOT(SlotTimeOuter()));
 	ReadCurrentRecipe();
+	m_ImageCounts = 5;  //测试用，正常应该PLC发送图片个数后，赋值给m_ImageCounts
 }
 
 CPLCManager::~CPLCManager()
@@ -167,6 +168,7 @@ void CPLCManager::WritePLCRead()
 	printf("WritePLCRead\n");
 }
 
+
 void CPLCManager::WritePLCChangeVar()
 {
 	bool ret = false;
@@ -258,18 +260,24 @@ void CPLCManager::ReadPLCData()
 	int length =30;
 	if(ret = mc_read_string(fd, "D320", length, &str_val))//切换配方
 	{
+		if (str_val == "1")
 		GetSaveRecipeName(str_val);
-		return;
 	}
 	if (ret = mc_read_string(fd, "D330", length, &str_val))//保存配方
 	{
+	   if(str_val=="1")
 		GetChangeRecipeName(str_val);
 	}
 	if (1 == (ret = mc_read_short(fd, "D310", &s_val)))
-		return;
+	{
+		if (s_val == 1)
+			emit SendStartSign();
+	}
 	if (1 == (ret = mc_read_short(fd, "D300", &s_val)))
-		return;
-
+	{
+		if (s_val == 1)
+			emit SendStartSign();
+	}
 	printf("Read\t \tshort:\t %d\n", s_val);
 
 
