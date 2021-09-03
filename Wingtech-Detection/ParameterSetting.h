@@ -78,7 +78,7 @@ private:
     int SetExposureTime(CMvCamera &CameraHandle, int index);
     int GetGain(CMvCamera &CameraHandle, int index);  // ch:设置增益 | en:Set Gain
     int SetGain(CMvCamera &CameraHandle, int index);
-
+	void InitThreshold();
 
 	void ShowErrorMsg(QString Message, int nErrorNum) ;
     void getCameraParams(int index);
@@ -129,7 +129,7 @@ private slots:
 	void SendNGToPLC();
 	void SetSystemType(int index);
 	void GetFormula();
-
+	void SetThreshold();
 	void OnBtnClicked();
 
 	void ReceiveCameraImage(Mat image, e_CameraType index);
@@ -137,6 +137,7 @@ private slots:
 signals:
 	void SendAlgoImageToMainWindow( Mat OriginalImage, e_CameraType type,int index, bool bok);
 	void SendOriginalImage(Mat image, int index, e_CameraType type);
+	void SendThreshold(QVector<double>Threshold);
 private:
 	Ui::DialogSetting ui;
 	s_CameraInfo m_FirstCameraInfo;
@@ -173,6 +174,8 @@ private:
 	QVector<QString>vtModelName;
 	QPushButton* pBtn;
 	QList<QPushButton*> btnPushlist;//动态创建按钮的列表
+
+	QVector<double>m_AlgoThreshold;
 
 
 };

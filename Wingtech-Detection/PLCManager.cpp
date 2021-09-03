@@ -75,18 +75,18 @@ void CPLCManager::TcpDisconnect()
 }
 #endif
 
-void CPLCManager::WritePLCData(bool bok)
+void CPLCManager::WritePLCData(QString strResult,bool bok)
 {
 	qDebug() << "WritePLCData:" << bok;
 	if (m_bInitPLCSuccess)
 	{
 		if (bok)
 		{
-			WritePLCOK();
+			WritePLCOK(strResult);
 		}
 		else
 		{
-			WritePLCNG();
+			WritePLCNG(strResult);
 		}
 	}
 	else
@@ -104,10 +104,10 @@ void CPLCManager::WriteInitCommand()
 	fd = mc_connect(ba.data(), m_Port, 0, 0);
 }
 
-void CPLCManager::WritePLCOK()
+void CPLCManager::WritePLCOK(QString strResult)
 {
 	bool ret = false;
-	const char sz_write[] = "01010101";
+	const char sz_write[] = "01010101";//测试用，实际sz_write=strResult
 	int length = sizeof(sz_write) / sizeof(sz_write[0]);
 	ret = mc_write_string(fd, "D200", length, sz_write);
 	printf("Write\t D200 \tstring:\t %s, \tret: %d\n", sz_write, ret);
@@ -139,10 +139,10 @@ void CPLCManager::WritePLCOK()
 	//}
 }
 
-void CPLCManager::WritePLCNG()
+void CPLCManager::WritePLCNG(QString strResult)
 {
 	bool ret = false;
-	const char sz_write[] = "10101010";
+	const char sz_write[] = "10101010";//测试用，实际sz_write=strResult
 	int length = sizeof(sz_write) / sizeof(sz_write[0]);
 	ret = mc_write_string(fd, "D210", length, sz_write);
 	printf("Write\t D210 \tstring:\t %s, \tret: %d\n", sz_write, ret);

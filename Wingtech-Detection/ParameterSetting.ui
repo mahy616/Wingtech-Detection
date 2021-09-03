@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1816</width>
-    <height>1183</height>
+    <width>1716</width>
+    <height>1029</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1058,7 +1058,7 @@ color: rgb(85, 0, 255);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>900</y>
+         <y>620</y>
          <width>471</width>
          <height>151</height>
         </rect>
@@ -1390,15 +1390,22 @@ color: rgb(85, 0, 255);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>320</y>
+         <y>330</y>
          <width>471</width>
-         <height>191</height>
+         <height>281</height>
         </rect>
        </property>
        <property name="title">
         <string>缺陷阈值设置</string>
        </property>
-       <layout class="QGridLayout" name="gridLayout_15">
+       <layout class="QGridLayout" name="gridLayout_16">
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_22">
+          <property name="text">
+           <string>面积阈值</string>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="2">
          <widget class="QLabel" name="label_19">
           <property name="text">
@@ -1406,8 +1413,15 @@ color: rgb(85, 0, 255);</string>
           </property>
          </widget>
         </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_20">
+          <property name="text">
+           <string>压伤</string>
+          </property>
+         </widget>
+        </item>
         <item row="1" column="1">
-         <widget class="QSpinBox" name="spinBox_Area_canjiao_2">
+         <widget class="QSpinBox" name="spinBox_Area_YaShang">
           <property name="suffix">
            <string/>
           </property>
@@ -1426,104 +1440,7 @@ color: rgb(85, 0, 255);</string>
          </widget>
         </item>
         <item row="1" column="2">
-         <widget class="QSpinBox" name="spinBox_Wh_canjiao_2">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="minimum">
-           <number>0</number>
-          </property>
-          <property name="maximum">
-           <number>10000</number>
-          </property>
-          <property name="value">
-           <number>0</number>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QSpinBox" name="spinBox_Area_huashang_2">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="minimum">
-           <number>0</number>
-          </property>
-          <property name="maximum">
-           <number>10000</number>
-          </property>
-          <property name="value">
-           <number>0</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_20">
-          <property name="text">
-           <string>残胶</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QSpinBox" name="spinBox_Wh_huashang_2">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="minimum">
-           <number>0</number>
-          </property>
-          <property name="maximum">
-           <number>10000</number>
-          </property>
-          <property name="value">
-           <number>0</number>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_21">
-          <property name="text">
-           <string>胶压伤</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QSpinBox" name="spinBox_Area_yajiaoshang_2">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="minimum">
-           <number>0</number>
-          </property>
-          <property name="maximum">
-           <number>10000</number>
-          </property>
-          <property name="value">
-           <number>0</number>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLabel" name="label_22">
-          <property name="text">
-           <string>面积阈值</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QSpinBox" name="spinBox_Area_zangwu_2">
+         <widget class="QSpinBox" name="spinBox_Wh_YaShang">
           <property name="suffix">
            <string/>
           </property>
@@ -1544,19 +1461,102 @@ color: rgb(85, 0, 255);</string>
         <item row="2" column="0">
          <widget class="QLabel" name="label_23">
           <property name="text">
+           <string>碰伤</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QSpinBox" name="spinBox_Area_PengShang">
+          <property name="suffix">
+           <string/>
+          </property>
+          <property name="prefix">
+           <string/>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>10000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QSpinBox" name="spinBox_Wh_PengShang">
+          <property name="suffix">
+           <string/>
+          </property>
+          <property name="prefix">
+           <string/>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>10000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_21">
+          <property name="text">
            <string>划伤</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QSpinBox" name="spinBox_Area_HuaShang">
+          <property name="suffix">
+           <string/>
+          </property>
+          <property name="prefix">
+           <string/>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>10000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QSpinBox" name="spinBox_Wh_HuaShang">
+          <property name="suffix">
+           <string/>
+          </property>
+          <property name="prefix">
+           <string/>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>10000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
           </property>
          </widget>
         </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_24">
           <property name="text">
-           <string>脏污</string>
+           <string>擦伤</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="2">
-         <widget class="QSpinBox" name="spinBox_Wh_yajiaoshang_2">
+        <item row="4" column="1">
+         <widget class="QSpinBox" name="spinBox_Area_CaShang">
           <property name="suffix">
            <string/>
           </property>
@@ -1575,7 +1575,52 @@ color: rgb(85, 0, 255);</string>
          </widget>
         </item>
         <item row="4" column="2">
-         <widget class="QSpinBox" name="spinBox_Wh_zangwu_2">
+         <widget class="QSpinBox" name="spinBox_Wh_CaShang">
+          <property name="suffix">
+           <string/>
+          </property>
+          <property name="prefix">
+           <string/>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>10000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_41">
+          <property name="text">
+           <string>铁粉</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QSpinBox" name="spinBox_Area_TieFen">
+          <property name="suffix">
+           <string/>
+          </property>
+          <property name="prefix">
+           <string/>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>10000</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2">
+         <widget class="QSpinBox" name="spinBox_Wh_TieFen">
           <property name="suffix">
            <string/>
           </property>
@@ -1651,7 +1696,7 @@ color: rgb(85, 0, 255);</string>
    <slot>ShowFristRender(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>973</x>
+     <x>940</x>
      <y>94</y>
     </hint>
     <hint type="destinationlabel">
@@ -1683,8 +1728,8 @@ color: rgb(85, 0, 255);</string>
    <slot>CopyRegisterCode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>120</x>
-     <y>972</y>
+     <x>481</x>
+     <y>730</y>
     </hint>
     <hint type="destinationlabel">
      <x>519</x>
@@ -1699,8 +1744,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SoftwareRegister()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>120</x>
-     <y>972</y>
+     <x>481</x>
+     <y>769</y>
     </hint>
     <hint type="destinationlabel">
      <x>403</x>
@@ -1715,8 +1760,8 @@ color: rgb(85, 0, 255);</string>
    <slot>LoadFirstImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>130</x>
-     <y>92</y>
+     <x>151</x>
+     <y>175</y>
     </hint>
     <hint type="destinationlabel">
      <x>769</x>
@@ -1731,8 +1776,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SetSystemType(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>130</x>
-     <y>92</y>
+     <x>298</x>
+     <y>132</y>
     </hint>
     <hint type="destinationlabel">
      <x>777</x>
@@ -1748,7 +1793,7 @@ color: rgb(85, 0, 255);</string>
    <hints>
     <hint type="sourcelabel">
      <x>485</x>
-     <y>305</y>
+     <y>275</y>
     </hint>
     <hint type="destinationlabel">
      <x>429</x>
@@ -1764,7 +1809,7 @@ color: rgb(85, 0, 255);</string>
    <hints>
     <hint type="sourcelabel">
      <x>485</x>
-     <y>125</y>
+     <y>119</y>
     </hint>
     <hint type="destinationlabel">
      <x>769</x>
@@ -1780,7 +1825,7 @@ color: rgb(85, 0, 255);</string>
    <hints>
     <hint type="sourcelabel">
      <x>485</x>
-     <y>404</y>
+     <y>359</y>
     </hint>
     <hint type="destinationlabel">
      <x>829</x>
@@ -1796,7 +1841,7 @@ color: rgb(85, 0, 255);</string>
    <hints>
     <hint type="sourcelabel">
      <x>485</x>
-     <y>683</y>
+     <y>600</y>
     </hint>
     <hint type="destinationlabel">
      <x>633</x>
@@ -1812,7 +1857,7 @@ color: rgb(85, 0, 255);</string>
    <hints>
     <hint type="sourcelabel">
      <x>485</x>
-     <y>961</y>
+     <y>840</y>
     </hint>
     <hint type="destinationlabel">
      <x>634</x>
@@ -1828,7 +1873,7 @@ color: rgb(85, 0, 255);</string>
    <hints>
     <hint type="sourcelabel">
      <x>485</x>
-     <y>584</y>
+     <y>515</y>
     </hint>
     <hint type="destinationlabel">
      <x>649</x>
@@ -1844,7 +1889,7 @@ color: rgb(85, 0, 255);</string>
    <hints>
     <hint type="sourcelabel">
      <x>485</x>
-     <y>863</y>
+     <y>756</y>
     </hint>
     <hint type="destinationlabel">
      <x>648</x>
@@ -1860,7 +1905,7 @@ color: rgb(85, 0, 255);</string>
    <hints>
     <hint type="sourcelabel">
      <x>485</x>
-     <y>1141</y>
+     <y>996</y>
     </hint>
     <hint type="destinationlabel">
      <x>647</x>
@@ -1876,7 +1921,7 @@ color: rgb(85, 0, 255);</string>
    <hints>
     <hint type="sourcelabel">
      <x>485</x>
-     <y>215</y>
+     <y>197</y>
     </hint>
     <hint type="destinationlabel">
      <x>649</x>
@@ -1892,7 +1937,7 @@ color: rgb(85, 0, 255);</string>
    <hints>
     <hint type="sourcelabel">
      <x>485</x>
-     <y>260</y>
+     <y>236</y>
     </hint>
     <hint type="destinationlabel">
      <x>648</x>
@@ -1907,8 +1952,8 @@ color: rgb(85, 0, 255);</string>
    <slot>LoadSecondImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>130</x>
-     <y>92</y>
+     <x>451</x>
+     <y>175</y>
     </hint>
     <hint type="destinationlabel">
      <x>649</x>
@@ -1923,8 +1968,8 @@ color: rgb(85, 0, 255);</string>
    <slot>LoadThirdImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>107</x>
-     <y>92</y>
+     <x>128</x>
+     <y>218</y>
     </hint>
     <hint type="destinationlabel">
      <x>6</x>
@@ -1939,8 +1984,8 @@ color: rgb(85, 0, 255);</string>
    <slot>LoadFourthImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>130</x>
-     <y>92</y>
+     <x>451</x>
+     <y>218</y>
     </hint>
     <hint type="destinationlabel">
      <x>647</x>
@@ -1955,8 +2000,8 @@ color: rgb(85, 0, 255);</string>
    <slot>ChooseSecondNgPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>437</x>
-     <y>474</y>
+     <x>485</x>
+     <y>437</y>
     </hint>
     <hint type="destinationlabel">
      <x>514</x>
@@ -1971,8 +2016,8 @@ color: rgb(85, 0, 255);</string>
    <slot>ChooseSecondOkPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>460</x>
-     <y>528</y>
+     <x>485</x>
+     <y>476</y>
     </hint>
     <hint type="destinationlabel">
      <x>510</x>
@@ -1987,8 +2032,8 @@ color: rgb(85, 0, 255);</string>
    <slot>ChooseThirdNgPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>469</x>
-     <y>756</y>
+     <x>485</x>
+     <y>678</y>
     </hint>
     <hint type="destinationlabel">
      <x>513</x>
@@ -2003,8 +2048,8 @@ color: rgb(85, 0, 255);</string>
    <slot>ChooseThirdOkPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>474</x>
-     <y>804</y>
+     <x>485</x>
+     <y>717</y>
     </hint>
     <hint type="destinationlabel">
      <x>512</x>
@@ -2019,8 +2064,8 @@ color: rgb(85, 0, 255);</string>
    <slot>ChooseFourthNgPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>456</x>
-     <y>1040</y>
+     <x>485</x>
+     <y>918</y>
     </hint>
     <hint type="destinationlabel">
      <x>513</x>
@@ -2035,8 +2080,8 @@ color: rgb(85, 0, 255);</string>
    <slot>ChooseFourthOkPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>468</x>
-     <y>1080</y>
+     <x>485</x>
+     <y>957</y>
     </hint>
     <hint type="destinationlabel">
      <x>510</x>
@@ -2051,8 +2096,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SaveConfig()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>449</x>
-     <y>290</y>
+     <x>485</x>
+     <y>275</y>
     </hint>
     <hint type="destinationlabel">
      <x>510</x>
@@ -2067,8 +2112,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SaveConfig()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>470</x>
-     <y>569</y>
+     <x>485</x>
+     <y>515</y>
     </hint>
     <hint type="destinationlabel">
      <x>513</x>
@@ -2083,8 +2128,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SaveConfig()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>469</x>
-     <y>861</y>
+     <x>485</x>
+     <y>756</y>
     </hint>
     <hint type="destinationlabel">
      <x>514</x>
@@ -2099,12 +2144,172 @@ color: rgb(85, 0, 255);</string>
    <slot>SaveConfig()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>484</x>
-     <y>1114</y>
+     <x>485</x>
+     <y>996</y>
     </hint>
     <hint type="destinationlabel">
      <x>513</x>
      <y>1140</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_Area_YaShang</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SetThreshold()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>242</x>
+     <y>489</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>857</x>
+     <y>514</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_Area_PengShang</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SetThreshold()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>187</x>
+     <y>517</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>857</x>
+     <y>514</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_Area_HuaShang</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SetThreshold()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>183</x>
+     <y>555</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>857</x>
+     <y>514</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_Area_CaShang</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SetThreshold()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>194</x>
+     <y>596</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>857</x>
+     <y>514</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_Area_TieFen</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SetThreshold()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>193</x>
+     <y>629</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>857</x>
+     <y>514</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_Wh_YaShang</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SetThreshold()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>382</x>
+     <y>479</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>857</x>
+     <y>514</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_Wh_PengShang</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SetThreshold()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>424</x>
+     <y>523</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>857</x>
+     <y>514</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_Wh_HuaShang</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SetThreshold()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>444</x>
+     <y>559</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>857</x>
+     <y>514</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_Wh_CaShang</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SetThreshold()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>353</x>
+     <y>599</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>857</x>
+     <y>514</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_Wh_TieFen</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SetThreshold()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>370</x>
+     <y>629</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>857</x>
+     <y>514</y>
     </hint>
    </hints>
   </connection>
@@ -2129,7 +2334,7 @@ color: rgb(85, 0, 255);</string>
   <slot>LoadSecondImage()</slot>
   <slot>CopyRegisterCode()</slot>
   <slot>SoftwareRegister()</slot>
-  <slot>SetFirstThreshold()</slot>
+  <slot>SetThreshold()</slot>
   <slot>SetSecondThreshold()</slot>
   <slot>SetDegreeThreshold()</slot>
   <slot>SaveCameraParams1()</slot>

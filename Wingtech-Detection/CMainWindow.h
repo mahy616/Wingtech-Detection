@@ -69,6 +69,7 @@ private:
 	void InitVariables();
 	void InitStatusBar();
 	void InitConnections();
+	void SendPLCResult(QString strResult,bool bok);
 	QImage MattoQImage(Mat image);
 	void ProcessDetectionResult();
 	void AddLog(QString log);

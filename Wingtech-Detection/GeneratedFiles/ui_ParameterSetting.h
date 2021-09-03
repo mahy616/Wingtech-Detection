@@ -170,21 +170,24 @@ public:
     QLabel *label_Status;
     QPushButton *pushButton_ConnectPLC;
     QGroupBox *groupBox_3;
-    QGridLayout *gridLayout_15;
-    QLabel *label_19;
-    QSpinBox *spinBox_Area_canjiao_2;
-    QSpinBox *spinBox_Wh_canjiao_2;
-    QSpinBox *spinBox_Area_huashang_2;
-    QLabel *label_20;
-    QSpinBox *spinBox_Wh_huashang_2;
-    QLabel *label_21;
-    QSpinBox *spinBox_Area_yajiaoshang_2;
+    QGridLayout *gridLayout_16;
     QLabel *label_22;
-    QSpinBox *spinBox_Area_zangwu_2;
+    QLabel *label_19;
+    QLabel *label_20;
+    QSpinBox *spinBox_Area_YaShang;
+    QSpinBox *spinBox_Wh_YaShang;
     QLabel *label_23;
+    QSpinBox *spinBox_Area_PengShang;
+    QSpinBox *spinBox_Wh_PengShang;
+    QLabel *label_21;
+    QSpinBox *spinBox_Area_HuaShang;
+    QSpinBox *spinBox_Wh_HuaShang;
     QLabel *label_24;
-    QSpinBox *spinBox_Wh_yajiaoshang_2;
-    QSpinBox *spinBox_Wh_zangwu_2;
+    QSpinBox *spinBox_Area_CaShang;
+    QSpinBox *spinBox_Wh_CaShang;
+    QLabel *label_41;
+    QSpinBox *spinBox_Area_TieFen;
+    QSpinBox *spinBox_Wh_TieFen;
     QWidget *tab_3;
     QComboBox *comboBox_Formula;
     QPushButton *pushButton_3;
@@ -193,7 +196,7 @@ public:
     {
         if (DialogSetting->objectName().isEmpty())
             DialogSetting->setObjectName(QString::fromUtf8("DialogSetting"));
-        DialogSetting->resize(1816, 1183);
+        DialogSetting->resize(1716, 1029);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/CMainWindow/Resources/settings.png"), QSize(), QIcon::Normal, QIcon::Off);
         DialogSetting->setWindowIcon(icon);
@@ -790,7 +793,7 @@ public:
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
         groupBox_7 = new QGroupBox(tab_2);
         groupBox_7->setObjectName(QString::fromUtf8("groupBox_7"));
-        groupBox_7->setGeometry(QRect(10, 900, 471, 151));
+        groupBox_7->setGeometry(QRect(10, 620, 471, 151));
         gridLayout_8 = new QGridLayout(groupBox_7);
         gridLayout_8->setObjectName(QString::fromUtf8("gridLayout_8"));
         label_2 = new QLabel(groupBox_7);
@@ -947,102 +950,123 @@ public:
 
         groupBox_3 = new QGroupBox(tab_2);
         groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
-        groupBox_3->setGeometry(QRect(10, 320, 471, 191));
-        gridLayout_15 = new QGridLayout(groupBox_3);
-        gridLayout_15->setObjectName(QString::fromUtf8("gridLayout_15"));
+        groupBox_3->setGeometry(QRect(10, 330, 471, 281));
+        gridLayout_16 = new QGridLayout(groupBox_3);
+        gridLayout_16->setObjectName(QString::fromUtf8("gridLayout_16"));
+        label_22 = new QLabel(groupBox_3);
+        label_22->setObjectName(QString::fromUtf8("label_22"));
+
+        gridLayout_16->addWidget(label_22, 0, 1, 1, 1);
+
         label_19 = new QLabel(groupBox_3);
         label_19->setObjectName(QString::fromUtf8("label_19"));
 
-        gridLayout_15->addWidget(label_19, 0, 2, 1, 1);
-
-        spinBox_Area_canjiao_2 = new QSpinBox(groupBox_3);
-        spinBox_Area_canjiao_2->setObjectName(QString::fromUtf8("spinBox_Area_canjiao_2"));
-        spinBox_Area_canjiao_2->setMinimum(0);
-        spinBox_Area_canjiao_2->setMaximum(10000);
-        spinBox_Area_canjiao_2->setValue(0);
-
-        gridLayout_15->addWidget(spinBox_Area_canjiao_2, 1, 1, 1, 1);
-
-        spinBox_Wh_canjiao_2 = new QSpinBox(groupBox_3);
-        spinBox_Wh_canjiao_2->setObjectName(QString::fromUtf8("spinBox_Wh_canjiao_2"));
-        spinBox_Wh_canjiao_2->setMinimum(0);
-        spinBox_Wh_canjiao_2->setMaximum(10000);
-        spinBox_Wh_canjiao_2->setValue(0);
-
-        gridLayout_15->addWidget(spinBox_Wh_canjiao_2, 1, 2, 1, 1);
-
-        spinBox_Area_huashang_2 = new QSpinBox(groupBox_3);
-        spinBox_Area_huashang_2->setObjectName(QString::fromUtf8("spinBox_Area_huashang_2"));
-        spinBox_Area_huashang_2->setMinimum(0);
-        spinBox_Area_huashang_2->setMaximum(10000);
-        spinBox_Area_huashang_2->setValue(0);
-
-        gridLayout_15->addWidget(spinBox_Area_huashang_2, 2, 1, 1, 1);
+        gridLayout_16->addWidget(label_19, 0, 2, 1, 1);
 
         label_20 = new QLabel(groupBox_3);
         label_20->setObjectName(QString::fromUtf8("label_20"));
 
-        gridLayout_15->addWidget(label_20, 1, 0, 1, 1);
+        gridLayout_16->addWidget(label_20, 1, 0, 1, 1);
 
-        spinBox_Wh_huashang_2 = new QSpinBox(groupBox_3);
-        spinBox_Wh_huashang_2->setObjectName(QString::fromUtf8("spinBox_Wh_huashang_2"));
-        spinBox_Wh_huashang_2->setMinimum(0);
-        spinBox_Wh_huashang_2->setMaximum(10000);
-        spinBox_Wh_huashang_2->setValue(0);
+        spinBox_Area_YaShang = new QSpinBox(groupBox_3);
+        spinBox_Area_YaShang->setObjectName(QString::fromUtf8("spinBox_Area_YaShang"));
+        spinBox_Area_YaShang->setMinimum(0);
+        spinBox_Area_YaShang->setMaximum(10000);
+        spinBox_Area_YaShang->setValue(0);
 
-        gridLayout_15->addWidget(spinBox_Wh_huashang_2, 2, 2, 1, 1);
+        gridLayout_16->addWidget(spinBox_Area_YaShang, 1, 1, 1, 1);
 
-        label_21 = new QLabel(groupBox_3);
-        label_21->setObjectName(QString::fromUtf8("label_21"));
+        spinBox_Wh_YaShang = new QSpinBox(groupBox_3);
+        spinBox_Wh_YaShang->setObjectName(QString::fromUtf8("spinBox_Wh_YaShang"));
+        spinBox_Wh_YaShang->setMinimum(0);
+        spinBox_Wh_YaShang->setMaximum(10000);
+        spinBox_Wh_YaShang->setValue(0);
 
-        gridLayout_15->addWidget(label_21, 3, 0, 1, 1);
-
-        spinBox_Area_yajiaoshang_2 = new QSpinBox(groupBox_3);
-        spinBox_Area_yajiaoshang_2->setObjectName(QString::fromUtf8("spinBox_Area_yajiaoshang_2"));
-        spinBox_Area_yajiaoshang_2->setMinimum(0);
-        spinBox_Area_yajiaoshang_2->setMaximum(10000);
-        spinBox_Area_yajiaoshang_2->setValue(0);
-
-        gridLayout_15->addWidget(spinBox_Area_yajiaoshang_2, 3, 1, 1, 1);
-
-        label_22 = new QLabel(groupBox_3);
-        label_22->setObjectName(QString::fromUtf8("label_22"));
-
-        gridLayout_15->addWidget(label_22, 0, 1, 1, 1);
-
-        spinBox_Area_zangwu_2 = new QSpinBox(groupBox_3);
-        spinBox_Area_zangwu_2->setObjectName(QString::fromUtf8("spinBox_Area_zangwu_2"));
-        spinBox_Area_zangwu_2->setMinimum(0);
-        spinBox_Area_zangwu_2->setMaximum(10000);
-        spinBox_Area_zangwu_2->setValue(0);
-
-        gridLayout_15->addWidget(spinBox_Area_zangwu_2, 4, 1, 1, 1);
+        gridLayout_16->addWidget(spinBox_Wh_YaShang, 1, 2, 1, 1);
 
         label_23 = new QLabel(groupBox_3);
         label_23->setObjectName(QString::fromUtf8("label_23"));
 
-        gridLayout_15->addWidget(label_23, 2, 0, 1, 1);
+        gridLayout_16->addWidget(label_23, 2, 0, 1, 1);
+
+        spinBox_Area_PengShang = new QSpinBox(groupBox_3);
+        spinBox_Area_PengShang->setObjectName(QString::fromUtf8("spinBox_Area_PengShang"));
+        spinBox_Area_PengShang->setMinimum(0);
+        spinBox_Area_PengShang->setMaximum(10000);
+        spinBox_Area_PengShang->setValue(0);
+
+        gridLayout_16->addWidget(spinBox_Area_PengShang, 2, 1, 1, 1);
+
+        spinBox_Wh_PengShang = new QSpinBox(groupBox_3);
+        spinBox_Wh_PengShang->setObjectName(QString::fromUtf8("spinBox_Wh_PengShang"));
+        spinBox_Wh_PengShang->setMinimum(0);
+        spinBox_Wh_PengShang->setMaximum(10000);
+        spinBox_Wh_PengShang->setValue(0);
+
+        gridLayout_16->addWidget(spinBox_Wh_PengShang, 2, 2, 1, 1);
+
+        label_21 = new QLabel(groupBox_3);
+        label_21->setObjectName(QString::fromUtf8("label_21"));
+
+        gridLayout_16->addWidget(label_21, 3, 0, 1, 1);
+
+        spinBox_Area_HuaShang = new QSpinBox(groupBox_3);
+        spinBox_Area_HuaShang->setObjectName(QString::fromUtf8("spinBox_Area_HuaShang"));
+        spinBox_Area_HuaShang->setMinimum(0);
+        spinBox_Area_HuaShang->setMaximum(10000);
+        spinBox_Area_HuaShang->setValue(0);
+
+        gridLayout_16->addWidget(spinBox_Area_HuaShang, 3, 1, 1, 1);
+
+        spinBox_Wh_HuaShang = new QSpinBox(groupBox_3);
+        spinBox_Wh_HuaShang->setObjectName(QString::fromUtf8("spinBox_Wh_HuaShang"));
+        spinBox_Wh_HuaShang->setMinimum(0);
+        spinBox_Wh_HuaShang->setMaximum(10000);
+        spinBox_Wh_HuaShang->setValue(0);
+
+        gridLayout_16->addWidget(spinBox_Wh_HuaShang, 3, 2, 1, 1);
 
         label_24 = new QLabel(groupBox_3);
         label_24->setObjectName(QString::fromUtf8("label_24"));
 
-        gridLayout_15->addWidget(label_24, 4, 0, 1, 1);
+        gridLayout_16->addWidget(label_24, 4, 0, 1, 1);
 
-        spinBox_Wh_yajiaoshang_2 = new QSpinBox(groupBox_3);
-        spinBox_Wh_yajiaoshang_2->setObjectName(QString::fromUtf8("spinBox_Wh_yajiaoshang_2"));
-        spinBox_Wh_yajiaoshang_2->setMinimum(0);
-        spinBox_Wh_yajiaoshang_2->setMaximum(10000);
-        spinBox_Wh_yajiaoshang_2->setValue(0);
+        spinBox_Area_CaShang = new QSpinBox(groupBox_3);
+        spinBox_Area_CaShang->setObjectName(QString::fromUtf8("spinBox_Area_CaShang"));
+        spinBox_Area_CaShang->setMinimum(0);
+        spinBox_Area_CaShang->setMaximum(10000);
+        spinBox_Area_CaShang->setValue(0);
 
-        gridLayout_15->addWidget(spinBox_Wh_yajiaoshang_2, 3, 2, 1, 1);
+        gridLayout_16->addWidget(spinBox_Area_CaShang, 4, 1, 1, 1);
 
-        spinBox_Wh_zangwu_2 = new QSpinBox(groupBox_3);
-        spinBox_Wh_zangwu_2->setObjectName(QString::fromUtf8("spinBox_Wh_zangwu_2"));
-        spinBox_Wh_zangwu_2->setMinimum(0);
-        spinBox_Wh_zangwu_2->setMaximum(10000);
-        spinBox_Wh_zangwu_2->setValue(0);
+        spinBox_Wh_CaShang = new QSpinBox(groupBox_3);
+        spinBox_Wh_CaShang->setObjectName(QString::fromUtf8("spinBox_Wh_CaShang"));
+        spinBox_Wh_CaShang->setMinimum(0);
+        spinBox_Wh_CaShang->setMaximum(10000);
+        spinBox_Wh_CaShang->setValue(0);
 
-        gridLayout_15->addWidget(spinBox_Wh_zangwu_2, 4, 2, 1, 1);
+        gridLayout_16->addWidget(spinBox_Wh_CaShang, 4, 2, 1, 1);
+
+        label_41 = new QLabel(groupBox_3);
+        label_41->setObjectName(QString::fromUtf8("label_41"));
+
+        gridLayout_16->addWidget(label_41, 5, 0, 1, 1);
+
+        spinBox_Area_TieFen = new QSpinBox(groupBox_3);
+        spinBox_Area_TieFen->setObjectName(QString::fromUtf8("spinBox_Area_TieFen"));
+        spinBox_Area_TieFen->setMinimum(0);
+        spinBox_Area_TieFen->setMaximum(10000);
+        spinBox_Area_TieFen->setValue(0);
+
+        gridLayout_16->addWidget(spinBox_Area_TieFen, 5, 1, 1, 1);
+
+        spinBox_Wh_TieFen = new QSpinBox(groupBox_3);
+        spinBox_Wh_TieFen->setObjectName(QString::fromUtf8("spinBox_Wh_TieFen"));
+        spinBox_Wh_TieFen->setMinimum(0);
+        spinBox_Wh_TieFen->setMaximum(10000);
+        spinBox_Wh_TieFen->setValue(0);
+
+        gridLayout_16->addWidget(spinBox_Wh_TieFen, 5, 2, 1, 1);
 
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
@@ -1088,6 +1112,16 @@ public:
         QObject::connect(pushButton_SaveParams_Second, SIGNAL(clicked()), DialogSetting, SLOT(SaveConfig()));
         QObject::connect(pushButton_SaveParams_Third, SIGNAL(clicked()), DialogSetting, SLOT(SaveConfig()));
         QObject::connect(pushButton_SaveParams_Fourth, SIGNAL(clicked()), DialogSetting, SLOT(SaveConfig()));
+        QObject::connect(spinBox_Area_YaShang, SIGNAL(valueChanged(int)), DialogSetting, SLOT(SetThreshold()));
+        QObject::connect(spinBox_Area_PengShang, SIGNAL(valueChanged(int)), DialogSetting, SLOT(SetThreshold()));
+        QObject::connect(spinBox_Area_HuaShang, SIGNAL(valueChanged(int)), DialogSetting, SLOT(SetThreshold()));
+        QObject::connect(spinBox_Area_CaShang, SIGNAL(valueChanged(int)), DialogSetting, SLOT(SetThreshold()));
+        QObject::connect(spinBox_Area_TieFen, SIGNAL(valueChanged(int)), DialogSetting, SLOT(SetThreshold()));
+        QObject::connect(spinBox_Wh_YaShang, SIGNAL(valueChanged(int)), DialogSetting, SLOT(SetThreshold()));
+        QObject::connect(spinBox_Wh_PengShang, SIGNAL(valueChanged(int)), DialogSetting, SLOT(SetThreshold()));
+        QObject::connect(spinBox_Wh_HuaShang, SIGNAL(valueChanged(int)), DialogSetting, SLOT(SetThreshold()));
+        QObject::connect(spinBox_Wh_CaShang, SIGNAL(valueChanged(int)), DialogSetting, SLOT(SetThreshold()));
+        QObject::connect(spinBox_Wh_TieFen, SIGNAL(valueChanged(int)), DialogSetting, SLOT(SetThreshold()));
 
         tabWidget->setCurrentIndex(1);
 
@@ -1205,28 +1239,33 @@ public:
         label_Status->setText(QString());
         pushButton_ConnectPLC->setText(QCoreApplication::translate("DialogSetting", "\350\277\236\346\216\245PLC", nullptr));
         groupBox_3->setTitle(QCoreApplication::translate("DialogSetting", "\347\274\272\351\231\267\351\230\210\345\200\274\350\256\276\347\275\256", nullptr));
-        label_19->setText(QCoreApplication::translate("DialogSetting", "\351\225\277\345\272\246\351\230\210\345\200\274", nullptr));
-        spinBox_Area_canjiao_2->setSuffix(QString());
-        spinBox_Area_canjiao_2->setPrefix(QString());
-        spinBox_Wh_canjiao_2->setSuffix(QString());
-        spinBox_Wh_canjiao_2->setPrefix(QString());
-        spinBox_Area_huashang_2->setSuffix(QString());
-        spinBox_Area_huashang_2->setPrefix(QString());
-        label_20->setText(QCoreApplication::translate("DialogSetting", "\346\256\213\350\203\266", nullptr));
-        spinBox_Wh_huashang_2->setSuffix(QString());
-        spinBox_Wh_huashang_2->setPrefix(QString());
-        label_21->setText(QCoreApplication::translate("DialogSetting", "\350\203\266\345\216\213\344\274\244", nullptr));
-        spinBox_Area_yajiaoshang_2->setSuffix(QString());
-        spinBox_Area_yajiaoshang_2->setPrefix(QString());
         label_22->setText(QCoreApplication::translate("DialogSetting", "\351\235\242\347\247\257\351\230\210\345\200\274", nullptr));
-        spinBox_Area_zangwu_2->setSuffix(QString());
-        spinBox_Area_zangwu_2->setPrefix(QString());
-        label_23->setText(QCoreApplication::translate("DialogSetting", "\345\210\222\344\274\244", nullptr));
-        label_24->setText(QCoreApplication::translate("DialogSetting", "\350\204\217\346\261\241", nullptr));
-        spinBox_Wh_yajiaoshang_2->setSuffix(QString());
-        spinBox_Wh_yajiaoshang_2->setPrefix(QString());
-        spinBox_Wh_zangwu_2->setSuffix(QString());
-        spinBox_Wh_zangwu_2->setPrefix(QString());
+        label_19->setText(QCoreApplication::translate("DialogSetting", "\351\225\277\345\272\246\351\230\210\345\200\274", nullptr));
+        label_20->setText(QCoreApplication::translate("DialogSetting", "\345\216\213\344\274\244", nullptr));
+        spinBox_Area_YaShang->setSuffix(QString());
+        spinBox_Area_YaShang->setPrefix(QString());
+        spinBox_Wh_YaShang->setSuffix(QString());
+        spinBox_Wh_YaShang->setPrefix(QString());
+        label_23->setText(QCoreApplication::translate("DialogSetting", "\347\242\260\344\274\244", nullptr));
+        spinBox_Area_PengShang->setSuffix(QString());
+        spinBox_Area_PengShang->setPrefix(QString());
+        spinBox_Wh_PengShang->setSuffix(QString());
+        spinBox_Wh_PengShang->setPrefix(QString());
+        label_21->setText(QCoreApplication::translate("DialogSetting", "\345\210\222\344\274\244", nullptr));
+        spinBox_Area_HuaShang->setSuffix(QString());
+        spinBox_Area_HuaShang->setPrefix(QString());
+        spinBox_Wh_HuaShang->setSuffix(QString());
+        spinBox_Wh_HuaShang->setPrefix(QString());
+        label_24->setText(QCoreApplication::translate("DialogSetting", "\346\223\246\344\274\244", nullptr));
+        spinBox_Area_CaShang->setSuffix(QString());
+        spinBox_Area_CaShang->setPrefix(QString());
+        spinBox_Wh_CaShang->setSuffix(QString());
+        spinBox_Wh_CaShang->setPrefix(QString());
+        label_41->setText(QCoreApplication::translate("DialogSetting", "\351\223\201\347\262\211", nullptr));
+        spinBox_Area_TieFen->setSuffix(QString());
+        spinBox_Area_TieFen->setPrefix(QString());
+        spinBox_Wh_TieFen->setSuffix(QString());
+        spinBox_Wh_TieFen->setPrefix(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("DialogSetting", "\350\277\220\350\241\214\345\217\202\346\225\260", nullptr));
         pushButton_3->setText(QCoreApplication::translate("DialogSetting", "\351\200\211\346\213\251\351\205\215\346\226\271", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("DialogSetting", "\351\205\215\346\226\271\350\256\276\347\275\256", nullptr));

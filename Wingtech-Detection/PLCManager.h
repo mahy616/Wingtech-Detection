@@ -33,13 +33,13 @@ public:
 	//	void TcpDisconnect();
 	bool GetConnectStatus() { return m_bConnected; }
 	bool GetPLCInitStatus() { return m_bInitPLCSuccess; }
-	void WritePLCData(bool bok);
+	void WritePLCData(QString strResult, bool bok);
 	void WritePLCRead();
 private:
 	//PLCÐ´²Ù×÷
 	void WriteInitCommand();
-	void WritePLCOK();
-	void WritePLCNG();
+	void WritePLCOK(QString strResult);
+	void WritePLCNG(QString strResult);
 	void WritePLCHeartbeat();
 	void WritePLCChangeVar();
 	

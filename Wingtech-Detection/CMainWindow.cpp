@@ -378,12 +378,24 @@ void CMainWindow::InitConnections()
     qRegisterMetaType<Mat>("Mat");
     qRegisterMetaType<e_CameraType>("e_CameraType");
 	qRegisterMetaType<s_ImageInfo>("s_ImageInfo");
+	qRegisterMetaType<QVector<double>>("QVector<double>");
     connect(m_Parameter, SIGNAL(SendOriginalImage(Mat, int, e_CameraType)), m_RecipeManager, SLOT(ReceivaOriginalImage(Mat, int, e_CameraType)));
+	connect(m_Parameter, SIGNAL(SendThreshold(QVector<double>)), m_RecipeManager, SLOT(ReceiveAlgoThreshold(QVector<double>)));
 	connect(m_RecipeManager, SIGNAL(SendInitImageNumber(int)), this, SLOT(ReceiveInitImageNumber(int)));
 	connect(m_RecipeManager, SIGNAL(SendAlgoImage(Mat, Mat, int , bool , e_CameraType )), this, SLOT(ReceiveAlgoImage(Mat, Mat, int, bool, e_CameraType)));
 	connect(m_RecipeManager, SIGNAL(SendStartSign()), this, SLOT(ReceiveStartSign()));
 
 
+
+}
+
+void CMainWindow::SendPLCResult(QString strResult,bool bok)
+{
+	qDebug() << "CParameterSetting:" << strResult;
+	if (CPLCManager::GetInstance()->GetConnectStatus())
+	{
+		CPLCManager::GetInstance()->WritePLCData(strResult,bok);
+	}
 
 }
 
@@ -688,7 +700,6 @@ void CMainWindow::ProcessDetectionResult()
 			Msg = Msg + "10";
 		}
     }
-    bool rv = true;
     if (bok)
     {
         m_TotalResult->setStyleSheet("color: rgb(0, 170, 0);background-color: rgb(255, 255, 150);");
@@ -702,13 +713,9 @@ void CMainWindow::ProcessDetectionResult()
         m_Statistics->SetFailed();
     }
     // TODO PLC发送信号
-    if (!rv)
-    {
-        AddLog(QString::fromLocal8Bit("发送结果失败:") + Msg);
-    }
-    else
-    {
-        AddLog(QString::fromLocal8Bit("发送结果:") + QString::number(bok));
-    }
+	SendPLCResult(Msg, bok);
+	//AddLog(QString::fromLocal8Bit("发送结果失败:") + Msg);
+	AddLog(QString::fromLocal8Bit("发送结果:") + QString::number(bok));
+
 }
 

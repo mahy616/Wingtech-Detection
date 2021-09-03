@@ -27,6 +27,7 @@ public:
 	void StopAlgo();
 	void InitConnections();
 	static CAlgoManager* GetAlgoManager();
+	void SetAlgoThreshold(QVector<double>AlgoThreshold);
 private:
 	QQueue<s_ImageInfo> m_ImageInfos;
 	bool m_bStop;
@@ -34,6 +35,7 @@ private:
 	static CAlgoManager* m_Algo;
 	smartmore::VimoDetectionModule module;
 	int m_Index;
+	QVector<double>m_AlgoThreshold;
 private:
 	void run();
 signals:
