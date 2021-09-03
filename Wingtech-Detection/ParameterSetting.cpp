@@ -1024,7 +1024,7 @@ void CParameterSetting::SaveConfig()
 	{
 		cfg->Write(DATA_SECTION, OK_PATH_FOURTH, OKPath4);
 	}
-
+	//PLC
 	bool bconnected = CPLCManager::GetInstance()->GetConnectStatus();
 	cfg->Write(COMMUNICATION_SECTOIN, COM_STATUS, bconnected);
 	if (bconnected)
@@ -1034,10 +1034,12 @@ void CParameterSetting::SaveConfig()
 		cfg->Write(COMMUNICATION_SECTOIN, IP, Ip);
 		cfg->Write(COMMUNICATION_SECTOIN, HEARTBEAT, heartbeat);
 	}
-
+	//TODO:工位的阈值操作
 	delete cfg;
 	cfg = NULL;
 }
+
+
 void CParameterSetting::SetButtonGroupEnabled(bool enabled, int index)
 {
 	if (index == 1)
@@ -1460,6 +1462,7 @@ void CParameterSetting::LoadConfig()
 				ui.lineEdit_OKPath_Fourth->setText(OKPath);
 			}
 		}
+		//TODO:载入工位的阈值操作
 
 	}
 	else
