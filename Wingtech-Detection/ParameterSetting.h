@@ -61,7 +61,7 @@ public:
 	CParameterSetting(QDialog *parent = NULL);
 	~CParameterSetting();
 	void StartDetecion(bool bStart);
-	void SaveImage(s_SaveImageInfo ImageInfo);
+	void SaveImage(s_SaveImageInfo ImageInfo,int index);
 	void SaveCameraTestImage(s_SaveImageInfo ImageInfo);
 private:
 	void InitVariables();

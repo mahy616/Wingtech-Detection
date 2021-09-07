@@ -668,7 +668,7 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
         break;
         default:;
     }
-	m_Parameter->SaveImage(SaveInfo);
+	m_Parameter->SaveImage(SaveInfo,index);
 }
 
 void CMainWindow::ReceiveInitImageNumber(int number)
