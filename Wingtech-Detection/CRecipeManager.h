@@ -20,7 +20,7 @@ public:
 	bool InitRecipe(QString RecipeName,QString &errMsg);
 	void InitConnections();
 	void SendPLCReadySign();
-	s_ImageInfo ImageInfo;
+	
 public:
 
 private:
@@ -36,6 +36,9 @@ private:
 	bool m_Ready;
 	int m_ImageID;  //图像ID
 	int m_Number=5;   //配方个图像个数
+	s_ImageInfo ImageInfo;
+	QVector<double>m_AlgoThreshold;
+	
 signals:
 	void SendAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type);
 	void SendInitImageNumber(int number);
@@ -57,4 +60,6 @@ private slots:
 	void ReceivaAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type);
 	//接受开始拍照信号
 	void ReceiveStartSign();
+	//接收阈值设置完成信号
+	void ReceiveAlgoThreshold(QVector<double>AlgoThreshold);
 };

@@ -35,7 +35,9 @@ void CAlgoManager::RunAlgo(s_ImageInfo ImageInfo)
 
 void CAlgoManager::StopAlgo()
 {
+	m_mutex.lock();
 	m_bStop = true;
+	m_mutex.unlock();
 }
 
 void CAlgoManager::InitConnections()
@@ -46,6 +48,13 @@ void CAlgoManager::InitConnections()
 CAlgoManager * CAlgoManager::GetAlgoManager()
 {
 	return m_Algo;
+}
+
+void CAlgoManager::SetAlgoThreshold(QVector<double> AlgoThreshold)
+{
+	m_mutex.lock();
+	m_AlgoThreshold = AlgoThreshold;
+	m_mutex.unlock();
 }
 
 void CAlgoManager::run()

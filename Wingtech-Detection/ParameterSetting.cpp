@@ -134,6 +134,7 @@ void CParameterSetting::InitTableWidget()
 		m_ModelChoice.setItem(n, 1, new QTableWidgetItem(vtModelName[0]));
 	
 	}
+	InitThreshold();
 	m_ModelChoice.show();
 }
 //初始化触发模式
@@ -250,16 +251,9 @@ void CParameterSetting::SaveCameraTestImage(s_SaveImageInfo ImageInfo)
 		m_SaveImage.SaveImage(OriginalImageName, ImageInfo.OriginalImage);
 
 	};
-	image_TestInfo(ImageInfo.FirstStation, CurTime, ui.lineEdit_NGPath_First->text(), 1);
 	image_TestInfo(ImageInfo.FirstStation, CurTime, ui.lineEdit_OKPath_First->text(), 1);
-
-	image_TestInfo(ImageInfo.SecondStation, CurTime, ui.lineEdit_NGPath_Second->text(), 2);
 	image_TestInfo(ImageInfo.SecondStation, CurTime, ui.lineEdit_OKPath_Second->text(), 2);
-
-	image_TestInfo(ImageInfo.ThirdStation, CurTime, ui.lineEdit_NGPath_Third->text(), 3);
 	image_TestInfo(ImageInfo.ThirdStation, CurTime, ui.lineEdit_OKPath_Third->text(), 3);
-
-	image_TestInfo(ImageInfo.FourStation, CurTime, ui.lineEdit_NGPath_Fourth->text(), 4);
 	image_TestInfo(ImageInfo.FourStation, CurTime, ui.lineEdit_OKPath_Fourth->text(), 4);
 }
 
@@ -647,11 +641,11 @@ void CParameterSetting::ConnectToPLC()
 }
 void CParameterSetting::SendOKToPLC()
 {
-	CPLCManager::GetInstance()->WritePLCData(true);
+	CPLCManager::GetInstance()->WritePLCData("01010101",true);
 }
 void CParameterSetting::SendNGToPLC()
 {
-	CPLCManager::GetInstance()->WritePLCData(false);
+	CPLCManager::GetInstance()->WritePLCData("10101010",false);
 }
 void CParameterSetting::SetSystemType(int index)
 {
@@ -714,6 +708,56 @@ void CParameterSetting::GetFormula()
 		InitTableWidget();
 
 	}
+}
+
+void CParameterSetting::SetThreshold()
+{
+	QString m_ObjectName = sender()->objectName();
+	if (m_ObjectName == "spinBox_Area_YaShang")
+	{
+		m_AlgoThreshold[1] = ui.spinBox_Area_PengShang->value();
+	}
+	else if (m_ObjectName == "spinBox_Area_PengShang")
+	{
+		m_AlgoThreshold[2] = ui.spinBox_Area_PengShang->value();
+	}
+	else if (m_ObjectName == "spinBox_Area_HuaShang")
+	{
+		m_AlgoThreshold[3] = ui.spinBox_Area_HuaShang->value();
+	}
+	else if (m_ObjectName == "spinBox_Area_CaShang")
+	{
+		m_AlgoThreshold[4] = ui.spinBox_Area_CaShang->value();
+	}
+	else if (m_ObjectName == "spinBox_Area_TieFen")
+	{
+		m_AlgoThreshold[5] = ui.spinBox_Area_TieFen->value();
+	}
+	else if (m_ObjectName == "spinBox_Wh_YaShang")
+	{
+		m_AlgoThreshold[7] = ui.spinBox_Wh_YaShang->value();
+	}
+	else if (m_ObjectName == "spinBox_Wh_huashang")
+	{
+		m_AlgoThreshold[8] = ui.spinBox_Wh_PengShang->value();
+	}
+	else if (m_ObjectName == "spinBox_Wh_HuaShang")
+	{
+		m_AlgoThreshold[9] = ui.spinBox_Wh_HuaShang->value();
+	}
+	else if (m_ObjectName == "spinBox_Wh_CaShang")
+	{
+		m_AlgoThreshold[10] = ui.spinBox_Wh_CaShang->value();
+	}
+	else if (m_ObjectName == "spinBox_Wh_TieFen")
+	{
+		m_AlgoThreshold[11] = ui.spinBox_Wh_TieFen->value();
+	}
+	else
+	{
+		qDebug() << "spinBox Error";
+	}
+
 }
 
 void CParameterSetting::ReceiveCameraImage(Mat image, e_CameraType index)
@@ -1463,6 +1507,7 @@ void CParameterSetting::StartDetecion(bool bStart)
 	m_ThirdCameraInfo.ImageCapture->SetRunStatus(bStart);
 	m_FourCameraInfo.ImageCapture->SetRunStatus(bStart);
 	//CSerialManager::GetInstance()->OpenHeart(bStart);
+	emit SendThreshold(m_AlgoThreshold);
 }
 
 void CParameterSetting::OpenFirstCamera()
@@ -2047,6 +2092,22 @@ int CParameterSetting::SetGain(CMvCamera &CameraHandle, int index)
 	}
     
     return CameraHandle.SetFloatValue("Gain", (float)m_dGainEdit);
+}
+
+void CParameterSetting::InitThreshold()
+{
+	m_AlgoThreshold.push_back(0);
+	m_AlgoThreshold.push_back(ui.spinBox_Area_YaShang->value());
+	m_AlgoThreshold.push_back(ui.spinBox_Area_PengShang->value());
+	m_AlgoThreshold.push_back(ui.spinBox_Area_HuaShang->value());
+	m_AlgoThreshold.push_back(ui.spinBox_Area_CaShang->value());
+	m_AlgoThreshold.push_back(ui.spinBox_Area_TieFen->value());
+	m_AlgoThreshold.push_back(0);
+	m_AlgoThreshold.push_back(ui.spinBox_Wh_YaShang->value());
+	m_AlgoThreshold.push_back(ui.spinBox_Wh_PengShang->value());
+	m_AlgoThreshold.push_back(ui.spinBox_Wh_HuaShang->value());
+	m_AlgoThreshold.push_back(ui.spinBox_Wh_CaShang->value());
+	m_AlgoThreshold.push_back(ui.spinBox_Wh_TieFen->value());
 }
 
 // ch:显示错误信息 | en:Show error message

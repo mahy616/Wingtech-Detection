@@ -126,6 +126,9 @@ void CRecipeManager::SendPLCReadySign()
 
 
 
+
+
+
 void CRecipeManager::InitVariables()
 {
 	QFont font("Î¢ÈíÑÅºÚ", 12);
@@ -238,6 +241,17 @@ void CRecipeManager::ReceivaAlgoImage(Mat image, Mat RenderImage, int index, boo
 void CRecipeManager::ReceiveStartSign()
 {
 	emit SendStartSign();
+}
+
+void CRecipeManager::ReceiveAlgoThreshold(QVector<double>AlgoThreshold)
+{
+	m_AlgoThreshold = AlgoThreshold;
+	QMap<QString, CAlgoManager*>::iterator it; //±éÀúmap  
+	for (it = m_ModelAndAlgo.begin(); it != m_ModelAndAlgo.end(); ++it)
+	{
+		it.value()->SetAlgoThreshold(m_AlgoThreshold);
+	}
+
 }
 
 void CRecipeManager::SaveRecipe()

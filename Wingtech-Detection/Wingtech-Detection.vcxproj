@@ -189,7 +189,6 @@
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)Wingtech-Detection\3rdParty\HikCamrea\Includes;$(SolutionDir)Wingtech-Detection\3rdParty\HikCamrea;.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtWidgets;.\3rdParty\opencv-4.2.0\include\opencv2;.\3rdParty\opencv-4.2.0\include</IncludePath>
     </QtMoc>
     <ClInclude Include="melsec_mc_bin.h" />
-    <ClInclude Include="RecipeManager.h" />
     <QtMoc Include="MyLabel.h" />
     <ClInclude Include="resource.h" />
     <QtMoc Include="ResultDetails.h" />
