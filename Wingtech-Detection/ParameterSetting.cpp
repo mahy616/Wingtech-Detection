@@ -177,10 +177,10 @@ void CParameterSetting::InitFourthGroup()
 
 }
 
-//±£¥ÊÕº∆¨
+//±£¥ÊÕº∆¨,…Ë÷√¬∑æ∂
 void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo)
 {
-	QString CurTime = QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss-zzz");
+	QString CurTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
 	auto image_info = [&](bool checkbox, s_StationInfo ImageInfo, const QString &curTime, const QString &path, bool bok,int index)
 	{
 		bool result = checkbox;
@@ -199,7 +199,7 @@ void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo)
 			}
 			if (!bok)
 			{
-				QString OriginalImageName = CurPath + "/" + QString::number(index) + "_O.bmp";
+				QString OriginalImageName = CurPath + "/" + QString::number(index) + "_O.jpg";
 				QString RenderImageName = CurPath + "/" + QString::number(index) + "/_R.jpg";
 				m_SaveImage.SaveImage(OriginalImageName, ImageInfo.OriginalImage);
 				m_SaveImage.SaveImage(RenderImageName, ImageInfo.RenderImage);
@@ -1426,9 +1426,6 @@ void CParameterSetting::LoadConfig()
 		qDebug() << IniPath << ",is not exist";
 		printf("%s,is not exist\n", IniPath.toStdString().c_str());
 	}
-
-
-
 
 }
 

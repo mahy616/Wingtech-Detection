@@ -94,18 +94,57 @@ CMainWindow::CMainWindow(QWidget *parent) : QMainWindow(parent)
 void CMainWindow::InitVariables()
 {
     //处理结果 OK/NG
-    QFont LabelFont("微软雅黑", 142);
-    m_TotalResult = new QLabel("OK");
-    // m_ResultLabel->setFont(LabelFont);
+	QFont LabelFont("微软雅黑", 142);
+	LabelFont.setPixelSize(35);
+	m_TotalResult = new QLabel("OK");
+    //m_ResultLabel->setFont(LabelFont);
     m_TotalResult->setStyleSheet(
         "color: rgb(0, 170, 0);background-color: rgb(255, 255, 150);font: 142pt \"微软雅黑\";");
     m_TotalResult->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    //检测最终结果
-    QDockWidget *DockResult = new QDockWidget(QString::fromLocal8Bit("检测结果"));
-    DockResult->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
-    addDockWidget(Qt::RightDockWidgetArea, DockResult);
-    DockResult->setWidget(m_TotalResult);
+	//检测最终结果
+	QDockWidget *DockResult = new QDockWidget(QString::fromLocal8Bit("检测结果"));
+	DockResult->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
+	addDockWidget(Qt::RightDockWidgetArea, DockResult);
+	DockResult->setWidget(m_TotalResult);
+
+	//m_FirstResult = new QLabel("OK1");
+	//m_FirstResult->setStyleSheet(
+	//	"color: rgb(0, 170, 0);background-color: rgb(255, 255, 150);font: 35pt \"微软雅黑\";");
+	//m_FirstResult->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);	
+	//
+	//m_SecondResult = new QLabel("OK2");
+	//m_SecondResult->setStyleSheet(
+	//	"color: rgb(0, 170, 0);background-color: rgb(255, 255, 150);font: 35pt \"微软雅黑\";");
+	//m_SecondResult->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+	//
+	//m_ThirdResult = new QLabel("OK3");
+	//m_ThirdResult->setStyleSheet(
+	//	"color: rgb(0, 170, 0);background-color: rgb(255, 255, 150);font: 35pt \"微软雅黑\";");
+	//m_ThirdResult->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+	//
+	//m_FourthResult = new QLabel("OK4");
+	//m_FourthResult->setFont(LabelFont);
+	//m_FourthResult->setStyleSheet(
+	//	"color: rgb(0, 170, 0);background-color: rgb(255, 255, 150);font: 35pt \"微软雅黑\";");
+	//m_FourthResult->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+ //   //检测最终结果
+ //   QDockWidget *DockResult = new QDockWidget(QString::fromLocal8Bit("检测结果"));
+ //   DockResult->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
+ //   addDockWidget(Qt::RightDockWidgetArea, DockResult);
+ //   //DockResult->setWidget(m_TotalResult);
+
+	//QGridLayout *Layout = new QGridLayout();
+	//Layout->addWidget(m_FirstResult, 0, 0, 1, 1);
+	//Layout->addWidget(m_SecondResult, 0, 1, 1, 1);
+	//Layout->addWidget(m_ThirdResult, 1, 0, 1, 1);
+	//Layout->addWidget(m_FourthResult, 1, 1, 1, 1);
+
+	//QWidget *laywidget = new QWidget();
+	//laywidget->setLayout(Layout);
+	//DockResult->setWidget(laywidget);
+
+
 
     //数据统计
     m_Statistics = new StatisticsWidget();
@@ -383,11 +422,7 @@ void CMainWindow::InitConnections()
 	connect(m_RecipeManager, SIGNAL(SendAlgoImage(Mat, Mat, int , bool , e_CameraType )), this, SLOT(ReceiveAlgoImage(Mat, Mat, int, bool, e_CameraType)));
 	connect(m_RecipeManager, SIGNAL(SendStartSign()), this, SLOT(ReceiveStartSign()));
 
-
-
 }
-
-
 
 void CMainWindow::AddLog(QString log)
 {
@@ -544,7 +579,7 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
 			if (m_Index == m_ImageCounts-1)
 			{
 				m_Index = 0;
-				m_DetecionResult.insert(CAMERA_FIRST, m_Camera1Result);
+				m_DetecionResult.insert(CAMERA_FIRST, m_Camera1Result);//这里可以用一个信号和槽的方式实现每个相机拍照结果然后传给统计显示
 				if (m_DetecionResult.size() == 4)
 				{
 					ProcessDetectionResult();
@@ -673,42 +708,82 @@ void CMainWindow::ReceiveStartSign()
 
 void CMainWindow::ProcessDetectionResult()
 {
+#if 0
     QString Msg;
     bool bok = true;
-    QMap<e_CameraType, bool>::iterator it = m_DetecionResult.begin(), itEnd = m_DetecionResult.end();
-    for (; it != itEnd; ++it)
-    {
-        bok &= it.value();
+ //   QMap<e_CameraType, bool>::iterator it = m_DetecionResult.begin(), itEnd = m_DetecionResult.end();
+	//it = m_DetecionResult.find(CAMERA_FIRST);
+	//bok &= it.value();
+
+	auto CameraLocalResult = [&](e_CameraType camera, QLabel* label, bool bok)
+	{
+		QMap<e_CameraType, bool>::iterator it = m_DetecionResult.find(camera);
+
+		bok &= it.value();
 		if (bok == true)
 		{
-			Msg = Msg+"01";
+			Msg = Msg + "01";
 		}
 		else
 		{
 			Msg = Msg + "10";
 		}
-    }
-    bool rv = true;
-    if (bok)
-    {
-        m_TotalResult->setStyleSheet("color: rgb(0, 170, 0);background-color: rgb(255, 255, 150);");
-        m_TotalResult->setText("OK");
-        m_Statistics->SetSuccess();
-    }
-    else
-    {
-        m_TotalResult->setStyleSheet("color: rgb(170, 0, 0);background-color: rgb(255, 255, 150);");
-        m_TotalResult->setText("NG");
-        m_Statistics->SetFailed();
-    }
+		if (bok)
+		{
+
+			label->setStyleSheet("color: rgb(0, 170, 0);background-color: rgb(255, 255, 150);");
+			label->setText("OK");
+			m_Statistics->SetSuccess();
+		}
+		else
+		{
+			label->setStyleSheet("color: rgb(170, 0, 0);background-color: rgb(255, 255, 150);");
+			label->setText("NG");
+			m_Statistics->SetFailed();
+		}
+	};
+
+	CameraLocalResult(CAMERA_FIRST, m_FirstResult, bok);
+	CameraLocalResult(CAMERA_SECOND, m_SecondResult, bok);
+	CameraLocalResult(CAMERA_THIRD, m_ThirdResult, bok);
+	CameraLocalResult(CAMERA_FOURTH, m_FourthResult, bok);
+#else
+	QString Msg;
+	bool bok = true;
+	QMap<e_CameraType, bool>::iterator it = m_DetecionResult.begin(), itEnd = m_DetecionResult.end();
+	it = m_DetecionResult.find(CAMERA_FIRST);
+	bok &= it.value();
+	for (; it != itEnd; ++it)
+	{
+
+		bok &= it.value();
+		if (bok == true)
+		{
+			Msg = Msg + "01";
+		}
+		else
+		{
+			Msg = Msg + "10";
+		}
+	}
+
+	if (bok)
+	{
+		m_TotalResult->setStyleSheet("color: rgb(0, 170, 0);background-color: rgb(255, 255, 150);");
+		m_TotalResult->setText("OK");
+		m_Statistics->SetSuccess();
+	}
+	else
+	{
+		m_TotalResult->setStyleSheet("color: rgb(170, 0, 0);background-color: rgb(255, 255, 150);");
+		m_TotalResult->setText("NG");
+		m_Statistics->SetFailed();
+	}
+#endif
     // TODO PLC发送信号
-    if (!rv)
-    {
-        AddLog(QString::fromLocal8Bit("发送结果失败:") + Msg);
-    }
-    else
-    {
-        AddLog(QString::fromLocal8Bit("发送结果:") + QString::number(bok));
-    }
+
+	//AddLog(QString::fromLocal8Bit("发送结果失败:") + Msg);
+	AddLog(QString::fromLocal8Bit("发送结果:") + QString::number(bok));
+
 }
 

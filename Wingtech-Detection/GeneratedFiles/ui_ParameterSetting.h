@@ -61,24 +61,24 @@ public:
     QGridLayout *gridLayout_7;
     QGroupBox *groupBox_Frist;
     QGridLayout *gridLayout;
-    QPushButton *pushButton_LoadOKPath_First;
-    QPushButton *pushButton_LoadNGPath_First;
-    QLineEdit *lineEdit_OKPath_First;
     QLabel *label_4;
-    QLabel *label_First;
-    QPushButton *pushButton_TriggerFirst;
-    QComboBox *comboBox_First;
-    QRadioButton *radioButton_SoftFirst;
+    QPushButton *pushButton_LoadNGPath_First;
     QLineEdit *le_exposure_1;
-    QRadioButton *radioButton_FreeFirst;
     QRadioButton *radioButton_ExternalFirst;
+    QRadioButton *radioButton_SoftFirst;
+    QRadioButton *radioButton_FreeFirst;
     QCheckBox *checkBox_SaveNG_First;
     QCheckBox *checkBox_SaveOK_First;
-    QLineEdit *le_gain_1;
-    QLineEdit *lineEdit_NGPath_First;
-    QPushButton *pushButton_SaveParams;
+    QLabel *label_First;
     QPushButton *pushButton_OpenFirst;
+    QLineEdit *le_gain_1;
     QLabel *label;
+    QLineEdit *lineEdit_OKPath_First;
+    QPushButton *pushButton_SaveParams;
+    QComboBox *comboBox_First;
+    QLineEdit *lineEdit_NGPath_First;
+    QPushButton *pushButton_TriggerFirst;
+    QPushButton *pushButton_LoadOKPath_First;
     QGroupBox *groupBox_Frist_3;
     QGridLayout *gridLayout_18;
     QLabel *label_First_4;
@@ -361,50 +361,16 @@ public:
         groupBox_Frist->setMaximumSize(QSize(581, 16777215));
         gridLayout = new QGridLayout(groupBox_Frist);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        pushButton_LoadOKPath_First = new QPushButton(groupBox_Frist);
-        pushButton_LoadOKPath_First->setObjectName(QString::fromUtf8("pushButton_LoadOKPath_First"));
+        label_4 = new QLabel(groupBox_Frist);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
 
-        gridLayout->addWidget(pushButton_LoadOKPath_First, 3, 7, 1, 1);
+        gridLayout->addWidget(label_4, 4, 4, 1, 1);
 
         pushButton_LoadNGPath_First = new QPushButton(groupBox_Frist);
         pushButton_LoadNGPath_First->setObjectName(QString::fromUtf8("pushButton_LoadNGPath_First"));
         pushButton_LoadNGPath_First->setMaximumSize(QSize(120, 16777215));
 
         gridLayout->addWidget(pushButton_LoadNGPath_First, 2, 7, 1, 1);
-
-        lineEdit_OKPath_First = new QLineEdit(groupBox_Frist);
-        lineEdit_OKPath_First->setObjectName(QString::fromUtf8("lineEdit_OKPath_First"));
-        lineEdit_OKPath_First->setReadOnly(true);
-
-        gridLayout->addWidget(lineEdit_OKPath_First, 3, 2, 1, 5);
-
-        label_4 = new QLabel(groupBox_Frist);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-
-        gridLayout->addWidget(label_4, 4, 4, 1, 1);
-
-        label_First = new QLabel(groupBox_Frist);
-        label_First->setObjectName(QString::fromUtf8("label_First"));
-        label_First->setMaximumSize(QSize(101, 16777215));
-
-        gridLayout->addWidget(label_First, 0, 0, 1, 1);
-
-        pushButton_TriggerFirst = new QPushButton(groupBox_Frist);
-        pushButton_TriggerFirst->setObjectName(QString::fromUtf8("pushButton_TriggerFirst"));
-        pushButton_TriggerFirst->setMaximumSize(QSize(111, 16777215));
-
-        gridLayout->addWidget(pushButton_TriggerFirst, 1, 7, 1, 1);
-
-        comboBox_First = new QComboBox(groupBox_Frist);
-        comboBox_First->setObjectName(QString::fromUtf8("comboBox_First"));
-        comboBox_First->setEnabled(true);
-
-        gridLayout->addWidget(comboBox_First, 0, 2, 1, 5);
-
-        radioButton_SoftFirst = new QRadioButton(groupBox_Frist);
-        radioButton_SoftFirst->setObjectName(QString::fromUtf8("radioButton_SoftFirst"));
-
-        gridLayout->addWidget(radioButton_SoftFirst, 1, 5, 1, 2);
 
         le_exposure_1 = new QLineEdit(groupBox_Frist);
         le_exposure_1->setObjectName(QString::fromUtf8("le_exposure_1"));
@@ -418,15 +384,20 @@ public:
 
         gridLayout->addWidget(le_exposure_1, 4, 2, 1, 1);
 
-        radioButton_FreeFirst = new QRadioButton(groupBox_Frist);
-        radioButton_FreeFirst->setObjectName(QString::fromUtf8("radioButton_FreeFirst"));
-
-        gridLayout->addWidget(radioButton_FreeFirst, 1, 2, 1, 1);
-
         radioButton_ExternalFirst = new QRadioButton(groupBox_Frist);
         radioButton_ExternalFirst->setObjectName(QString::fromUtf8("radioButton_ExternalFirst"));
 
         gridLayout->addWidget(radioButton_ExternalFirst, 1, 3, 1, 2);
+
+        radioButton_SoftFirst = new QRadioButton(groupBox_Frist);
+        radioButton_SoftFirst->setObjectName(QString::fromUtf8("radioButton_SoftFirst"));
+
+        gridLayout->addWidget(radioButton_SoftFirst, 1, 5, 1, 2);
+
+        radioButton_FreeFirst = new QRadioButton(groupBox_Frist);
+        radioButton_FreeFirst->setObjectName(QString::fromUtf8("radioButton_FreeFirst"));
+
+        gridLayout->addWidget(radioButton_FreeFirst, 1, 2, 1, 1);
 
         checkBox_SaveNG_First = new QCheckBox(groupBox_Frist);
         checkBox_SaveNG_First->setObjectName(QString::fromUtf8("checkBox_SaveNG_First"));
@@ -438,23 +409,11 @@ public:
 
         gridLayout->addWidget(checkBox_SaveOK_First, 3, 0, 1, 2);
 
-        le_gain_1 = new QLineEdit(groupBox_Frist);
-        le_gain_1->setObjectName(QString::fromUtf8("le_gain_1"));
-        le_gain_1->setMinimumSize(QSize(0, 0));
-        le_gain_1->setMaximumSize(QSize(16777215, 16777215));
+        label_First = new QLabel(groupBox_Frist);
+        label_First->setObjectName(QString::fromUtf8("label_First"));
+        label_First->setMaximumSize(QSize(101, 16777215));
 
-        gridLayout->addWidget(le_gain_1, 4, 5, 1, 1);
-
-        lineEdit_NGPath_First = new QLineEdit(groupBox_Frist);
-        lineEdit_NGPath_First->setObjectName(QString::fromUtf8("lineEdit_NGPath_First"));
-        lineEdit_NGPath_First->setReadOnly(true);
-
-        gridLayout->addWidget(lineEdit_NGPath_First, 2, 2, 1, 5);
-
-        pushButton_SaveParams = new QPushButton(groupBox_Frist);
-        pushButton_SaveParams->setObjectName(QString::fromUtf8("pushButton_SaveParams"));
-
-        gridLayout->addWidget(pushButton_SaveParams, 4, 7, 1, 1);
+        gridLayout->addWidget(label_First, 0, 0, 1, 1);
 
         pushButton_OpenFirst = new QPushButton(groupBox_Frist);
         pushButton_OpenFirst->setObjectName(QString::fromUtf8("pushButton_OpenFirst"));
@@ -462,10 +421,51 @@ public:
 
         gridLayout->addWidget(pushButton_OpenFirst, 0, 7, 1, 1);
 
+        le_gain_1 = new QLineEdit(groupBox_Frist);
+        le_gain_1->setObjectName(QString::fromUtf8("le_gain_1"));
+        le_gain_1->setMinimumSize(QSize(0, 0));
+        le_gain_1->setMaximumSize(QSize(16777215, 16777215));
+
+        gridLayout->addWidget(le_gain_1, 4, 5, 1, 1);
+
         label = new QLabel(groupBox_Frist);
         label->setObjectName(QString::fromUtf8("label"));
 
         gridLayout->addWidget(label, 4, 0, 1, 1);
+
+        lineEdit_OKPath_First = new QLineEdit(groupBox_Frist);
+        lineEdit_OKPath_First->setObjectName(QString::fromUtf8("lineEdit_OKPath_First"));
+        lineEdit_OKPath_First->setReadOnly(true);
+
+        gridLayout->addWidget(lineEdit_OKPath_First, 3, 2, 1, 5);
+
+        pushButton_SaveParams = new QPushButton(groupBox_Frist);
+        pushButton_SaveParams->setObjectName(QString::fromUtf8("pushButton_SaveParams"));
+
+        gridLayout->addWidget(pushButton_SaveParams, 4, 7, 1, 1);
+
+        comboBox_First = new QComboBox(groupBox_Frist);
+        comboBox_First->setObjectName(QString::fromUtf8("comboBox_First"));
+        comboBox_First->setEnabled(true);
+
+        gridLayout->addWidget(comboBox_First, 0, 2, 1, 5);
+
+        lineEdit_NGPath_First = new QLineEdit(groupBox_Frist);
+        lineEdit_NGPath_First->setObjectName(QString::fromUtf8("lineEdit_NGPath_First"));
+        lineEdit_NGPath_First->setReadOnly(true);
+
+        gridLayout->addWidget(lineEdit_NGPath_First, 2, 2, 1, 5);
+
+        pushButton_TriggerFirst = new QPushButton(groupBox_Frist);
+        pushButton_TriggerFirst->setObjectName(QString::fromUtf8("pushButton_TriggerFirst"));
+        pushButton_TriggerFirst->setMaximumSize(QSize(111, 16777215));
+
+        gridLayout->addWidget(pushButton_TriggerFirst, 1, 7, 1, 1);
+
+        pushButton_LoadOKPath_First = new QPushButton(groupBox_Frist);
+        pushButton_LoadOKPath_First->setObjectName(QString::fromUtf8("pushButton_LoadOKPath_First"));
+
+        gridLayout->addWidget(pushButton_LoadOKPath_First, 3, 7, 1, 1);
 
 
         gridLayout_7->addWidget(groupBox_Frist, 0, 0, 1, 1);
@@ -1089,7 +1089,7 @@ public:
         QObject::connect(pushButton_SaveParams_Third, SIGNAL(clicked()), DialogSetting, SLOT(SaveConfig()));
         QObject::connect(pushButton_SaveParams_Fourth, SIGNAL(clicked()), DialogSetting, SLOT(SaveConfig()));
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(DialogSetting);
@@ -1119,21 +1119,21 @@ public:
         label_FirstImage->setText(QString());
         checkBox_RenderFirst->setText(QCoreApplication::translate("DialogSetting", "\346\270\262\346\237\223\345\233\276", nullptr));
         groupBox_Frist->setTitle(QCoreApplication::translate("DialogSetting", "\344\270\200\345\267\245\344\275\215-\347\233\270\346\234\272\345\217\202\346\225\260", nullptr));
-        pushButton_LoadOKPath_First->setText(QCoreApplication::translate("DialogSetting", "\346\211\223\345\274\200\350\267\257\345\276\204", nullptr));
-        pushButton_LoadNGPath_First->setText(QCoreApplication::translate("DialogSetting", "\346\211\223\345\274\200\350\267\257\345\276\204", nullptr));
-        lineEdit_OKPath_First->setPlaceholderText(QCoreApplication::translate("DialogSetting", "OK\345\233\276\345\203\217\350\267\257\345\276\204", nullptr));
         label_4->setText(QCoreApplication::translate("DialogSetting", "\345\242\236\347\233\212", nullptr));
-        label_First->setText(QCoreApplication::translate("DialogSetting", "\347\233\270\346\234\272\345\220\215\347\247\260", nullptr));
-        pushButton_TriggerFirst->setText(QCoreApplication::translate("DialogSetting", "\350\247\246\345\217\221\344\270\200\346\254\241", nullptr));
+        pushButton_LoadNGPath_First->setText(QCoreApplication::translate("DialogSetting", "\346\211\223\345\274\200\350\267\257\345\276\204", nullptr));
+        radioButton_ExternalFirst->setText(QCoreApplication::translate("DialogSetting", "\347\241\254\350\247\246\345\217\221", nullptr));
         radioButton_SoftFirst->setText(QCoreApplication::translate("DialogSetting", "\350\275\257\350\247\246\345\217\221", nullptr));
         radioButton_FreeFirst->setText(QCoreApplication::translate("DialogSetting", "\350\207\252\347\224\261\351\207\207\351\233\206", nullptr));
-        radioButton_ExternalFirst->setText(QCoreApplication::translate("DialogSetting", "\347\241\254\350\247\246\345\217\221", nullptr));
         checkBox_SaveNG_First->setText(QCoreApplication::translate("DialogSetting", "\344\277\235\345\255\230NG", nullptr));
         checkBox_SaveOK_First->setText(QCoreApplication::translate("DialogSetting", "\344\277\235\345\255\230OK", nullptr));
-        lineEdit_NGPath_First->setPlaceholderText(QCoreApplication::translate("DialogSetting", "NG\345\233\276\345\203\217\350\267\257\345\276\204", nullptr));
-        pushButton_SaveParams->setText(QCoreApplication::translate("DialogSetting", "\344\277\235\345\255\230\345\217\202\346\225\260", nullptr));
+        label_First->setText(QCoreApplication::translate("DialogSetting", "\347\233\270\346\234\272\345\220\215\347\247\260", nullptr));
         pushButton_OpenFirst->setText(QCoreApplication::translate("DialogSetting", "\346\211\223\345\274\200\347\233\270\346\234\272", nullptr));
         label->setText(QCoreApplication::translate("DialogSetting", "\346\233\235\345\205\211", nullptr));
+        lineEdit_OKPath_First->setPlaceholderText(QCoreApplication::translate("DialogSetting", "OK\345\233\276\345\203\217\350\267\257\345\276\204", nullptr));
+        pushButton_SaveParams->setText(QCoreApplication::translate("DialogSetting", "\344\277\235\345\255\230\345\217\202\346\225\260", nullptr));
+        lineEdit_NGPath_First->setPlaceholderText(QCoreApplication::translate("DialogSetting", "NG\345\233\276\345\203\217\350\267\257\345\276\204", nullptr));
+        pushButton_TriggerFirst->setText(QCoreApplication::translate("DialogSetting", "\350\247\246\345\217\221\344\270\200\346\254\241", nullptr));
+        pushButton_LoadOKPath_First->setText(QCoreApplication::translate("DialogSetting", "\346\211\223\345\274\200\350\267\257\345\276\204", nullptr));
         groupBox_Frist_3->setTitle(QCoreApplication::translate("DialogSetting", "\344\270\200\345\267\245\344\275\215-\347\233\270\346\234\272\345\217\202\346\225\260", nullptr));
         label_First_4->setText(QCoreApplication::translate("DialogSetting", "\347\233\270\346\234\272\345\220\215\347\247\260", nullptr));
         lineEdit_NGPath_Second->setPlaceholderText(QCoreApplication::translate("DialogSetting", "NG\345\233\276\345\203\217\350\267\257\345\276\204", nullptr));

@@ -45,6 +45,10 @@ private:
 
 	//¼ì²â×îÖÕ½á¹û
 	QLabel *m_TotalResult;
+	QLabel *m_FirstResult;
+	QLabel *m_SecondResult;
+	QLabel *m_ThirdResult;
+	QLabel *m_FourthResult;
 	StatisticsWidget *m_Statistics;
 	QListView *m_ListView;
 	QStandardItemModel *m_LogModel;

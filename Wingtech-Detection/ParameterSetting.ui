@@ -351,7 +351,7 @@ color: rgb(85, 0, 255);</string>
       </size>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -370,10 +370,10 @@ color: rgb(85, 0, 255);</string>
           <string>一工位-相机参数</string>
          </property>
          <layout class="QGridLayout" name="gridLayout">
-          <item row="3" column="7">
-           <widget class="QPushButton" name="pushButton_LoadOKPath_First">
+          <item row="4" column="4">
+           <widget class="QLabel" name="label_4">
             <property name="text">
-             <string>打开路径</string>
+             <string>增益</string>
             </property>
            </widget>
           </item>
@@ -387,63 +387,6 @@ color: rgb(85, 0, 255);</string>
             </property>
             <property name="text">
              <string>打开路径</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="2" colspan="5">
-           <widget class="QLineEdit" name="lineEdit_OKPath_First">
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-            <property name="placeholderText">
-             <string>OK图像路径</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="4">
-           <widget class="QLabel" name="label_4">
-            <property name="text">
-             <string>增益</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_First">
-            <property name="maximumSize">
-             <size>
-              <width>101</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>相机名称</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="7">
-           <widget class="QPushButton" name="pushButton_TriggerFirst">
-            <property name="maximumSize">
-             <size>
-              <width>111</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>触发一次</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2" colspan="5">
-           <widget class="QComboBox" name="comboBox_First">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="5" colspan="2">
-           <widget class="QRadioButton" name="radioButton_SoftFirst">
-            <property name="text">
-             <string>软触发</string>
             </property>
            </widget>
           </item>
@@ -466,17 +409,24 @@ color: rgb(85, 0, 255);</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="2">
-           <widget class="QRadioButton" name="radioButton_FreeFirst">
-            <property name="text">
-             <string>自由采集</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="3" colspan="2">
            <widget class="QRadioButton" name="radioButton_ExternalFirst">
             <property name="text">
              <string>硬触发</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="5" colspan="2">
+           <widget class="QRadioButton" name="radioButton_SoftFirst">
+            <property name="text">
+             <string>软触发</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QRadioButton" name="radioButton_FreeFirst">
+            <property name="text">
+             <string>自由采集</string>
             </property>
            </widget>
           </item>
@@ -491,6 +441,32 @@ color: rgb(85, 0, 255);</string>
            <widget class="QCheckBox" name="checkBox_SaveOK_First">
             <property name="text">
              <string>保存OK</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_First">
+            <property name="maximumSize">
+             <size>
+              <width>101</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>相机名称</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="7">
+           <widget class="QPushButton" name="pushButton_OpenFirst">
+            <property name="maximumSize">
+             <size>
+              <width>111</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>打开相机</string>
             </property>
            </widget>
           </item>
@@ -510,13 +486,20 @@ color: rgb(85, 0, 255);</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="2" colspan="5">
-           <widget class="QLineEdit" name="lineEdit_NGPath_First">
+          <item row="4" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>曝光</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2" colspan="5">
+           <widget class="QLineEdit" name="lineEdit_OKPath_First">
             <property name="readOnly">
              <bool>true</bool>
             </property>
             <property name="placeholderText">
-             <string>NG图像路径</string>
+             <string>OK图像路径</string>
             </property>
            </widget>
           </item>
@@ -527,8 +510,25 @@ color: rgb(85, 0, 255);</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="7">
-           <widget class="QPushButton" name="pushButton_OpenFirst">
+          <item row="0" column="2" colspan="5">
+           <widget class="QComboBox" name="comboBox_First">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2" colspan="5">
+           <widget class="QLineEdit" name="lineEdit_NGPath_First">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>NG图像路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="7">
+           <widget class="QPushButton" name="pushButton_TriggerFirst">
             <property name="maximumSize">
              <size>
               <width>111</width>
@@ -536,14 +536,14 @@ color: rgb(85, 0, 255);</string>
              </size>
             </property>
             <property name="text">
-             <string>打开相机</string>
+             <string>触发一次</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label">
+          <item row="3" column="7">
+           <widget class="QPushButton" name="pushButton_LoadOKPath_First">
             <property name="text">
-             <string>曝光</string>
+             <string>打开路径</string>
             </property>
            </widget>
           </item>
