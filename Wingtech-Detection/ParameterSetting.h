@@ -61,7 +61,7 @@ public:
 	CParameterSetting(QDialog *parent = NULL);
 	~CParameterSetting();
 	void StartDetecion(bool bStart);
-	void SaveImage(s_SaveImageInfo ImageInfo,int index);
+	void SaveImage(s_SaveImageInfo ImageInfo);
 	void SaveCameraTestImage(s_SaveImageInfo ImageInfo);
 private:
 	void InitVariables();
@@ -134,6 +134,7 @@ private slots:
 
 	void ReceiveCameraImage(Mat image, e_CameraType index);
 	void ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Index);
+
 signals:
 	void SendAlgoImageToMainWindow( Mat OriginalImage, e_CameraType type,int index, bool bok);
 	void SendOriginalImage(Mat image, int index, e_CameraType type);

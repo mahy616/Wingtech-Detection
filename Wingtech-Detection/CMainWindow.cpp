@@ -414,7 +414,11 @@ void CMainWindow::AddLog(QString log)
 
 void CMainWindow::StartDection()
 {
-	m_RecipeManager->SendPLCReadySign();
+	if (!m_RecipeManager->SendPLCReadySign())
+	{
+		cout << "Ready error" << endl;
+		return;
+	}
 	ui.action_Start->setEnabled(false);
 	ui.action_Stop->setEnabled(true);
 	ui.action_Setting->setEnabled(false);
@@ -668,7 +672,7 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
         break;
         default:;
     }
-	m_Parameter->SaveImage(SaveInfo,index);
+	m_Parameter->SaveImage(SaveInfo);
 }
 
 void CMainWindow::ReceiveInitImageNumber(int number)

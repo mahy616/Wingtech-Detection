@@ -19,7 +19,7 @@ public:
 	//初始化配方，初始化成功返回true，通知PLC Ready信号，否则返回false，界面log提示具体错误信息
 	bool InitRecipe(QString RecipeName,QString &errMsg);
 	void InitConnections();
-	void SendPLCReadySign();
+	bool SendPLCReadySign();
 	
 public:
 

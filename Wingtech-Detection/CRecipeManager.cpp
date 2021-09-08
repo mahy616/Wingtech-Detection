@@ -105,6 +105,7 @@ bool CRecipeManager::InitRecipe(QString RecipeName, QString &errMsg)
 			}
 		}
 	}
+	m_Ready = true;
 	return true;
 }
 
@@ -119,9 +120,17 @@ void CRecipeManager::InitConnections()
 
 }
 
-void CRecipeManager::SendPLCReadySign()
+bool CRecipeManager::SendPLCReadySign()
 {
-	CPLCManager::GetInstance()->WritePLCRead();
+	if (m_Ready)
+	{
+		CPLCManager::GetInstance()->WritePLCReady();
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 
@@ -168,14 +177,14 @@ void CRecipeManager::InitRecipeNames()
 	}
 	QString err;
 	
-	if (!InitRecipe(ui.comboBox->itemText(0), err))  //在没有接收PLC信号的基础上 测试用
-	{
-		cout << "初始化配方失败" << endl;
-	}
-	else
-	{
-		m_Ready = true;
-	}
+	//if (!InitRecipe(ui.comboBox->itemText(0), err))  //在没有接收PLC信号的基础上 测试用
+	//{
+	//	cout << "初始化配方失败" << endl;
+	//}
+	//else
+	//{
+	//	m_Ready = true;
+	//}
 }
 
 void CRecipeManager::SwitchRecipe(QString Name)
