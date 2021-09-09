@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1720</width>
-    <height>996</height>
+    <height>1033</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -445,7 +445,7 @@ color: rgb(85, 0, 255);</string>
           </size>
          </property>
          <property name="title">
-          <string>一工位-相机参数</string>
+          <string>三工位-相机参数</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_19">
           <property name="leftMargin">
@@ -626,7 +626,7 @@ color: rgb(85, 0, 255);</string>
           </size>
          </property>
          <property name="title">
-          <string>一工位-相机参数</string>
+          <string>四工位-相机参数</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_25">
           <property name="leftMargin">
@@ -807,7 +807,7 @@ color: rgb(85, 0, 255);</string>
           </size>
          </property>
          <property name="title">
-          <string>一工位-相机参数</string>
+          <string>二工位-相机参数</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_18">
           <property name="leftMargin">

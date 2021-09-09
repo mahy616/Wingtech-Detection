@@ -68,32 +68,6 @@ const QString FIRST_WH_THRESHOLD8 = "First_Wh_Threshold8";
 const QString FIRST_WH_THRESHOLD9 = "First_Wh_Threshold9";
 const QString FIRST_WH_THRESHOLD10 = "First_Wh_Threshold10";
 
-//工位二阈值
-const QString SECOND_THRESHOLD = "Second_Threshold";
-
-const QString SECOND_AREA_THRESHOLD1 = "Second_Area_Threshold1";
-const QString SECOND_AREA_THRESHOLD2 = "Second_Area_Threshold2";
-const QString SECOND_AREA_THRESHOLD3 = "Second_Area_Threshold3";
-const QString SECOND_AREA_THRESHOLD4 = "Second_Area_Threshold4";
-const QString SECOND_AREA_THRESHOLD5 = "Second_Area_Threshold5";
-const QString SECOND_AREA_THRESHOLD6 = "Second_Area_Threshold6";
-const QString SECOND_AREA_THRESHOLD7 = "Second_Area_Threshold7";
-const QString SECOND_AREA_THRESHOLD8 = "Second_Area_Threshold8";
-const QString SECOND_AREA_THRESHOLD9 = "Second_Area_Threshold9";
-const QString SECOND_WH_THRESHOLD11 = "Second_Wh_Threshold11";
-const QString SECOND_WH_THRESHOLD12 = "Second_Wh_Threshold12";
-const QString SECOND_WH_THRESHOLD13 = "Second_Wh_Threshold13";
-const QString SECOND_WH_THRESHOLD14 = "Second_Wh_Threshold14";
-const QString SECOND_WH_THRESHOLD15 = "Second_Wh_Threshold15";
-const QString SECOND_WH_THRESHOLD16 = "Second_Wh_Threshold16";
-const QString SECOND_WH_THRESHOLD17 = "Second_Wh_Threshold17";
-const QString SECOND_WH_THRESHOLD18 = "Second_Wh_Threshold18";
-const QString SECOND_WH_THRESHOLD19 = "Second_Wh_Threshold19";
-
-//角度阈值
-const QString DEGREE_THRESHOLD = "Degree_Threshold";
-const QString DEGREE_Add = "Degree_Add";
-const QString DEGREE_Sub= "Degree_Sub";
 
 
 class CConfig
