@@ -35,7 +35,7 @@ void CRecipeManager::RunAlgo(Mat Image, int ImageID, e_CameraType type)
 		}
 	}
 }
-
+//保存从PLC接收的配方名称
 void CRecipeManager::SaveRecipeFromPLC(QString RecipeName,int ImageCount)
 {
 	QString IniName = QCoreApplication::applicationDirPath() + "/RecipeFolder/" + RecipeName + ".ini";
@@ -57,7 +57,7 @@ void CRecipeManager::SaveRecipeFromPLC(QString RecipeName,int ImageCount)
 bool CRecipeManager::InitRecipe(QString RecipeName, QString &errMsg)
 {
 	int Find = ui.comboBox->findText(RecipeName);
-	if (Find==-1)
+	if (Find== -1)
 	{
 		errMsg = QString::fromLocal8Bit("未找到配方:") + RecipeName;
 		return false;
@@ -117,7 +117,6 @@ void CRecipeManager::InitConnections()
 	connect(CPLCManager::GetInstance(), SIGNAL(SendSavePLCRecipe(QString, int)), this, SLOT(ReceiveSavePlcRecipe(QString.int)));
 	connect(CPLCManager::GetInstance(), SIGNAL(SendStartSign()), this, SLOT(ReceiveStartSign()));
 
-
 }
 
 bool CRecipeManager::SendPLCReadySign()
@@ -132,11 +131,6 @@ bool CRecipeManager::SendPLCReadySign()
 		return false;
 	}
 }
-
-
-
-
-
 
 void CRecipeManager::InitVariables()
 {
@@ -227,7 +221,7 @@ void CRecipeManager::ReceiveSavePlcRecipe(QString msg, int number)
 	SaveRecipeFromPLC(msg,number);
 }
 
-void CRecipeManager::ReceiveChangePlcRecipe(QString msg,int number)
+void CRecipeManager::ReceiveChangePlcRecipe(QString msg, int number)
 {
 	emit SendInitImageNumber(number);
 	m_Number = number;

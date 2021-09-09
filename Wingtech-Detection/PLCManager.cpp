@@ -39,9 +39,9 @@ void CPLCManager::TcpConnect(QString ip, quint16 port, int HeartBeat)
 	qDebug() << "TcpConnect ip:" << ip << ",port:" << port << ",heart beat:" << HeartBeat;
 	QByteArray ba = ip.toLocal8Bit();
 	char *strIp = ba.data();
-	fd = mc_connect(strIp, port, 0, 0);
+	m_fd = mc_connect(strIp, port, 0, 0);
 	m_Mutex.lock();
-	m_bConnected = fd > 0;
+	m_bConnected = m_fd > 0;
 	m_Mutex.unlock();
 	if (m_bConnected)
 	{
@@ -49,8 +49,6 @@ void CPLCManager::TcpConnect(QString ip, quint16 port, int HeartBeat)
 	}
 	emit SendConnectStatus(m_bConnected);
 }
-
-
 
 void CPLCManager::WritePLCData(QString strResult,bool bok)
 {
@@ -78,7 +76,7 @@ void CPLCManager::WritePLCOK(QString strResult)
 	bool ret = false;
 	const char sz_write[] = "01010101";//测试用，实际sz_write=strResult
 	int length = sizeof(sz_write) / sizeof(sz_write[0]);
-	ret = mc_write_string(fd, "D200", length, sz_write);
+	ret = mc_write_string(m_fd, "D200", length, sz_write);
 	qDebug() << "WritePLCOK";
 }
 
@@ -87,7 +85,7 @@ void CPLCManager::WritePLCNG(QString strResult)
 	bool ret = false;
 	const char sz_write[] = "10101010";//测试用，实际sz_write=strResult
 	int length = sizeof(sz_write) / sizeof(sz_write[0]);
-	ret = mc_write_string(fd, "D210", length, sz_write);
+	ret = mc_write_string(m_fd, "D210", length, sz_write);
 	qDebug() << "WritePLCNG";
 }
 
@@ -95,7 +93,7 @@ void CPLCManager::WritePLCHeartbeat()
 {
 	m_Mutex.lock();
 	bool ret = false;
-	ret = mc_write_short(fd, "D221", 1);
+	ret = mc_write_short(m_fd, "D221", 1);
 	qDebug() << "WritePLCHeartbeat";
 	m_Mutex.unlock();
 }
@@ -103,7 +101,7 @@ void CPLCManager::WritePLCHeartbeat()
 void CPLCManager::WritePLCReady()
 {
 	bool ret = false;
-	ret = mc_write_short(fd, "D222", 1);
+	ret = mc_write_short(m_fd, "D222", 1);
 	qDebug() << "WritePLCRead";
 }
 
@@ -111,7 +109,7 @@ void CPLCManager::WritePLCReady()
 void CPLCManager::WritePLCChangeVar()
 {
 	bool ret = false;
-	ret = mc_write_short(fd, "D220", 1);
+	ret = mc_write_short(m_fd, "D220", 1);
 	qDebug() << "WritePLCRead";
 }
 
@@ -124,15 +122,15 @@ void CPLCManager::ReadCurrentRecipe()
 	char* str_val = NULL;
 	short s_val = 0;
 	int length = 30;
-	if (ret = mc_read_string(fd, "D342", length, &str_val))//当前配方名称
+	if (ret = mc_read_string(m_fd, "D342", length, &str_val))//当前配方名称
 	{
 		msg = QString(str_val);
 	}
-	if (ret = mc_read_short(fd, "D341", &s_val))//当前配方编号
+	if (ret = mc_read_short(m_fd, "D341", &s_val))//当前配方编号
 	{
 		number = s_val;
 	}
-	if (ret = mc_read_short(fd, "D340", &s_val))//当前运行机种编号
+	if (ret = mc_read_short(m_fd, "D340", &s_val))//当前运行机种编号
 	{
 	}
 	if (  number == 0 || msg == "")
@@ -166,17 +164,17 @@ void CPLCManager::ReadPLCData()
 	short s_val = 0;
 	char* str_val = NULL;
 	int length =30;
-	if(ret = mc_read_string(fd, "D320", length, &str_val))//配方保存
+	if(ret = mc_read_string(m_fd, "D320", length, &str_val))//配方保存
 	{
 		if (str_val == "1")
 		GetSaveRecipeName(str_val);
 	}
-	if (ret = mc_read_string(fd, "D330", length, &str_val))//切换配方
+	if (ret = mc_read_string(m_fd, "D330", length, &str_val))//切换配方
 	{
 	   if(str_val=="1")
 		GetChangeRecipeName(str_val);
 	}
-	if (1 == (ret = mc_read_short(fd, "D310", &s_val)))
+	if (1 == (ret = mc_read_short(m_fd, "D310", &s_val)))
 	{
 		if (s_val == 1)
 		{
@@ -185,7 +183,7 @@ void CPLCManager::ReadPLCData()
 		}
 			
 	}
-	if (1 == (ret = mc_read_short(fd, "D300", &s_val)))
+	if (1 == (ret = mc_read_short(m_fd, "D300", &s_val)))
 	{
 		if (s_val == 1)
 		{
@@ -205,7 +203,7 @@ void CPLCManager::SlotTimeOuter()
 			qDebug() << "reconnect ip:" << m_IP << ",port:" << m_Port;
 			QByteArray ba = m_IP.toLocal8Bit();
 			char *strIp = ba.data();
-			fd = mc_connect(strIp, m_Port, 0, 0);
+			m_fd = mc_connect(strIp, m_Port, 0, 0);
 			m_Mutex.lock();
 
 		}

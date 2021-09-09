@@ -64,7 +64,7 @@ private:
 	QString m_HexLastServer; //PLC端IP最后部分的16进制
 	s_CurrentRecipe CurrentRecipe;
 	int m_StartIndex;
-	int fd;
+	int m_fd;
 	int m_ImageCounts;
 private slots:
 	void SlotTimeOuter();
