@@ -10,6 +10,8 @@
 #include "qtablewidget.h"
 #include "QHeaderView"
 #include "Config.h"
+
+
 typedef struct
 {
 	QString CameraName;
@@ -94,7 +96,7 @@ private:
 	void setFourthEnable(bool checked);
 
 	void SafeParamsSetting();
-	
+	void AutoDeleteFiles(unsigned int days);
 private slots:
 	void OpenFirstCamera();
 	void LoadFirstImage();
@@ -177,5 +179,5 @@ private:
 
 	QVector<double>m_AlgoThreshold;
 
-
+	QString m_path;
 };

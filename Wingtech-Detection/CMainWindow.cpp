@@ -449,12 +449,14 @@ void CMainWindow::AdminDection()
 	if (adminctrl == 1)
 	{
 		setActionEnable(true);
+		ui.action_admin->setEnabled(false);
 	}
 	else if(adminctrl == 2)
 	{
 		ui.action_Start->setEnabled(true);
 		ui.action_Setting->setEnabled(false);
 		ui.action_Recipe->setEnabled(false);
+		ui.action_admin->setEnabled(false);
 	}
 }
 

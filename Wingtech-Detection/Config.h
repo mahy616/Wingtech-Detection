@@ -27,22 +27,33 @@ const QString SAVE_NG_FIRST = "Save_NG_FIRST";
 const QString SAVE_OK_FIRST = "Save_OK_FIRST";
 const QString NG_PATH_FIRST = "NG_Path_FIRST";
 const QString OK_PATH_FIRST = "OK_Path_FIRST";
+const QString FREE_GRAB_FIRST = "FREE_GRAB_FIRST";
+const QString EXTERNAL_FIRST = "EXTERNAL_FIRST";
+const QString SOFT_FIRST = "SOFT_FIRST";
 
 const QString SAVE_NG_SECOND = "Save_NG_SECOND";
 const QString SAVE_OK_SECOND = "Save_OK_SECOND";
 const QString NG_PATH_SECOND = "NG_Path_SECOND";
 const QString OK_PATH_SECOND = "OK_Path_SECOND";
+const QString FREE_GRAB_SECOND = "FREE_GRAB_SECOND";
+const QString EXTERNAL_SECOND = "EXTERNAL_SECOND";
+const QString SOFT_SECOND = "SOFT_SECOND";
 
 const QString SAVE_NG_THIRD = "Save_NG_THIRD";
 const QString SAVE_OK_THIRD = "Save_OK_THIRD";
 const QString NG_PATH_THIRD = "NG_Path_THIRD";
 const QString OK_PATH_THIRD = "OK_Path_THIRD";
+const QString FREE_GRAB_THIRD = "FREE_GRAB_THIRD";
+const QString EXTERNAL_THIRD = "EXTERNAL_THIRD";
+const QString SOFT_THIRD = "SOFT_THIRD";
 
 const QString SAVE_NG_FOURTH = "Save_NG_FOURTH";
 const QString SAVE_OK_FOURTH = "Save_OK_FOURTH";
 const QString NG_PATH_FOURTH = "NG_Path_FOURTH";
 const QString OK_PATH_FOURTH = "OK_Path_FOURTH";
-
+const QString FREE_GRAB_FOURTH = "FREE_GRAB_FOURTH ";
+const QString EXTERNAL_FOURTH = "EXTERNAL_FOURTH ";
+const QString SOFT_FOURTH = "SOFT_FOURTH ";
 //工位一阈值
 const QString FIRST_THRESHOLD = "First_Threshold";
 

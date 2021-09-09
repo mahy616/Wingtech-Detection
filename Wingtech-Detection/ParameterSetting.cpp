@@ -1,5 +1,9 @@
 #include "ParameterSetting.h"
 #include "QMessageBox"
+
+#include<filesystem>
+#include <direct.h>
+
 CParameterSetting::CParameterSetting(QDialog *parent /*= NULL*/)
 	:QDialog(parent)
 {
@@ -232,7 +236,7 @@ void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo,int index)
 
 void CParameterSetting::SaveCameraTestImage(s_SaveImageInfo ImageInfo)
 {
-	QString CurTime = QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss-zzz");
+	QString CurTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");//yyyy-MM-dd_hh-mm-ss-zzz
 	auto image_TestInfo = [&](s_StationInfo ImageInfo, const QString &curTime, const QString &path, int index)
 	{
 
@@ -715,7 +719,7 @@ void CParameterSetting::SetThreshold()
 	QString m_ObjectName = sender()->objectName();
 	if (m_ObjectName == "spinBox_Area_YaShang")
 	{
-		m_AlgoThreshold[1] = ui.spinBox_Area_PengShang->value();
+		m_AlgoThreshold[1] = ui.spinBox_Area_YaShang->value();
 	}
 	else if (m_ObjectName == "spinBox_Area_PengShang")
 	{
@@ -1034,6 +1038,23 @@ void CParameterSetting::SaveConfig()
 		cfg->Write(COMMUNICATION_SECTOIN, IP, Ip);
 		cfg->Write(COMMUNICATION_SECTOIN, HEARTBEAT, heartbeat);
 	}
+	                                         
+	cfg->Write(DATA_SECTION, FREE_GRAB_FIRST, ui.radioButton_FreeFirst->isChecked());
+	cfg->Write(DATA_SECTION, EXTERNAL_FIRST, ui.radioButton_ExternalFirst->isChecked());
+	cfg->Write(DATA_SECTION, SOFT_FIRST, ui.radioButton_SoftFirst->isChecked());
+
+	cfg->Write(DATA_SECTION, FREE_GRAB_SECOND, ui.radioButton_FreeSecond->isChecked());
+	cfg->Write(DATA_SECTION, EXTERNAL_SECOND, ui.radioButton_ExternalSecond->isChecked());
+	cfg->Write(DATA_SECTION, SOFT_SECOND, ui.radioButton_SoftSecond->isChecked());
+
+	cfg->Write(DATA_SECTION, FREE_GRAB_THIRD, ui.radioButton_FreeThird->isChecked());
+	cfg->Write(DATA_SECTION, EXTERNAL_THIRD, ui.radioButton_ExternalThird->isChecked());
+	cfg->Write(DATA_SECTION, SOFT_THIRD, ui.radioButton_SoftThird->isChecked());
+
+	cfg->Write(DATA_SECTION, FREE_GRAB_FOURTH, ui.radioButton_FreeFourth->isChecked());
+	cfg->Write(DATA_SECTION, EXTERNAL_FOURTH, ui.radioButton_ExternalFourth->isChecked());
+	cfg->Write(DATA_SECTION, SOFT_FOURTH, ui.radioButton_SoftFourth->isChecked());
+	
 	//TODO:工位的阈值操作
 	delete cfg;
 	cfg = NULL;
@@ -1462,6 +1483,42 @@ void CParameterSetting::LoadConfig()
 				ui.lineEdit_OKPath_Fourth->setText(OKPath);
 			}
 		}
+
+		bool free_grab_first = cfg->GetBool(DATA_SECTION, FREE_GRAB_FIRST);
+		ui.radioButton_FreeFirst->setChecked(free_grab_first);
+
+		bool free_grab_second = cfg->GetBool(DATA_SECTION, FREE_GRAB_SECOND);
+		ui.radioButton_FreeSecond->setChecked(free_grab_first);
+
+		bool free_grab_third = cfg->GetBool(DATA_SECTION, FREE_GRAB_THIRD);
+		ui.radioButton_FreeThird->setChecked(free_grab_third);
+
+		bool free_grab_fourth = cfg->GetBool(DATA_SECTION, FREE_GRAB_FOURTH);
+		ui.radioButton_FreeFourth->setChecked(free_grab_fourth);
+
+		bool external_first = cfg->GetBool(DATA_SECTION, EXTERNAL_FIRST);
+		ui.radioButton_ExternalFirst->setChecked(external_first);
+
+		bool external_second = cfg->GetBool(DATA_SECTION, EXTERNAL_SECOND);
+		ui.radioButton_ExternalSecond->setChecked(external_second);
+
+		bool external_third = cfg->GetBool(DATA_SECTION, EXTERNAL_THIRD);
+		ui.radioButton_ExternalThird->setChecked(external_first);
+
+		bool external_fourth = cfg->GetBool(DATA_SECTION, EXTERNAL_FOURTH);
+		ui.radioButton_ExternalFourth->setChecked(external_fourth);
+
+		bool soft_first = cfg->GetBool(DATA_SECTION, SOFT_FIRST);
+		ui.radioButton_SoftFirst->setChecked(soft_first);
+
+		bool soft_second = cfg->GetBool(DATA_SECTION, SOFT_SECOND);
+		ui.radioButton_SoftSecond->setChecked(soft_second);
+
+		bool soft_third = cfg->GetBool(DATA_SECTION, SOFT_THIRD);
+		ui.radioButton_SoftThird->setChecked(soft_third);
+
+		bool soft_fourth = cfg->GetBool(DATA_SECTION, SOFT_FOURTH);
+		ui.radioButton_SoftFourth->setChecked(soft_fourth);
 		//TODO:载入工位的阈值操作
 
 	}
@@ -1551,10 +1608,10 @@ void CParameterSetting::OpenFirstCamera()
 			m_FirstCameraInfo.CameraName = name;
 			SetButtonGroupEnabled(true, 1);
 			//ui.pushButton_SaveConfig->setEnabled(m_SecondCameraInfo.bOpenCamera);
-			ui.radioButton_FreeFirst->setChecked(false);
-			ui.radioButton_ExternalFirst->setChecked(true);
-			ui.radioButton_SoftFirst->setChecked(false);
-			ui.pushButton_TriggerFirst->setEnabled(false);
+			//ui.radioButton_FreeFirst->setChecked(false);
+			//ui.radioButton_ExternalFirst->setChecked(true);
+			//ui.radioButton_SoftFirst->setChecked(false);
+			//ui.pushButton_TriggerFirst->setEnabled(false);
 			ui.pushButton_OpenFirst->setText(QString::fromLocal8Bit("关闭相机"));
 
 		}
@@ -1645,10 +1702,10 @@ void CParameterSetting::OpenSecondCamera()
 			m_SecondCameraInfo.CameraName = name;
 			SetButtonGroupEnabled(true, 2);
 			//ui.pushButton_SaveConfig->setEnabled(m_SecondCameraInfo.bOpenCamera);
-			ui.radioButton_FreeSecond->setChecked(false);
-			ui.radioButton_ExternalSecond->setChecked(true);
-			ui.radioButton_SoftSecond->setChecked(false);
-			ui.pushButton_TriggerSecond->setEnabled(false);
+			//ui.radioButton_FreeSecond->setChecked(false);
+			//ui.radioButton_ExternalSecond->setChecked(true);
+			//ui.radioButton_SoftSecond->setChecked(false);
+			//ui.pushButton_TriggerSecond->setEnabled(false);
 			ui.pushButton_OpenSecond->setText(QString::fromLocal8Bit("关闭相机"));
 		}
 	}
@@ -1693,10 +1750,10 @@ void CParameterSetting::OpenThirdCamera()
 			m_ThirdCameraInfo.CameraName = name;
 			SetButtonGroupEnabled(true, 3);
 			//ui.pushButton_SaveConfig->setEnabled(m_SecondCameraInfo.bOpenCamera);
-			ui.radioButton_FreeThird->setChecked(false);
-			ui.radioButton_ExternalThird->setChecked(true);
-			ui.radioButton_SoftThird->setChecked(false);
-			ui.pushButton_TriggerThird->setEnabled(false);
+			//ui.radioButton_FreeThird->setChecked(false);
+			//ui.radioButton_ExternalThird->setChecked(true);
+			//ui.radioButton_SoftThird->setChecked(false);
+			//ui.pushButton_TriggerThird->setEnabled(false);
 			ui.pushButton_OpenThird->setText(QString::fromLocal8Bit("关闭相机"));
 		}
 	}
@@ -1786,10 +1843,10 @@ void CParameterSetting::OpenFourthCamera()
 			m_FourCameraInfo.CameraName = name;
 			SetButtonGroupEnabled(true, 4);
 			//ui.pushButton_SaveConfig->setEnabled(m_SecondCameraInfo.bOpenCamera);
-			ui.radioButton_FreeFourth->setChecked(false);
-			ui.radioButton_ExternalFourth->setChecked(true);
-			ui.radioButton_SoftFourth->setChecked(false);
-			ui.pushButton_TriggerFourth->setEnabled(false);
+			//ui.radioButton_FreeFourth->setChecked(false);
+			//ui.radioButton_ExternalFourth->setChecked(true);
+			//ui.radioButton_SoftFourth->setChecked(false);
+			//ui.pushButton_TriggerFourth->setEnabled(false);
 			ui.pushButton_OpenFourth->setText(QString::fromLocal8Bit("关闭相机"));
 		}
 	}
@@ -2277,7 +2334,7 @@ void CParameterSetting::getCameraParams(int index)
 
 void CParameterSetting::SafeParamsSetting()
 {
-	if ((m_dGainEdit <= 15.0061998 && m_dGainEdit > 1) && (m_dExposureEdit <= 9999571 && m_dExposureEdit > 59))
+	if ((m_dGainEdit > 1 && m_dGainEdit <= 15.0061998) && (m_dExposureEdit > 59 && m_dExposureEdit <= 9999571))
 	{
 
 	}
@@ -2286,6 +2343,22 @@ void CParameterSetting::SafeParamsSetting()
 		ShowErrorMsg("ERROR:PLEASE SETTING RIGHT EXPOSURE PARAM ARANGE: 59-9999571, GAIN ARANGE: 1.00520003-15.0061998",0);
 	}
 	
+}
+
+void CParameterSetting::AutoDeleteFiles(unsigned int days)
+{
+	std::filesystem::path str(m_path.toStdString());
+	if (!exists(str))		//必须先检测目录是否存在才能使用文件入口.
+		return;
+
+	for (auto& it : std::filesystem::directory_iterator(str))
+	{
+		const auto &time = QDateTime::fromString(QString::fromLocal8Bit(it.path().filename().string().c_str()), "yyyy-MM-dd");
+		if (time.daysTo(QDateTime::currentDateTime()) > days)
+		{
+			int ret = rmdir(it.path().string().c_str());
+		}
+	}
 }
 
 void CParameterSetting::setFirstEnable(bool checked)
