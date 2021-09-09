@@ -8,7 +8,7 @@
 #include "melsec_mc_bin.h"
 #include <iostream >
 
-using namespace std;
+//using namespace std;
 typedef struct
 {
 	int CurrentMachineNumber;

@@ -197,7 +197,7 @@ public:
     {
         if (DialogSetting->objectName().isEmpty())
             DialogSetting->setObjectName(QString::fromUtf8("DialogSetting"));
-        DialogSetting->resize(1720, 918);
+        DialogSetting->resize(1720, 1033);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/CMainWindow/Resources/settings.png"), QSize(), QIcon::Normal, QIcon::Off);
         DialogSetting->setWindowIcon(icon);
@@ -1174,7 +1174,7 @@ public:
         label_FirstTime->setText(QCoreApplication::translate("DialogSetting", "\350\200\227\346\227\266\357\274\232", nullptr));
         label_FirstImage->setText(QString());
         checkBox_RenderFirst->setText(QCoreApplication::translate("DialogSetting", "\346\270\262\346\237\223\345\233\276", nullptr));
-        groupBox_Frist_4->setTitle(QCoreApplication::translate("DialogSetting", "\344\270\200\345\267\245\344\275\215-\347\233\270\346\234\272\345\217\202\346\225\260", nullptr));
+        groupBox_Frist_4->setTitle(QCoreApplication::translate("DialogSetting", "\344\270\211\345\267\245\344\275\215-\347\233\270\346\234\272\345\217\202\346\225\260", nullptr));
         label_17->setText(QCoreApplication::translate("DialogSetting", "\345\242\236\347\233\212", nullptr));
         radioButton_ExternalThird->setText(QCoreApplication::translate("DialogSetting", "\347\241\254\350\247\246\345\217\221", nullptr));
         checkBox_SaveOK_Third->setText(QCoreApplication::translate("DialogSetting", "\344\277\235\345\255\230OK", nullptr));
@@ -1190,7 +1190,7 @@ public:
         lineEdit_NGPath_Third->setPlaceholderText(QCoreApplication::translate("DialogSetting", "NG\345\233\276\345\203\217\350\267\257\345\276\204", nullptr));
         label_18->setText(QCoreApplication::translate("DialogSetting", "\346\233\235\345\205\211", nullptr));
         pushButton_SaveParams_Third->setText(QCoreApplication::translate("DialogSetting", "\344\277\235\345\255\230\345\217\202\346\225\260", nullptr));
-        groupBox_Frist_5->setTitle(QCoreApplication::translate("DialogSetting", "\344\270\200\345\267\245\344\275\215-\347\233\270\346\234\272\345\217\202\346\225\260", nullptr));
+        groupBox_Frist_5->setTitle(QCoreApplication::translate("DialogSetting", "\345\233\233\345\267\245\344\275\215-\347\233\270\346\234\272\345\217\202\346\225\260", nullptr));
         pushButton_LoadOKPath_Fourth->setText(QCoreApplication::translate("DialogSetting", "\346\211\223\345\274\200\350\267\257\345\276\204", nullptr));
         label_31->setText(QCoreApplication::translate("DialogSetting", "\345\242\236\347\233\212", nullptr));
         label_First_6->setText(QCoreApplication::translate("DialogSetting", "\347\233\270\346\234\272\345\220\215\347\247\260", nullptr));
@@ -1206,7 +1206,7 @@ public:
         checkBox_SaveOK_Fourth->setText(QCoreApplication::translate("DialogSetting", "\344\277\235\345\255\230OK", nullptr));
         pushButton_LoadNGPath_Fourth->setText(QCoreApplication::translate("DialogSetting", "\346\211\223\345\274\200\350\267\257\345\276\204", nullptr));
         pushButton_TriggerFourth->setText(QCoreApplication::translate("DialogSetting", "\350\247\246\345\217\221\344\270\200\346\254\241", nullptr));
-        groupBox_Frist_3->setTitle(QCoreApplication::translate("DialogSetting", "\344\270\200\345\267\245\344\275\215-\347\233\270\346\234\272\345\217\202\346\225\260", nullptr));
+        groupBox_Frist_3->setTitle(QCoreApplication::translate("DialogSetting", "\344\272\214\345\267\245\344\275\215-\347\233\270\346\234\272\345\217\202\346\225\260", nullptr));
         pushButton_OpenSecond->setText(QCoreApplication::translate("DialogSetting", "\346\211\223\345\274\200\347\233\270\346\234\272", nullptr));
         lineEdit_NGPath_Second->setPlaceholderText(QCoreApplication::translate("DialogSetting", "NG\345\233\276\345\203\217\350\267\257\345\276\204", nullptr));
         pushButton_SaveParams_Second->setText(QCoreApplication::translate("DialogSetting", "\344\277\235\345\255\230\345\217\202\346\225\260", nullptr));

@@ -137,7 +137,7 @@ void CPLCManager::ReadCurrentRecipe()
 	}
 	if (  number == 0 || msg == "")
 	{
-		cout << "初始化配方失败" << endl;
+		qDebug() << "初始化配方失败";
 	}
 	emit SendChangePLCRecipe(msg, number);
 }
