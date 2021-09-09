@@ -182,10 +182,10 @@ void CParameterSetting::InitFourthGroup()
 
 }
 
-//保存图片,设置路径
-void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo,int index)
+//保存图片
+void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo)
 {
-	QString CurTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
+	QString CurTime = QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss-zzz");
 	auto image_info = [&](bool checkbox, s_StationInfo ImageInfo, const QString &curTime, const QString &path, bool bok,int index)
 	{
 		bool result = checkbox;
@@ -204,7 +204,7 @@ void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo,int index)
 			}
 			if (!bok)
 			{
-				QString OriginalImageName = CurPath + "/" + QString::number(index) + "_O.jpg";
+				QString OriginalImageName = CurPath + "/" + QString::number(index) + "_O.bmp";
 				QString RenderImageName = CurPath + "/" + QString::number(index) + "/_R.jpg";
 				m_SaveImage.SaveImage(OriginalImageName, ImageInfo.OriginalImage);
 				m_SaveImage.SaveImage(RenderImageName, ImageInfo.RenderImage);
@@ -220,17 +220,17 @@ void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo,int index)
 
 	};
 
-	image_info(ui.checkBox_SaveNG_First->isChecked(),ImageInfo.FirstStation, CurTime, ui.lineEdit_NGPath_First->text(), ImageInfo.FirstStation.bok,index);
-	image_info(ui.checkBox_SaveOK_First->isChecked(), ImageInfo.FirstStation, CurTime, ui.lineEdit_OKPath_First->text(), ImageInfo.FirstStation.bok, index);
+	image_info(ui.checkBox_SaveNG_First->isChecked(),ImageInfo.FirstStation, CurTime, ui.lineEdit_NGPath_First->text(), ImageInfo.FirstStation.bok,1);
+	image_info(ui.checkBox_SaveOK_First->isChecked(), ImageInfo.FirstStation, CurTime, ui.lineEdit_OKPath_First->text(), ImageInfo.FirstStation.bok,1);
 
-	image_info(ui.checkBox_SaveNG_Second->isChecked(), ImageInfo.SecondStation, CurTime, ui.lineEdit_NGPath_Second->text(), ImageInfo.SecondStation.bok, index);
-	image_info(ui.checkBox_SaveOK_Second->isChecked(), ImageInfo.SecondStation, CurTime, ui.lineEdit_NGPath_Second->text(), ImageInfo.SecondStation.bok, index);
+	image_info(ui.checkBox_SaveNG_Second->isChecked(), ImageInfo.SecondStation, CurTime, ui.lineEdit_NGPath_Second->text(), ImageInfo.SecondStation.bok,2);
+	image_info(ui.checkBox_SaveOK_Second->isChecked(), ImageInfo.SecondStation, CurTime, ui.lineEdit_NGPath_Second->text(), ImageInfo.SecondStation.bok,2);
 
-	image_info(ui.checkBox_SaveNG_Third->isChecked(), ImageInfo.ThirdStation, CurTime, ui.lineEdit_NGPath_Third->text(), ImageInfo.ThirdStation.bok, index);
-	image_info(ui.checkBox_SaveOK_Third->isChecked(), ImageInfo.ThirdStation, CurTime, ui.lineEdit_OKPath_Third->text(), ImageInfo.ThirdStation.bok, index);
+	image_info(ui.checkBox_SaveNG_Third->isChecked(), ImageInfo.ThirdStation, CurTime, ui.lineEdit_NGPath_Third->text(), ImageInfo.ThirdStation.bok,3);
+	image_info(ui.checkBox_SaveOK_Third->isChecked(), ImageInfo.ThirdStation, CurTime, ui.lineEdit_OKPath_Third->text(), ImageInfo.ThirdStation.bok,3);
 
-	image_info(ui.checkBox_SaveNG_Fourth->isChecked(), ImageInfo.FourStation, CurTime, ui.lineEdit_NGPath_Fourth->text(), ImageInfo.FourStation.bok, index);
-	image_info(ui.checkBox_SaveOK_Fourth->isChecked(), ImageInfo.FourStation, CurTime, ui.lineEdit_NGPath_Fourth->text(), ImageInfo.FourStation.bok, index);
+	image_info(ui.checkBox_SaveNG_Fourth->isChecked(), ImageInfo.FourStation, CurTime, ui.lineEdit_NGPath_Fourth->text(), ImageInfo.FourStation.bok,4);
+	image_info(ui.checkBox_SaveOK_Fourth->isChecked(), ImageInfo.FourStation, CurTime, ui.lineEdit_NGPath_Fourth->text(), ImageInfo.FourStation.bok,4);
 
 }
 
@@ -811,6 +811,7 @@ void CParameterSetting::ReceivaOriginalImage(Mat OriginalImage, e_CameraType typ
 	emit SendOriginalImage(OriginalImage, Index,type);
 
 }
+
 void CParameterSetting::SaveCameraParams4()
 {
 	qDebug() << "参数设置buttonParamsSet2";
@@ -1034,8 +1035,10 @@ void CParameterSetting::SaveConfig()
 	if (bconnected)
 	{
 		QString Ip = ui.lineEdit_IP->text();
+		QString Port = ui.lineEdit_Port->text();
 		int heartbeat = ui.spinBox_Heartbeat->value();
 		cfg->Write(COMMUNICATION_SECTOIN, IP, Ip);
+		cfg->Write(COMMUNICATION_SECTOIN, PORT, Port);
 		cfg->Write(COMMUNICATION_SECTOIN, HEARTBEAT, heartbeat);
 	}
 	                                         
@@ -1520,6 +1523,18 @@ void CParameterSetting::LoadConfig()
 		bool soft_fourth = cfg->GetBool(DATA_SECTION, SOFT_FOURTH);
 		ui.radioButton_SoftFourth->setChecked(soft_fourth);
 		//TODO:载入工位的阈值操作
+		ui.spinBox_Area_YaShang->setValue(cfg->GetInt(FIRST_THRESHOLD, FIRST_AREA_THRESHOLD1));
+		ui.spinBox_Area_PengShang->setValue(cfg->GetInt(FIRST_THRESHOLD, FIRST_AREA_THRESHOLD2));
+		ui.spinBox_Area_HuaShang->setValue(cfg->GetInt(FIRST_THRESHOLD, FIRST_AREA_THRESHOLD3));
+		ui.spinBox_Area_CaShang->setValue(cfg->GetInt(FIRST_THRESHOLD, FIRST_AREA_THRESHOLD4));
+		ui.spinBox_Area_TieFen->setValue(cfg->GetInt(FIRST_THRESHOLD, FIRST_AREA_THRESHOLD5));
+
+		
+		ui.spinBox_Wh_YaShang->setValue(cfg->GetInt(FIRST_THRESHOLD, FIRST_WH_THRESHOLD6));
+		ui.spinBox_Wh_PengShang->setValue(cfg->GetInt(FIRST_THRESHOLD, FIRST_WH_THRESHOLD7));
+		ui.spinBox_Wh_HuaShang->setValue(cfg->GetInt(FIRST_THRESHOLD, FIRST_WH_THRESHOLD8));
+		ui.spinBox_Wh_CaShang->setValue(cfg->GetInt(FIRST_THRESHOLD, FIRST_WH_THRESHOLD9));
+		ui.spinBox_Wh_TieFen->setValue(cfg->GetInt(FIRST_THRESHOLD, FIRST_WH_THRESHOLD10));
 
 	}
 	else
@@ -1527,6 +1542,9 @@ void CParameterSetting::LoadConfig()
 		qDebug() << IniPath << ",is not exist";
 		printf("%s,is not exist\n", IniPath.toStdString().c_str());
 	}
+
+
+
 
 }
 

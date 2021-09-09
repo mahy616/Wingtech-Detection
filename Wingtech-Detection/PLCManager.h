@@ -32,12 +32,11 @@ public:
 		//断开连接
 	//	void TcpDisconnect();
 	bool GetConnectStatus() { return m_bConnected; }
-	bool GetPLCInitStatus() { return m_bInitPLCSuccess; }
+	//bool GetPLCInitStatus() { return m_bInitPLCSuccess; }
 	void WritePLCData(QString strResult, bool bok);
-	void WritePLCRead();
+	void WritePLCReady();
 private:
 	//PLC写操作
-	void WriteInitCommand();
 	void WritePLCOK(QString strResult);
 	void WritePLCNG(QString strResult);
 	void WritePLCHeartbeat();
@@ -52,24 +51,22 @@ private:
 	CPLCManager(QObject *parent = NULL);
 	~CPLCManager();
 	static CPLCManager *m_Instace;
-	QTcpSocket *m_TcpClient;
 	QString m_IP;
 	quint16 m_Port;
 	//网络连接标志
 	bool m_bConnected;
 	//PLC初始化成功标志
-	bool m_bInitPLCSuccess;
+	//bool m_bInitPLCSuccess;
 	QTimer m_Timer;
 	int m_HeartBeat;
 	QMutex m_Mutex;
 	QString m_HexLastHost; //PC端IP最后部分的16进制
 	QString m_HexLastServer; //PLC端IP最后部分的16进制
 	s_CurrentRecipe CurrentRecipe;
+	int m_StartIndex;
 	int fd;
 	int m_ImageCounts;
 private slots:
-	void TcpConnected();
-	void TcpDisConnected();
 	void SlotTimeOuter();
 	void ReadPLCData();
 signals:
