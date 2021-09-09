@@ -61,10 +61,12 @@ const QString FIRST_AREA_THRESHOLD1 = "First_Area_Threshold1";
 const QString FIRST_AREA_THRESHOLD2 = "First_Area_Threshold2";
 const QString FIRST_AREA_THRESHOLD3 = "First_Area_Threshold3";
 const QString FIRST_AREA_THRESHOLD4 = "First_Area_Threshold4";
+const QString FIRST_AREA_THRESHOLD5 = "First_Area_Threshold5";
 const QString FIRST_WH_THRESHOLD6 = "First_Wh_Threshold6";
 const QString FIRST_WH_THRESHOLD7 = "First_Wh_Threshold7";
 const QString FIRST_WH_THRESHOLD8 = "First_Wh_Threshold8";
 const QString FIRST_WH_THRESHOLD9 = "First_Wh_Threshold9";
+const QString FIRST_WH_THRESHOLD10 = "First_Wh_Threshold10";
 
 //工位二阈值
 const QString SECOND_THRESHOLD = "Second_Threshold";

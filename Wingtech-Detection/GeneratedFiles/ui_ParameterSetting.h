@@ -197,7 +197,7 @@ public:
     {
         if (DialogSetting->objectName().isEmpty())
             DialogSetting->setObjectName(QString::fromUtf8("DialogSetting"));
-        DialogSetting->resize(1720, 1011);
+        DialogSetting->resize(1720, 996);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/CMainWindow/Resources/settings.png"), QSize(), QIcon::Normal, QIcon::Off);
         DialogSetting->setWindowIcon(icon);
