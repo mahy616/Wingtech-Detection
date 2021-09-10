@@ -356,13 +356,15 @@ void CParameterSetting::InitConnections()
 	qRegisterMetaType<Mat>("Mat");
 	qRegisterMetaType<e_CameraType>("e_CameraType");
 	//connect(m_FirstCameraInfo.ImageCapture, SIGNAL(SendAlgoImage(Mat, e_CameraType,int,bool)), this, SLOT(ReceivaAlgoImage( Mat, e_CameraType,int,bool)));
-	connect(m_FirstGroup, SIGNAL(buttonToggled(int, bool)), this, SLOT(SwitchFirstCameraStatus(int, bool)));
+
 	//connect(m_SecondCameraInfo.ImageCapture, SIGNAL(SendAlgoImage(Mat, e_CameraType, int, bool)), this, SLOT(ReceivaAlgoImage(Mat, e_CameraType, int, bool)));
-	connect(m_SecondGroup, SIGNAL(buttonToggled(int, bool)), this, SLOT(SwitchSecondCameraStatus(int, bool)));
+
     //connect(m_FirstCameraInfo.ImageCapture, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int, bool)), m_FirstAlgo.Algo, SLOT(ReceivaReImage(Mat, e_CameraType, int, bool)));
 	//connect(m_FirstAlgo.Algo, SIGNAL(SendAlgoImageToParam(Mat, e_CameraType, int, bool)), this, SLOT(ReceivaAlgoImage(Mat, e_CameraType, int, bool)));
 	//connect(m_FirstAlgo.Algo, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int, bool)), m_FirstAlgo.Algo, SLOT(ReceivaAlgoImage(Mat, e_CameraType, int, bool)));
-
+	
+	connect(m_FirstGroup, SIGNAL(buttonToggled(int, bool)), this, SLOT(SwitchFirstCameraStatus(int, bool)));
+	connect(m_SecondGroup, SIGNAL(buttonToggled(int, bool)), this, SLOT(SwitchSecondCameraStatus(int, bool)));
 	connect(m_ThirdGroup, SIGNAL(buttonToggled(int, bool)), this, SLOT(SwitchThirdCameraStatus(int, bool)));
 	connect(m_FourthGroup, SIGNAL(buttonToggled(int, bool)), this, SLOT(SwitchFourthCameraStatus(int, bool)));
 
@@ -533,6 +535,7 @@ void CParameterSetting::SaveCameraParams2()
 
 	return;
 }
+
 void CParameterSetting::SwitchThirdCameraStatus(int index, bool checked)
 {
 	qDebug() << "SwitchThirdCameraStatus:" << index;
@@ -948,6 +951,11 @@ void CParameterSetting::ChooseFourthNgPath()
 
 void CParameterSetting::SaveConfig()
 {
+	SaveCameraParams1();
+	SaveCameraParams2();
+	SaveCameraParams3();
+	SaveCameraParams4();
+
 	QString IniPath = QCoreApplication::applicationDirPath() + "/parameter_cfg.ini";
 	CConfig *cfg = new CConfig(IniPath);
 	if (m_FirstCameraInfo.bOpenCamera)
@@ -1068,31 +1076,18 @@ void CParameterSetting::SetButtonGroupEnabled(bool enabled, int index)
 {
 	if (index == 1)
 	{
-		ui.radioButton_FreeFirst->setEnabled(enabled);
-		ui.radioButton_ExternalFirst->setEnabled(enabled);
-		ui.radioButton_SoftFirst->setEnabled(enabled);
 		setFirstEnable(enabled);
 	}
 	else if (index == 2)
-	{
-		
-        ui.radioButton_FreeSecond->setEnabled(enabled);
-        ui.radioButton_ExternalSecond->setEnabled(enabled);
-        ui.radioButton_SoftSecond->setEnabled(enabled);
+	{		
 		setSecondEnable(enabled);
 	}
     else if (index == 3)
     {
-        ui.radioButton_FreeThird->setEnabled(enabled);
-        ui.radioButton_ExternalThird->setEnabled(enabled);
-        ui.radioButton_SoftThird->setEnabled(enabled);
 		setThirdEnable(enabled);
     }
     else if (index == 4)
     {
-        ui.radioButton_FreeFourth->setEnabled(enabled);
-        ui.radioButton_ExternalFourth->setEnabled(enabled);
-        ui.radioButton_SoftFourth->setEnabled(enabled);
 		setFourthEnable(enabled);
     }
 
@@ -1363,7 +1358,7 @@ void CParameterSetting::LoadConfig()
 		qDebug() << "1 load config save ng: " << bSaveNGFirst;
 		printf("1 load config save ng:%d\n", bSaveNGFirst);
 		ui.checkBox_SaveNG_First->setChecked(bSaveNGFirst);
-		ui.pushButton_LoadNGPath_First->setEnabled(bSaveNGFirst);
+		//ui.pushButton_LoadNGPath_First->setEnabled(bSaveNGFirst);
 		if (bSaveNGFirst)
 		{
 			QString NGPath = cfg->GetString(DATA_SECTION, NG_PATH_FIRST);
@@ -1379,7 +1374,7 @@ void CParameterSetting::LoadConfig()
 		qDebug() << "1 load config save ok:" << bSaveOKFirst;
 		printf("1 load config save ok:%d\n", bSaveOKFirst);
 		ui.checkBox_SaveOK_First->setChecked(bSaveOKFirst);
-		ui.pushButton_LoadOKPath_First->setEnabled(bSaveOKFirst);
+		//ui.pushButton_LoadOKPath_First->setEnabled(bSaveOKFirst);
 		if (bSaveOKFirst)
 		{
 			QString OKPath = cfg->GetString(DATA_SECTION, OK_PATH_FIRST);
@@ -1395,7 +1390,7 @@ void CParameterSetting::LoadConfig()
 		qDebug() << "2 load config save ng:" << bSaveNGSecond;
 		printf("2 load config save ng:%d\n", bSaveNGSecond);
 		ui.checkBox_SaveNG_Second->setChecked(bSaveNGSecond);
-		ui.pushButton_LoadNGPath_Second->setEnabled(bSaveNGSecond);
+		//ui.pushButton_LoadNGPath_Second->setEnabled(bSaveNGSecond);
 		if (bSaveNGSecond)
 		{
 			QString NGPath = cfg->GetString(DATA_SECTION, NG_PATH_SECOND);
@@ -1411,7 +1406,7 @@ void CParameterSetting::LoadConfig()
 		qDebug() << "2 load config save ok:" << bSaveOKSecond;
 		printf("2 load config save ok:%d\n", bSaveOKSecond);
 		ui.checkBox_SaveOK_Second->setChecked(bSaveOKSecond);
-		ui.pushButton_LoadOKPath_Second->setEnabled(bSaveOKSecond);
+		//ui.pushButton_LoadOKPath_Second->setEnabled(bSaveOKSecond);
 		if (bSaveOKSecond)
 		{
 			QString OKPath = cfg->GetString(DATA_SECTION, OK_PATH_SECOND);
@@ -1427,7 +1422,7 @@ void CParameterSetting::LoadConfig()
 		qDebug() << "3 load config save ng:" << bSaveNGThird;
 		printf("3 load config save ng:%d\n", bSaveNGThird);
 		ui.checkBox_SaveNG_Third->setChecked(bSaveNGThird);
-		ui.pushButton_LoadNGPath_Third->setEnabled(bSaveNGThird);
+		//ui.pushButton_LoadNGPath_Third->setEnabled(bSaveNGThird);
 		if (bSaveNGThird)
 		{
 			QString NGPath = cfg->GetString(DATA_SECTION, NG_PATH_THIRD);
@@ -1443,7 +1438,7 @@ void CParameterSetting::LoadConfig()
 		qDebug() << "3 load config save ok:" << bSaveOKThird;
 		printf("3 load config save ok:%d\n", bSaveOKThird);
 		ui.checkBox_SaveOK_Third->setChecked(bSaveOKThird);
-		ui.pushButton_LoadOKPath_Third->setEnabled(bSaveOKThird);
+		//ui.pushButton_LoadOKPath_Third->setEnabled(bSaveOKThird);
 		if (bSaveOKThird)
 		{
 			QString OKPath = cfg->GetString(DATA_SECTION, OK_PATH_THIRD);
@@ -1459,7 +1454,7 @@ void CParameterSetting::LoadConfig()
 		qDebug() << "4 load config save ng:" << bSaveNGFourth;
 		printf("4 load config save ng:%d\n", bSaveNGFourth);
 		ui.checkBox_SaveNG_Fourth->setChecked(bSaveNGFourth);
-		ui.pushButton_LoadNGPath_Fourth->setEnabled(bSaveNGFourth);
+		//ui.pushButton_LoadNGPath_Fourth->setEnabled(bSaveNGFourth);
 		if (bSaveNGFourth)
 		{
 			QString NGPath = cfg->GetString(DATA_SECTION, NG_PATH_FOURTH);
@@ -1475,7 +1470,7 @@ void CParameterSetting::LoadConfig()
 		qDebug() << "4 load config save ok:" << bSaveOKFourth;
 		printf("4 load config save ok:%d\n", bSaveOKFourth);
 		ui.checkBox_SaveOK_Fourth->setChecked(bSaveOKFourth);
-		ui.pushButton_LoadOKPath_Fourth->setEnabled(bSaveOKFourth);
+		//ui.pushButton_LoadOKPath_Fourth->setEnabled(bSaveOKFourth);
 		if (bSaveOKFourth)
 		{
 			QString OKPath = cfg->GetString(DATA_SECTION, OK_PATH_FOURTH);
@@ -1589,6 +1584,14 @@ void CParameterSetting::OpenFirstCamera()
 {
 	qDebug() << "open first camera";
 
+	bool checked = ui.checkBox_SaveNG_First->isChecked();
+	ui.lineEdit_NGPath_First->setEnabled(checked);
+	ui.pushButton_LoadNGPath_First->setEnabled(checked);
+
+	checked = ui.checkBox_SaveOK_First->isChecked();
+	ui.lineEdit_OKPath_First->setEnabled(checked);
+	ui.pushButton_LoadOKPath_First->setEnabled(checked);
+
 	QString name = ui.comboBox_First->currentText();
 	int index = ui.comboBox_First->currentIndex();
 	if (m_FirstCameraInfo.bOpenCamera)
@@ -1684,6 +1687,14 @@ void CParameterSetting::OpenSecondCamera()
 {
 	qDebug() << "open second camera";
 
+	bool checked = ui.checkBox_SaveNG_Second->isChecked();
+	ui.lineEdit_NGPath_Second->setEnabled(checked);
+	ui.pushButton_LoadNGPath_Second->setEnabled(checked);
+
+	checked = ui.checkBox_SaveOK_Second->isChecked();
+	ui.lineEdit_OKPath_Second->setEnabled(checked);
+	ui.pushButton_LoadOKPath_Second->setEnabled(checked);
+
 	QString name = ui.comboBox_Second->currentText();
 	int index = ui.comboBox_Second->currentIndex();
 	if (m_SecondCameraInfo.bOpenCamera)
@@ -1731,6 +1742,14 @@ void CParameterSetting::OpenSecondCamera()
 void CParameterSetting::OpenThirdCamera()
 {
 	qDebug() << "open third camera";
+
+	bool checked = ui.checkBox_SaveNG_Third->isChecked();
+	ui.lineEdit_NGPath_Third->setEnabled(checked);
+	ui.pushButton_LoadNGPath_Third->setEnabled(checked);
+
+	checked = ui.checkBox_SaveOK_Third->isChecked();
+	ui.lineEdit_OKPath_Third->setEnabled(checked);
+	ui.pushButton_LoadOKPath_Third->setEnabled(checked);
 
 	QString name = ui.comboBox_Third->currentText();
 	int index = ui.comboBox_Third->currentIndex();
@@ -1824,6 +1843,14 @@ void CParameterSetting::LoadThirdImage()
 void CParameterSetting::OpenFourthCamera()
 {
 	qDebug() << "open fourth camera";
+
+	bool checked = ui.checkBox_SaveNG_Fourth->isChecked();
+	ui.lineEdit_NGPath_Fourth->setEnabled(checked);
+	ui.pushButton_LoadNGPath_Fourth->setEnabled(checked);
+
+	checked = ui.checkBox_SaveOK_Fourth->isChecked();
+	ui.lineEdit_OKPath_Fourth->setEnabled(checked);
+	ui.pushButton_LoadOKPath_Fourth->setEnabled(checked);
 
 	QString name = ui.comboBox_Four->currentText();
 	int index = ui.comboBox_Four->currentIndex();
@@ -2368,7 +2395,11 @@ void CParameterSetting::AutoDeleteFiles(unsigned int days)
 	std::filesystem::path str(m_path.toStdString());
 	if (!exists(str))		//必须先检测目录是否存在才能使用文件入口.
 		return;
+	//if (!QFileInfo::exists(m_path))
+	//{
 
+	//}
+	//for(auto & it : )
 	for (auto& it : std::filesystem::directory_iterator(str))
 	{
 		const auto &time = QDateTime::fromString(QString::fromLocal8Bit(it.path().filename().string().c_str()), "yyyy-MM-dd");
@@ -2390,6 +2421,9 @@ void CParameterSetting::setFirstEnable(bool checked)
 	ui.lineEdit_OKPath_First->setEnabled(checked);
 	ui.le_exposure_1->setEnabled(checked);
 	ui.le_gain_1->setEnabled(checked);
+	ui.radioButton_FreeFirst->setEnabled(checked);
+	ui.radioButton_ExternalFirst->setEnabled(checked);
+	ui.radioButton_SoftFirst->setEnabled(checked);
 }
 
 void CParameterSetting::setSecondEnable(bool checked)
@@ -2403,6 +2437,9 @@ void CParameterSetting::setSecondEnable(bool checked)
 	ui.lineEdit_OKPath_Second->setEnabled(checked);
 	ui.le_exposure_2->setEnabled(checked);
 	ui.le_gain_2->setEnabled(checked);
+	ui.radioButton_FreeSecond->setEnabled(checked);
+	ui.radioButton_ExternalSecond->setEnabled(checked);
+	ui.radioButton_SoftSecond->setEnabled(checked);
 }
 
 void CParameterSetting::setThirdEnable(bool checked)
@@ -2416,6 +2453,9 @@ void CParameterSetting::setThirdEnable(bool checked)
 	ui.lineEdit_OKPath_Third->setEnabled(checked);
 	ui.le_exposure_3->setEnabled(checked);
 	ui.le_gain_3->setEnabled(checked);
+	ui.radioButton_FreeThird->setEnabled(checked);
+	ui.radioButton_ExternalThird->setEnabled(checked);
+	ui.radioButton_SoftThird->setEnabled(checked);
 }
 
 void CParameterSetting::setFourthEnable(bool checked)
@@ -2429,4 +2469,7 @@ void CParameterSetting::setFourthEnable(bool checked)
 	ui.lineEdit_OKPath_Fourth->setEnabled(checked);
 	ui.le_exposure_4->setEnabled(checked);
 	ui.le_gain_4->setEnabled(checked);
+	ui.radioButton_FreeFourth->setEnabled(checked);
+	ui.radioButton_ExternalFourth->setEnabled(checked);
+	ui.radioButton_SoftFourth->setEnabled(checked);
 }
