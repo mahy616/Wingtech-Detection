@@ -14,7 +14,6 @@ CPLCManager::CPLCManager(QObject *parent)
 	//connect(m_TcpClient, SIGNAL(readyRead()), this, SLOT(ReadPLCData()));
 	connect(&m_Timer, SIGNAL(timeout()), this, SLOT(SlotTimeOuter()));
 	ReadCurrentRecipe();
-	m_ImageCounts = 5;  //测试用，正常应该PLC发送图片个数后，赋值给m_ImageCounts
 }
 
 CPLCManager::~CPLCManager()
@@ -55,13 +54,13 @@ void CPLCManager::WritePLCData(QString strResult,bool bok)
 	qDebug() << "WritePLCData:" << bok;
 	if (m_bConnected)
 	{
-		if (bok)
+		if (m_StartIndex==1)
 		{
-			WritePLCOK(strResult);
+			WritePLC(strResult,"D200");
 		}
 		else
 		{
-			WritePLCNG(strResult);
+			WritePLC(strResult,"D210");
 		}
 	}
 	else
@@ -71,23 +70,16 @@ void CPLCManager::WritePLCData(QString strResult,bool bok)
 }
 
 
-void CPLCManager::WritePLCOK(QString strResult)
+void CPLCManager::WritePLC(QString strResult,const char* Station)
 {
 	bool ret = false;
 	const char sz_write[] = "01010101";//测试用，实际sz_write=strResult
 	int length = sizeof(sz_write) / sizeof(sz_write[0]);
-	ret = mc_write_string(m_fd, "D200", length, sz_write);
+	ret = mc_write_string(m_fd, Station, length, sz_write);
 	qDebug() << "WritePLCOK";
 }
 
-void CPLCManager::WritePLCNG(QString strResult)
-{
-	bool ret = false;
-	const char sz_write[] = "10101010";//测试用，实际sz_write=strResult
-	int length = sizeof(sz_write) / sizeof(sz_write[0]);
-	ret = mc_write_string(m_fd, "D210", length, sz_write);
-	qDebug() << "WritePLCNG";
-}
+
 
 void CPLCManager::WritePLCHeartbeat()
 {
@@ -122,6 +114,7 @@ void CPLCManager::ReadCurrentRecipe()
 	char* str_val = NULL;
 	short s_val = 0;
 	int length = 30;
+	short ImageCounts;
 	if (ret = mc_read_string(m_fd, "D342", length, &str_val))//当前配方名称
 	{
 		msg = QString(str_val);
@@ -130,30 +123,15 @@ void CPLCManager::ReadCurrentRecipe()
 	{
 		number = s_val;
 	}
-	if (ret = mc_read_short(m_fd, "D340", &s_val))//当前配方拍照次数
+	if (ret = mc_read_short(m_fd, "D340", &ImageCounts))//当前配方拍照次数
 	{
+		ImageCounts = s_val;
 	}
-	if (  number == 0 || msg == "")
+	if (  number == 0 || ImageCounts==0||msg == "")
 	{
 		qDebug() << "初始化配方失败";
 	}
-	emit SendChangePLCRecipe(msg, number);
-}
-
-void CPLCManager::GetChangeRecipeName(char * str)
-{
-	QString msg;
-	int number;
-	//分割字符串 解析设备编号和名称xian
-	emit SendChangePLCRecipe(msg, number);
-}
-
-void CPLCManager::GetSaveRecipeName(char * str)
-{
-	QString msg;
-	int number;
-	//分割字符串 解析设备编号和名称
-	emit SendSavePLCRecipe(msg, number);
+	emit SendChangePLCRecipe(msg, number,ImageCounts);
 }
 
 
@@ -162,30 +140,56 @@ void CPLCManager::ReadPLCData()
 {
 	bool ret = false;
 	short s_val = 0;
+	short counts = 0;
 	char* str_val = NULL;
-	int length =30;
-	if(ret = mc_read_string(m_fd, "D320", length, &str_val))//配方保存
+	int length = 30;
+	QString RecipeName;
+	int number;
+	if (mc_read_short(m_fd, "D320", &s_val))//配方保存
 	{
 		if (str_val == "1")
-		GetSaveRecipeName(str_val);
+		{
+			if (!mc_read_string(m_fd, "D", length, &str_val))
+				qDebug() << "GetRecipeName error";
+
+
+			if (!mc_read_short(m_fd, "D", &s_val))
+				qDebug() << "GetRecipeNumber error";
+
+			if (!mc_read_short(m_fd, "D", &counts))
+				qDebug() << "GetRecipeCounts error";
+
+			emit SendSavePLCRecipe(RecipeName, number,counts);
+		}
 	}
-	if (ret = mc_read_string(m_fd, "D330", length, &str_val))//切换配方
+	if (mc_read_short(m_fd, "D320", &s_val))//配方切换
 	{
-	   if(str_val=="1")
-		GetChangeRecipeName(str_val);
+		if (str_val == "1")
+		{
+			if (!mc_read_string(m_fd, "D", length, &str_val))
+				qDebug() << "GetRecipeName error";
+
+			if (!mc_read_short(m_fd, "D", &s_val))
+				qDebug() << "GetRecipeNumber error";
+
+			if (!mc_read_short(m_fd, "D", &counts))
+				qDebug() << "GetRecipeCounts error";
+
+			emit SendChangePLCRecipe(RecipeName, number, counts);
+		}
 	}
-	if (1 == (ret = mc_read_short(m_fd, "D310", &s_val)))
+	if (mc_read_short(m_fd, "D310", &s_val))
 	{
-		if (s_val == 1)
+		if (s_val)
 		{
 			m_StartIndex = 2;
 			emit SendStartSign();
 		}
-			
+
 	}
-	if (1 == (ret = mc_read_short(m_fd, "D300", &s_val)))
+	if (mc_read_short(m_fd, "D300", &s_val))
 	{
-		if (s_val == 1)
+		if (s_val)
 		{
 			m_StartIndex = 1;
 			emit SendStartSign();

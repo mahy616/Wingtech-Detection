@@ -9,6 +9,7 @@
 #include <iostream >
 
 //using namespace std;
+
 typedef struct
 {
 	int CurrentMachineNumber;
@@ -37,15 +38,12 @@ public:
 	void WritePLCReady();
 private:
 	//PLCÐ´²Ù×÷
-	void WritePLCOK(QString strResult);
-	void WritePLCNG(QString strResult);
+	void WritePLC(QString strResult, const char* Station);
 	void WritePLCHeartbeat();
 	void WritePLCChangeVar();
 	
 private:
 	void ReadCurrentRecipe();
-	void GetChangeRecipeName(char* str);
-	void GetSaveRecipeName(char* str);
 
 private:
 	CPLCManager(QObject *parent = NULL);
@@ -65,14 +63,14 @@ private:
 	s_CurrentRecipe CurrentRecipe;
 	int m_StartIndex;
 	int m_fd;
-	int m_ImageCounts;
+	int m_c;
 private slots:
 	void SlotTimeOuter();
 	void ReadPLCData();
 signals:
 	void SendConnectStatus(bool status);
 	void SendPLCMessage(QString msg);
-	void SendChangePLCRecipe(QString msg, int number);
-	void SendSavePLCRecipe(QString msg, int number);
+	void SendChangePLCRecipe(QString msg, int number,int ImageCounts);
+	void SendSavePLCRecipe(QString msg, int number, int ImageCounts);
 	void SendStartSign();
 };

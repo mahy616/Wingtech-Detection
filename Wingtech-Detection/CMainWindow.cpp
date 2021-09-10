@@ -81,14 +81,10 @@ CMainWindow::CMainWindow(QWidget *parent) : QMainWindow(parent)
     ui.setupUi(this);
     qInstallMessageHandler(outputMessage);
     InitVariables();
-
-	m_ImageCounts = 5;//测试用，实际会由PLC发送数据得到
 	m_Index = 0;      //发往窗口的图片数据统计
-
     InitResultDetails(m_ImageCounts);
     InitStatusBar();
     InitConnections();
-	
 }
 
 void CMainWindow::InitVariables()
@@ -153,6 +149,8 @@ void CMainWindow::InitVariables()
 //每行10个图像状态
 void CMainWindow::InitResultDetails(int ImageCounts)
 {
+	ImageCounts = m_RecipeManager->GetImageNumber();
+	ImageCounts = 5;//测试用
     qDebug() << "InitResultDetials";
     QGridLayout *Camera1Layout = new QGridLayout();
 
@@ -381,7 +379,6 @@ void CMainWindow::InitConnections()
 	qRegisterMetaType<QVector<double>>("QVector<double>");
     connect(m_Parameter, SIGNAL(SendOriginalImage(Mat, int, e_CameraType)), m_RecipeManager, SLOT(ReceivaOriginalImage(Mat, int, e_CameraType)));
 	connect(m_Parameter, SIGNAL(SendThreshold(QVector<double>)), m_RecipeManager, SLOT(ReceiveAlgoThreshold(QVector<double>)));
-	connect(m_RecipeManager, SIGNAL(SendInitImageNumber(int)), this, SLOT(ReceiveInitImageNumber(int)));
 	connect(m_RecipeManager, SIGNAL(SendAlgoImage(Mat, Mat, int , bool , e_CameraType )), this, SLOT(ReceiveAlgoImage(Mat, Mat, int, bool, e_CameraType)));
 	connect(m_RecipeManager, SIGNAL(SendStartSign()), this, SLOT(ReceiveStartSign()));
 
