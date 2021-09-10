@@ -1144,6 +1144,8 @@ public:
         QObject::connect(spinBox_Wh_CaShang, SIGNAL(valueChanged(int)), DialogSetting, SLOT(SetThreshold()));
         QObject::connect(spinBox_Wh_TieFen, SIGNAL(valueChanged(int)), DialogSetting, SLOT(SetThreshold()));
         QObject::connect(pushButton_SaveConfig, SIGNAL(clicked()), DialogSetting, SLOT(SaveConfig()));
+        QObject::connect(checkBox_RenderThird, SIGNAL(clicked(bool)), DialogSetting, SLOT(ShowThirdRender(bool)));
+        QObject::connect(checkBox_RenderFourth, SIGNAL(clicked(bool)), DialogSetting, SLOT(ShowFourthRender(bool)));
 
         tabWidget->setCurrentIndex(0);
 

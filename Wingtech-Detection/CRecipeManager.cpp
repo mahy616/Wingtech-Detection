@@ -246,7 +246,7 @@ void CRecipeManager::ReceiveStartSign()
 	emit SendStartSign();
 }
 
-void CRecipeManager::ReceiveAlgoThreshold(QVector<double>AlgoThreshold)
+void CRecipeManager::ReceiveAlgoThreshold(QVector<double> AlgoThreshold)
 {
 	m_AlgoThreshold = AlgoThreshold;
 	QMap<QString, CAlgoManager*>::iterator it; //±éÀúmap  

@@ -812,7 +812,7 @@ void CParameterSetting::ReceivaOriginalImage(Mat OriginalImage, e_CameraType typ
 {
 	//emit SendAlgoImageToMainWindow(AlgolImage, type, Time, bok);//??
 	emit SendOriginalImage(OriginalImage, Index,type);
-
+	//我的理解，这里应该存放经过算法处理显示的操作
 }
 
 void CParameterSetting::SaveCameraParams4()
@@ -855,6 +855,7 @@ void CParameterSetting::ChooseFirstOkPath()
 	{
 		QMessageBox::information(this, QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("未设置路径信息"));
 	}
+	m_path = filePath;
 }
 
 void CParameterSetting::ChooseFirstNgPath()
@@ -868,7 +869,7 @@ void CParameterSetting::ChooseFirstNgPath()
 	{
 		QMessageBox::information(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("未设置路径信息"));
 	}
-
+	m_path = filePath;
 }
 
 void CParameterSetting::ChooseSecondOkPath()
@@ -2395,11 +2396,7 @@ void CParameterSetting::AutoDeleteFiles(unsigned int days)
 	std::filesystem::path str(m_path.toStdString());
 	if (!exists(str))		//必须先检测目录是否存在才能使用文件入口.
 		return;
-	//if (!QFileInfo::exists(m_path))
-	//{
 
-	//}
-	//for(auto & it : )
 	for (auto& it : std::filesystem::directory_iterator(str))
 	{
 		const auto &time = QDateTime::fromString(QString::fromLocal8Bit(it.path().filename().string().c_str()), "yyyy-MM-dd");
@@ -2472,4 +2469,27 @@ void CParameterSetting::setFourthEnable(bool checked)
 	ui.radioButton_FreeFourth->setEnabled(checked);
 	ui.radioButton_ExternalFourth->setEnabled(checked);
 	ui.radioButton_SoftFourth->setEnabled(checked);
+}
+
+void CParameterSetting::ShowFirstRender(bool bok)
+{
+	if (bok)
+	{
+		//ui.label_FirstImage->SetImage();
+	}
+}
+
+void CParameterSetting::ShowSecondRender(bool bok)
+{
+
+}
+
+void CParameterSetting::ShowThirdRender(bool bok)
+{
+
+}
+
+void CParameterSetting::ShowFourthRender(bool bok)
+{
+
 }

@@ -137,6 +137,11 @@ private slots:
 	void ReceiveCameraImage(Mat image, e_CameraType index);
 	void ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Index);
 
+	void ShowFirstRender(bool bok);
+	void ShowSecondRender(bool bok);
+	void ShowThirdRender(bool bok);
+	void ShowFourthRender(bool bok);
+
 signals:
 	void SendAlgoImageToMainWindow( Mat OriginalImage, e_CameraType type,int index, bool bok);
 	void SendOriginalImage(Mat image, int index, e_CameraType type);

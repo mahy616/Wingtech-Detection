@@ -130,7 +130,7 @@ void CPLCManager::ReadCurrentRecipe()
 	{
 		number = s_val;
 	}
-	if (ret = mc_read_short(m_fd, "D340", &s_val))//当前运行机种编号
+	if (ret = mc_read_short(m_fd, "D340", &s_val))//当前配方拍照次数
 	{
 	}
 	if (  number == 0 || msg == "")
@@ -144,7 +144,7 @@ void CPLCManager::GetChangeRecipeName(char * str)
 {
 	QString msg;
 	int number;
-	//分割字符串 解析设备编号和名称
+	//分割字符串 解析设备编号和名称xian
 	emit SendChangePLCRecipe(msg, number);
 }
 
