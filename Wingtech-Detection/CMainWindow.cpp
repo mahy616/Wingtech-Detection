@@ -26,6 +26,10 @@ CMainWindow::~CMainWindow()
 {
     delete m_Parameter;
     m_Parameter = NULL;
+	delete m_RecipeManager;
+	m_RecipeManager = nullptr;
+	delete m_admin;
+	m_admin = nullptr;
 }
 
 
