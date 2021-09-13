@@ -812,7 +812,6 @@ void CParameterSetting::ReceivaOriginalImage(Mat OriginalImage, e_CameraType typ
 {
 	//emit SendAlgoImageToMainWindow(AlgolImage, type, Time, bok);//??
 	emit SendOriginalImage(OriginalImage, Index,type);
-	//我的理解，这里应该存放经过算法处理显示的操作
 }
 
 void CParameterSetting::SaveCameraParams4()
