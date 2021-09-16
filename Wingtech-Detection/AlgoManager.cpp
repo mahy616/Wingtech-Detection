@@ -78,15 +78,19 @@ void CAlgoManager::run()
 		//req.image = cv::imread(input_image);
 		req.image = ImageInfo.Image;
 		std::cout << "Init success" << std::endl;
+		qDebug() << "Init success";
 		smartmore::ResultCode res1=module.Run(req, rsp);
 		std::cout << "Run success" << std::endl;
+		qDebug() << "Run success";
 		if (res1 != smartmore::ResultCode::Success)
 		{
+			qDebug() << "Position1 Normal run Failure.";
 			std::cout << "Position1 Normal run Failure." << std::endl;
 		}
 		else
 		{
 			module.Visualize(req, rsp, RenderImage, Threshold);
+			qDebug() << "smartmore::ResultCode::Success";
 		};
 		Mat Render;/////////////////////////////////////////////////////////////////////////////////////////////???????
 		bool bok = true;

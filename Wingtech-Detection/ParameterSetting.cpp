@@ -7,6 +7,7 @@
 CParameterSetting::CParameterSetting(QDialog *parent /*= NULL*/)
 	:QDialog(parent)
 {
+	qDebug() << "CParameterSetting::CParameterSetting";
 	ui.setupUi(this);
 	InitVariables();
 	InitConnections();
@@ -17,7 +18,6 @@ CParameterSetting::CParameterSetting(QDialog *parent /*= NULL*/)
 
 CParameterSetting::~CParameterSetting()
 {
-	qDebug() << "~CParameterSetting";
 	m_FirstCameraInfo.ImageCapture->StopThread();
 	m_FirstCameraInfo.ImageCapture->wait(1000);
 	if (m_FirstCameraInfo.bOpenCamera)
@@ -65,7 +65,7 @@ void CParameterSetting::InitVariables()
 	m_SecondCameraInfo.ImageCapture->start();
 	m_ThirdCameraInfo.ImageCapture->start();
 	m_FourCameraInfo.ImageCapture->start();
-
+	qDebug() << "Init four threads";
 	//m_FirstAlgo.Init();
 	//m_FirstAlgo.Algo->start();
 

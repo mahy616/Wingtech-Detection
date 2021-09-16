@@ -51,7 +51,7 @@ void CPLCManager::TcpConnect(QString ip, quint16 port, int HeartBeat)
 
 void CPLCManager::WritePLCData(QString strResult,bool bok)
 {
-	qDebug() << "WritePLCData:" << bok;
+	qDebug() << "WritePLCData:" << bok << strResult;
 	if (m_bConnected)
 	{
 		if (m_StartIndex==1)
@@ -131,6 +131,7 @@ void CPLCManager::ReadCurrentRecipe()
 	{
 		qDebug() << "³õÊ¼»¯Åä·½Ê§°Ü";
 	}
+	qDebug() << "ReadCurrentRecipe: " << "msg = " << msg << "," << "number = " << "," << number << "ImageCounts" << ImageCounts;
 	emit SendChangePLCRecipe(msg, number,ImageCounts);
 }
 
@@ -158,7 +159,7 @@ void CPLCManager::ReadPLCData()
 
 			if (!mc_read_short(m_fd, "D", &counts))
 				qDebug() << "GetRecipeCounts error";
-
+			qDebug() << "ReadPLCData SendSavePLCRecipe: " << "RecipeName = " << RecipeName << "," << "number = " << "," << number << "counts" << counts;
 			emit SendSavePLCRecipe(RecipeName, number,counts);
 		}
 	}
@@ -174,7 +175,7 @@ void CPLCManager::ReadPLCData()
 
 			if (!mc_read_short(m_fd, "D", &counts))
 				qDebug() << "GetRecipeCounts error";
-
+			qDebug() << "ReadPLCData SendChangePLCRecipe: " << "RecipeName = " << RecipeName << "," << "number = " << "," << number << "counts" << counts;
 			emit SendChangePLCRecipe(RecipeName, number, counts);
 		}
 	}

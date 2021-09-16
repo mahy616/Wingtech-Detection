@@ -82,6 +82,7 @@ void outputMessage(QtMsgType type, const QMessageLogContext &context, const QStr
 
 CMainWindow::CMainWindow(QWidget *parent) : QMainWindow(parent)
 {
+	qDebug() << "CMainWindow::CMainWindow(QWidget *parent) Init !";
     ui.setupUi(this);
     qInstallMessageHandler(outputMessage);
     InitVariables();
@@ -93,6 +94,7 @@ CMainWindow::CMainWindow(QWidget *parent) : QMainWindow(parent)
 
 void CMainWindow::InitVariables()
 {
+	qDebug() << "CMainWindow::InitVariables()";
     //处理结果 OK/NG
     QFont LabelFont("微软雅黑", 142);
     m_TotalResult = new QLabel("OK");
@@ -100,20 +102,20 @@ void CMainWindow::InitVariables()
     m_TotalResult->setStyleSheet(
         "color: rgb(0, 170, 0);background-color: rgb(255, 255, 150);font: 142pt \"微软雅黑\";");
     m_TotalResult->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-
+	qDebug() << "Init OK label widget";
     //检测最终结果
     QDockWidget *DockResult = new QDockWidget(QString::fromLocal8Bit("检测结果"));
     DockResult->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     addDockWidget(Qt::RightDockWidgetArea, DockResult);
     DockResult->setWidget(m_TotalResult);
-
+	qDebug() << "Init DockResult widget";
     //数据统计
     m_Statistics = new StatisticsWidget();
     QDockWidget *DockStatistics = new QDockWidget(QString::fromLocal8Bit("数据统计"));
     DockStatistics->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     addDockWidget(Qt::RightDockWidgetArea, DockStatistics);
     DockStatistics->setWidget(m_Statistics);
-
+	qDebug() << "Init DockStatistics widget";
     //日志
     m_ListView = new QListView();
     m_LogModel = new QStandardItemModel();
@@ -125,7 +127,7 @@ void CMainWindow::InitVariables()
     LogDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     addDockWidget(Qt::RightDockWidgetArea, LogDock);
     LogDock->setWidget(m_ListView);
-
+	qDebug() << "Init Log widget";
     m_Camera1Results.clear();
     m_Camera1Images.clear();
     m_Camera1Result = true;
@@ -415,8 +417,10 @@ void CMainWindow::AddLog(QString log)
 
 void CMainWindow::StartDection()
 {
+	qDebug() << "CMainWindow::StartDection()";
 	if (!m_RecipeManager->SendPLCReadySign())
 	{
+		qDebug() << "Ready error";
 		cout << "Ready error" << endl;
 		return;
 	}
@@ -430,6 +434,7 @@ void CMainWindow::StartDection()
 
 void CMainWindow::StopDection() 
 {
+	qDebug() << "CMainWindow::StopDection()";
 	ui.action_Start->setEnabled(true);
 	ui.action_Stop->setEnabled(false);
 	ui.action_Setting->setEnabled(true);
@@ -721,6 +726,7 @@ void CMainWindow::ProcessDetectionResult()
     }
     // TODO PLC发送信号
 	SendPLCResult(Msg, bok);
+	qDebug() << "CMainWindow::ProcessDetectionResult()" << "Msg = " << Msg << ", bok" << bok;
 	//AddLog(QString::fromLocal8Bit("发送结果失败:") + Msg);
 	AddLog(QString::fromLocal8Bit("发送结果:") + QString::number(bok));
 
