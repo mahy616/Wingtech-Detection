@@ -220,17 +220,17 @@ void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo)
 
 	};
 
-	image_info(ui.checkBox_SaveNG_First->isChecked(),ImageInfo.FirstStation, CurTime, m_ngpath1, ImageInfo.FirstStation.bok,1);
-	image_info(ui.checkBox_SaveOK_First->isChecked(), ImageInfo.FirstStation, CurTime, m_okpath1, ImageInfo.FirstStation.bok,1);
+	image_info(ui.checkBox_SaveNG_First->isChecked(),ImageInfo.FirstStation, CurTime, m_ngpath1, ImageInfo.FirstStation.bok, m_index);
+	image_info(ui.checkBox_SaveOK_First->isChecked(), ImageInfo.FirstStation, CurTime, m_okpath1, ImageInfo.FirstStation.bok, m_index);
 
-	image_info(ui.checkBox_SaveNG_Second->isChecked(), ImageInfo.SecondStation, CurTime, m_ngpath2, ImageInfo.SecondStation.bok,2);
-	image_info(ui.checkBox_SaveOK_Second->isChecked(), ImageInfo.SecondStation, CurTime, m_okpath2, ImageInfo.SecondStation.bok,2);
+	image_info(ui.checkBox_SaveNG_Second->isChecked(), ImageInfo.SecondStation, CurTime, m_ngpath2, ImageInfo.SecondStation.bok, m_index);
+	image_info(ui.checkBox_SaveOK_Second->isChecked(), ImageInfo.SecondStation, CurTime, m_okpath2, ImageInfo.SecondStation.bok, m_index);
 
-	image_info(ui.checkBox_SaveNG_Third->isChecked(), ImageInfo.ThirdStation, CurTime, m_ngpath3, ImageInfo.ThirdStation.bok,3);
-	image_info(ui.checkBox_SaveOK_Third->isChecked(), ImageInfo.ThirdStation, CurTime, m_okpath3, ImageInfo.ThirdStation.bok,3);
+	image_info(ui.checkBox_SaveNG_Third->isChecked(), ImageInfo.ThirdStation, CurTime, m_ngpath3, ImageInfo.ThirdStation.bok, m_index);
+	image_info(ui.checkBox_SaveOK_Third->isChecked(), ImageInfo.ThirdStation, CurTime, m_okpath3, ImageInfo.ThirdStation.bok, m_index);
 
-	image_info(ui.checkBox_SaveNG_Fourth->isChecked(), ImageInfo.FourStation, CurTime, m_ngpath4, ImageInfo.FourStation.bok,4);
-	image_info(ui.checkBox_SaveOK_Fourth->isChecked(), ImageInfo.FourStation, CurTime, m_okpath4, ImageInfo.FourStation.bok,4);
+	image_info(ui.checkBox_SaveNG_Fourth->isChecked(), ImageInfo.FourStation, CurTime, m_ngpath4, ImageInfo.FourStation.bok, m_index);
+	image_info(ui.checkBox_SaveOK_Fourth->isChecked(), ImageInfo.FourStation, CurTime, m_okpath4, ImageInfo.FourStation.bok, m_index);
 
 }
 
@@ -811,6 +811,7 @@ void CParameterSetting::OnBtnClicked()
 void CParameterSetting::ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Index)
 {
 	//emit SendAlgoImageToMainWindow(AlgolImage, type, Time, bok);//??
+	m_index = Index;
 	emit SendOriginalImage(OriginalImage, Index,type);
 }
 

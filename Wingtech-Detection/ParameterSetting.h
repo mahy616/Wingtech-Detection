@@ -197,4 +197,6 @@ private:
 	QString m_okpath4;
 	QString m_ngpath4;
 
+	int m_index{0};
+
 };

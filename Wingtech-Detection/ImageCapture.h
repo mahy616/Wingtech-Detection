@@ -61,6 +61,7 @@ signals:
 	void SendCameraImage(Mat image, e_CameraType m_Type);
     void SendAlgoImage(Mat OriginalImage, e_CameraType RenderImage, int index, bool bok);
 	void SendImageToAlgo(Mat OriginalImage, e_CameraType type, int index);
+	void SendImageIndex(int index);
 private slots:
     void ReceiveStartSign();
 };
