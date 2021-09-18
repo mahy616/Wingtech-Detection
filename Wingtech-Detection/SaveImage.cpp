@@ -42,7 +42,7 @@ void CSaveImage::run()
 			m_Mutex.lock();
 			s_SaveInfo SaveInfo = m_ImageList.dequeue();
 			m_Mutex.unlock();
-			QByteArray ba = SaveInfo.FileName.toLocal8Bit();
+			QByteArray ba = SaveInfo.FileName.toLocal8Bit();//Unicode
 			char *file = ba.data();
 			try 
 			{

@@ -142,6 +142,8 @@ private slots:
 	void ShowThirdRender(bool bok);
 	void ShowFourthRender(bool bok);
 
+	void DeleteFile();
+
 signals:
 	void SendAlgoImageToMainWindow( Mat OriginalImage, e_CameraType type,int index, bool bok);
 	void SendOriginalImage(Mat image, int index, e_CameraType type);
@@ -186,4 +188,13 @@ private:
 	QVector<double>m_AlgoThreshold;
 
 	QString m_path;
+	QString m_okpath1;
+	QString m_ngpath1;
+	QString m_okpath2;
+	QString m_ngpath2;
+	QString m_okpath3;
+	QString m_ngpath3;
+	QString m_okpath4;
+	QString m_ngpath4;
+
 };

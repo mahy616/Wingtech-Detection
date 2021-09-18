@@ -185,7 +185,7 @@ void CParameterSetting::InitFourthGroup()
 //保存图片
 void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo)
 {
-	QString CurTime = QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss-zzz");
+	QString CurTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
 	auto image_info = [&](bool checkbox, s_StationInfo ImageInfo, const QString &curTime, const QString &path, bool bok,int index)
 	{
 		bool result = checkbox;
@@ -220,17 +220,17 @@ void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo)
 
 	};
 
-	image_info(ui.checkBox_SaveNG_First->isChecked(),ImageInfo.FirstStation, CurTime, ui.lineEdit_NGPath_First->text(), ImageInfo.FirstStation.bok,1);
-	image_info(ui.checkBox_SaveOK_First->isChecked(), ImageInfo.FirstStation, CurTime, ui.lineEdit_OKPath_First->text(), ImageInfo.FirstStation.bok,1);
+	image_info(ui.checkBox_SaveNG_First->isChecked(),ImageInfo.FirstStation, CurTime, m_ngpath1, ImageInfo.FirstStation.bok,1);
+	image_info(ui.checkBox_SaveOK_First->isChecked(), ImageInfo.FirstStation, CurTime, m_okpath1, ImageInfo.FirstStation.bok,1);
 
-	image_info(ui.checkBox_SaveNG_Second->isChecked(), ImageInfo.SecondStation, CurTime, ui.lineEdit_NGPath_Second->text(), ImageInfo.SecondStation.bok,2);
-	image_info(ui.checkBox_SaveOK_Second->isChecked(), ImageInfo.SecondStation, CurTime, ui.lineEdit_NGPath_Second->text(), ImageInfo.SecondStation.bok,2);
+	image_info(ui.checkBox_SaveNG_Second->isChecked(), ImageInfo.SecondStation, CurTime, m_ngpath2, ImageInfo.SecondStation.bok,2);
+	image_info(ui.checkBox_SaveOK_Second->isChecked(), ImageInfo.SecondStation, CurTime, m_okpath2, ImageInfo.SecondStation.bok,2);
 
-	image_info(ui.checkBox_SaveNG_Third->isChecked(), ImageInfo.ThirdStation, CurTime, ui.lineEdit_NGPath_Third->text(), ImageInfo.ThirdStation.bok,3);
-	image_info(ui.checkBox_SaveOK_Third->isChecked(), ImageInfo.ThirdStation, CurTime, ui.lineEdit_OKPath_Third->text(), ImageInfo.ThirdStation.bok,3);
+	image_info(ui.checkBox_SaveNG_Third->isChecked(), ImageInfo.ThirdStation, CurTime, m_ngpath3, ImageInfo.ThirdStation.bok,3);
+	image_info(ui.checkBox_SaveOK_Third->isChecked(), ImageInfo.ThirdStation, CurTime, m_okpath3, ImageInfo.ThirdStation.bok,3);
 
-	image_info(ui.checkBox_SaveNG_Fourth->isChecked(), ImageInfo.FourStation, CurTime, ui.lineEdit_NGPath_Fourth->text(), ImageInfo.FourStation.bok,4);
-	image_info(ui.checkBox_SaveOK_Fourth->isChecked(), ImageInfo.FourStation, CurTime, ui.lineEdit_NGPath_Fourth->text(), ImageInfo.FourStation.bok,4);
+	image_info(ui.checkBox_SaveNG_Fourth->isChecked(), ImageInfo.FourStation, CurTime, m_ngpath4, ImageInfo.FourStation.bok,4);
+	image_info(ui.checkBox_SaveOK_Fourth->isChecked(), ImageInfo.FourStation, CurTime, m_okpath4, ImageInfo.FourStation.bok,4);
 
 }
 
@@ -401,8 +401,8 @@ void CParameterSetting::InitCamera()
 	{
 		MV_CC_DEVICE_INFO* pDeviceInfo = m_stDevList.pDeviceInfo[i];
 		char strUserName[256] = { 0 };
-		sprintf_s(strUserName, "%s-%s_%s", pDeviceInfo->SpecialInfo.stGigEInfo.chUserDefinedName, pDeviceInfo->SpecialInfo.stGigEInfo.chModelName,
-				  pDeviceInfo->SpecialInfo.stGigEInfo.chSerialNumber);
+		sprintf_s(strUserName, "%s-%s_%s", pDeviceInfo->SpecialInfo.stGigEInfo.chUserDefinedName, 
+			      pDeviceInfo->SpecialInfo.stGigEInfo.chModelName, pDeviceInfo->SpecialInfo.stGigEInfo.chSerialNumber);
 		QString UserName = QString::fromLocal8Bit(strUserName);
 		ui.comboBox_First->addItem(UserName);
 		ui.comboBox_Second->addItem(UserName);
@@ -816,7 +816,7 @@ void CParameterSetting::ReceivaOriginalImage(Mat OriginalImage, e_CameraType typ
 
 void CParameterSetting::SaveCameraParams4()
 {
-	qDebug() << "参数设置buttonParamsSet2";
+	qDebug() << "参数设置buttonParamsSet4";
 	update();
 	bool bIsSetSucceed = true;
 	int nRet = SetExposureTime(m_FourCameraInfo.CameraHandle, 4);
@@ -849,12 +849,14 @@ void CParameterSetting::ChooseFirstOkPath()
 	if (false == filePath.isEmpty())
 	{
 		ui.lineEdit_OKPath_First->setText(filePath);
+		qInfo() << "set path ok 1 success!" << filePath;
 	}
 	else
 	{
 		QMessageBox::information(this, QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("未设置路径信息"));
 	}
-	m_path = filePath;
+
+
 }
 
 void CParameterSetting::ChooseFirstNgPath()
@@ -863,6 +865,7 @@ void CParameterSetting::ChooseFirstNgPath()
 	if (false == filePath.isEmpty())
 	{
 		ui.lineEdit_NGPath_First->setText(filePath);
+		qInfo() << "set path ng 1 success!" << filePath;
 	}
 	else
 	{
@@ -877,6 +880,7 @@ void CParameterSetting::ChooseSecondOkPath()
 	if (false == filePath.isEmpty())
 	{
 		ui.lineEdit_OKPath_Second->setText(filePath);
+		qInfo() << "set path ok 2 success!" << filePath;
 	}
 	else
 	{
@@ -890,6 +894,7 @@ void CParameterSetting::ChooseSecondNgPath()
 	if (false == filePath.isEmpty())
 	{
 		ui.lineEdit_NGPath_Second->setText(filePath);
+		qInfo() << "set path ng 2 success!" << filePath;
 	}
 	else
 	{
@@ -903,6 +908,7 @@ void CParameterSetting::ChooseThirdOkPath()
 	if (false == filePath.isEmpty())
 	{
 		ui.lineEdit_OKPath_Third->setText(filePath);
+		qInfo() << "set path ok 3 success!" << filePath;
 	}
 	else
 	{
@@ -916,6 +922,7 @@ void CParameterSetting::ChooseThirdNgPath()
 	if (false == filePath.isEmpty())
 	{
 		ui.lineEdit_NGPath_Third->setText(filePath);
+		qInfo() << "set path ng 3 success!" << filePath;
 	}
 	else
 	{
@@ -929,6 +936,7 @@ void CParameterSetting::ChooseFourthOkPath()
 	if (false == filePath.isEmpty())
 	{
 		ui.lineEdit_OKPath_Fourth->setText(filePath);
+		qInfo() << "set path ok 4 success!" << filePath;
 	}
 	else
 	{
@@ -942,6 +950,7 @@ void CParameterSetting::ChooseFourthNgPath()
 	if (false == filePath.isEmpty())
 	{
 		ui.lineEdit_NGPath_Fourth->setText(filePath);
+		qInfo() << "set path ng 4 success!" << filePath;
 	}
 	else
 	{
@@ -1353,7 +1362,8 @@ void CParameterSetting::LoadConfig()
 			ConnectToPLC();
 			  
 		}
-		//保存路径
+		//当路径不存在的时候自动在绝对路径下生成对应的OK/NG的文件夹
+		//保存路径 NG1
 		bool bSaveNGFirst = cfg->GetBool(DATA_SECTION, SAVE_NG_FIRST);
 		qDebug() << "1 load config save ng: " << bSaveNGFirst;
 		printf("1 load config save ng:%d\n", bSaveNGFirst);
@@ -1367,9 +1377,14 @@ void CParameterSetting::LoadConfig()
 			if (!NGPath.isEmpty())
 			{
 				ui.lineEdit_NGPath_First->setText(NGPath);
+				m_ngpath1 = NGPath + "/" + "NG-1";
+			}
+			else
+			{
+				m_ngpath1 = QCoreApplication::applicationDirPath() + "/" + "NG-1";
 			}
 		}
-
+		//OK1
 		bool bSaveOKFirst = cfg->GetBool(DATA_SECTION, SAVE_OK_FIRST);
 		qDebug() << "1 load config save ok:" << bSaveOKFirst;
 		printf("1 load config save ok:%d\n", bSaveOKFirst);
@@ -1383,9 +1398,14 @@ void CParameterSetting::LoadConfig()
 			if (!OKPath.isEmpty())
 			{
 				ui.lineEdit_OKPath_First->setText(OKPath);
+				m_okpath1 = OKPath + "/" + "OK-1";
+			}
+			else
+			{
+				m_okpath1 = QCoreApplication::applicationDirPath() + "/" + "OK-1";
 			}
 		}
-
+		//NG2
 		bool bSaveNGSecond = cfg->GetBool(DATA_SECTION, SAVE_NG_SECOND);
 		qDebug() << "2 load config save ng:" << bSaveNGSecond;
 		printf("2 load config save ng:%d\n", bSaveNGSecond);
@@ -1399,9 +1419,14 @@ void CParameterSetting::LoadConfig()
 			if (!NGPath.isEmpty())
 			{
 				ui.lineEdit_NGPath_Second->setText(NGPath);
+				m_ngpath2 = NGPath + "/" + "NG-2";
+			}
+			else
+			{
+				m_ngpath2 = QCoreApplication::applicationDirPath() + "/" + "NG-2";
 			}
 		}
-
+		//OK2
 		bool bSaveOKSecond = cfg->GetBool(DATA_SECTION, SAVE_OK_SECOND);
 		qDebug() << "2 load config save ok:" << bSaveOKSecond;
 		printf("2 load config save ok:%d\n", bSaveOKSecond);
@@ -1415,9 +1440,14 @@ void CParameterSetting::LoadConfig()
 			if (!OKPath.isEmpty())
 			{
 				ui.lineEdit_OKPath_Second->setText(OKPath);
+				m_okpath2 = OKPath + "/" + "OK-2";
+			}
+			else
+			{
+				m_okpath2 = QCoreApplication::applicationDirPath() + "/" + "OK-2";
 			}
 		}
-
+		//NG3
 		bool bSaveNGThird = cfg->GetBool(DATA_SECTION, SAVE_NG_THIRD);
 		qDebug() << "3 load config save ng:" << bSaveNGThird;
 		printf("3 load config save ng:%d\n", bSaveNGThird);
@@ -1431,9 +1461,14 @@ void CParameterSetting::LoadConfig()
 			if (!NGPath.isEmpty())
 			{
 				ui.lineEdit_NGPath_Third->setText(NGPath);
+				m_ngpath3 = NGPath + "/" + "NG-3";
+			}
+			else
+			{
+				m_ngpath3 = QCoreApplication::applicationDirPath() + "/" + "NG-3";
 			}
 		}
-
+		//OK3
 		bool bSaveOKThird = cfg->GetBool(DATA_SECTION, SAVE_OK_THIRD);
 		qDebug() << "3 load config save ok:" << bSaveOKThird;
 		printf("3 load config save ok:%d\n", bSaveOKThird);
@@ -1447,9 +1482,14 @@ void CParameterSetting::LoadConfig()
 			if (!OKPath.isEmpty())
 			{
 				ui.lineEdit_OKPath_Third->setText(OKPath);
+				m_okpath3 = OKPath + "/" + "OK-3";
+			}
+			else
+			{
+				m_okpath3 = QCoreApplication::applicationDirPath() + "/" + "OK-3";
 			}
 		}
-
+		//NG4
 		bool bSaveNGFourth = cfg->GetBool(DATA_SECTION, SAVE_NG_FOURTH);
 		qDebug() << "4 load config save ng:" << bSaveNGFourth;
 		printf("4 load config save ng:%d\n", bSaveNGFourth);
@@ -1463,6 +1503,11 @@ void CParameterSetting::LoadConfig()
 			if (!NGPath.isEmpty())
 			{
 				ui.lineEdit_NGPath_Fourth->setText(NGPath);
+				m_ngpath4 = NGPath + "/" + "NG-4";
+			}
+			else
+			{
+				m_ngpath4 = QCoreApplication::applicationDirPath() + "/" + "NG-4";
 			}
 		}
 
@@ -1479,6 +1524,11 @@ void CParameterSetting::LoadConfig()
 			if (!OKPath.isEmpty())
 			{
 				ui.lineEdit_OKPath_Fourth->setText(OKPath);
+				m_okpath4 = OKPath + "/" + "OK-4";
+			}
+			else
+			{
+				m_okpath4 = QCoreApplication::applicationDirPath() + "/" + "OK-4";
 			}
 		}
 
@@ -2392,18 +2442,45 @@ void CParameterSetting::SafeParamsSetting()
 
 void CParameterSetting::AutoDeleteFiles(unsigned int days)
 {
-	std::filesystem::path str(m_path.toStdString());
-	if (!exists(str))		//必须先检测目录是否存在才能使用文件入口.
-		return;
-
-	for (auto& it : std::filesystem::directory_iterator(str))
+	for (int i = 1; i < 5; i++)
 	{
-		const auto &time = QDateTime::fromString(QString::fromLocal8Bit(it.path().filename().string().c_str()), "yyyy-MM-dd");
-		if (time.daysTo(QDateTime::currentDateTime()) > days)
+		QString path = "m_okpath" + QString::number(i);
+
+		std::filesystem::path str(path.toStdString());
+		if (!exists(str))		//必须先检测目录是否存在才能使用文件入口.
+			return;
+
+		for (auto& it : std::filesystem::directory_iterator(str))
 		{
-			int ret = rmdir(it.path().string().c_str());
+			const auto &time = QDateTime::fromString(QString::fromLocal8Bit(it.path().filename().string().c_str()), "yyyy-MM-dd");
+			if (time.daysTo(QDateTime::currentDateTime()) > days)
+			{
+				int ret = rmdir(it.path().string().c_str());
+				qInfo() << "remove file: m_okpath" << i << ":" << it.path().string().c_str() ;
+			}
 		}
 	}
+
+	for (int i = 1; i < 5; i++)
+	{
+		QString path = "m_ngpath" + QString::number(i);
+
+		std::filesystem::path str(path.toStdString());
+		if (!exists(str))		//必须先检测目录是否存在才能使用文件入口.
+			return;
+
+		for (auto& it : std::filesystem::directory_iterator(str))
+		{
+			const auto &time = QDateTime::fromString(QString::fromLocal8Bit(it.path().filename().string().c_str()), "yyyy-MM-dd");
+			if (time.daysTo(QDateTime::currentDateTime()) > days)
+			{
+				int ret = rmdir(it.path().string().c_str());
+				qInfo() << "remove file: m_ngpath" << i << ":" << it.path().string().c_str();
+			}
+		}
+	}
+	
+
 }
 
 void CParameterSetting::setFirstEnable(bool checked)
@@ -2491,4 +2568,9 @@ void CParameterSetting::ShowThirdRender(bool bok)
 void CParameterSetting::ShowFourthRender(bool bok)
 {
 
+}
+
+void CParameterSetting::DeleteFile()
+{
+	AutoDeleteFiles(30);
 }

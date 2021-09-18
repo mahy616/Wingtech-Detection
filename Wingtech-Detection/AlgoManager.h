@@ -35,7 +35,7 @@ private:
 	static CAlgoManager* m_Algo;
 	smartmore::VimoDetectionModule module;
 	int m_Index;
-	QVector<double>m_AlgoThreshold;
+	QVector<double> m_AlgoThreshold;
 private:
 	void run();
 signals:

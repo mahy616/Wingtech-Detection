@@ -2442,6 +2442,22 @@ color: rgb(85, 0, 255);</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_SaveConfig</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>DeleteFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>343</x>
+     <y>1006</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>341</x>
+     <y>1075</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>OpenFirstCamera()</slot>
@@ -2484,5 +2500,6 @@ color: rgb(85, 0, 255);</string>
   <slot>ChooseFourthNgPath()</slot>
   <slot>ShowThirdRender(bool)</slot>
   <slot>ShowFourthRender(bool)</slot>
+  <slot>DeleteFile()</slot>
  </slots>
 </ui>

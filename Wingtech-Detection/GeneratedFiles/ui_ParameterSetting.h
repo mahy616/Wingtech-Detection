@@ -1146,6 +1146,7 @@ public:
         QObject::connect(pushButton_SaveConfig, SIGNAL(clicked()), DialogSetting, SLOT(SaveConfig()));
         QObject::connect(checkBox_RenderThird, SIGNAL(clicked(bool)), DialogSetting, SLOT(ShowThirdRender(bool)));
         QObject::connect(checkBox_RenderFourth, SIGNAL(clicked(bool)), DialogSetting, SLOT(ShowFourthRender(bool)));
+        QObject::connect(pushButton_SaveConfig, SIGNAL(clicked()), DialogSetting, SLOT(DeleteFile()));
 
         tabWidget->setCurrentIndex(0);
 
