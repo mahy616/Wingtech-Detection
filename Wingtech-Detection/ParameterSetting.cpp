@@ -511,27 +511,29 @@ void CParameterSetting::SaveCameraParams2()
 {
 	qDebug() << "参数设置buttonParamsSet2";
 	update();
-	bool bIsSetSucceed = true;
+	bIsSetSucceed = true;
 	int nRet = SetExposureTime(m_SecondCameraInfo.CameraHandle,2);
 	if (nRet != MV_OK)
 	{
 		bIsSetSucceed = false;
 		qDebug() << "Set Exposure Time Fail";
-		ShowErrorMsg(("Set Exposure Time Fail"), nRet);
+		QMessageBox::information(this, QString::fromLocal8Bit("错误:"), QString::fromLocal8Bit("保存相机1曝光参数失败%1").arg(QString::number(nRet)));
+		//ShowErrorMsg(("Set Exposure Time Fail"), nRet);
 	}
 	nRet = SetGain(m_SecondCameraInfo.CameraHandle,2);
 	if (nRet != MV_OK)
 	{
 		bIsSetSucceed = false;
 		qDebug() << "Set Gain Fail";
-		ShowErrorMsg(("Set Gain Fail"), nRet);
+		QMessageBox::information(this, QString::fromLocal8Bit("错误:"), QString::fromLocal8Bit("保存相机2增益参数失败%1").arg(QString::number(nRet)));
+		//ShowErrorMsg(("Set Gain Fail"), nRet);
 	}
 
-	if (true == bIsSetSucceed)
-	{
-		qDebug() << "Set Parameter Succeed";
-		ShowErrorMsg(("Set Parameter Succeed"), nRet);
-	}
+	//if (true == bIsSetSucceed)
+	//{
+	//	qDebug() << "Set Parameter Succeed";
+	//	ShowErrorMsg(("Set Parameter Succeed"), nRet);
+	//}
 
 	return;
 }
@@ -565,27 +567,29 @@ void CParameterSetting::SaveCameraParams3()
 {
 	qDebug() << "参数设置buttonParamsSet2";
 	update();
-	bool bIsSetSucceed = true;
+	bIsSetSucceed = true;
 	int nRet = SetExposureTime(m_ThirdCameraInfo.CameraHandle, 3);
 	if (nRet != MV_OK)
 	{
 		bIsSetSucceed = false;
 		qDebug() << "Set Exposure Time Fail";
-		ShowErrorMsg(("Set Exposure Time Fail"), nRet);
+		QMessageBox::information(this, QString::fromLocal8Bit("错误:"), QString::fromLocal8Bit("保存相机3增益参数失败%1").arg(QString::number(nRet)));
+		//ShowErrorMsg(("Set Exposure Time Fail"), nRet);
 	}
 	nRet = SetGain(m_ThirdCameraInfo.CameraHandle, 3);
 	if (nRet != MV_OK)
 	{
 		bIsSetSucceed = false;
 		qDebug() << "Set Gain Fail";
-		ShowErrorMsg(("Set Gain Fail"), nRet);
+		QMessageBox::information(this, QString::fromLocal8Bit("错误:"), QString::fromLocal8Bit("保存相机3曝光参数失败%1").arg(QString::number(nRet)));
+		//ShowErrorMsg(("Set Gain Fail"), nRet);
 	}
 
-	if (true == bIsSetSucceed)
-	{
-		qDebug() << "Set Parameter Succeed";
-		ShowErrorMsg(("Set Parameter Succeed"), nRet);
-	}
+	//if (true == bIsSetSucceed)
+	//{
+	//	qDebug() << "Set Parameter Succeed";
+	//	ShowErrorMsg(("Set Parameter Succeed"), nRet);
+	//}
 
 	return;
 }
@@ -819,27 +823,31 @@ void CParameterSetting::SaveCameraParams4()
 {
 	qDebug() << "参数设置buttonParamsSet4";
 	update();
-	bool bIsSetSucceed = true;
+	bIsSetSucceed = true;
 	int nRet = SetExposureTime(m_FourCameraInfo.CameraHandle, 4);
 	if (nRet != MV_OK)
 	{
 		bIsSetSucceed = false;
-		qDebug() << "Set Exposure Time Fail";
-		ShowErrorMsg(("Set Exposure Time Fail"), nRet);
+		qDebug() << "Set Exposure Time Fail";		
+		QMessageBox::information(this, QString::fromLocal8Bit("错误:"), QString::fromLocal8Bit("保存相机4曝光参数失败%1").arg(QString::number(nRet)));
+
+		//ShowErrorMsg(("Set Exposure Time Fail"), nRet);
 	}
 	nRet = SetGain(m_FourCameraInfo.CameraHandle, 4);
 	if (nRet != MV_OK)
 	{
 		bIsSetSucceed = false;
+		QMessageBox::information(this, QString::fromLocal8Bit("错误:"), QString::fromLocal8Bit("保存相机4增益参数失败%1").arg(QString::number(nRet)));
+
 		qDebug() << "Set Gain Fail";
-		ShowErrorMsg(("Set Gain Fail"), nRet);
+		//ShowErrorMsg(("Set Gain Fail"), nRet);
 	}
 
-	if (true == bIsSetSucceed)
-	{
-		qDebug() << "Set Parameter Succeed";
-		ShowErrorMsg(("Set Parameter Succeed"), nRet);
-	}
+	//if (true == bIsSetSucceed)
+	//{
+	//	qDebug() << "Set Parameter Succeed";
+	//	ShowErrorMsg(("Set Parameter Succeed"), nRet);
+	//}
 
 	return;
 }
@@ -1076,6 +1084,9 @@ void CParameterSetting::SaveConfig()
 	cfg->Write(DATA_SECTION, EXTERNAL_FOURTH, ui.radioButton_ExternalFourth->isChecked());
 	cfg->Write(DATA_SECTION, SOFT_FOURTH, ui.radioButton_SoftFourth->isChecked());
 	
+	if(bIsSetSucceed == true)
+		QMessageBox::information(this, QString::fromLocal8Bit(""), QString::fromLocal8Bit("保存成功"));
+
 	//TODO:工位的阈值操作
 	delete cfg;
 	cfg = NULL;
@@ -1996,7 +2007,7 @@ void CParameterSetting::SaveCameraParams1()
 {
     qDebug() << "参数设置buttonParamsSet";
     update();
-    bool bIsSetSucceed = true;
+    bIsSetSucceed = true;
     int nRet = SetExposureTime(m_FirstCameraInfo.CameraHandle,1);
     if (nRet != MV_OK)
     {
@@ -2004,7 +2015,8 @@ void CParameterSetting::SaveCameraParams1()
         bIsSetSucceed = false;
         qDebug() << "Set Exposure Time Fail";
         ShowErrorMsg(("Set Exposure Time Fail"), nRet);
-    }
+		QMessageBox::information(this, QString::fromLocal8Bit("错误:"), QString::fromLocal8Bit("保存相机1曝光参数失败%1").arg(QString::number(nRet)));
+	}
     nRet = SetGain(m_FirstCameraInfo.CameraHandle,1);
     if (nRet != MV_OK)
     {
@@ -2012,13 +2024,14 @@ void CParameterSetting::SaveCameraParams1()
         bIsSetSucceed = false;
         qDebug() << "Set Gain Fail";
         ShowErrorMsg(("Set Gain Fail"), nRet);
+		QMessageBox::information(this, QString::fromLocal8Bit("错误:"), QString::fromLocal8Bit("保存相机1增益参数失败%1").arg(QString::number(nRet)));
     }
 
-    if (true == bIsSetSucceed)
-    {
-        qDebug() << "Set Parameter Succeed";
-        ShowErrorMsg(("Set Parameter Succeed"), nRet);
-    }
+    //if (true == bIsSetSucceed)
+    //{
+    //    qDebug() << "Set Parameter Succeed";
+    //    ShowErrorMsg(("Set Parameter Succeed"), nRet);
+    //}
 
     return;
 }

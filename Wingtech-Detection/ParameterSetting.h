@@ -179,6 +179,8 @@ private:
     double m_dGainEdit{0.0};
     // ch:帧率 | en:Frame Rate
     double m_dFrameRateEdit{0.0};
+	//相机曝光增益是否保存成功
+	bool bIsSetSucceed{true};
 
 	QTableWidget m_ModelChoice;
 	QVector<QString>vtModelName;
