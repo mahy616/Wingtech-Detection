@@ -255,10 +255,10 @@ void CParameterSetting::SaveCameraTestImage(s_SaveImageInfo ImageInfo)
 		m_SaveImage.SaveImage(OriginalImageName, ImageInfo.OriginalImage);
 
 	};
-	image_TestInfo(ImageInfo.FirstStation, CurTime, ui.lineEdit_OKPath_First->text(), 1);
-	image_TestInfo(ImageInfo.SecondStation, CurTime, ui.lineEdit_OKPath_Second->text(), 2);
-	image_TestInfo(ImageInfo.ThirdStation, CurTime, ui.lineEdit_OKPath_Third->text(), 3);
-	image_TestInfo(ImageInfo.FourStation, CurTime, ui.lineEdit_OKPath_Fourth->text(), 4);
+	image_TestInfo(ImageInfo.FirstStation, CurTime, ui.lineEdit_OKPath_First->text(), m_index);
+	image_TestInfo(ImageInfo.SecondStation, CurTime, ui.lineEdit_OKPath_Second->text(), m_index);
+	image_TestInfo(ImageInfo.ThirdStation, CurTime, ui.lineEdit_OKPath_Third->text(), m_index);
+	image_TestInfo(ImageInfo.FourStation, CurTime, ui.lineEdit_OKPath_Fourth->text(), m_index);
 }
 
 //πÿ±’…Ë±∏
