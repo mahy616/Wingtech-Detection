@@ -2,6 +2,7 @@
 #include "QDir"
 #include "Config.h"
 #include "QFileDialog"
+#include <qmessagebox.h>
 
 CRecipeManager::CRecipeManager(QWidget *parent)
 	: QDialog(parent)
@@ -273,7 +274,7 @@ void CRecipeManager::SaveRecipe()
 		QString ModelPath = ui.tableWidget->item(i, 1)->text();
 		if (!QFileInfo::exists(ModelPath))
 		{
-			//提示保存失败
+			QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("模型路径不存在"));
 		}
 		cfg->Write("Recipe_Parameters", QString::number(i + 1), ModelPath);
 	}
