@@ -163,7 +163,7 @@ void CPLCManager::ReadPLCData()
 			emit SendSavePLCRecipe(RecipeName, number,counts);
 		}
 	}
-	if (mc_read_short(m_fd, "D320", &s_val))//配方切换
+	if (mc_read_short(m_fd, "D330", &s_val))//配方切换
 	{
 		if (str_val == "1")
 		{
@@ -179,7 +179,7 @@ void CPLCManager::ReadPLCData()
 			emit SendChangePLCRecipe(RecipeName, number, counts);
 		}
 	}
-	if (mc_read_short(m_fd, "D310", &s_val))
+	if (mc_read_short(m_fd, "D310", &s_val))//2#开始拍照
 	{
 		if (s_val)
 		{
@@ -188,7 +188,7 @@ void CPLCManager::ReadPLCData()
 		}
 
 	}
-	if (mc_read_short(m_fd, "D300", &s_val))
+	if (mc_read_short(m_fd, "D300", &s_val))//1#开始拍照
 	{
 		if (s_val)
 		{
