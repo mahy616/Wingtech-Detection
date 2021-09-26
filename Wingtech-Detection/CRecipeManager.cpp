@@ -165,8 +165,8 @@ QStringList CRecipeManager::getFileNames(const QString &path)
 
 void CRecipeManager::InitRecipeNames()
 {
-	QString IniPath = QCoreApplication::applicationDirPath();
-	IniPath += "/RecipeFolder";
+	QString IniPath = QCoreApplication::applicationDirPath() + "/RecipeFolder";
+	//IniPath += "/RecipeFolder";
 	QStringList RecipeNames = getFileNames(IniPath);
 	ui.comboBox->clear();
 	for (int i = 0; i < RecipeNames.size(); ++i)

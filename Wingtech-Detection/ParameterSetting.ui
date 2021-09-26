@@ -429,7 +429,7 @@ color: rgb(85, 0, 255);</string>
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -501,19 +501,6 @@ color: rgb(85, 0, 255);</string>
             </property>
             <property name="text">
              <string>触发一次</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_First_5">
-            <property name="maximumSize">
-             <size>
-              <width>101</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>相机名称</string>
             </property>
            </widget>
           </item>
@@ -614,6 +601,19 @@ color: rgb(85, 0, 255);</string>
           <item row="5" column="6">
            <widget class="QLineEdit" name="le_gain_3"/>
           </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QLabel" name="label_First_5">
+            <property name="maximumSize">
+             <size>
+              <width>101</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>相机名称</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -655,19 +655,6 @@ color: rgb(85, 0, 255);</string>
            <widget class="QLabel" name="label_31">
             <property name="text">
              <string>增益</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_First_6">
-            <property name="maximumSize">
-             <size>
-              <width>101</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>相机名称</string>
             </property>
            </widget>
           </item>
@@ -792,6 +779,19 @@ color: rgb(85, 0, 255);</string>
             </property>
             <property name="text">
              <string>触发一次</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QLabel" name="label_First_6">
+            <property name="maximumSize">
+             <size>
+              <width>101</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>相机名称</string>
             </property>
            </widget>
           </item>

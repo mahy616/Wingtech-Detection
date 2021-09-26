@@ -14,6 +14,7 @@ CParameterSetting::CParameterSetting(QDialog *parent /*= NULL*/)
 	InitCamera();
 	LoadConfig();
 	LoadModelConfig();
+
 }
 
 CParameterSetting::~CParameterSetting()
@@ -379,6 +380,11 @@ void CParameterSetting::InitConnections()
 	connect(m_FourCameraInfo.ImageCapture, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int)), this, SLOT(ReceivaOriginalImage(Mat, e_CameraType, int)));
 
 	connect(CPLCManager::GetInstance(), SIGNAL(SendConnectStatus(bool)), this, SLOT(ReceiveConnectStatus(bool)));
+	
+	connect(ChangePswd::GetInstall(), SIGNAL(signalFromChangePswd(int, QString, QString)), this, SLOT(slotChangePswd(int, QString, QString)));
+	
+	connect(this, SIGNAL(signalFromChangeAdminPswd(QString, QString)), this, SLOT(slotFromChangeAdminPswd(QString, QString)));
+	connect(this, SIGNAL(signalFromChangeOperatorPswd(QString, QString)), this, SLOT(slotFromChangeOperatorPswd(QString, QString)));
 }
 
 void CParameterSetting::InitCamera()
@@ -1067,7 +1073,7 @@ void CParameterSetting::SaveConfig()
 		cfg->Write(COMMUNICATION_SECTOIN, PORT, Port);
 		cfg->Write(COMMUNICATION_SECTOIN, HEARTBEAT, heartbeat);
 	}
-	                                         
+	           
 	cfg->Write(DATA_SECTION, FREE_GRAB_FIRST, ui.radioButton_FreeFirst->isChecked());
 	cfg->Write(DATA_SECTION, EXTERNAL_FIRST, ui.radioButton_ExternalFirst->isChecked());
 	cfg->Write(DATA_SECTION, SOFT_FIRST, ui.radioButton_SoftFirst->isChecked());
@@ -1084,6 +1090,8 @@ void CParameterSetting::SaveConfig()
 	cfg->Write(DATA_SECTION, EXTERNAL_FOURTH, ui.radioButton_ExternalFourth->isChecked());
 	cfg->Write(DATA_SECTION, SOFT_FOURTH, ui.radioButton_SoftFourth->isChecked());
 	
+
+
 	if(bIsSetSucceed == true)
 		QMessageBox::information(this, QString::fromLocal8Bit(""), QString::fromLocal8Bit("保存成功"));
 
@@ -1284,6 +1292,31 @@ QImage CParameterSetting::MattoQImage(Mat image)
 	}
 }
 
+void CParameterSetting::setIDandPswd()
+{
+	QString IniPath = QCoreApplication::applicationDirPath() + "/parameter_cfg.ini";
+	QFileInfo info;
+	if (info.exists(IniPath))
+	{
+		CConfig *cfg = new CConfig(IniPath);
+
+		QString id = cfg->GetString(ID_AND_PSWD, ADMINID);
+		QString pswd = cfg->GetString(ID_AND_PSWD, ADMINPSWD);
+		ChangePswd::GetInstall()->setAdminID(id);
+		ChangePswd::GetInstall()->setAdminPswd(pswd);
+
+	    id = cfg->GetString(ID_AND_PSWD, OPERATORID);
+		pswd = cfg->GetString(ID_AND_PSWD, OPERATORPSWD);
+		ChangePswd::GetInstall()->setOperatorID(id);
+		ChangePswd::GetInstall()->setOperatorPswd(pswd);
+
+		delete cfg;
+		cfg = NULL;
+	}
+
+
+}
+
 void CParameterSetting::LoadConfig()
 {
 
@@ -1303,7 +1336,7 @@ void CParameterSetting::LoadConfig()
 			if (index != -1)
 			{
 				ui.comboBox_First->setCurrentIndex(index);
-				OpenFirstCamera();
+				//OpenFirstCamera();
 			}
 		}
 
@@ -1318,7 +1351,7 @@ void CParameterSetting::LoadConfig()
 			if (index != -1)
 			{
 				ui.comboBox_Second->setCurrentIndex(index);
-				OpenSecondCamera();
+				//OpenSecondCamera();
 			}
 		}
 
@@ -1349,7 +1382,7 @@ void CParameterSetting::LoadConfig()
 			if (index != -1)
 			{
 				ui.comboBox_Four->setCurrentIndex(index);
-				OpenFourthCamera();
+				//OpenFourthCamera();
 			}
 		}
 		//plc
@@ -2584,7 +2617,51 @@ void CParameterSetting::ShowFourthRender(bool bok)
 
 }
 
-void CParameterSetting::DeleteFile()
+void CParameterSetting::DeleteFile1()
 {
 	AutoDeleteFiles(30);
+}
+
+void CParameterSetting::slotChangePswd(int index, QString m_ID, QString m_pswd)
+{
+	if (index == 0)
+	{
+		emit signalFromChangeAdminPswd(m_ID, m_pswd);
+	}
+	else if(index == 1)
+	{
+		emit signalFromChangeOperatorPswd(m_ID, m_pswd);
+	}
+	//之前遇到的问题：
+	if (m_ID == "管理员" && index == 0)
+	{
+		//if判断进不来，但是m_ID == "管理员成立",为啥？
+	}
+}
+//更改管理员密码
+void CParameterSetting::slotFromChangeAdminPswd(QString id, QString pswd)
+{
+	QString IniPath = QCoreApplication::applicationDirPath() + "/parameter_cfg.ini";
+	CConfig *cfg = new CConfig(IniPath);
+	cfg->Write(ID_AND_PSWD, ADMINID, id);
+	cfg->Write(ID_AND_PSWD, ADMINPSWD, pswd);
+	delete cfg;
+	cfg = NULL;
+	QMessageBox::information(this, QString::fromLocal8Bit("成功"), QString::fromLocal8Bit("修改密码成功"));
+	ChangePswd::GetInstall()->hide();
+	
+}
+//更改操作员密码
+void CParameterSetting::slotFromChangeOperatorPswd(QString id, QString pswd)
+{
+
+	QString IniPath = QCoreApplication::applicationDirPath() + "/parameter_cfg.ini";
+	CConfig *cfg = new CConfig(IniPath);
+	cfg->Write(ID_AND_PSWD, OPERATORID, id);
+	cfg->Write(ID_AND_PSWD, OPERATORPSWD, pswd);
+	delete cfg;
+	cfg = NULL;
+	QMessageBox::information(this, QString::fromLocal8Bit("成功"), QString::fromLocal8Bit("修改密码成功"));
+	ChangePswd::GetInstall()->hide();
+
 }

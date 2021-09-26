@@ -58,7 +58,7 @@ void CPLCManager::WritePLCData(QString strResult,bool bok)
 		{
 			WritePLC(strResult,"D200");
 		}
-		else
+		else if(m_StartIndex == 2)
 		{
 			WritePLC(strResult,"D210");
 		}
@@ -74,6 +74,8 @@ void CPLCManager::WritePLC(QString strResult,const char* Station)
 {
 	bool ret = false;
 	const char sz_write[] = "01010101";//测试用，实际sz_write=strResult
+	//QByteArray ba = strResult.toLocal8Bit();
+	//const char* sz_write = ba.data();
 	int length = sizeof(sz_write) / sizeof(sz_write[0]);
 	ret = mc_write_string(m_fd, Station, length, sz_write);
 	qDebug() << "WritePLCOK";
@@ -125,9 +127,9 @@ void CPLCManager::ReadCurrentRecipe()
 	}
 	if (ret = mc_read_short(m_fd, "D340", &ImageCounts))//当前配方拍照次数
 	{
-		ImageCounts = s_val;
+		//ImageCounts = s_val;
 	}
-	if (  number == 0 || ImageCounts==0||msg == "")
+	if (  number == 0 || ImageCounts == 0 || msg == "")
 	{
 		qDebug() << "初始化配方失败";
 	}
@@ -151,6 +153,27 @@ void CPLCManager::ReadPLCData()
 		if (str_val == "1")
 		{
 			if (!mc_read_string(m_fd, "D", length, &str_val))
+			//if (!mc_read_string(m_fd, "D", length, &str_val))
+			//	RecipeName = QString(QLatin1String(str_val)); // 1
+			//	RecipeName = str_val; //2
+				qDebug() << "GetRecipeName error";
+
+
+			if (!mc_read_short(m_fd, "D", &s_val))
+				number = s_val;
+			qDebug() << "GetRecipeNumber error";
+
+			if (!mc_read_short(m_fd, "D", &counts))
+				qDebug() << "GetRecipeCounts error";
+			qDebug() << "ReadPLCData SendSavePLCRecipe: " << "RecipeName = " << RecipeName << "," << "number = " << "," << number << "counts" << counts;
+			emit SendSavePLCRecipe(RecipeName, number,counts);
+		}
+	}
+	if (mc_read_short(m_fd, "D320", &s_val))//配方保存
+	{
+		if (str_val == "1")
+		{
+			if (!mc_read_string(m_fd, "D", length, &str_val))
 				qDebug() << "GetRecipeName error";
 
 
@@ -163,6 +186,7 @@ void CPLCManager::ReadPLCData()
 			emit SendSavePLCRecipe(RecipeName, number,counts);
 		}
 	}
+
 	if (mc_read_short(m_fd, "D330", &s_val))//配方切换
 	{
 		if (str_val == "1")

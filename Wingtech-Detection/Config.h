@@ -68,7 +68,12 @@ const QString FIRST_WH_THRESHOLD8 = "First_Wh_Threshold8";
 const QString FIRST_WH_THRESHOLD9 = "First_Wh_Threshold9";
 const QString FIRST_WH_THRESHOLD10 = "First_Wh_Threshold10";
 
-
+//…Ì∑›√‹¬Î
+const QString ID_AND_PSWD = "ID_AND_PSWD";
+const QString ADMINID = "ADMINID";
+const QString ADMINPSWD = "ADMINPSWD";
+const QString OPERATORID = "OPERATOR";
+const QString OPERATORPSWD = "OPERATORPSWD";
 
 class CConfig
 {

@@ -22,17 +22,6 @@ const QString m_grey_SheetStyle = "min-width: 16px; min-height: 16px;max-width:1
 const QString m_yellow_SheetStyle = "min-width: 16px; min-height: 16px;max-width:16px; max-height: 16px;border-radius: "
                                     "8px;  border:1px solid black;background:yellow";
 
-CMainWindow::~CMainWindow()
-{
-    delete m_Parameter;
-    m_Parameter = NULL;
-	delete m_RecipeManager;
-	m_RecipeManager = nullptr;
-	delete m_admin;
-	m_admin = nullptr;
-}
-
-
 void outputMessage(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     static QMutex mutex;
@@ -92,6 +81,16 @@ CMainWindow::CMainWindow(QWidget *parent) : QMainWindow(parent)
     InitConnections();
 }
 
+CMainWindow::~CMainWindow()
+{
+	delete m_Parameter;
+	m_Parameter = NULL;
+	delete m_RecipeManager;
+	m_RecipeManager = nullptr;
+	delete m_admin;
+	m_admin = nullptr;
+}
+
 void CMainWindow::InitVariables()
 {
 	qDebug() << "CMainWindow::InitVariables()";
@@ -109,7 +108,7 @@ void CMainWindow::InitVariables()
  //   addDockWidget(Qt::RightDockWidgetArea, DockResult);
  //   DockResult->setWidget(m_TotalResult);
 	//qDebug() << "Init DockResult widget";
-
+//4个OK界面显示
 	m_FirstResult = new QLabel("OK1");
 	m_FirstResult->setStyleSheet(
 		"color: rgb(0, 170, 0);background-color: rgb(255, 255, 150);font: 35pt \"微软雅黑\";");
@@ -190,6 +189,7 @@ void CMainWindow::InitVariables()
 
 //收到PLC切换配方指令，根据配方中图像数量初始化结果细节
 //每行10个图像状态
+//每个产品28张照片
 void CMainWindow::InitResultDetails(int ImageCounts)
 {
 	ImageCounts = m_RecipeManager->GetImageNumber();
@@ -424,7 +424,7 @@ void CMainWindow::InitConnections()
 	connect(m_Parameter, SIGNAL(SendThreshold(QVector<double>)), m_RecipeManager, SLOT(ReceiveAlgoThreshold(QVector<double>)));
 	connect(m_RecipeManager, SIGNAL(SendAlgoImage(Mat, Mat, int , bool , e_CameraType )), this, SLOT(ReceiveAlgoImage(Mat, Mat, int, bool, e_CameraType)));
 	connect(m_RecipeManager, SIGNAL(SendStartSign()), this, SLOT(ReceiveStartSign()));
-
+	
 
 
 }
@@ -491,20 +491,39 @@ void CMainWindow::RecipeSetting()
 
 void CMainWindow::AdminDection()
 {
+	m_Parameter->setIDandPswd();
 	m_admin->exec();
-	int adminctrl = m_admin->adminctrl;
-	if (adminctrl == 1)
+	QString ID = ChangePswd::GetInstall()->GetAdminID();
+	QString pswd = ChangePswd::GetInstall()->GetAdminPswd();
+	
+	if (m_admin->m_index == 0)
 	{
-		setActionEnable(true);
-		ui.action_admin->setEnabled(false);
+		if (m_admin->m_admin.Pswd == pswd)
+		{
+			setActionEnable(true);
+			ui.action_admin->setEnabled(false);
+		}
 	}
-	else if(adminctrl == 2)
+	else if(m_admin->m_index == 1)
+	{
+		if (m_admin->m_operator.Pswd == pswd)
+		{
+			ui.action_Start->setEnabled(true);
+			ui.action_Setting->setEnabled(false);
+			ui.action_Recipe->setEnabled(false);
+			ui.action_admin->setEnabled(false);
+		}
+		
+	}
+	else
 	{
 		ui.action_Start->setEnabled(true);
 		ui.action_Setting->setEnabled(false);
 		ui.action_Recipe->setEnabled(false);
-		ui.action_admin->setEnabled(false);
+		ui.action_admin->setEnabled(true);
 	}
+
+
 }
 
 void CMainWindow::setActionEnable(bool bok)
@@ -567,7 +586,7 @@ QImage CMainWindow::MattoQImage(Mat image)
 
 void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type)
 {
-    bOK = 1;
+    bOK = 1;//////////////////////////////////////////////////////////////////////////////////////////////////////////////测试用
     qDebug() << "ReceiveImage type:" << type;
 	QString Msg = "Receive algo image: type = " + QString::number(type) + ",result = "+QString::number(bOK) + "Index ="+QString::number(index);
 	AddLog(Msg);
@@ -740,7 +759,7 @@ void CMainWindow::ProcessDetectionResult()
 	//   QMap<e_CameraType, bool>::iterator it = m_DetecionResult.begin(), itEnd = m_DetecionResult.end();
 	   //it = m_DetecionResult.find(CAMERA_FIRST);
 	   //bok &= it.value();
-
+	//在统计结果中显示4个OK还是NG的结果
 	auto CameraLocalResult = [&](e_CameraType camera, QLabel* label, bool bok)
 	{
 		QMap<e_CameraType, bool>::iterator it = m_DetecionResult.find(camera);
@@ -810,7 +829,6 @@ void CMainWindow::ProcessDetectionResult()
 
 	//AddLog(QString::fromLocal8Bit("发送结果失败:") + Msg);
 	AddLog(QString::fromLocal8Bit("发送结果:") + QString::number(bok));
-
 
  //   QString Msg;
  //   bool bok = true;
