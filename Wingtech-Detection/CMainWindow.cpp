@@ -192,8 +192,8 @@ void CMainWindow::InitVariables()
 //Ã¿ÐÐ10¸öÍ¼Ïñ×´Ì¬
 void CMainWindow::InitResultDetails(int ImageCounts)
 {
-	ImageCounts = m_RecipeManager->GetImageNumber();
-	ImageCounts = 5;//²âÊÔÓÃ
+	ImageCounts = m_RecipeManager->GetImageCounts();
+	m_ImageCounts = ImageCounts;
     qDebug() << "InitResultDetials";
     QGridLayout *Camera1Layout = new QGridLayout();
 
@@ -457,8 +457,7 @@ void CMainWindow::StartDection()
 	qDebug() << "CMainWindow::StartDection()";
 	if (!m_RecipeManager->SendPLCReadySign())
 	{
-		qDebug() << "Ready error";
-		cout << "Ready error" << endl;
+		QMessageBox::information(this, QString::fromLocal8Bit("´íÎó"), QString::fromLocal8Bit("³õÊ¼»¯Åä·½Ê§°Ü") );
 		return;
 	}
 	ui.action_Start->setEnabled(false);
@@ -582,7 +581,7 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
         case CAMERA_FIRST:
         {	
             m_Camera1Images.push_back(QImg);
-            if (m_Camera1Images.size() > 5)
+            if (m_Camera1Images.size() > m_ImageCounts)
                 return;
             ui.label_Image1->setPixmap(QPixmap::fromImage(
                 QImg.scaled(ui.label_Image1->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation)));
@@ -602,13 +601,16 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
                 m_Camera1Result = false;
             }
 
-			if (m_Index == m_ImageCounts-1)
+			if (index == m_ImageCounts-1)
 			{
+				QString Msg = "Receive algo image: type = " + QString::number(type) + ",result = " + QString::number(index) ;
+				AddLog(Msg);
 				m_Index = 0;
 				m_DetecionResult.insert(CAMERA_FIRST, m_Camera1Result);
 				if (m_DetecionResult.size() == 4)
 				{
 					ProcessDetectionResult();
+					m_DetecionResult.clear();
 				}
 			}
 			SaveInfo.FirstStation = StationInfo;	
@@ -618,6 +620,8 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
         case CAMERA_SECOND:
         {
             m_Camera2Images.push_back(QImg);
+			if (m_Camera2Images.size() > m_ImageCounts)
+				return;
             ui.label_Image2->setPixmap(QPixmap::fromImage(
                 QImg.scaled(ui.label_Image2->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation)));
             QLabel *Label = m_Camera2Results.at(index);
@@ -635,13 +639,16 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
                 Label->setStyleSheet("background-color: rgba(170, 0, 0, 255);");
                 m_Camera2Result = false;
             }
-            if (m_Index == m_ImageCounts-1)
+            if (index == m_ImageCounts-1)
             {
+				QString Msg = "Receive algo image: type = " + QString::number(type) + ",result = " + QString::number(index);
+				AddLog(Msg);
 				m_Index = 0;
                 m_DetecionResult.insert(CAMERA_SECOND, m_Camera2Result);
                 if (m_DetecionResult.size() == 4)
                 {
                     ProcessDetectionResult();
+					m_DetecionResult.clear();
                 }
             }
 			SaveInfo.SecondStation = StationInfo;
@@ -651,6 +658,8 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
         case CAMERA_THIRD:
         {
             m_Camera3Images.push_back(QImg);
+			if (m_Camera3Images.size() > m_ImageCounts)
+				return;
             ui.label_Image3->setPixmap(QPixmap::fromImage(
                 QImg.scaled(ui.label_Image3->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation)));
             QLabel *Label = m_Camera3Results.at(index);
@@ -668,13 +677,16 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
                 Label->setStyleSheet("background-color: rgba(170, 0, 0, 255);");
             }
 
-            if (m_Index == m_ImageCounts-1)
+            if (index == m_ImageCounts-1)
             {
+				QString Msg = "Receive algo image: type = " + QString::number(type) + ",result = " + QString::number(index);
+				AddLog(Msg);
 				m_Index = 0;
                 m_DetecionResult.insert(CAMERA_THIRD, m_Camera3Result);
                 if (m_DetecionResult.size() == 4)
                 {
                     ProcessDetectionResult();
+					m_DetecionResult.clear();
                 }
             }
 			SaveInfo.ThirdStation = StationInfo;
@@ -684,6 +696,8 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
         case CAMERA_FOURTH:
         {
             m_Camera4Images.push_back(QImg);
+			if (m_Camera4Images.size() > m_ImageCounts)
+				return;
             ui.label_Image4->setPixmap(QPixmap::fromImage(
                 QImg.scaled(ui.label_Image4->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation)));
             QLabel *Label = m_Camera4Results.at(index);
@@ -701,13 +715,16 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
                 Label->setStyleSheet("background-color: rgba(170, 0, 0, 255);");
             }
 
-            if (m_Index == m_ImageCounts-1)
+            if (index == m_ImageCounts-1)
             {
+				QString Msg = "Receive algo image: type = " + QString::number(type) + ",result = " + QString::number(index);
+				AddLog(Msg);
 				m_Index = 0;
                 m_DetecionResult.insert(CAMERA_FOURTH, m_Camera4Result);
                 if (m_DetecionResult.size() == 4)
                 {
                     ProcessDetectionResult();
+					m_DetecionResult.clear();
                 }
             }
 			SaveInfo.FourStation = StationInfo;
@@ -728,6 +745,7 @@ void CMainWindow::ReceiveInitImageNumber(int number)
 void CMainWindow::ReceiveStartSign()
 {
 	RefreshResultDetails();
+	m_Parameter->GetCameraInfo();
 }
 
 

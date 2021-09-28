@@ -8,11 +8,14 @@ CRecipeManager::CRecipeManager(QWidget *parent)
 	: QDialog(parent)
 {
 	m_Ready = false;
+	m_InitRecipe = true;
+	m_ImageCounts = 0;
 	ui.setupUi(this);
 	InitVariables();
 	InitRecipeNames();
 	InitConnections();
-}
+	CPLCManager::GetInstance()->ReadCurrentRecipe();
+};
 
 void CRecipeManager::RunAlgo(Mat Image, int ImageID, e_CameraType type)
 {
@@ -60,13 +63,22 @@ bool CRecipeManager::InitRecipe(QString RecipeName, QString &errMsg)
 	int Find = ui.comboBox->findText(RecipeName);
 	if (Find== -1)
 	{
-		errMsg = QString::fromLocal8Bit("未找到配方:") + RecipeName;
+		m_InitRecipe = false;
+		errMsg = QString::fromLocal8Bit("初始化配方失败:") + RecipeName;
+		//SaveRecipeFromPLC(RecipeName,m_Number,m_ImageCounts);
+		QMessageBox::information(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("初始化配方失败") );
 		return false;
 	}
-
 	QString IniName = QCoreApplication::applicationDirPath() + "/RecipeFolder/" + RecipeName + ".ini";
 	CConfig *cfg = new CConfig(IniName);
 	int ImageCount = cfg->GetInt("Recipe_Parameters", "ImageCount");
+	if (ImageCount != m_ImageCounts)
+	{
+		ImageCount = m_ImageCounts;
+		errMsg = QString::fromLocal8Bit("配方参数异常");
+		cfg->Write("Recipe_Parameters", "ImageCount", ImageCount);
+		return false;
+	}
 	if (ImageCount > 0)
 	{
 		m_ImageAndModel.clear();
@@ -85,6 +97,7 @@ bool CRecipeManager::InitRecipe(QString RecipeName, QString &errMsg)
 		if (!QFileInfo::exists(ModelPath))
 		{
 			errMsg = QString::fromLocal8Bit("模型不存在:") + ModelPath;
+			QMessageBox::information(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("配方模型异常"));
 			return false;
 		}
 		m_ImageAndModel.insert(i + 1, ModelPath);
@@ -97,6 +110,7 @@ bool CRecipeManager::InitRecipe(QString RecipeName, QString &errMsg)
 			if (!rv)
 			{
 				errMsg = QString::fromLocal8Bit("模型初始化失败:") + ModelPath;
+				QMessageBox::information(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("初始化配方失败"));
 				return false;
 			}
 			else
@@ -122,7 +136,7 @@ void CRecipeManager::InitConnections()
 
 bool CRecipeManager::SendPLCReadySign()
 {
-	if (m_Ready)
+	if (m_Ready&&m_InitRecipe)
 	{
 		CPLCManager::GetInstance()->WritePLCReady();
 		return true;
@@ -133,10 +147,11 @@ bool CRecipeManager::SendPLCReadySign()
 	}
 }
 
-int CRecipeManager::GetImageNumber()
+int CRecipeManager::GetImageCounts()
 {
-	return m_Number;
+	return m_ImageCounts;
 }
+
 
 void CRecipeManager::InitVariables()
 {
@@ -227,11 +242,12 @@ void CRecipeManager::ReceiveSavePlcRecipe(QString msg, int RecipeNumber,int Imag
 	SaveRecipeFromPLC(msg, RecipeNumber,ImageCounts);
 }
 
-void CRecipeManager::ReceiveChangePlcRecipe(QString msg, int number)
+void CRecipeManager::ReceiveChangePlcRecipe(QString msg, int number, int ImageCounts)
 {
+	m_ImageCounts = ImageCounts;
 	m_Number = number;
 	QString err;
-	InitRecipe(msg, err);
+	InitRecipe(QString::number(number), err);
 }
 
 void CRecipeManager::ReceivaOriginalImage(Mat Image,int ImageID, e_CameraType Type)
@@ -278,6 +294,7 @@ void CRecipeManager::SaveRecipe()
 		}
 		cfg->Write("Recipe_Parameters", QString::number(i + 1), ModelPath);
 	}
-
+	QString errMsg;
+	InitRecipe(RecipeName, errMsg);
 }
  

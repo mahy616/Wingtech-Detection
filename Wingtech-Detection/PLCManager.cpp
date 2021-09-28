@@ -13,7 +13,7 @@ CPLCManager::CPLCManager(QObject *parent)
 	m_HeartBeat = 3;	
 	//connect(m_TcpClient, SIGNAL(readyRead()), this, SLOT(ReadPLCData()));
 	connect(&m_Timer, SIGNAL(timeout()), this, SLOT(SlotTimeOuter()));
-	ReadCurrentRecipe();
+	
 }
 
 CPLCManager::~CPLCManager()
@@ -33,20 +33,24 @@ CPLCManager *CPLCManager::GetInstance()
 	return m_Instace;
 }
 
-void CPLCManager::TcpConnect(QString ip, quint16 port, int HeartBeat)
+bool CPLCManager::TcpConnect(QString ip, quint16 port, int HeartBeat)
 {
+	if (m_bConnected)
+		return true;
 	qDebug() << "TcpConnect ip:" << ip << ",port:" << port << ",heart beat:" << HeartBeat;
 	QByteArray ba = ip.toLocal8Bit();
 	char *strIp = ba.data();
 	m_fd = mc_connect(strIp, port, 0, 0);
-	m_Mutex.lock();
-	m_bConnected = m_fd > 0;
-	m_Mutex.unlock();
-	if (m_bConnected)
+	if (m_fd > 0)
 	{
+		m_bConnected = true;
 		m_Timer.start(500);
+		emit SendConnectStatus(m_bConnected);
 	}
-	emit SendConnectStatus(m_bConnected);
+	else
+	{
+		return false;
+	}
 }
 
 void CPLCManager::WritePLCData(QString strResult,bool bok)
@@ -58,7 +62,7 @@ void CPLCManager::WritePLCData(QString strResult,bool bok)
 		{
 			WritePLC(strResult,"D200");
 		}
-		else
+		else if (m_StartIndex == 2)
 		{
 			WritePLC(strResult,"D210");
 		}
@@ -83,56 +87,37 @@ void CPLCManager::WritePLC(QString strResult,const char* Station)
 
 void CPLCManager::WritePLCHeartbeat()
 {
-	m_Mutex.lock();
-	bool ret = false;
-	ret = mc_write_short(m_fd, "D221", 1);
-	qDebug() << "WritePLCHeartbeat";
-	m_Mutex.unlock();
+	if(!mc_write_short(m_fd, "D221", 1))
+	qDebug() << "WritePLCHeartbeat error";
+
 }
 
-void CPLCManager::WritePLCReady()
+bool CPLCManager::WritePLCReady()
 {
-	bool ret = false;
-	ret = mc_write_short(m_fd, "D222", 1);
-	qDebug() << "WritePLCRead";
+     return mc_write_short(m_fd, "D222", 1);
 }
 
 
 void CPLCManager::WritePLCChangeVar()
 {
-	bool ret = false;
-	ret = mc_write_short(m_fd, "D220", 1);
-	qDebug() << "WritePLCRead";
+
 }
 
-void CPLCManager::ReadCurrentRecipe()
+bool CPLCManager::ReadCurrentRecipe()
 {
 	CurrentRecipe.Init();
-	QString msg;
-	int number;
-	bool ret;
+	short Number=0;
 	char* str_val = NULL;
-	short s_val = 0;
-	int length = 30;
-	short ImageCounts;
-	if (ret = mc_read_string(m_fd, "D342", length, &str_val))//当前配方名称
-	{
-		msg = QString(str_val);
-	}
-	if (ret = mc_read_short(m_fd, "D341", &s_val))//当前配方编号
-	{
-		number = s_val;
-	}
-	if (ret = mc_read_short(m_fd, "D340", &ImageCounts))//当前配方拍照次数
-	{
-		ImageCounts = s_val;
-	}
-	if (  number == 0 || ImageCounts==0||msg == "")
-	{
-		qDebug() << "初始化配方失败";
-	}
-	qDebug() << "ReadCurrentRecipe: " << "msg = " << msg << "," << "number = " << "," << number << "ImageCounts" << ImageCounts;
-	emit SendChangePLCRecipe(msg, number,ImageCounts);
+	short ImageCounts = 0;
+	if (!mc_read_string(m_fd, "D342", 30, &str_val))//当前配方名称
+		return false;
+	if (!mc_read_short(m_fd, "D341", &Number))//当前配方编号
+		return false;
+	if (!mc_read_short(m_fd, "D340", &ImageCounts))//当前配方拍照次数
+		return false;
+	QString RecipeName = QString(str_val);
+	qDebug() << "ReadCurrentRecipe: " << "RecipeName = " << RecipeName << "," << "number = " << "," << Number << "ImageCounts" << ImageCounts;
+	emit SendChangePLCRecipe(RecipeName, Number,ImageCounts);
 }
 
 
@@ -184,7 +169,8 @@ void CPLCManager::ReadPLCData()
 		if (s_val)
 		{
 			m_StartIndex = 2;
-			emit SendStartSign();
+			//emit SendStartSign();
+			//emit SendRefreshIndex();
 		}
 
 	}
@@ -193,7 +179,8 @@ void CPLCManager::ReadPLCData()
 		if (s_val)
 		{
 			m_StartIndex = 1;
-			emit SendStartSign();
+			//emit SendStartSign();
+			//emit SendRefreshIndex();
 		}
 	}
 }

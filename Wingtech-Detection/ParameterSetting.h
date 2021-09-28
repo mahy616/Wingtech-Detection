@@ -65,6 +65,7 @@ public:
 	void StartDetecion(bool bStart);
 	void SaveImage(s_SaveImageInfo ImageInfo);
 	void SaveCameraTestImage(s_SaveImageInfo ImageInfo);
+	void GetCameraInfo();
 private:
 	void InitVariables();
 	void InitTableWidget();

@@ -18,11 +18,11 @@ CAlgoManager::~CAlgoManager()
 
 bool CAlgoManager::InitAlgo(QString ModelPath)
 {
-	if (module.Init("H:/WXWork/1688850861907945/Cache/File/2021-08/model/wentai_1st_emtpy.smartmore", false, 0) != smartmore::ResultCode::Success)
-	{
-		std::cout << "Init module failed!" << std::endl;
-		return 1;
-	}
+	//if (module.Init("H:/WXWork/1688850861907945/Cache/File/2021-08/model/wentai_1st_emtpy.smartmore", false, 0) != smartmore::ResultCode::Success)
+	//{
+	//	std::cout << "Init module failed!" << std::endl;
+	//	return 1;
+	//}
 	return true;
 }
 
@@ -79,10 +79,10 @@ void CAlgoManager::run()
 		req.image = ImageInfo.Image;
 		std::cout << "Init success" << std::endl;
 		qDebug() << "Init success";
-		smartmore::ResultCode res1=module.Run(req, rsp);
+		//smartmore::ResultCode res1=module.Run(req, rsp);
 		std::cout << "Run success" << std::endl;
 		qDebug() << "Run success";
-		if (res1 != smartmore::ResultCode::Success)
+	/*	if (res1 != smartmore::ResultCode::Success)
 		{
 			qDebug() << "Position1 Normal run Failure.";
 			std::cout << "Position1 Normal run Failure." << std::endl;
@@ -91,7 +91,7 @@ void CAlgoManager::run()
 		{
 			module.Visualize(req, rsp, RenderImage, Threshold);
 			qDebug() << "smartmore::ResultCode::Success";
-		};
+		};*/
 		Mat Render;/////////////////////////////////////////////////////////////////////////////////////////////???????
 		bool bok = true;
 		emit SendPorcessResult(ImageInfo.Image, Render, ImageInfo.ImageID-1,bok, ImageInfo.Type);

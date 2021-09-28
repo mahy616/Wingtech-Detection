@@ -39,6 +39,8 @@ public:
     bool SetCameraHandle(CMvCamera &camera, e_CameraType type);
     void SetRunStatus(bool bStart);
 	void InitConnections();
+	void InitStartSign();
+
 
 
 private:
@@ -51,7 +53,7 @@ private:
 	unsigned int nDataSize;
 	e_CameraType m_Type;
 	s_SystemType m_SystemType;
-	int GrabIndex ;
+	int m_GrabIndex ;
 
 private:
 	void run();
@@ -63,5 +65,6 @@ signals:
 	void SendImageToAlgo(Mat OriginalImage, e_CameraType type, int index);
 	void SendImageIndex(int index);
 private slots:
-    void ReceiveStartSign();
+   
+	//void ReceiveRefreshIndex();
 };
