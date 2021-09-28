@@ -278,6 +278,26 @@ void CRecipeManager::SaveRecipe()
 		}
 		cfg->Write("Recipe_Parameters", QString::number(i + 1), ModelPath);
 	}
-
+	delete cfg;
+	cfg = nullptr;
 }
  
+void CRecipeManager::DeleteRecipe()
+{
+
+}
+
+void CRecipeManager::updateTableInfos(void)
+{
+	ui.tableWidget->clear();
+	QStringList header;
+	header << QString::fromLocal8Bit("图像ID") << QString::fromLocal8Bit("模型路径") << QString::fromLocal8Bit("选择模型");
+	ui.tableWidget->setHorizontalHeaderLabels(header);
+	InitRecipeNames();
+}
+
+void CRecipeManager::tableWidget_click(const QModelIndex &index)
+{
+	index.row();
+
+}

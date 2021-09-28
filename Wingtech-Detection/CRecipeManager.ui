@@ -14,31 +14,21 @@
    <string>配方管理</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="CRecipeManager.qrc">
+   <iconset>
     <normaloff>:/CRecipeManager/Resources/recipe.png</normaloff>:/CRecipeManager/Resources/recipe.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="label">
+   <item row="1" column="4">
+    <widget class="QPushButton" name="pushButton">
      <property name="text">
-      <string>配方切换</string>
+      <string>保存配方</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
-    <widget class="QComboBox" name="comboBox">
-     <property name="minimumSize">
-      <size>
-       <width>300</width>
-       <height>0</height>
-      </size>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="2">
+   <item row="1" column="2">
     <spacer name="horizontalSpacer">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -51,15 +41,32 @@
      </property>
     </spacer>
    </item>
-   <item row="0" column="3">
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>保存配方</string>
+   <item row="1" column="1">
+    <widget class="QComboBox" name="comboBox">
+     <property name="minimumSize">
+      <size>
+       <width>300</width>
+       <height>0</height>
+      </size>
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="4">
+   <item row="1" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>配方切换</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="5">
     <widget class="QTableWidget" name="tableWidget"/>
+   </item>
+   <item row="1" column="3">
+    <widget class="QPushButton" name="pushButton_deleteRecipe">
+     <property name="text">
+      <string>删除配方</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

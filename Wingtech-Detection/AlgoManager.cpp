@@ -73,7 +73,7 @@ void CAlgoManager::run()
 		smartmore::DetectionRequest req;
 		smartmore::DetectionResponse rsp;
 		Mat RenderImage;
-		vector<double>Threshold;
+		vector<double> Threshold;
 		req.thresholds = { 0.8f };
 		//req.image = cv::imread(input_image);
 		req.image = ImageInfo.Image;

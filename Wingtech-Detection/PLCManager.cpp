@@ -73,11 +73,14 @@ void CPLCManager::WritePLCData(QString strResult,bool bok)
 void CPLCManager::WritePLC(QString strResult,const char* Station)
 {
 	bool ret = false;
-	const char sz_write[] = "01010101";//测试用，实际sz_write=strResult
+	const char sz_write[] = "01010101";//测试用，实际sz_write=strResult//这里要保存成10进制  85
+	short sz_write2long = atoi(sz_write);
 	//QByteArray ba = strResult.toLocal8Bit();
 	//const char* sz_write = ba.data();
 	int length = sizeof(sz_write) / sizeof(sz_write[0]);
 	ret = mc_write_string(m_fd, Station, length, sz_write);
+	ret = mc_write_short(m_fd, "D200", sz_write2long);
+	//ret = mc_write_short(m_fd, "D200", 85);
 	qDebug() << "WritePLCOK";
 }
 

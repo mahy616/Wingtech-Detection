@@ -140,11 +140,6 @@ private slots:
 	void ReceiveCameraImage(Mat image, e_CameraType index);
 	void ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Index);
 
-	void ShowFirstRender(bool bok);
-	void ShowSecondRender(bool bok);
-	void ShowThirdRender(bool bok);
-	void ShowFourthRender(bool bok);
-
 	void slotChangePswd(int index, QString m_ID, QString m_pswd);
 	void slotFromChangeAdminPswd(QString id, QString pswd);
 	void slotFromChangeOperatorPswd(QString id, QString pswd);

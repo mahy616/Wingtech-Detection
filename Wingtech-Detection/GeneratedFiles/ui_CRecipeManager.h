@@ -27,11 +27,12 @@ class Ui_CRecipeManagerClass
 {
 public:
     QGridLayout *gridLayout;
-    QLabel *label;
-    QComboBox *comboBox;
-    QSpacerItem *horizontalSpacer;
     QPushButton *pushButton;
+    QSpacerItem *horizontalSpacer;
+    QComboBox *comboBox;
+    QLabel *label;
     QTableWidget *tableWidget;
+    QPushButton *pushButton_deleteRecipe;
 
     void setupUi(QDialog *CRecipeManagerClass)
     {
@@ -46,30 +47,35 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        label = new QLabel(CRecipeManagerClass);
-        label->setObjectName(QString::fromUtf8("label"));
+        pushButton = new QPushButton(CRecipeManagerClass);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
-        gridLayout->addWidget(label, 0, 0, 1, 1);
+        gridLayout->addWidget(pushButton, 1, 4, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(378, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer, 1, 2, 1, 1);
 
         comboBox = new QComboBox(CRecipeManagerClass);
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
         comboBox->setMinimumSize(QSize(300, 0));
 
-        gridLayout->addWidget(comboBox, 0, 1, 1, 1);
+        gridLayout->addWidget(comboBox, 1, 1, 1, 1);
 
-        horizontalSpacer = new QSpacerItem(378, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        label = new QLabel(CRecipeManagerClass);
+        label->setObjectName(QString::fromUtf8("label"));
 
-        gridLayout->addItem(horizontalSpacer, 0, 2, 1, 1);
-
-        pushButton = new QPushButton(CRecipeManagerClass);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-
-        gridLayout->addWidget(pushButton, 0, 3, 1, 1);
+        gridLayout->addWidget(label, 1, 0, 1, 1);
 
         tableWidget = new QTableWidget(CRecipeManagerClass);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
 
-        gridLayout->addWidget(tableWidget, 1, 0, 1, 4);
+        gridLayout->addWidget(tableWidget, 2, 0, 1, 5);
+
+        pushButton_deleteRecipe = new QPushButton(CRecipeManagerClass);
+        pushButton_deleteRecipe->setObjectName(QString::fromUtf8("pushButton_deleteRecipe"));
+
+        gridLayout->addWidget(pushButton_deleteRecipe, 1, 3, 1, 1);
 
 
         retranslateUi(CRecipeManagerClass);
@@ -82,8 +88,9 @@ public:
     void retranslateUi(QDialog *CRecipeManagerClass)
     {
         CRecipeManagerClass->setWindowTitle(QCoreApplication::translate("CRecipeManagerClass", "\351\205\215\346\226\271\347\256\241\347\220\206", nullptr));
-        label->setText(QCoreApplication::translate("CRecipeManagerClass", "\351\205\215\346\226\271\345\210\207\346\215\242", nullptr));
         pushButton->setText(QCoreApplication::translate("CRecipeManagerClass", "\344\277\235\345\255\230\351\205\215\346\226\271", nullptr));
+        label->setText(QCoreApplication::translate("CRecipeManagerClass", "\351\205\215\346\226\271\345\210\207\346\215\242", nullptr));
+        pushButton_deleteRecipe->setText(QCoreApplication::translate("CRecipeManagerClass", "\345\210\240\351\231\244\351\205\215\346\226\271", nullptr));
     } // retranslateUi
 
 };

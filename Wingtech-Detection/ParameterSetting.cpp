@@ -818,6 +818,7 @@ void CParameterSetting::OnBtnClicked()
 
 
 }
+
 void CParameterSetting::ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Index)
 {
 	//emit SendAlgoImageToMainWindow(AlgolImage, type, Time, bok);//??
@@ -1367,7 +1368,7 @@ void CParameterSetting::LoadConfig()
 			if (index != -1)
 			{
 				ui.comboBox_Third->setCurrentIndex(index);
-				OpenThirdCamera();
+				//OpenThirdCamera();
 			}
 		}
 
@@ -1404,7 +1405,7 @@ void CParameterSetting::LoadConfig()
 			qDebug() << "load config heartbeat:" << heartbeat;
 			printf("load config heartbeat:%d\n", heartbeat);
 			ui.spinBox_Heartbeat->setValue(heartbeat);
-			ConnectToPLC();
+			//ConnectToPLC();
 			  
 		}
 		//当路径不存在的时候自动在绝对路径下生成对应的OK/NG的文件夹
@@ -2592,29 +2593,6 @@ void CParameterSetting::setFourthEnable(bool checked)
 	ui.radioButton_FreeFourth->setEnabled(checked);
 	ui.radioButton_ExternalFourth->setEnabled(checked);
 	ui.radioButton_SoftFourth->setEnabled(checked);
-}
-
-void CParameterSetting::ShowFirstRender(bool bok)
-{
-	if (bok)
-	{
-		//ui.label_FirstImage->SetImage();
-	}
-}
-
-void CParameterSetting::ShowSecondRender(bool bok)
-{
-
-}
-
-void CParameterSetting::ShowThirdRender(bool bok)
-{
-
-}
-
-void CParameterSetting::ShowFourthRender(bool bok)
-{
-
 }
 
 void CParameterSetting::DeleteFile1()

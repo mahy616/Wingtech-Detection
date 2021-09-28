@@ -61,12 +61,10 @@ public:
     QGridLayout *gridLayout_7;
     QGroupBox *groupBox_Frist_4;
     QGridLayout *gridLayout_19;
-    QLabel *label_17;
     QRadioButton *radioButton_ExternalThird;
     QCheckBox *checkBox_SaveOK_Third;
     QRadioButton *radioButton_SoftThird;
     QPushButton *pushButton_TriggerThird;
-    QLabel *label_First_5;
     QComboBox *comboBox_Third;
     QPushButton *pushButton_OpenThird;
     QPushButton *pushButton_LoadOKPath_Third;
@@ -79,11 +77,11 @@ public:
     QLabel *label_18;
     QPushButton *pushButton_SaveParams_Third;
     QLineEdit *le_gain_3;
+    QLabel *label_First_5;
+    QLabel *label_17;
     QGroupBox *groupBox_Frist_5;
     QGridLayout *gridLayout_25;
     QPushButton *pushButton_LoadOKPath_Fourth;
-    QLabel *label_31;
-    QLabel *label_First_6;
     QLineEdit *le_exposure_4;
     QPushButton *pushButton_SaveParams_Fourth;
     QLineEdit *lineEdit_OKPath_Fourth;
@@ -99,6 +97,8 @@ public:
     QCheckBox *checkBox_SaveOK_Fourth;
     QPushButton *pushButton_LoadNGPath_Fourth;
     QPushButton *pushButton_TriggerFourth;
+    QLabel *label_First_6;
+    QLabel *label_31;
     QGroupBox *groupBox_Frist_3;
     QGridLayout *gridLayout_18;
     QPushButton *pushButton_OpenSecond;
@@ -189,6 +189,7 @@ public:
     QLabel *label_41;
     QSpinBox *spinBox_Area_TieFen;
     QSpinBox *spinBox_Wh_TieFen;
+    QPushButton *pushButton_SaveConfig_2;
     QWidget *tab_3;
     QComboBox *comboBox_Formula;
     QPushButton *pushButton_3;
@@ -378,11 +379,6 @@ public:
         gridLayout_19->setSpacing(0);
         gridLayout_19->setObjectName(QString::fromUtf8("gridLayout_19"));
         gridLayout_19->setContentsMargins(0, 0, 0, 0);
-        label_17 = new QLabel(groupBox_Frist_4);
-        label_17->setObjectName(QString::fromUtf8("label_17"));
-
-        gridLayout_19->addWidget(label_17, 5, 4, 1, 2);
-
         radioButton_ExternalThird = new QRadioButton(groupBox_Frist_4);
         radioButton_ExternalThird->setObjectName(QString::fromUtf8("radioButton_ExternalThird"));
 
@@ -403,12 +399,6 @@ public:
         pushButton_TriggerThird->setMaximumSize(QSize(111, 16777215));
 
         gridLayout_19->addWidget(pushButton_TriggerThird, 1, 7, 1, 1);
-
-        label_First_5 = new QLabel(groupBox_Frist_4);
-        label_First_5->setObjectName(QString::fromUtf8("label_First_5"));
-        label_First_5->setMaximumSize(QSize(101, 16777215));
-
-        gridLayout_19->addWidget(label_First_5, 0, 0, 1, 1);
 
         comboBox_Third = new QComboBox(groupBox_Frist_4);
         comboBox_Third->setObjectName(QString::fromUtf8("comboBox_Third"));
@@ -475,6 +465,17 @@ public:
 
         gridLayout_19->addWidget(le_gain_3, 5, 6, 1, 1);
 
+        label_First_5 = new QLabel(groupBox_Frist_4);
+        label_First_5->setObjectName(QString::fromUtf8("label_First_5"));
+        label_First_5->setMaximumSize(QSize(101, 16777215));
+
+        gridLayout_19->addWidget(label_First_5, 0, 0, 1, 2);
+
+        label_17 = new QLabel(groupBox_Frist_4);
+        label_17->setObjectName(QString::fromUtf8("label_17"));
+
+        gridLayout_19->addWidget(label_17, 5, 4, 1, 1);
+
 
         gridLayout_7->addWidget(groupBox_Frist_4, 2, 0, 1, 1);
 
@@ -489,17 +490,6 @@ public:
         pushButton_LoadOKPath_Fourth->setObjectName(QString::fromUtf8("pushButton_LoadOKPath_Fourth"));
 
         gridLayout_25->addWidget(pushButton_LoadOKPath_Fourth, 3, 7, 1, 1);
-
-        label_31 = new QLabel(groupBox_Frist_5);
-        label_31->setObjectName(QString::fromUtf8("label_31"));
-
-        gridLayout_25->addWidget(label_31, 4, 4, 1, 2);
-
-        label_First_6 = new QLabel(groupBox_Frist_5);
-        label_First_6->setObjectName(QString::fromUtf8("label_First_6"));
-        label_First_6->setMaximumSize(QSize(101, 16777215));
-
-        gridLayout_25->addWidget(label_First_6, 0, 0, 1, 1);
 
         le_exposure_4 = new QLineEdit(groupBox_Frist_5);
         le_exposure_4->setObjectName(QString::fromUtf8("le_exposure_4"));
@@ -581,6 +571,17 @@ public:
         pushButton_TriggerFourth->setMaximumSize(QSize(111, 16777215));
 
         gridLayout_25->addWidget(pushButton_TriggerFourth, 1, 7, 1, 1);
+
+        label_First_6 = new QLabel(groupBox_Frist_5);
+        label_First_6->setObjectName(QString::fromUtf8("label_First_6"));
+        label_First_6->setMaximumSize(QSize(101, 16777215));
+
+        gridLayout_25->addWidget(label_First_6, 0, 0, 1, 2);
+
+        label_31 = new QLabel(groupBox_Frist_5);
+        label_31->setObjectName(QString::fromUtf8("label_31"));
+
+        gridLayout_25->addWidget(label_31, 4, 4, 1, 1);
 
 
         gridLayout_7->addWidget(groupBox_Frist_5, 3, 0, 1, 1);
@@ -1093,6 +1094,9 @@ public:
 
         gridLayout_16->addWidget(spinBox_Wh_TieFen, 5, 2, 1, 1);
 
+        pushButton_SaveConfig_2 = new QPushButton(tab_2);
+        pushButton_SaveConfig_2->setObjectName(QString::fromUtf8("pushButton_SaveConfig_2"));
+        pushButton_SaveConfig_2->setGeometry(QRect(10, 770, 476, 39));
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
@@ -1146,7 +1150,9 @@ public:
         QObject::connect(pushButton_SaveConfig, SIGNAL(clicked()), DialogSetting, SLOT(SaveConfig()));
         QObject::connect(checkBox_RenderThird, SIGNAL(clicked(bool)), DialogSetting, SLOT(ShowThirdRender(bool)));
         QObject::connect(checkBox_RenderFourth, SIGNAL(clicked(bool)), DialogSetting, SLOT(ShowFourthRender(bool)));
-        QObject::connect(pushButton_SaveConfig, SIGNAL(clicked()), DialogSetting, SLOT(DeleteFile()));
+        QObject::connect(pushButton_SaveConfig_2, SIGNAL(clicked()), DialogSetting, SLOT(SaveConfig()));
+        QObject::connect(pushButton_SendOK, SIGNAL(clicked()), DialogSetting, SLOT(SendOKToPLC()));
+        QObject::connect(pushButton_SendNG, SIGNAL(clicked()), DialogSetting, SLOT(SendNGToPLC()));
 
         tabWidget->setCurrentIndex(0);
 
@@ -1178,12 +1184,10 @@ public:
         label_FirstImage->setText(QString());
         checkBox_RenderFirst->setText(QCoreApplication::translate("DialogSetting", "\346\270\262\346\237\223\345\233\276", nullptr));
         groupBox_Frist_4->setTitle(QCoreApplication::translate("DialogSetting", "\344\270\211\345\267\245\344\275\215-\347\233\270\346\234\272\345\217\202\346\225\260", nullptr));
-        label_17->setText(QCoreApplication::translate("DialogSetting", "\345\242\236\347\233\212", nullptr));
         radioButton_ExternalThird->setText(QCoreApplication::translate("DialogSetting", "\347\241\254\350\247\246\345\217\221", nullptr));
         checkBox_SaveOK_Third->setText(QCoreApplication::translate("DialogSetting", "\344\277\235\345\255\230OK", nullptr));
         radioButton_SoftThird->setText(QCoreApplication::translate("DialogSetting", "\350\275\257\350\247\246\345\217\221", nullptr));
         pushButton_TriggerThird->setText(QCoreApplication::translate("DialogSetting", "\350\247\246\345\217\221\344\270\200\346\254\241", nullptr));
-        label_First_5->setText(QCoreApplication::translate("DialogSetting", "\347\233\270\346\234\272\345\220\215\347\247\260", nullptr));
         pushButton_OpenThird->setText(QCoreApplication::translate("DialogSetting", "\346\211\223\345\274\200\347\233\270\346\234\272", nullptr));
         pushButton_LoadOKPath_Third->setText(QCoreApplication::translate("DialogSetting", "\346\211\223\345\274\200\350\267\257\345\276\204", nullptr));
         radioButton_FreeThird->setText(QCoreApplication::translate("DialogSetting", "\350\207\252\347\224\261\351\207\207\351\233\206", nullptr));
@@ -1193,10 +1197,10 @@ public:
         lineEdit_NGPath_Third->setPlaceholderText(QCoreApplication::translate("DialogSetting", "NG\345\233\276\345\203\217\350\267\257\345\276\204", nullptr));
         label_18->setText(QCoreApplication::translate("DialogSetting", "\346\233\235\345\205\211", nullptr));
         pushButton_SaveParams_Third->setText(QCoreApplication::translate("DialogSetting", "\344\277\235\345\255\230\345\217\202\346\225\260", nullptr));
+        label_First_5->setText(QCoreApplication::translate("DialogSetting", "\347\233\270\346\234\272\345\220\215\347\247\260", nullptr));
+        label_17->setText(QCoreApplication::translate("DialogSetting", "\345\242\236\347\233\212", nullptr));
         groupBox_Frist_5->setTitle(QCoreApplication::translate("DialogSetting", "\345\233\233\345\267\245\344\275\215-\347\233\270\346\234\272\345\217\202\346\225\260", nullptr));
         pushButton_LoadOKPath_Fourth->setText(QCoreApplication::translate("DialogSetting", "\346\211\223\345\274\200\350\267\257\345\276\204", nullptr));
-        label_31->setText(QCoreApplication::translate("DialogSetting", "\345\242\236\347\233\212", nullptr));
-        label_First_6->setText(QCoreApplication::translate("DialogSetting", "\347\233\270\346\234\272\345\220\215\347\247\260", nullptr));
         pushButton_SaveParams_Fourth->setText(QCoreApplication::translate("DialogSetting", "\344\277\235\345\255\230\345\217\202\346\225\260", nullptr));
         lineEdit_OKPath_Fourth->setPlaceholderText(QCoreApplication::translate("DialogSetting", "OK\345\233\276\345\203\217\350\267\257\345\276\204", nullptr));
         pushButton_OpenFourth->setText(QCoreApplication::translate("DialogSetting", "\346\211\223\345\274\200\347\233\270\346\234\272", nullptr));
@@ -1209,6 +1213,8 @@ public:
         checkBox_SaveOK_Fourth->setText(QCoreApplication::translate("DialogSetting", "\344\277\235\345\255\230OK", nullptr));
         pushButton_LoadNGPath_Fourth->setText(QCoreApplication::translate("DialogSetting", "\346\211\223\345\274\200\350\267\257\345\276\204", nullptr));
         pushButton_TriggerFourth->setText(QCoreApplication::translate("DialogSetting", "\350\247\246\345\217\221\344\270\200\346\254\241", nullptr));
+        label_First_6->setText(QCoreApplication::translate("DialogSetting", "\347\233\270\346\234\272\345\220\215\347\247\260", nullptr));
+        label_31->setText(QCoreApplication::translate("DialogSetting", "\345\242\236\347\233\212", nullptr));
         groupBox_Frist_3->setTitle(QCoreApplication::translate("DialogSetting", "\344\272\214\345\267\245\344\275\215-\347\233\270\346\234\272\345\217\202\346\225\260", nullptr));
         pushButton_OpenSecond->setText(QCoreApplication::translate("DialogSetting", "\346\211\223\345\274\200\347\233\270\346\234\272", nullptr));
         lineEdit_NGPath_Second->setPlaceholderText(QCoreApplication::translate("DialogSetting", "NG\345\233\276\345\203\217\350\267\257\345\276\204", nullptr));
@@ -1257,7 +1263,9 @@ public:
         pushButton_LoadSecondImage->setText(QCoreApplication::translate("DialogSetting", "\345\212\240\350\275\275\344\272\214\345\267\245\344\275\215\345\233\276\345\203\217", nullptr));
         groupBox_10->setTitle(QCoreApplication::translate("DialogSetting", "\351\200\232\350\256\257", nullptr));
         label_5->setText(QCoreApplication::translate("DialogSetting", "IP", nullptr));
+        lineEdit_IP->setText(QCoreApplication::translate("DialogSetting", "192.168.1.39", nullptr));
         label_6->setText(QCoreApplication::translate("DialogSetting", "\347\253\257\345\217\243", nullptr));
+        lineEdit_Port->setText(QCoreApplication::translate("DialogSetting", "4005", nullptr));
         label_7->setText(QCoreApplication::translate("DialogSetting", "\345\277\203\350\267\263", nullptr));
         spinBox_Heartbeat->setSuffix(QCoreApplication::translate("DialogSetting", "\347\247\222", nullptr));
         pushButton_SendOK->setText(QCoreApplication::translate("DialogSetting", "\345\217\221\351\200\201OK", nullptr));
@@ -1292,6 +1300,7 @@ public:
         spinBox_Area_TieFen->setPrefix(QString());
         spinBox_Wh_TieFen->setSuffix(QString());
         spinBox_Wh_TieFen->setPrefix(QString());
+        pushButton_SaveConfig_2->setText(QCoreApplication::translate("DialogSetting", "\344\277\235\345\255\230\350\256\276\347\275\256", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("DialogSetting", "\350\277\220\350\241\214\345\217\202\346\225\260", nullptr));
         pushButton_3->setText(QCoreApplication::translate("DialogSetting", "\351\200\211\346\213\251\351\205\215\346\226\271", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("DialogSetting", "\351\205\215\346\226\271\350\256\276\347\275\256", nullptr));

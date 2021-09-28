@@ -26,6 +26,7 @@ public:
 
 private:
 	void InitVariables();
+	void updateTableInfos(void);
 	QStringList getFileNames(const QString &path);
 
 private:
@@ -48,6 +49,8 @@ private slots:
 	void SwitchRecipe(QString Name);
 	//保存配方，如果有图像ID没有选择模型，不能保存
 	void SaveRecipe();
+	//删除配方, 删除选中的配方
+	void DeleteRecipe();
 	//浏览模型
 	void BrowseModelPath();
 	//PLC触发保存配方
@@ -62,4 +65,6 @@ private slots:
 	void ReceiveStartSign();
 	//接收阈值设置完成信号
 	void ReceiveAlgoThreshold(QVector<double>AlgoThreshold);
+	//点击选中的配方
+	void tableWidget_click(const QModelIndex &index);
 };

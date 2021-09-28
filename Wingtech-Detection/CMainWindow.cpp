@@ -601,7 +601,7 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
         case CAMERA_FIRST:
         {	
             m_Camera1Images.push_back(QImg);
-            if (m_Camera1Images.size() > 5)
+            if (m_Camera1Images.size() > m_ImageCounts)
                 return;
             ui.label_Image1->setPixmap(QPixmap::fromImage(
                 QImg.scaled(ui.label_Image1->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation)));
@@ -621,7 +621,7 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
                 m_Camera1Result = false;
             }
 
-			if (m_Index == m_ImageCounts-1)
+			if (index == m_ImageCounts-1)
 			{
 				m_Index = 0;
 				m_DetecionResult.insert(CAMERA_FIRST, m_Camera1Result);
@@ -637,6 +637,8 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
         case CAMERA_SECOND:
         {
             m_Camera2Images.push_back(QImg);
+			if (m_Camera2Images.size() > m_ImageCounts)
+				return;
             ui.label_Image2->setPixmap(QPixmap::fromImage(
                 QImg.scaled(ui.label_Image2->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation)));
             QLabel *Label = m_Camera2Results.at(index);
@@ -654,7 +656,7 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
                 Label->setStyleSheet("background-color: rgba(170, 0, 0, 255);");
                 m_Camera2Result = false;
             }
-            if (m_Index == m_ImageCounts-1)
+            if (index == m_ImageCounts-1)
             {
 				m_Index = 0;
                 m_DetecionResult.insert(CAMERA_SECOND, m_Camera2Result);
@@ -670,6 +672,8 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
         case CAMERA_THIRD:
         {
             m_Camera3Images.push_back(QImg);
+			if (m_Camera3Images.size() > m_ImageCounts)
+				return;
             ui.label_Image3->setPixmap(QPixmap::fromImage(
                 QImg.scaled(ui.label_Image3->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation)));
             QLabel *Label = m_Camera3Results.at(index);
@@ -687,7 +691,7 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
                 Label->setStyleSheet("background-color: rgba(170, 0, 0, 255);");
             }
 
-            if (m_Index == m_ImageCounts-1)
+            if (index == m_ImageCounts-1)
             {
 				m_Index = 0;
                 m_DetecionResult.insert(CAMERA_THIRD, m_Camera3Result);
@@ -703,6 +707,8 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
         case CAMERA_FOURTH:
         {
             m_Camera4Images.push_back(QImg);
+			if (m_Camera4Images.size() > m_ImageCounts)
+				return;
             ui.label_Image4->setPixmap(QPixmap::fromImage(
                 QImg.scaled(ui.label_Image4->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation)));
             QLabel *Label = m_Camera4Results.at(index);
@@ -720,7 +726,7 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
                 Label->setStyleSheet("background-color: rgba(170, 0, 0, 255);");
             }
 
-            if (m_Index == m_ImageCounts-1)
+            if (index == m_ImageCounts-1)
             {
 				m_Index = 0;
                 m_DetecionResult.insert(CAMERA_FOURTH, m_Camera4Result);

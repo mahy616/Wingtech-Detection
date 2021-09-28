@@ -75,6 +75,9 @@ const QString ADMINPSWD = "ADMINPSWD";
 const QString OPERATORID = "OPERATOR";
 const QString OPERATORPSWD = "OPERATORPSWD";
 
+//∆ÿπ‚‘ˆ“Ê
+
+
 class CConfig
 {
 public:

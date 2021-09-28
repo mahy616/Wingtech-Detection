@@ -429,7 +429,7 @@ color: rgb(85, 0, 255);</string>
       </size>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -463,13 +463,6 @@ color: rgb(85, 0, 255);</string>
           <property name="spacing">
            <number>0</number>
           </property>
-          <item row="5" column="4" colspan="2">
-           <widget class="QLabel" name="label_17">
-            <property name="text">
-             <string>增益</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="3" colspan="2">
            <widget class="QRadioButton" name="radioButton_ExternalThird">
             <property name="text">
@@ -614,6 +607,13 @@ color: rgb(85, 0, 255);</string>
             </property>
            </widget>
           </item>
+          <item row="5" column="4">
+           <widget class="QLabel" name="label_17">
+            <property name="text">
+             <string>增益</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -648,13 +648,6 @@ color: rgb(85, 0, 255);</string>
            <widget class="QPushButton" name="pushButton_LoadOKPath_Fourth">
             <property name="text">
              <string>打开路径</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="4" colspan="2">
-           <widget class="QLabel" name="label_31">
-            <property name="text">
-             <string>增益</string>
             </property>
            </widget>
           </item>
@@ -792,6 +785,13 @@ color: rgb(85, 0, 255);</string>
             </property>
             <property name="text">
              <string>相机名称</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="4">
+           <widget class="QLabel" name="label_31">
+            <property name="text">
+             <string>增益</string>
             </property>
            </widget>
           </item>
@@ -1396,7 +1396,11 @@ color: rgb(85, 0, 255);</string>
          </widget>
         </item>
         <item row="0" column="1" colspan="2">
-         <widget class="QLineEdit" name="lineEdit_IP"/>
+         <widget class="QLineEdit" name="lineEdit_IP">
+          <property name="text">
+           <string>192.168.1.39</string>
+          </property>
+         </widget>
         </item>
         <item row="0" column="3">
          <widget class="QLabel" name="label_6">
@@ -1430,6 +1434,9 @@ color: rgb(85, 0, 255);</string>
             <width>80</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="text">
+           <string>4005</string>
           </property>
          </widget>
         </item>
@@ -1784,6 +1791,19 @@ color: rgb(85, 0, 255);</string>
          </widget>
         </item>
        </layout>
+      </widget>
+      <widget class="QPushButton" name="pushButton_SaveConfig_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>770</y>
+         <width>476</width>
+         <height>39</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>保存设置</string>
+       </property>
       </widget>
      </widget>
      <widget class="QWidget" name="tab_3">
@@ -2443,18 +2463,50 @@ color: rgb(85, 0, 255);</string>
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_SaveConfig</sender>
+   <sender>pushButton_SaveConfig_2</sender>
    <signal>clicked()</signal>
    <receiver>DialogSetting</receiver>
-   <slot>DeleteFile()</slot>
+   <slot>SaveConfig()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>343</x>
-     <y>1006</y>
+     <x>249</x>
+     <y>828</y>
     </hint>
     <hint type="destinationlabel">
-     <x>341</x>
-     <y>1075</y>
+     <x>859</x>
+     <y>516</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_SendOK</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SendOKToPLC()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>284</x>
+     <y>330</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>859</x>
+     <y>516</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_SendNG</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SendNGToPLC()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>432</x>
+     <y>330</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>859</x>
+     <y>516</y>
     </hint>
    </hints>
   </connection>
