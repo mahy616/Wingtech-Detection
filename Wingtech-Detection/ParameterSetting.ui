@@ -343,22 +343,10 @@ color: rgb(85, 0, 255);</string>
       <property name="spacing">
        <number>0</number>
       </property>
-      <item row="0" column="2">
-       <widget class="QLabel" name="label_FirstResult">
-        <property name="minimumSize">
-         <size>
-          <width>151</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>151</width>
-          <height>51</height>
-         </size>
-        </property>
+      <item row="1" column="0" colspan="3">
+       <widget class="MyLabel" name="label_FirstImage">
         <property name="styleSheet">
-         <string notr="true">image: url(:/CMainWindow/Resources/OK.svg);</string>
+         <string notr="true">background-image: url(:/CMainWindow/Resources/background.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -388,16 +376,6 @@ color: rgb(85, 0, 255);</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0" colspan="3">
-       <widget class="MyLabel" name="label_FirstImage">
-        <property name="styleSheet">
-         <string notr="true">background-image: url(:/CMainWindow/Resources/background.png);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="1">
        <widget class="QCheckBox" name="checkBox_RenderFirst">
         <property name="maximumSize">
@@ -411,6 +389,28 @@ color: rgb(85, 0, 255);</string>
         </property>
         <property name="checked">
          <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_FirstResult">
+        <property name="minimumSize">
+         <size>
+          <width>151</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>151</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">image: url(:/CMainWindow/Resources/OK.svg);</string>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>
@@ -429,7 +429,7 @@ color: rgb(85, 0, 255);</string>
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -463,6 +463,13 @@ color: rgb(85, 0, 255);</string>
           <property name="spacing">
            <number>0</number>
           </property>
+          <item row="5" column="4" colspan="2">
+           <widget class="QLabel" name="label_17">
+            <property name="text">
+             <string>增益</string>
+            </property>
+           </widget>
+          </item>
           <item row="1" column="3" colspan="2">
            <widget class="QRadioButton" name="radioButton_ExternalThird">
             <property name="text">
@@ -494,6 +501,19 @@ color: rgb(85, 0, 255);</string>
             </property>
             <property name="text">
              <string>触发一次</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_First_5">
+            <property name="maximumSize">
+             <size>
+              <width>101</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>相机名称</string>
             </property>
            </widget>
           </item>
@@ -584,35 +604,8 @@ color: rgb(85, 0, 255);</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="7">
-           <widget class="QPushButton" name="pushButton_SaveParams_Third">
-            <property name="text">
-             <string>保存参数</string>
-            </property>
-           </widget>
-          </item>
           <item row="5" column="6">
            <widget class="QLineEdit" name="le_gain_3"/>
-          </item>
-          <item row="0" column="0" colspan="2">
-           <widget class="QLabel" name="label_First_5">
-            <property name="maximumSize">
-             <size>
-              <width>101</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>相机名称</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="4">
-           <widget class="QLabel" name="label_17">
-            <property name="text">
-             <string>增益</string>
-            </property>
-           </widget>
           </item>
          </layout>
         </widget>
@@ -651,6 +644,26 @@ color: rgb(85, 0, 255);</string>
             </property>
            </widget>
           </item>
+          <item row="4" column="4" colspan="2">
+           <widget class="QLabel" name="label_31">
+            <property name="text">
+             <string>增益</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_First_6">
+            <property name="maximumSize">
+             <size>
+              <width>101</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>相机名称</string>
+            </property>
+           </widget>
+          </item>
           <item row="4" column="2">
            <widget class="QLineEdit" name="le_exposure_4">
             <property name="maximumSize">
@@ -658,13 +671,6 @@ color: rgb(85, 0, 255);</string>
               <width>16777215</width>
               <height>16777215</height>
              </size>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="7">
-           <widget class="QPushButton" name="pushButton_SaveParams_Fourth">
-            <property name="text">
-             <string>保存参数</string>
             </property>
            </widget>
           </item>
@@ -775,23 +781,10 @@ color: rgb(85, 0, 255);</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="0" colspan="2">
-           <widget class="QLabel" name="label_First_6">
-            <property name="maximumSize">
-             <size>
-              <width>101</width>
-              <height>16777215</height>
-             </size>
-            </property>
+          <item row="4" column="7">
+           <widget class="QPushButton" name="pushButton_SaveParams_Fourth">
             <property name="text">
-             <string>相机名称</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="4">
-           <widget class="QLabel" name="label_31">
-            <property name="text">
-             <string>增益</string>
+             <string>保存参数</string>
             </property>
            </widget>
           </item>
@@ -860,13 +853,6 @@ color: rgb(85, 0, 255);</string>
           </item>
           <item row="4" column="6">
            <widget class="QLineEdit" name="le_gain_2"/>
-          </item>
-          <item row="4" column="7">
-           <widget class="QPushButton" name="pushButton_SaveParams_Second">
-            <property name="text">
-             <string>保存参数</string>
-            </property>
-           </widget>
           </item>
           <item row="1" column="3" colspan="2">
            <widget class="QRadioButton" name="radioButton_ExternalSecond">
@@ -1097,13 +1083,6 @@ color: rgb(85, 0, 255);</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="7">
-           <widget class="QPushButton" name="pushButton_SaveParams">
-            <property name="text">
-             <string>保存参数</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="7">
            <widget class="QPushButton" name="pushButton_TriggerFirst">
             <property name="maximumSize">
@@ -1203,7 +1182,7 @@ color: rgb(85, 0, 255);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>620</y>
+         <y>610</y>
          <width>471</width>
          <height>151</height>
         </rect>
@@ -1363,7 +1342,7 @@ color: rgb(85, 0, 255);</string>
          <x>10</x>
          <y>200</y>
          <width>471</width>
-         <height>117</height>
+         <height>111</height>
         </rect>
        </property>
        <property name="maximumSize">
@@ -1376,33 +1355,26 @@ color: rgb(85, 0, 255);</string>
         <string>通讯</string>
        </property>
        <layout class="QGridLayout" name="gridLayout_4">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_5">
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lineEdit_IP"/>
+        </item>
+        <item row="0" column="3">
+         <widget class="QLineEdit" name="lineEdit_Port">
           <property name="minimumSize">
            <size>
-            <width>31</width>
+            <width>80</width>
             <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>31</width>
+            <width>80</width>
             <height>16777215</height>
            </size>
           </property>
-          <property name="text">
-           <string>IP</string>
-          </property>
          </widget>
         </item>
-        <item row="0" column="1" colspan="2">
-         <widget class="QLineEdit" name="lineEdit_IP">
-          <property name="text">
-           <string>192.168.1.39</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3">
+        <item row="0" column="2">
          <widget class="QLabel" name="label_6">
           <property name="minimumSize">
            <size>
@@ -1421,74 +1393,7 @@ color: rgb(85, 0, 255);</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="4">
-         <widget class="QLineEdit" name="lineEdit_Port">
-          <property name="minimumSize">
-           <size>
-            <width>80</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>80</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>4005</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="5">
-         <widget class="QLabel" name="label_7">
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>50</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>心跳</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="6">
-         <widget class="QSpinBox" name="spinBox_Heartbeat">
-          <property name="minimumSize">
-           <size>
-            <width>80</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>80</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="suffix">
-           <string>秒</string>
-          </property>
-          <property name="minimum">
-           <number>1</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="4">
-         <widget class="QPushButton" name="pushButton_SendOK">
-          <property name="text">
-           <string>发送OK</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="6">
+        <item row="1" column="5">
          <widget class="QPushButton" name="pushButton_SendNG">
           <property name="minimumSize">
            <size>
@@ -1507,7 +1412,21 @@ color: rgb(85, 0, 255);</string>
           </property>
          </widget>
         </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="pushButton_ConnectPLC">
+          <property name="text">
+           <string>连接PLC</string>
+          </property>
+         </widget>
+        </item>
         <item row="1" column="3">
+         <widget class="QPushButton" name="pushButton_SendOK">
+          <property name="text">
+           <string>发送OK</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
          <widget class="QLabel" name="label_Status">
           <property name="minimumSize">
            <size>
@@ -1529,10 +1448,63 @@ color: rgb(85, 0, 255);</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="1" colspan="2">
-         <widget class="QPushButton" name="pushButton_ConnectPLC">
+        <item row="0" column="4">
+         <widget class="QLabel" name="label_7">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>50</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="text">
-           <string>连接PLC</string>
+           <string>心跳</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="minimumSize">
+           <size>
+            <width>31</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>31</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>IP</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="5">
+         <widget class="QSpinBox" name="spinBox_Heartbeat">
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>80</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="suffix">
+           <string>秒</string>
+          </property>
+          <property name="minimum">
+           <number>1</number>
           </property>
          </widget>
         </item>
@@ -1542,7 +1514,7 @@ color: rgb(85, 0, 255);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>330</y>
+         <y>320</y>
          <width>471</width>
          <height>281</height>
         </rect>
@@ -1798,7 +1770,7 @@ color: rgb(85, 0, 255);</string>
          <x>10</x>
          <y>770</y>
          <width>476</width>
-         <height>39</height>
+         <height>33</height>
         </rect>
        </property>
        <property name="text">
@@ -1893,8 +1865,8 @@ color: rgb(85, 0, 255);</string>
    <slot>CopyRegisterCode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>471</x>
-     <y>721</y>
+     <x>472</x>
+     <y>711</y>
     </hint>
     <hint type="destinationlabel">
      <x>519</x>
@@ -1909,8 +1881,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SoftwareRegister()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>471</x>
-     <y>760</y>
+     <x>472</x>
+     <y>750</y>
     </hint>
     <hint type="destinationlabel">
      <x>403</x>
@@ -1951,30 +1923,14 @@ color: rgb(85, 0, 255);</string>
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_SaveParams</sender>
-   <signal>clicked()</signal>
-   <receiver>DialogSetting</receiver>
-   <slot>SaveCameraParams1()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>485</x>
-     <y>263</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>429</x>
-     <y>0</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>pushButton_OpenFirst</sender>
    <signal>clicked()</signal>
    <receiver>DialogSetting</receiver>
    <slot>OpenFirstCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>485</x>
-     <y>104</y>
+     <x>110</x>
+     <y>72</y>
     </hint>
     <hint type="destinationlabel">
      <x>769</x>
@@ -1989,8 +1945,8 @@ color: rgb(85, 0, 255);</string>
    <slot>OpenSecondCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>485</x>
-     <y>343</y>
+     <x>110</x>
+     <y>76</y>
     </hint>
     <hint type="destinationlabel">
      <x>829</x>
@@ -2005,8 +1961,8 @@ color: rgb(85, 0, 255);</string>
    <slot>OpenThirdCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>485</x>
-     <y>579</y>
+     <x>110</x>
+     <y>80</y>
     </hint>
     <hint type="destinationlabel">
      <x>633</x>
@@ -2021,60 +1977,12 @@ color: rgb(85, 0, 255);</string>
    <slot>OpenFourthCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>485</x>
-     <y>815</y>
+     <x>110</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
      <x>634</x>
      <y>950</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_SaveParams_Second</sender>
-   <signal>clicked()</signal>
-   <receiver>DialogSetting</receiver>
-   <slot>SaveCameraParams2()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>485</x>
-     <y>499</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>649</x>
-     <y>576</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_SaveParams_Third</sender>
-   <signal>clicked()</signal>
-   <receiver>DialogSetting</receiver>
-   <slot>SaveCameraParams3()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>485</x>
-     <y>735</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>648</x>
-     <y>849</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_SaveParams_Fourth</sender>
-   <signal>clicked()</signal>
-   <receiver>DialogSetting</receiver>
-   <slot>SaveCameraParams4()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>485</x>
-     <y>971</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>647</x>
-     <y>1104</y>
     </hint>
    </hints>
   </connection>
@@ -2085,8 +1993,8 @@ color: rgb(85, 0, 255);</string>
    <slot>ChooseFirstNgPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>485</x>
-     <y>176</y>
+     <x>110</x>
+     <y>72</y>
     </hint>
     <hint type="destinationlabel">
      <x>649</x>
@@ -2101,8 +2009,8 @@ color: rgb(85, 0, 255);</string>
    <slot>ChooseFirstOkPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>485</x>
-     <y>212</y>
+     <x>110</x>
+     <y>72</y>
     </hint>
     <hint type="destinationlabel">
      <x>648</x>
@@ -2165,8 +2073,8 @@ color: rgb(85, 0, 255);</string>
    <slot>ChooseSecondNgPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>485</x>
-     <y>421</y>
+     <x>110</x>
+     <y>76</y>
     </hint>
     <hint type="destinationlabel">
      <x>514</x>
@@ -2181,8 +2089,8 @@ color: rgb(85, 0, 255);</string>
    <slot>ChooseSecondOkPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>485</x>
-     <y>460</y>
+     <x>110</x>
+     <y>76</y>
     </hint>
     <hint type="destinationlabel">
      <x>510</x>
@@ -2197,8 +2105,8 @@ color: rgb(85, 0, 255);</string>
    <slot>ChooseThirdNgPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>485</x>
-     <y>657</y>
+     <x>110</x>
+     <y>80</y>
     </hint>
     <hint type="destinationlabel">
      <x>513</x>
@@ -2213,8 +2121,8 @@ color: rgb(85, 0, 255);</string>
    <slot>ChooseThirdOkPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>485</x>
-     <y>696</y>
+     <x>110</x>
+     <y>80</y>
     </hint>
     <hint type="destinationlabel">
      <x>512</x>
@@ -2229,8 +2137,8 @@ color: rgb(85, 0, 255);</string>
    <slot>ChooseFourthNgPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>485</x>
-     <y>893</y>
+     <x>110</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
      <x>513</x>
@@ -2245,8 +2153,8 @@ color: rgb(85, 0, 255);</string>
    <slot>ChooseFourthOkPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>485</x>
-     <y>932</y>
+     <x>110</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
      <x>510</x>
@@ -2261,8 +2169,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SetThreshold()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>275</x>
-     <y>474</y>
+     <x>320</x>
+     <y>484</y>
     </hint>
     <hint type="destinationlabel">
      <x>857</x>
@@ -2277,8 +2185,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SetThreshold()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>275</x>
-     <y>514</y>
+     <x>320</x>
+     <y>519</y>
     </hint>
     <hint type="destinationlabel">
      <x>857</x>
@@ -2293,7 +2201,7 @@ color: rgb(85, 0, 255);</string>
    <slot>SetThreshold()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>275</x>
+     <x>320</x>
      <y>554</y>
     </hint>
     <hint type="destinationlabel">
@@ -2309,8 +2217,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SetThreshold()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>275</x>
-     <y>594</y>
+     <x>320</x>
+     <y>589</y>
     </hint>
     <hint type="destinationlabel">
      <x>857</x>
@@ -2325,8 +2233,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SetThreshold()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>275</x>
-     <y>634</y>
+     <x>320</x>
+     <y>624</y>
     </hint>
     <hint type="destinationlabel">
      <x>857</x>
@@ -2341,8 +2249,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SetThreshold()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>428</x>
-     <y>474</y>
+     <x>472</x>
+     <y>484</y>
     </hint>
     <hint type="destinationlabel">
      <x>857</x>
@@ -2357,8 +2265,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SetThreshold()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>428</x>
-     <y>514</y>
+     <x>472</x>
+     <y>519</y>
     </hint>
     <hint type="destinationlabel">
      <x>857</x>
@@ -2373,7 +2281,7 @@ color: rgb(85, 0, 255);</string>
    <slot>SetThreshold()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>428</x>
+     <x>472</x>
      <y>554</y>
     </hint>
     <hint type="destinationlabel">
@@ -2389,8 +2297,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SetThreshold()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>428</x>
-     <y>594</y>
+     <x>472</x>
+     <y>589</y>
     </hint>
     <hint type="destinationlabel">
      <x>857</x>
@@ -2405,8 +2313,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SetThreshold()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>428</x>
-     <y>634</y>
+     <x>472</x>
+     <y>624</y>
     </hint>
     <hint type="destinationlabel">
      <x>857</x>
@@ -2421,8 +2329,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SaveConfig()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>458</x>
-     <y>1019</y>
+     <x>92</x>
+     <y>58</y>
     </hint>
     <hint type="destinationlabel">
      <x>464</x>
@@ -2463,14 +2371,62 @@ color: rgb(85, 0, 255);</string>
    </hints>
   </connection>
   <connection>
+   <sender>pushButton_SaveConfig</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>DeleteFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>92</x>
+     <y>58</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>341</x>
+     <y>1075</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_ConnectPLC</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>ConnectToPLC()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>70</x>
+     <y>329</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-12</x>
+     <y>317</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_SaveParams_Fourth</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogSetting</receiver>
+   <slot>SaveCameraParams4()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>110</x>
+     <y>84</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>647</x>
+     <y>1104</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
    <sender>pushButton_SaveConfig_2</sender>
    <signal>clicked()</signal>
    <receiver>DialogSetting</receiver>
    <slot>SaveConfig()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>249</x>
-     <y>828</y>
+     <x>481</x>
+     <y>836</y>
     </hint>
     <hint type="destinationlabel">
      <x>859</x>
@@ -2485,8 +2441,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SendOKToPLC()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>284</x>
-     <y>330</y>
+     <x>302</x>
+     <y>322</y>
     </hint>
     <hint type="destinationlabel">
      <x>859</x>
@@ -2501,8 +2457,8 @@ color: rgb(85, 0, 255);</string>
    <slot>SendNGToPLC()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>432</x>
-     <y>330</y>
+     <x>431</x>
+     <y>326</y>
     </hint>
     <hint type="destinationlabel">
      <x>859</x>
@@ -2553,5 +2509,6 @@ color: rgb(85, 0, 255);</string>
   <slot>ShowThirdRender(bool)</slot>
   <slot>ShowFourthRender(bool)</slot>
   <slot>DeleteFile()</slot>
+  <slot>ConnectToPLC()</slot>
  </slots>
 </ui>

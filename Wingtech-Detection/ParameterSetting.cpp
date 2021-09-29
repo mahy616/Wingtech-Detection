@@ -186,7 +186,9 @@ void CParameterSetting::InitFourthGroup()
 //保存图片
 void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo)
 {
-	QString CurTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
+
+	QString CurTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");// yyyy - MM - dd_hh - mm - ss - zzz
+
 	auto image_info = [&](bool checkbox, s_StationInfo ImageInfo, const QString &curTime, const QString &path, bool bok,int index)
 	{
 		bool result = checkbox;
@@ -260,6 +262,14 @@ void CParameterSetting::SaveCameraTestImage(s_SaveImageInfo ImageInfo)
 	image_TestInfo(ImageInfo.SecondStation, CurTime, ui.lineEdit_OKPath_Second->text(), m_index);
 	image_TestInfo(ImageInfo.ThirdStation, CurTime, ui.lineEdit_OKPath_Third->text(), m_index);
 	image_TestInfo(ImageInfo.FourStation, CurTime, ui.lineEdit_OKPath_Fourth->text(), m_index);
+}
+
+void CParameterSetting::GetCameraInfo()
+{
+	m_FirstCameraInfo.ImageCapture->InitStartSign();
+	m_SecondCameraInfo.ImageCapture->InitStartSign();
+	m_ThirdCameraInfo.ImageCapture->InitStartSign();
+	m_FourCameraInfo.ImageCapture->InitStartSign();
 }
 
 //关闭设备
@@ -654,7 +664,12 @@ void CParameterSetting::ConnectToPLC()
 		QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("PLC端口不能为空"));
 		return;
 	}
-	CPLCManager::GetInstance()->TcpConnect(ip, port.toUShort(), Heart);
+
+	if (!CPLCManager::GetInstance()->TcpConnect(ip, port.toUShort(), Heart))
+	{
+		QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("通讯失败"));
+		return;
+	}
 }
 void CParameterSetting::SendOKToPLC()
 {
@@ -1337,7 +1352,7 @@ void CParameterSetting::LoadConfig()
 			if (index != -1)
 			{
 				ui.comboBox_First->setCurrentIndex(index);
-				//OpenFirstCamera();
+				OpenFirstCamera();
 			}
 		}
 
@@ -1352,7 +1367,7 @@ void CParameterSetting::LoadConfig()
 			if (index != -1)
 			{
 				ui.comboBox_Second->setCurrentIndex(index);
-				//OpenSecondCamera();
+				OpenSecondCamera();
 			}
 		}
 
@@ -1368,7 +1383,7 @@ void CParameterSetting::LoadConfig()
 			if (index != -1)
 			{
 				ui.comboBox_Third->setCurrentIndex(index);
-				//OpenThirdCamera();
+				OpenThirdCamera();
 			}
 		}
 
@@ -1383,30 +1398,31 @@ void CParameterSetting::LoadConfig()
 			if (index != -1)
 			{
 				ui.comboBox_Four->setCurrentIndex(index);
-				//OpenFourthCamera();
+				OpenFourthCamera();
 			}
 		}
 		//plc
+		//plc
+		QString ip = cfg->GetString(COMMUNICATION_SECTOIN, IP);
+		qDebug() << "load config plc ip:" << ip;
+		printf("load config plc ip:%s\n", ip.toStdString().c_str());
+		ui.lineEdit_IP->setText(ip);
+
+		QString port = cfg->GetString(COMMUNICATION_SECTOIN, PORT);
+		qDebug() << "load config plc port:" << port;
+		printf("load config plc port:%s\n", port.toStdString().c_str());
+		ui.lineEdit_Port->setText(port);
+
+		int heartbeat = cfg->GetInt(COMMUNICATION_SECTOIN, HEARTBEAT);
+		qDebug() << "load config heartbeat:" << heartbeat;
+		printf("load config heartbeat:%d\n", heartbeat);
+		ui.spinBox_Heartbeat->setValue(heartbeat);
+
 		bool rv = cfg->GetBool(COMMUNICATION_SECTOIN, COM_STATUS);
 		qDebug() << "load config plc connected:" << rv;
 		if (rv)
 		{
-			QString ip = cfg->GetString(COMMUNICATION_SECTOIN, IP);
-			qDebug() << "load config plc ip:" << ip;
-			printf("load config plc ip:%s\n", ip.toStdString().c_str());
-			ui.lineEdit_IP->setText(ip);
-
-			QString port = cfg->GetString(COMMUNICATION_SECTOIN, PORT);
-			qDebug() << "load config plc port:" << port;
-			printf("load config plc port:%s\n", port.toStdString().c_str());
-			ui.lineEdit_Port->setText(port);
-
-			int heartbeat = cfg->GetInt(COMMUNICATION_SECTOIN, HEARTBEAT);
-			qDebug() << "load config heartbeat:" << heartbeat;
-			printf("load config heartbeat:%d\n", heartbeat);
-			ui.spinBox_Heartbeat->setValue(heartbeat);
-			//ConnectToPLC();
-			  
+			ConnectToPLC();
 		}
 		//当路径不存在的时候自动在绝对路径下生成对应的OK/NG的文件夹
 		//保存路径 NG1
@@ -2535,7 +2551,7 @@ void CParameterSetting::setFirstEnable(bool checked)
 {
 	ui.pushButton_LoadNGPath_First->setEnabled(checked);
 	ui.pushButton_LoadOKPath_First->setEnabled(checked);
-	ui.pushButton_SaveParams->setEnabled(checked);
+
 	ui.checkBox_SaveOK_First->setEnabled(checked);
 	ui.checkBox_SaveNG_First->setEnabled(checked);
 	ui.lineEdit_NGPath_First->setEnabled(checked);
@@ -2551,7 +2567,7 @@ void CParameterSetting::setSecondEnable(bool checked)
 {
 	ui.pushButton_LoadNGPath_Second->setEnabled(checked);
 	ui.pushButton_LoadOKPath_Second->setEnabled(checked);
-	ui.pushButton_SaveParams_Second->setEnabled(checked);
+
 	ui.checkBox_SaveOK_Second->setEnabled(checked);
 	ui.checkBox_SaveNG_Second->setEnabled(checked);
 	ui.lineEdit_NGPath_Second->setEnabled(checked);
@@ -2567,7 +2583,7 @@ void CParameterSetting::setThirdEnable(bool checked)
 {
 	ui.pushButton_LoadNGPath_Third->setEnabled(checked);
 	ui.pushButton_LoadOKPath_Third->setEnabled(checked);
-	ui.pushButton_SaveParams_Third->setEnabled(checked);
+
 	ui.checkBox_SaveOK_Third->setEnabled(checked);
 	ui.checkBox_SaveNG_Third->setEnabled(checked);
 	ui.lineEdit_NGPath_Third->setEnabled(checked);
@@ -2610,11 +2626,11 @@ void CParameterSetting::slotChangePswd(int index, QString m_ID, QString m_pswd)
 	{
 		emit signalFromChangeOperatorPswd(m_ID, m_pswd);
 	}
-	//之前遇到的问题：
-	if (m_ID == "管理员" && index == 0)
-	{
-		//if判断进不来，但是m_ID == "管理员成立",为啥？
-	}
+	////之前遇到的问题：
+	//if (m_ID == "管理员" && index == 0)
+	//{
+	//	//if判断进不来，但是m_ID == "管理员成立",为啥？
+	//}
 }
 //更改管理员密码
 void CParameterSetting::slotFromChangeAdminPswd(QString id, QString pswd)

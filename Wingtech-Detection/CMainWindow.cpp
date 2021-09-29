@@ -161,9 +161,22 @@ void CMainWindow::InitVariables()
     m_ListView->setModel(m_LogModel);
     QDockWidget *LogDock = new QDockWidget(QString::fromLocal8Bit("日志"));
     LogDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
-    addDockWidget(Qt::RightDockWidgetArea, LogDock);
+
     LogDock->setWidget(m_ListView);
+
+	QWidget *mywid1 = new QWidget();
+	btn_Clear = new QPushButton("Clear", mywid1);
+	btn_Clear->setFixedSize(100, 30);
+	QHBoxLayout *HorizontalLayout = new QHBoxLayout(LogDock);
+	HorizontalLayout->addWidget(btn_Clear);
+	mywid1->setLayout(HorizontalLayout);
+	
+	LogDock->setWidget(mywid1);
+	addDockWidget(Qt::RightDockWidgetArea, LogDock);
 	qDebug() << "Init Log widget";
+	connect(btn_Clear, SIGNAL(clicked()), this, SLOT([m_ListView]() {
+		m_ListView.clear();
+	}));
     m_Camera1Results.clear();
     m_Camera1Images.clear();
     m_Camera1Result = true;
@@ -186,14 +199,15 @@ void CMainWindow::InitVariables()
 
 	setActionEnable(false);
 }
-
 //收到PLC切换配方指令，根据配方中图像数量初始化结果细节
 //每行10个图像状态
 //每个产品28张照片
 void CMainWindow::InitResultDetails(int ImageCounts)
 {
-	ImageCounts = m_RecipeManager->GetImageNumber();
-	ImageCounts = 5;//测试用
+	//ImageCounts = m_RecipeManager->GetImageNumber();
+	//ImageCounts = 5;//测试用
+	ImageCounts = m_RecipeManager->GetImageCounts();
+	m_ImageCounts = ImageCounts;
     qDebug() << "InitResultDetials";
     QGridLayout *Camera1Layout = new QGridLayout();
 
@@ -424,7 +438,7 @@ void CMainWindow::InitConnections()
 	connect(m_Parameter, SIGNAL(SendThreshold(QVector<double>)), m_RecipeManager, SLOT(ReceiveAlgoThreshold(QVector<double>)));
 	connect(m_RecipeManager, SIGNAL(SendAlgoImage(Mat, Mat, int , bool , e_CameraType )), this, SLOT(ReceiveAlgoImage(Mat, Mat, int, bool, e_CameraType)));
 	connect(m_RecipeManager, SIGNAL(SendStartSign()), this, SLOT(ReceiveStartSign()));
-	
+
 
 
 }
@@ -457,8 +471,7 @@ void CMainWindow::StartDection()
 	qDebug() << "CMainWindow::StartDection()";
 	if (!m_RecipeManager->SendPLCReadySign())
 	{
-		qDebug() << "Ready error";
-		cout << "Ready error" << endl;
+		QMessageBox::information(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("初始化配方失败"));
 		return;
 	}
 	ui.action_Start->setEnabled(false);
@@ -623,11 +636,14 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
 
 			if (index == m_ImageCounts-1)
 			{
+				QString Msg = "Receive algo image: type = " + QString::number(type) + ",result = " + QString::number(index);
+				AddLog(Msg);
 				m_Index = 0;
 				m_DetecionResult.insert(CAMERA_FIRST, m_Camera1Result);
 				if (m_DetecionResult.size() == 4)
 				{
 					ProcessDetectionResult();
+					m_DetecionResult.clear();
 				}
 			}
 			SaveInfo.FirstStation = StationInfo;	
@@ -658,11 +674,14 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
             }
             if (index == m_ImageCounts-1)
             {
+				QString Msg = "Receive algo image: type = " + QString::number(type) + ",result = " + QString::number(index);
+				AddLog(Msg);
 				m_Index = 0;
                 m_DetecionResult.insert(CAMERA_SECOND, m_Camera2Result);
                 if (m_DetecionResult.size() == 4)
                 {
                     ProcessDetectionResult();
+					m_DetecionResult.clear();
                 }
             }
 			SaveInfo.SecondStation = StationInfo;
@@ -693,11 +712,14 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
 
             if (index == m_ImageCounts-1)
             {
+				QString Msg = "Receive algo image: type = " + QString::number(type) + ",result = " + QString::number(index);
+				AddLog(Msg);
 				m_Index = 0;
                 m_DetecionResult.insert(CAMERA_THIRD, m_Camera3Result);
                 if (m_DetecionResult.size() == 4)
                 {
                     ProcessDetectionResult();
+					m_DetecionResult.clear();
                 }
             }
 			SaveInfo.ThirdStation = StationInfo;
@@ -728,11 +750,14 @@ void CMainWindow::ReceiveAlgoImage(Mat image, Mat RenderImage, int index, bool b
 
             if (index == m_ImageCounts-1)
             {
+				QString Msg = "Receive algo image: type = " + QString::number(type) + ",result = " + QString::number(index);
+				AddLog(Msg);
 				m_Index = 0;
                 m_DetecionResult.insert(CAMERA_FOURTH, m_Camera4Result);
                 if (m_DetecionResult.size() == 4)
                 {
                     ProcessDetectionResult();
+					m_DetecionResult.clear();
                 }
             }
 			SaveInfo.FourStation = StationInfo;
@@ -753,6 +778,7 @@ void CMainWindow::ReceiveInitImageNumber(int number)
 void CMainWindow::ReceiveStartSign()
 {
 	RefreshResultDetails();
+	m_Parameter->GetCameraInfo();
 }
 
 

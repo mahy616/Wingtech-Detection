@@ -87,6 +87,7 @@ private:
 	CParameterSetting *m_Parameter;
 	CRecipeManager *m_RecipeManager;
 	adminLoginDialog *m_admin;
+	QPushButton *btn_Clear;
 protected:
 	bool eventFilter(QObject *obj, QEvent *event);
 private slots:

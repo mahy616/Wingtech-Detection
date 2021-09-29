@@ -20,7 +20,7 @@ public:
 	bool InitRecipe(QString RecipeName,QString &errMsg);
 	void InitConnections();
 	bool SendPLCReadySign();
-	int GetImageNumber();
+	int GetImageCounts();
 	
 public:
 
@@ -37,10 +37,12 @@ private:
 	CAlgoManager* m_Algo;
 	bool m_Ready;
 	int m_ImageID;  //图像ID
-	int m_Number=5;   //配方个图像个数
+	int m_ImageCounts;   //配方个图像个数
+	int m_Number;   //配方个图像个数
 	s_ImageInfo ImageInfo;
 	QVector<double>m_AlgoThreshold;
-	
+	bool m_InitRecipe;
+
 signals:
 	void SendAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type);
 	void SendStartSign();
@@ -56,7 +58,7 @@ private slots:
 	//PLC触发保存配方
 	void ReceiveSavePlcRecipe(QString msg, int number, int ImageCounts);
 	//PLC触发切换配方
-	void ReceiveChangePlcRecipe(QString msg, int number);
+	void ReceiveChangePlcRecipe(QString msg, int number, int ImageCounts);
 	//接收源图
 	void ReceivaOriginalImage(Mat Image, int ImageID, e_CameraType Type);
 	//接收算法渲染图
@@ -67,4 +69,5 @@ private slots:
 	void ReceiveAlgoThreshold(QVector<double>AlgoThreshold);
 	//点击选中的配方
 	void tableWidget_click(const QModelIndex &index);
+
 };

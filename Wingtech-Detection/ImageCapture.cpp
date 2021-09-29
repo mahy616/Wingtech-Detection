@@ -9,7 +9,7 @@ CImageCapture::CImageCapture(QThread *parent /*= NULL*/)
 	m_bOpen = false;
 	m_pGrabBuf = NULL;
 	m_bStartRun = false;
-	GrabIndex = 1;
+	m_GrabIndex = 1;
 }
 
 CImageCapture::~CImageCapture()
@@ -83,8 +83,15 @@ void CImageCapture::SetRunStatus(bool bStart)
 
 void CImageCapture::InitConnections()
 {
-	connect(CPLCManager::GetInstance(), SIGNAL(SendStartSign()), this, SLOT(ReceiveStartSign()));
+	//connect(CPLCManager::GetInstance(), SIGNAL(SendStartSign()), this, SLOT(ReceiveStartSign()));
+	//connect(CPLCManager::GetInstance(), SIGNAL(SendRefreshIndex()), this, SLOT(ReceiveRefreshIndex()));
 }
+
+//void CImageCapture::ReceiveRefreshIndex()
+//{
+//	m_GrabIndex = 1;
+//}
+
 
 void CImageCapture::run()
 {
@@ -93,11 +100,12 @@ void CImageCapture::run()
 	MV_DISPLAY_FRAME_INFO stDisplayInfo = { 0 };
 	
 	while (1)
-	{//bStop\bOpen\bStart这三个标志位需要吗，是不是可以直接用，不用赋值呢？
+	{/////////////////////////////////////////////////////////////////////////////////
 		m_Mutex.lock();
 		bool bStop = m_bStop;
 		bool bOpen = m_bOpen;
 		bool bStart = m_bStartRun;
+		int GrabIndex = m_GrabIndex;
 		m_Mutex.unlock();
 		if (bStop)
 		{
@@ -206,10 +214,10 @@ Mat CImageCapture::Convert2Mat(MV_FRAME_OUT_INFO_EX * pstImageInfo, unsigned cha
 	}
 }
 
-void CImageCapture::ReceiveStartSign()
+void CImageCapture::InitStartSign()
 {
 	m_Mutex.lock();
-	GrabIndex = 1;
+	m_GrabIndex = 1;
 	m_Mutex.unlock();
 	
 }

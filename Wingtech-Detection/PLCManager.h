@@ -29,21 +29,20 @@ class CPLCManager :public QObject
 	Q_OBJECT
 public:
 	static CPLCManager *GetInstance();
-	void TcpConnect(QString ip, quint16 port,int HeartBeat);
+	bool TcpConnect(QString ip, quint16 port,int HeartBeat);
 		//断开连接
 	//	void TcpDisconnect();
 	bool GetConnectStatus() { return m_bConnected; }
 	//bool GetPLCInitStatus() { return m_bInitPLCSuccess; }
 	void WritePLCData(QString strResult, bool bok);
-	void WritePLCReady();
+	bool WritePLCReady();
+	bool ReadCurrentRecipe();
 private:
 	//PLC写操作
 	void WritePLC(QString strResult, const char* Station);
 	void WritePLCHeartbeat();
 	void WritePLCChangeVar();
 	
-private:
-	void ReadCurrentRecipe();
 
 private:
 	CPLCManager(QObject *parent = NULL);
@@ -73,4 +72,5 @@ signals:
 	void SendChangePLCRecipe(QString msg, int number,int ImageCounts);
 	void SendSavePLCRecipe(QString msg, int number, int ImageCounts);
 	void SendStartSign();
+	void SendRefreshIndex();
 };
