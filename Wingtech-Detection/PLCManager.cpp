@@ -53,43 +53,58 @@ bool CPLCManager::TcpConnect(QString ip, quint16 port, int HeartBeat)
 	}
 }
 
-void CPLCManager::WritePLCData(QString strResult,bool bok)
+bool CPLCManager::WritePLCData(QString strResult,bool bok)
 {
 	qDebug() << "WritePLCData:" << bok << strResult;
 	if (m_bConnected)
 	{
 		if (m_StartIndex==1)
 		{
-			WritePLC(strResult,"D200");
+			if (!WritePLC(strResult, "D200"))
+				return false;
 		}
 		else if (m_StartIndex == 2)
 		{
-			WritePLC(strResult,"D210");
+			if (!WritePLC(strResult, "D210"))
+				return false;
 		}
 	}
 	else
 	{
-		qDebug() << "PLC did not initialize successfully";
+		return true;
 	}
 }
 
 
-void CPLCManager::WritePLC(QString strResult,const char* Station)
+bool CPLCManager::WritePLC(QString strResult,const char* Station)
 {
-	bool ret = false;
-	const char sz_write[] = "01010101";//测试用，实际sz_write=strResult
-	int length = sizeof(sz_write) / sizeof(sz_write[0]);
-	ret = mc_write_string(m_fd, Station, length, sz_write);
-	qDebug() << "WritePLCOK";
+	//bool ret = false;
+	//const char sz_write[] = "01010101";//测试用，实际sz_write=strResult
+	//int length = sizeof(sz_write) / sizeof(sz_write[0]);
+	//ret = mc_write_string(m_fd, Station, length, sz_write);
+	if (!mc_write_short(m_fd, Station, 85))
+		return false;
 }
 
 
 
 void CPLCManager::WritePLCHeartbeat()
 {
-	if(!mc_write_short(m_fd, "D221", 1))
-	qDebug() << "WritePLCHeartbeat error";
+	//if(!mc_write_short(m_fd, "D221", 1))
+	//qDebug() << "WritePLCHeartbeat error";
 
+}
+
+bool CPLCManager::WritePLCStartSign()
+{
+	if (m_StartIndex == 1)
+	{
+		return mc_write_short(m_fd, "D220", 1);
+	}
+	else if (m_StartIndex == 2)
+	{
+		return mc_write_short(m_fd, "D221", 1);
+	}
 }
 
 bool CPLCManager::WritePLCReady()
@@ -97,11 +112,6 @@ bool CPLCManager::WritePLCReady()
      return mc_write_short(m_fd, "D222", 1);
 }
 
-
-void CPLCManager::WritePLCChangeVar()
-{
-
-}
 
 bool CPLCManager::ReadCurrentRecipe()
 {
@@ -169,7 +179,8 @@ void CPLCManager::ReadPLCData()
 		if (s_val)
 		{
 			m_StartIndex = 2;
-			//emit SendStartSign();
+			emit SendStartSign();
+			mc_write_short(m_fd, "D310", 0);
 			//emit SendRefreshIndex();
 		}
 
@@ -179,7 +190,8 @@ void CPLCManager::ReadPLCData()
 		if (s_val)
 		{
 			m_StartIndex = 1;
-			//emit SendStartSign();
+			emit SendStartSign();
+			mc_write_short(m_fd, "D300", 0);
 			//emit SendRefreshIndex();
 		}
 	}

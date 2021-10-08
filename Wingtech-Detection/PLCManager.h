@@ -34,14 +34,15 @@ public:
 	//	void TcpDisconnect();
 	bool GetConnectStatus() { return m_bConnected; }
 	//bool GetPLCInitStatus() { return m_bInitPLCSuccess; }
-	void WritePLCData(QString strResult, bool bok);
+	bool WritePLCData(QString strResult, bool bok);
 	bool WritePLCReady();
 	bool ReadCurrentRecipe();
+	bool WritePLCStartSign();
 private:
 	//PLCÐ´²Ù×÷
-	void WritePLC(QString strResult, const char* Station);
+	bool WritePLC(QString strResult, const char* Station);
 	void WritePLCHeartbeat();
-	void WritePLCChangeVar();
+	
 	
 
 

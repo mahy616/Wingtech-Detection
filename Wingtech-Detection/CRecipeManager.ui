@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>856</width>
+    <width>859</width>
     <height>638</height>
    </rect>
   </property>
@@ -14,7 +14,7 @@
    <string>配方管理</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="CRecipeManager.qrc">
+   <iconset>
     <normaloff>:/CRecipeManager/Resources/recipe.png</normaloff>:/CRecipeManager/Resources/recipe.png</iconset>
   </property>
   <property name="styleSheet">
@@ -60,6 +60,16 @@
    </item>
    <item row="1" column="0" colspan="4">
     <widget class="QTableWidget" name="tableWidget"/>
+   </item>
+   <item row="2" column="0" colspan="4">
+    <widget class="QTableWidget" name="tableWidget_Camear">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>200</height>
+      </size>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

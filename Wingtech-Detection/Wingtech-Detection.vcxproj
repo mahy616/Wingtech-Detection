@@ -120,6 +120,7 @@
     <ClCompile Include="3rdParty\HikCamrea\MvCamera.cpp" />
     <ClCompile Include="adminLoginDialog.cpp" />
     <ClCompile Include="AlgoManager.cpp" />
+    <ClCompile Include="ChangePswd.cpp" />
     <ClCompile Include="CMainWindow.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="CRecipeManager.cpp" />
@@ -143,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="adminLoginDialog.ui" />
+    <QtUic Include="ChangePswd.ui" />
     <QtUic Include="CMainWindow.ui" />
     <QtUic Include="CRecipeManager.ui" />
     <QtUic Include="ParameterSetting.ui" />
@@ -159,6 +161,7 @@
     <ClInclude Include="3rdParty\HikCamrea\MvCamera.h" />
     <QtMoc Include="AlgoManager.h" />
     <QtMoc Include="adminLoginDialog.h" />
+    <QtMoc Include="ChangePswd.h" />
     <ClInclude Include="Config.h" />
     <QtMoc Include="CRecipeManager.h" />
     <ClInclude Include="melsec_helper.h" />

@@ -11,10 +11,10 @@ CParameterSetting::CParameterSetting(QDialog *parent /*= NULL*/)
 	ui.setupUi(this);
 	InitVariables();
 	InitConnections();
-
 	InitCamera();
 	LoadConfig();
 	LoadModelConfig();
+
 }
 
 CParameterSetting::~CParameterSetting()
@@ -77,7 +77,6 @@ void CParameterSetting::InitVariables()
 
 
 	QString errMsg;
-	//m_bFirstAlgoSuccess = CAlgoFirstStation::GetInstance()->InitAlgo(errMsg); //初始化模型
 	QRegExp reg("\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b");
 	ui.comboBox_SystemType->addItem(QString::fromLocal8Bit("在线运行"));
 	ui.comboBox_SystemType->addItem(QString::fromLocal8Bit("相机调试"));
@@ -187,7 +186,8 @@ void CParameterSetting::InitFourthGroup()
 void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo)
 {
 	QString CurTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
-	auto image_info = [&](bool checkbox, s_StationInfo ImageInfo, const QString &curTime, const QString &path, bool bok,int index)
+	QString CurTimeImage = QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss-zzz");//yyyy-MM-dd_hh-mm-ss-zzz
+	auto image_info = [&](bool checkbox, s_StationInfo ImageInfo, const QString &curTime, const QString &path, bool bok,int index, const QString &CurTimeImage)
 	{
 		bool result = checkbox;
 		if (result)
@@ -205,15 +205,15 @@ void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo)
 			}
 			if (!bok)
 			{
-				QString OriginalImageName = CurPath + "/" + QString::number(index) + "_O.bmp";
-				QString RenderImageName = CurPath + "/" + QString::number(index) + "/_R.jpg";
+				QString OriginalImageName = CurPath + "/" + CurTimeImage + "_" + QString::number(index) + "_O.bmp";
+				QString RenderImageName = CurPath + "/" + CurTimeImage + "_" + QString::number(index) + "/_R.jpg";
 				m_SaveImage.SaveImage(OriginalImageName, ImageInfo.OriginalImage);
 				m_SaveImage.SaveImage(RenderImageName, ImageInfo.RenderImage);
 			}
 			else
 			{
-				QString OriginalImageName = CurPath + "/" + QString::number(index) + "_O.jpg";
-				QString RenderImageName = CurPath + "/" + QString::number(index) + "/_R.jpg";
+				QString OriginalImageName = CurPath + "/" + CurTimeImage + "_" + QString::number(index) + "_O.jpg";
+				QString RenderImageName = CurPath + "/" + CurTimeImage + "_" + QString::number(index) + "/_R.jpg";
 				m_SaveImage.SaveImage(OriginalImageName, ImageInfo.OriginalImage);
 				m_SaveImage.SaveImage(RenderImageName, ImageInfo.RenderImage);
 			}
@@ -221,24 +221,25 @@ void CParameterSetting::SaveImage(s_SaveImageInfo ImageInfo)
 
 	};
 
-	image_info(ui.checkBox_SaveNG_First->isChecked(),ImageInfo.FirstStation, CurTime, m_ngpath1, ImageInfo.FirstStation.bok, m_index);
-	image_info(ui.checkBox_SaveOK_First->isChecked(), ImageInfo.FirstStation, CurTime, m_okpath1, ImageInfo.FirstStation.bok, m_index);
+	image_info(ui.checkBox_SaveNG_First->isChecked(),ImageInfo.FirstStation, CurTime, m_ngpath1, ImageInfo.FirstStation.bok, m_index, CurTimeImage);
+	image_info(ui.checkBox_SaveOK_First->isChecked(), ImageInfo.FirstStation, CurTime, m_okpath1, ImageInfo.FirstStation.bok, m_index, CurTimeImage);
 
-	image_info(ui.checkBox_SaveNG_Second->isChecked(), ImageInfo.SecondStation, CurTime, m_ngpath2, ImageInfo.SecondStation.bok, m_index);
-	image_info(ui.checkBox_SaveOK_Second->isChecked(), ImageInfo.SecondStation, CurTime, m_okpath2, ImageInfo.SecondStation.bok, m_index);
+	image_info(ui.checkBox_SaveNG_Second->isChecked(), ImageInfo.SecondStation, CurTime, m_ngpath2, ImageInfo.SecondStation.bok, m_index, CurTimeImage);
+	image_info(ui.checkBox_SaveOK_Second->isChecked(), ImageInfo.SecondStation, CurTime, m_okpath2, ImageInfo.SecondStation.bok, m_index, CurTimeImage);
 
-	image_info(ui.checkBox_SaveNG_Third->isChecked(), ImageInfo.ThirdStation, CurTime, m_ngpath3, ImageInfo.ThirdStation.bok, m_index);
-	image_info(ui.checkBox_SaveOK_Third->isChecked(), ImageInfo.ThirdStation, CurTime, m_okpath3, ImageInfo.ThirdStation.bok, m_index);
+	image_info(ui.checkBox_SaveNG_Third->isChecked(), ImageInfo.ThirdStation, CurTime, m_ngpath3, ImageInfo.ThirdStation.bok, m_index, CurTimeImage);
+	image_info(ui.checkBox_SaveOK_Third->isChecked(), ImageInfo.ThirdStation, CurTime, m_okpath3, ImageInfo.ThirdStation.bok, m_index, CurTimeImage);
 
-	image_info(ui.checkBox_SaveNG_Fourth->isChecked(), ImageInfo.FourStation, CurTime, m_ngpath4, ImageInfo.FourStation.bok, m_index);
-	image_info(ui.checkBox_SaveOK_Fourth->isChecked(), ImageInfo.FourStation, CurTime, m_okpath4, ImageInfo.FourStation.bok, m_index);
+	image_info(ui.checkBox_SaveNG_Fourth->isChecked(), ImageInfo.FourStation, CurTime, m_ngpath4, ImageInfo.FourStation.bok, m_index, CurTimeImage);
+	image_info(ui.checkBox_SaveOK_Fourth->isChecked(), ImageInfo.FourStation, CurTime, m_okpath4, ImageInfo.FourStation.bok, m_index, CurTimeImage);
 
 }
 
-void CParameterSetting::SaveCameraTestImage(s_SaveImageInfo ImageInfo)
+void CParameterSetting::SaveCameraTestImage(s_SaveImageInfo ImageInfo, e_CameraType type)
 {
 	QString CurTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");//yyyy-MM-dd_hh-mm-ss-zzz
-	auto image_TestInfo = [&](s_StationInfo ImageInfo, const QString &curTime, const QString &path, int index)
+	QString CurTimeImage = QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss-zzz");//yyyy-MM-dd_hh-mm-ss-zzz
+	auto image_TestInfo = [&](s_StationInfo ImageInfo, const QString &curTime, const QString &path, e_CameraType type, const QString &CurTimeImage)
 	{
 
 		if (path.isEmpty())
@@ -252,14 +253,14 @@ void CParameterSetting::SaveCameraTestImage(s_SaveImageInfo ImageInfo)
 		{
 			dir.mkpath(CurPath);
 		}
-		QString OriginalImageName = CurPath + "/" + QString::number(index) + "_O.bmp";
+		QString OriginalImageName = CurPath + "/" + CurTimeImage + "_" + QString::number(type) + "_O.bmp";
 		m_SaveImage.SaveImage(OriginalImageName, ImageInfo.OriginalImage);
 
 	};
-	image_TestInfo(ImageInfo.FirstStation, CurTime, ui.lineEdit_OKPath_First->text(), m_index);
-	image_TestInfo(ImageInfo.SecondStation, CurTime, ui.lineEdit_OKPath_Second->text(), m_index);
-	image_TestInfo(ImageInfo.ThirdStation, CurTime, ui.lineEdit_OKPath_Third->text(), m_index);
-	image_TestInfo(ImageInfo.FourStation, CurTime, ui.lineEdit_OKPath_Fourth->text(), m_index);
+	image_TestInfo(ImageInfo.FirstStation, CurTime, ui.lineEdit_OKPath_First->text(), type, CurTimeImage);
+	image_TestInfo(ImageInfo.SecondStation, CurTime, ui.lineEdit_OKPath_Second->text(), type, CurTimeImage);
+	image_TestInfo(ImageInfo.ThirdStation, CurTime, ui.lineEdit_OKPath_Third->text(), type, CurTimeImage);
+	image_TestInfo(ImageInfo.FourStation, CurTime, ui.lineEdit_OKPath_Fourth->text(), type, CurTimeImage);
 }
 
 void CParameterSetting::GetCameraInfo()
@@ -269,7 +270,6 @@ void CParameterSetting::GetCameraInfo()
 	m_ThirdCameraInfo.ImageCapture->InitStartSign();
 	m_FourCameraInfo.ImageCapture->InitStartSign();
 }
-
 
 //关闭设备
 bool CParameterSetting::CloseDevice(int index)
@@ -389,6 +389,11 @@ void CParameterSetting::InitConnections()
 	connect(m_FourCameraInfo.ImageCapture, SIGNAL(SendImageToAlgo(Mat, e_CameraType, int)), this, SLOT(ReceivaOriginalImage(Mat, e_CameraType, int)));
 
 	connect(CPLCManager::GetInstance(), SIGNAL(SendConnectStatus(bool)), this, SLOT(ReceiveConnectStatus(bool)));
+	
+	connect(ChangePswd::GetInstall(), SIGNAL(signalFromChangePswd(int, QString, QString)), this, SLOT(slotChangePswd(int, QString, QString)));
+	
+	connect(this, SIGNAL(signalFromChangeAdminPswd(QString, QString)), this, SLOT(slotFromChangeAdminPswd(QString, QString)));
+	connect(this, SIGNAL(signalFromChangeOperatorPswd(QString, QString)), this, SLOT(slotFromChangeOperatorPswd(QString, QString)));
 }
 
 void CParameterSetting::InitCamera()
@@ -658,12 +663,12 @@ void CParameterSetting::ConnectToPLC()
 		QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("PLC端口不能为空"));
 		return;
 	}
+
 	if (!CPLCManager::GetInstance()->TcpConnect(ip, port.toUShort(), Heart))
 	{
 		QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("通讯失败"));
 		return;
 	}
-		
 }
 void CParameterSetting::SendOKToPLC()
 {
@@ -812,7 +817,7 @@ void CParameterSetting::ReceiveCameraImage(Mat image, e_CameraType index)
 		ui.label_FourthImage->SetImage(qimage);
 		SaveInfo.FourStation = StationInfo;
 	}
-	this->SaveCameraTestImage(SaveInfo);
+	this->SaveCameraTestImage(SaveInfo, index);
 }
 void CParameterSetting::OnBtnClicked()
 {
@@ -827,6 +832,7 @@ void CParameterSetting::OnBtnClicked()
 
 
 }
+
 void CParameterSetting::ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Index)
 {
 	//emit SendAlgoImageToMainWindow(AlgolImage, type, Time, bok);//??
@@ -1082,7 +1088,7 @@ void CParameterSetting::SaveConfig()
 		cfg->Write(COMMUNICATION_SECTOIN, PORT, Port);
 		cfg->Write(COMMUNICATION_SECTOIN, HEARTBEAT, heartbeat);
 	}
-	                                         
+	           
 	cfg->Write(DATA_SECTION, FREE_GRAB_FIRST, ui.radioButton_FreeFirst->isChecked());
 	cfg->Write(DATA_SECTION, EXTERNAL_FIRST, ui.radioButton_ExternalFirst->isChecked());
 	cfg->Write(DATA_SECTION, SOFT_FIRST, ui.radioButton_SoftFirst->isChecked());
@@ -1099,6 +1105,8 @@ void CParameterSetting::SaveConfig()
 	cfg->Write(DATA_SECTION, EXTERNAL_FOURTH, ui.radioButton_ExternalFourth->isChecked());
 	cfg->Write(DATA_SECTION, SOFT_FOURTH, ui.radioButton_SoftFourth->isChecked());
 	
+
+
 	if(bIsSetSucceed == true)
 		QMessageBox::information(this, QString::fromLocal8Bit(""), QString::fromLocal8Bit("保存成功"));
 
@@ -1299,6 +1307,31 @@ QImage CParameterSetting::MattoQImage(Mat image)
 	}
 }
 
+void CParameterSetting::setIDandPswd()
+{
+	QString IniPath = QCoreApplication::applicationDirPath() + "/parameter_cfg.ini";
+	QFileInfo info;
+	if (info.exists(IniPath))
+	{
+		CConfig *cfg = new CConfig(IniPath);
+
+		QString id = cfg->GetString(ID_AND_PSWD, ADMINID);
+		QString pswd = cfg->GetString(ID_AND_PSWD, ADMINPSWD);
+		ChangePswd::GetInstall()->setAdminID(id);
+		ChangePswd::GetInstall()->setAdminPswd(pswd);
+
+	    id = cfg->GetString(ID_AND_PSWD, OPERATORID);
+		pswd = cfg->GetString(ID_AND_PSWD, OPERATORPSWD);
+		ChangePswd::GetInstall()->setOperatorID(id);
+		ChangePswd::GetInstall()->setOperatorPswd(pswd);
+
+		delete cfg;
+		cfg = NULL;
+	}
+
+
+}
+
 void CParameterSetting::LoadConfig()
 {
 
@@ -1368,6 +1401,7 @@ void CParameterSetting::LoadConfig()
 			}
 		}
 		//plc
+		//plc
 		QString ip = cfg->GetString(COMMUNICATION_SECTOIN, IP);
 		qDebug() << "load config plc ip:" << ip;
 		printf("load config plc ip:%s\n", ip.toStdString().c_str());
@@ -1387,7 +1421,7 @@ void CParameterSetting::LoadConfig()
 		qDebug() << "load config plc connected:" << rv;
 		if (rv)
 		{
-			ConnectToPLC();	  
+			ConnectToPLC();
 		}
 		//当路径不存在的时候自动在绝对路径下生成对应的OK/NG的文件夹
 		//保存路径 NG1
@@ -2516,6 +2550,7 @@ void CParameterSetting::setFirstEnable(bool checked)
 {
 	ui.pushButton_LoadNGPath_First->setEnabled(checked);
 	ui.pushButton_LoadOKPath_First->setEnabled(checked);
+
 	ui.checkBox_SaveOK_First->setEnabled(checked);
 	ui.checkBox_SaveNG_First->setEnabled(checked);
 	ui.lineEdit_NGPath_First->setEnabled(checked);
@@ -2531,6 +2566,7 @@ void CParameterSetting::setSecondEnable(bool checked)
 {
 	ui.pushButton_LoadNGPath_Second->setEnabled(checked);
 	ui.pushButton_LoadOKPath_Second->setEnabled(checked);
+
 	ui.checkBox_SaveOK_Second->setEnabled(checked);
 	ui.checkBox_SaveNG_Second->setEnabled(checked);
 	ui.lineEdit_NGPath_Second->setEnabled(checked);
@@ -2546,6 +2582,7 @@ void CParameterSetting::setThirdEnable(bool checked)
 {
 	ui.pushButton_LoadNGPath_Third->setEnabled(checked);
 	ui.pushButton_LoadOKPath_Third->setEnabled(checked);
+
 	ui.checkBox_SaveOK_Third->setEnabled(checked);
 	ui.checkBox_SaveNG_Third->setEnabled(checked);
 	ui.lineEdit_NGPath_Third->setEnabled(checked);
@@ -2561,6 +2598,7 @@ void CParameterSetting::setFourthEnable(bool checked)
 {
 	ui.pushButton_LoadNGPath_Fourth->setEnabled(checked);
 	ui.pushButton_LoadOKPath_Fourth->setEnabled(checked);
+	ui.pushButton_SaveParams_Fourth->setEnabled(checked);
 	ui.checkBox_SaveOK_Fourth->setEnabled(checked);
 	ui.checkBox_SaveNG_Fourth->setEnabled(checked);
 	ui.lineEdit_NGPath_Fourth->setEnabled(checked);
@@ -2572,30 +2610,51 @@ void CParameterSetting::setFourthEnable(bool checked)
 	ui.radioButton_SoftFourth->setEnabled(checked);
 }
 
-void CParameterSetting::ShowFirstRender(bool bok)
-{
-	if (bok)
-	{
-		//ui.label_FirstImage->SetImage();
-	}
-}
-
-void CParameterSetting::ShowSecondRender(bool bok)
-{
-
-}
-
-void CParameterSetting::ShowThirdRender(bool bok)
-{
-
-}
-
-void CParameterSetting::ShowFourthRender(bool bok)
-{
-
-}
-
-void CParameterSetting::DeleteFile()
+void CParameterSetting::DeleteFile1()
 {
 	AutoDeleteFiles(30);
+}
+
+void CParameterSetting::slotChangePswd(int index, QString m_ID, QString m_pswd)
+{
+	if (index == 0)
+	{
+		emit signalFromChangeAdminPswd(m_ID, m_pswd);
+	}
+	else if(index == 1)
+	{
+		emit signalFromChangeOperatorPswd(m_ID, m_pswd);
+	}
+	//之前遇到的问题：
+	if (m_ID == "管理员" && index == 0)
+	{
+		//if判断进不来，但是m_ID == "管理员成立",为啥？
+	}
+}
+//更改管理员密码
+void CParameterSetting::slotFromChangeAdminPswd(QString id, QString pswd)
+{
+	QString IniPath = QCoreApplication::applicationDirPath() + "/parameter_cfg.ini";
+	CConfig *cfg = new CConfig(IniPath);
+	cfg->Write(ID_AND_PSWD, ADMINID, id);
+	cfg->Write(ID_AND_PSWD, ADMINPSWD, pswd);
+	delete cfg;
+	cfg = NULL;
+	QMessageBox::information(this, QString::fromLocal8Bit("成功"), QString::fromLocal8Bit("修改密码成功"));
+	ChangePswd::GetInstall()->hide();
+	
+}
+//更改操作员密码
+void CParameterSetting::slotFromChangeOperatorPswd(QString id, QString pswd)
+{
+
+	QString IniPath = QCoreApplication::applicationDirPath() + "/parameter_cfg.ini";
+	CConfig *cfg = new CConfig(IniPath);
+	cfg->Write(ID_AND_PSWD, OPERATORID, id);
+	cfg->Write(ID_AND_PSWD, OPERATORPSWD, pswd);
+	delete cfg;
+	cfg = NULL;
+	QMessageBox::information(this, QString::fromLocal8Bit("成功"), QString::fromLocal8Bit("修改密码成功"));
+	ChangePswd::GetInstall()->hide();
+
 }

@@ -26,6 +26,7 @@ public:
 
 private:
 	void InitVariables();
+	void updateTableInfos(void);
 	QStringList getFileNames(const QString &path);
 
 private:
@@ -37,11 +38,11 @@ private:
 	bool m_Ready;
 	int m_ImageID;  //图像ID
 	int m_ImageCounts;   //配方个图像个数
-	int m_Number;  //配方编号
+	int m_Number;   //配方个图像个数
 	s_ImageInfo ImageInfo;
 	QVector<double>m_AlgoThreshold;
 	bool m_InitRecipe;
-	
+
 signals:
 	void SendAlgoImage(Mat image, Mat RenderImage, int index, bool bOK, e_CameraType type);
 	void SendStartSign();
@@ -50,6 +51,8 @@ private slots:
 	void SwitchRecipe(QString Name);
 	//保存配方，如果有图像ID没有选择模型，不能保存
 	void SaveRecipe();
+	//删除配方, 删除选中的配方
+	void DeleteRecipe();
 	//浏览模型
 	void BrowseModelPath();
 	//PLC触发保存配方
@@ -64,4 +67,7 @@ private slots:
 	void ReceiveStartSign();
 	//接收阈值设置完成信号
 	void ReceiveAlgoThreshold(QVector<double>AlgoThreshold);
+	//点击选中的配方
+	void tableWidget_click(const QModelIndex &index);
+
 };

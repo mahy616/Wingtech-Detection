@@ -154,6 +154,13 @@ void CMainWindow::InitVariables()
     DockStatistics->setWidget(m_Statistics);
 	qDebug() << "Init DockStatistics widget";
     //日志
+	//m_ListViewClear = new QPushButton();
+	//QGridLayout *LogLayout = new QGridLayout();
+	//LogLayout->addWidget(m_ListViewClear);
+	//QWidget *Loglaywidget = new QWidget();
+	//Loglaywidget->setLayout(LogLayout);
+
+
     m_ListView = new QListView();
     m_LogModel = new QStandardItemModel();
     QFont font("微软雅黑", 12);
@@ -164,6 +171,7 @@ void CMainWindow::InitVariables()
     LogDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     addDockWidget(Qt::RightDockWidgetArea, LogDock);
     LogDock->setWidget(m_ListView);
+	
 	qDebug() << "Init Log widget";
     m_Camera1Results.clear();
     m_Camera1Images.clear();
@@ -186,6 +194,7 @@ void CMainWindow::InitVariables()
 	m_admin = new adminLoginDialog;
 
 	setActionEnable(false);
+	m_bStart = false;
 }
 
 //收到PLC切换配方指令，根据配方中图像数量初始化结果细节
@@ -434,7 +443,11 @@ void CMainWindow::SendPLCResult(QString strResult,bool bok)
 	qDebug() << "CParameterSetting:" << strResult;
 	if (CPLCManager::GetInstance()->GetConnectStatus())
 	{
-		CPLCManager::GetInstance()->WritePLCData(strResult,bok);
+		if (!CPLCManager::GetInstance()->WritePLCData(strResult, bok))
+		{
+			QString Msg = "Write PLC Result Falied ";
+			AddLog(Msg);
+		}
 	}
 
 }
@@ -490,20 +503,39 @@ void CMainWindow::RecipeSetting()
 
 void CMainWindow::AdminDection()
 {
+	m_Parameter->setIDandPswd();
 	m_admin->exec();
-	int adminctrl = m_admin->adminctrl;
-	if (adminctrl == 1)
+	QString ID = ChangePswd::GetInstall()->GetAdminID();
+	QString pswd = ChangePswd::GetInstall()->GetAdminPswd();
+	
+	if (m_admin->m_index == 0)
 	{
-		setActionEnable(true);
-		ui.action_admin->setEnabled(false);
+		if (m_admin->m_admin.Pswd == pswd)
+		{
+			setActionEnable(true);
+			ui.action_admin->setEnabled(false);
+		}
 	}
-	else if(adminctrl == 2)
+	else if(m_admin->m_index == 1)
+	{
+		if (m_admin->m_operator.Pswd == pswd)
+		{
+			ui.action_Start->setEnabled(true);
+			ui.action_Setting->setEnabled(false);
+			ui.action_Recipe->setEnabled(false);
+			ui.action_admin->setEnabled(false);
+		}
+		
+	}
+	else
 	{
 		ui.action_Start->setEnabled(true);
 		ui.action_Setting->setEnabled(false);
 		ui.action_Recipe->setEnabled(false);
-		ui.action_admin->setEnabled(false);
+		ui.action_admin->setEnabled(true);
 	}
+
+
 }
 
 void CMainWindow::setActionEnable(bool bok)
@@ -744,8 +776,20 @@ void CMainWindow::ReceiveInitImageNumber(int number)
 
 void CMainWindow::ReceiveStartSign()
 {
+	QString Msg = "Init Start ";
+	AddLog(Msg);
+	 Msg = "Init End ";
+	AddLog(Msg);
 	RefreshResultDetails();
 	m_Parameter->GetCameraInfo();
+	if (!CPLCManager::GetInstance()->WritePLCStartSign())
+	{
+		Msg = "Write PLC Start Sign Failed ";
+		AddLog(Msg);
+		return;
+	}
+	Msg = "Init Success ";
+	AddLog(Msg);
 }
 
 

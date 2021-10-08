@@ -19,14 +19,14 @@ adminLoginDialog::~adminLoginDialog()
 
 void adminLoginDialog::pushButtonAdminLogin()
 {
-	QString adminPassword;
 	QString linePassword = ui.passwordLineEdit->text();
 	if (ui.info_comboBox->currentIndex() == 0)
 	{
-		adminPassword = "1";
-		if (adminPassword == linePassword)
+		m_index = 0;
+		m_admin.ID = ui.info_comboBox->currentText();
+		m_admin.Pswd = ChangePswd::GetInstall()->GetAdminPswd();
+		if (m_admin.Pswd == linePassword)
 		{
-			adminctrl = 1;
 			accept();
 		}
 		else
@@ -36,10 +36,11 @@ void adminLoginDialog::pushButtonAdminLogin()
 	}
 	else if (ui.info_comboBox->currentIndex() == 1)
 	{
-		adminPassword = "2";
-		if (adminPassword == linePassword)
+		m_index = 1;
+		m_operator.ID = ui.info_comboBox->currentText();
+		m_operator.Pswd = ChangePswd::GetInstall()->GetOperatorPswd();
+		if (m_operator.Pswd == linePassword)
 		{
-			adminctrl = 2;
 			accept();
 		}
 		else
@@ -56,5 +57,7 @@ void adminLoginDialog::pushButtonCancelLogin()
 
 void adminLoginDialog::pushButtonChangePassword()
 {
-
+	this->hide();
+	ChangePswd::GetInstall()->show();
 }
+

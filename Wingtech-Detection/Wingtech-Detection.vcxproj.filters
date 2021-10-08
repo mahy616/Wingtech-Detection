@@ -59,6 +59,9 @@
     <ClCompile Include="adminLoginDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ChangePswd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resource Files">
@@ -119,6 +122,9 @@
     <QtMoc Include="adminLoginDialog.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="ChangePswd.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="CMainWindow.ui">
@@ -137,6 +143,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="adminLoginDialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="ChangePswd.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

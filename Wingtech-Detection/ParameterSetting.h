@@ -10,7 +10,7 @@
 #include "qtablewidget.h"
 #include "QHeaderView"
 #include "Config.h"
-
+#include "ChangePswd.h"
 
 typedef struct
 {
@@ -64,8 +64,9 @@ public:
 	~CParameterSetting();
 	void StartDetecion(bool bStart);
 	void SaveImage(s_SaveImageInfo ImageInfo);
-	void SaveCameraTestImage(s_SaveImageInfo ImageInfo);
+	void SaveCameraTestImage(s_SaveImageInfo ImageInfo, e_CameraType type);
 	void GetCameraInfo();
+	void setIDandPswd();
 private:
 	void InitVariables();
 	void InitTableWidget();
@@ -98,6 +99,8 @@ private:
 
 	void SafeParamsSetting();
 	void AutoDeleteFiles(unsigned int days);
+
+
 private slots:
 	void OpenFirstCamera();
 	void LoadFirstImage();
@@ -138,17 +141,19 @@ private slots:
 	void ReceiveCameraImage(Mat image, e_CameraType index);
 	void ReceivaOriginalImage(Mat OriginalImage, e_CameraType type, int Index);
 
-	void ShowFirstRender(bool bok);
-	void ShowSecondRender(bool bok);
-	void ShowThirdRender(bool bok);
-	void ShowFourthRender(bool bok);
-
-	void DeleteFile();
+	void slotChangePswd(int index, QString m_ID, QString m_pswd);
+	void slotFromChangeAdminPswd(QString id, QString pswd);
+	void slotFromChangeOperatorPswd(QString id, QString pswd);
+	void DeleteFile1();
 
 signals:
 	void SendAlgoImageToMainWindow( Mat OriginalImage, e_CameraType type,int index, bool bok);
 	void SendOriginalImage(Mat image, int index, e_CameraType type);
 	void SendThreshold(QVector<double>Threshold);
+signals:
+	void signalFromChangeAdminPswd(QString ID, QString Pswd);
+signals:
+	void signalFromChangeOperatorPswd(QString ID, QString Pswd);
 private:
 	Ui::DialogSetting ui;
 	s_CameraInfo m_FirstCameraInfo;

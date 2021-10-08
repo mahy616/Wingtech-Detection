@@ -8,14 +8,14 @@ CRecipeManager::CRecipeManager(QWidget *parent)
 	: QDialog(parent)
 {
 	m_Ready = false;
-	m_InitRecipe = true;
-	m_ImageCounts = 0;
 	ui.setupUi(this);
+	m_ImageCounts = 0;
+	m_InitRecipe = true;
 	InitVariables();
 	InitRecipeNames();
 	InitConnections();
 	CPLCManager::GetInstance()->ReadCurrentRecipe();
-};
+}
 
 void CRecipeManager::RunAlgo(Mat Image, int ImageID, e_CameraType type)
 {
@@ -61,12 +61,12 @@ void CRecipeManager::SaveRecipeFromPLC(QString RecipeName, int RecipeNumber, int
 bool CRecipeManager::InitRecipe(QString RecipeName, QString &errMsg)
 {
 	int Find = ui.comboBox->findText(RecipeName);
-	if (Find== -1)
+	if (Find == -1)
 	{
 		m_InitRecipe = false;
 		errMsg = QString::fromLocal8Bit("初始化配方失败:") + RecipeName;
 		//SaveRecipeFromPLC(RecipeName,m_Number,m_ImageCounts);
-		QMessageBox::information(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("初始化配方失败") );
+		QMessageBox::information(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("初始化配方失败"));
 		return false;
 	}
 	QString IniName = QCoreApplication::applicationDirPath() + "/RecipeFolder/" + RecipeName + ".ini";
@@ -152,7 +152,6 @@ int CRecipeManager::GetImageCounts()
 	return m_ImageCounts;
 }
 
-
 void CRecipeManager::InitVariables()
 {
 	QFont font("微软雅黑", 12);
@@ -170,6 +169,28 @@ void CRecipeManager::InitVariables()
 	QStringList header;
 	header << QString::fromLocal8Bit("图像ID") << QString::fromLocal8Bit("模型路径") << QString::fromLocal8Bit("选择模型");
 	ui.tableWidget->setHorizontalHeaderLabels(header);
+
+	ui.tableWidget_Camear->setSelectionBehavior(QAbstractItemView::SelectRows);
+	ui.tableWidget_Camear->setEditTriggers(QAbstractItemView::NoEditTriggers);
+	ui.tableWidget_Camear->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+	ui.tableWidget_Camear->horizontalHeader()->setFont(font);
+	ui.tableWidget_Camear->horizontalHeader()->setHighlightSections(false);
+	ui.tableWidget_Camear->horizontalHeader()->setStyleSheet("QHeaderView::section{color:rgb(255,255,255);background:rgb(41,136,41);}");
+	ui.tableWidget_Camear->setColumnCount(3);
+	ui.tableWidget_Camear->setRowCount(4);
+	ui.tableWidget_Camear->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+	ui.tableWidget_Camear->horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
+	ui.tableWidget_Camear->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
+	ui.tableWidget_Camear->verticalHeader()->setHidden(true);
+
+	ui.tableWidget_Camear->setItem(0, 0, new QTableWidgetItem(QString::fromLocal8Bit("相机一")));
+	ui.tableWidget_Camear->setItem(1, 0, new QTableWidgetItem(QString::fromLocal8Bit("相机二")));
+	ui.tableWidget_Camear->setItem(2, 0, new QTableWidgetItem(QString::fromLocal8Bit("相机三")));
+	ui.tableWidget_Camear->setItem(3, 0, new QTableWidgetItem(QString::fromLocal8Bit("相机四")));
+
+	QStringList headerCamer;
+	headerCamer << QString::fromLocal8Bit("相机") << QString::fromLocal8Bit("曝光值") << QString::fromLocal8Bit("增益值");
+	ui.tableWidget_Camear->setHorizontalHeaderLabels(headerCamer);
 }
 
 QStringList CRecipeManager::getFileNames(const QString &path)
@@ -180,8 +201,8 @@ QStringList CRecipeManager::getFileNames(const QString &path)
 
 void CRecipeManager::InitRecipeNames()
 {
-	QString IniPath = QCoreApplication::applicationDirPath();
-	IniPath += "/RecipeFolder";
+	QString IniPath = QCoreApplication::applicationDirPath() + "/RecipeFolder";
+	//IniPath += "/RecipeFolder";
 	QStringList RecipeNames = getFileNames(IniPath);
 	ui.comboBox->clear();
 	for (int i = 0; i < RecipeNames.size(); ++i)
@@ -294,7 +315,28 @@ void CRecipeManager::SaveRecipe()
 		}
 		cfg->Write("Recipe_Parameters", QString::number(i + 1), ModelPath);
 	}
+	delete cfg;
+	cfg = nullptr;
 	QString errMsg;
 	InitRecipe(RecipeName, errMsg);
 }
  
+void CRecipeManager::DeleteRecipe()
+{
+
+}
+
+void CRecipeManager::updateTableInfos(void)
+{
+	ui.tableWidget->clear();
+	QStringList header;
+	header << QString::fromLocal8Bit("图像ID") << QString::fromLocal8Bit("模型路径") << QString::fromLocal8Bit("选择模型");
+	ui.tableWidget->setHorizontalHeaderLabels(header);
+	InitRecipeNames();
+}
+
+void CRecipeManager::tableWidget_click(const QModelIndex &index)
+{
+	index.row();
+
+}

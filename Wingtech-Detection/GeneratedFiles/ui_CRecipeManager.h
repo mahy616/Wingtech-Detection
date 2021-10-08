@@ -32,12 +32,13 @@ public:
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton;
     QTableWidget *tableWidget;
+    QTableWidget *tableWidget_Camear;
 
     void setupUi(QDialog *CRecipeManagerClass)
     {
         if (CRecipeManagerClass->objectName().isEmpty())
             CRecipeManagerClass->setObjectName(QString::fromUtf8("CRecipeManagerClass"));
-        CRecipeManagerClass->resize(856, 638);
+        CRecipeManagerClass->resize(859, 638);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/CRecipeManager/Resources/recipe.png"), QSize(), QIcon::Normal, QIcon::Off);
         CRecipeManagerClass->setWindowIcon(icon);
@@ -70,6 +71,12 @@ public:
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
 
         gridLayout->addWidget(tableWidget, 1, 0, 1, 4);
+
+        tableWidget_Camear = new QTableWidget(CRecipeManagerClass);
+        tableWidget_Camear->setObjectName(QString::fromUtf8("tableWidget_Camear"));
+        tableWidget_Camear->setMaximumSize(QSize(16777215, 200));
+
+        gridLayout->addWidget(tableWidget_Camear, 2, 0, 1, 4);
 
 
         retranslateUi(CRecipeManagerClass);

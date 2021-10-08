@@ -52,7 +52,7 @@ private:
 	StatisticsWidget *m_Statistics;
 	QListView *m_ListView;
 	QStandardItemModel *m_LogModel;
-
+	QPushButton *m_ListViewClear;
 	//¼ì²â½á¹û
 	QMap<e_CameraType, bool> m_DetecionResult;
 
