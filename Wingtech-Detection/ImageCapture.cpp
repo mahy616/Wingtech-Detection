@@ -100,7 +100,7 @@ void CImageCapture::run()
 	MV_DISPLAY_FRAME_INFO stDisplayInfo = { 0 };
 	
 	while (1)
-	{//bStop\bOpen\bStart这三个标志位需要吗，是不是可以直接用，不用赋值呢？
+	{/////////////////////////////////////////////////////////////////////////////////
 		m_Mutex.lock();
 		bool bStop = m_bStop;
 		bool bOpen = m_bOpen;

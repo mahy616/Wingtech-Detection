@@ -73,7 +73,7 @@ void CAlgoManager::run()
 		smartmore::DetectionRequest req;
 		smartmore::DetectionResponse rsp;
 		Mat RenderImage;
-		vector<double>Threshold;
+		vector<double> Threshold;
 		req.thresholds = { 0.8f };
 		//req.image = cv::imread(input_image);
 		req.image = ImageInfo.Image;
@@ -93,7 +93,7 @@ void CAlgoManager::run()
 			qDebug() << "smartmore::ResultCode::Success";
 		};
 		Mat Render;/////////////////////////////////////////////////////////////////////////////////////////////???????
-		bool bok = true;
+		bool bok = true;//这里bok是但凡处理完图像就true，还是先这样写，这里的如果不通过是不是得标记一个false
 		emit SendPorcessResult(ImageInfo.Image, Render, ImageInfo.ImageID-1,bok, ImageInfo.Type);
 	}
 }
